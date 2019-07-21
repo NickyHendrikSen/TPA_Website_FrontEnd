@@ -1,0 +1,264 @@
+.wrapper{
+    height: 100vh;
+    width: 100vw;
+    .headerContent{
+        width: 100%;
+        height: 1000px; 
+        background-color:#fff;
+        background-image: url("img/headerBg1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        display:flex;
+        .description{
+            height: 100px;
+            width: 300px;
+            // background-color:black;
+            color:white;
+            position: absolute;
+            top: 900px;
+            right: 0px;
+        }
+        .homeSearchWrapper{
+            box-shadow:0 16px 40px rgba(0,0,0,0.12);
+            font-family: Roboto,Helvetica Neue,sans-serif;
+            height: 447px;
+            background-color: #fff;
+            margin-left: 100px;
+            margin-top:calc(80px + 50px/*+ 5%*/);
+            width: 377px;
+            height: 423px;
+            padding: 32px 32px 24px;
+            color:#484848;
+            border-radius: 4px;
+            //Title
+            .homeSearch_title{
+                display :block;
+                font-family: inherit;
+                text-align: left;
+                h1{
+                    font-size: 30px;
+                    margin:0;
+                    a{
+                        color:#484848;
+                        text-decoration: none;
+                    }
+                }
+            }
+            //Where(Location)
+            .homeSearchLocationWrapper{
+                margin-top: 16px;
+                display: block;
+                font-family: inherit;
+                text-align: left;
+                .homeSearchLocation_text{
+
+                    label{
+                        font-size: 12px;
+                        line-height: 1.3em;
+                        font-weight: 700;
+                    }
+                    margin-bottom: 8px;
+                }
+                .homeSearchLocationWhereWrapper{
+                    width: 100%;
+                    z-index: 1;
+                    .homeSearchLocationWhere{
+                        align-items: center;
+                        background-color: #ffffff;
+                        border: 1px solid #EBEBEB;
+                        border-radius: 4px;
+                        display:flex;
+                        height: 48px;
+                        width: 100%;
+                        .homeSearchLocationWhere_InputWrapper{
+                            width: 100%;
+                            // height: 100%;
+                            padding-left: 12px;
+                            padding-right: 15px;
+                            position: relative;
+                            input{
+                                width: 100%;
+                                font-size: 17px;
+                                border:none;
+                                outline: none;
+                            }
+                            // input:focus{
+                            //     width: 100%;
+                            //     font-size: 17px;
+                            //     border:none;
+                            //     outline: none;
+                            // }
+                        }
+                    }
+                }
+                .homeSearchLocationWhereFocused{
+                    align-items: center;
+                    background-color: #ffffff;
+                    border: 1px solid #EBEBEB;
+                    border-radius: 4px;
+                    display:flex;
+                    height: 48px;
+                    width: 100%;
+                    border-color: rgb(0, 132, 137)
+                }
+            }
+            //CheckIn and CheckOut
+            .homeSearchCheck{
+                margin-top:16px;
+                margin-bottom: 16px;
+                text-align: left;
+                width: 100%;
+                //CheckIn
+                .homeSearchCheck_in{
+                    display:inline-block;
+                    width: 50%;
+                    overflow: hidden;
+                    .homeSearchCheckIn_text{
+                        label{
+                            font-size: 12px;
+                            line-height: 1.3em;
+                            font-weight: 700;
+                        }
+                    }
+                    .homeSearchCheckInWrapper{
+                        width: 100%;
+                        z-index: 1;
+                        .homeSearchCheckIn{
+                            align-items: center;
+                            background-color: #ffffff;
+                            border: 1px solid #EBEBEB;
+                            border-radius: 4px;
+                            display:flex;
+                            height: 48px;
+                            width: 100%;
+                            .homeSearchCheckIn_InputWrapper{
+                                width: 100%;
+                                // height: 100%;
+                                padding-left: 12px;
+                                padding-right: 15px;
+                                position: relative;
+                                input{
+                                    width: 100%;
+                                    font-size: 17px;
+                                    border:none;
+                                    outline: none;
+                                }
+                            }
+                        }
+                    }
+                }
+                //CheckOut
+                .homeSearchCheck_out{
+                    display:inline-block;
+                    width: 50%;
+                    overflow: hidden;
+                    .homeSearchCheckOut_text{
+                        label{
+                            font-size: 12px;
+                            line-height: 1.3em;
+                            font-weight: 700;
+                        }
+                    }
+                    .homeSearchCheckOutWrapper{
+                        width: 100%;
+                        z-index: 1;
+                        .homeSearchCheckOut{
+                            align-items: center;
+                            background-color: #ffffff;
+                            border: 1px solid #EBEBEB;
+                            border-radius: 4px;
+                            display:flex;
+                            height: 48px;
+                            width: 100%;
+                            .homeSearchCheckOut_InputWrapper{
+                                width: 100%;
+                                // height: 100%;
+                                padding-left: 12px;
+                                padding-right: 15px;
+                                position: relative;
+                                input{
+                                    width: 100%;
+                                    font-size: 17px;
+                                    border:none;
+                                    outline: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            //Guest
+            .homeSearch_Guest{
+                margin-top: 16px;
+                margin-bottom: 16px;
+                display: block;
+                font-family: inherit;
+                text-align: left;
+                .homeSearchGuest_text{
+
+                    label{
+                        font-size: 12px;
+                        line-height: 1.3em;
+                        font-weight: 700;
+                    }
+                    margin-bottom: 8px;
+                }
+                .homeSearchGuestWrapper{
+                    width: 100%;
+                    z-index: 1;
+                    button{
+                        position: relative;
+                        text-align: left;
+                        background:none;
+                        border: 1px solid #EBEBEB;
+                        border-radius: 3px;
+                        display:block;
+                        font-size: 16px;
+                        font-weight: 400;
+                        height: 48px;
+                        width: 100%;
+                        padding: 11px;
+                        padding-top: 11px;
+                        font-size: 17px;
+                        color:#767676;
+                        cursor:pointer;
+                        //For the button image
+                        .homeSearchGuest_svgWrapper{
+                            position: absolute;
+                            top:0px;
+                            bottom: 0px;
+                            margin: auto;
+                            display: block;
+                            height: 12px;
+                            width: 12px;
+                            right:11px;
+                            // background-color:red;
+                            img{
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+            //Search
+            .homeSearch_SearchButtonWrapper{
+                padding-top: 8px;
+                display:block;
+                .homeSearch_SearchButton{
+                    background-color:#FF5A5F;
+                    border-radius: 4px;
+                    color:white;
+                    text-align: center;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 600;
+                    height: 48px;
+                    font-stretch: 100%;
+                    width: 100px;
+                    border: none;
+                }
+            }
+        }
+    }
+
+}
