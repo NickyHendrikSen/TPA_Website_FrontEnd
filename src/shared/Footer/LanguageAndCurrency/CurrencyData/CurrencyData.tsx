@@ -48,11 +48,12 @@ class CurrencyData extends Component {
                 // {currencies.rates.USD}
             // </div>
             <div>
-                {Object.keys(currencies).map(key => (
+                {/* {Object.keys(currencies).map(key => (
                     // <span>
-                    console.log(key + ", " + currencies[key].USD)
+                    console.log(key + ", " + currencies[key].IDR)
                     // </span>
-                ))}
+                ))} */}
+                Currency
             </div>
         )
     }

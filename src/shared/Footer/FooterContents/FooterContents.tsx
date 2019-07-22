@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import "./FooterContents.scss"
 import LanguageAndCurrency from '../LanguageAndCurrency/LanguageAndCurrency';
+import {BrowserRouter as Router, Link} from "react-router-dom"
 
 export class FooterContents extends Component {
     render() {
@@ -9,9 +10,9 @@ export class FooterContents extends Component {
                 <ol>
                     <li className="footer-contents-titles">
                         <h4>AirBnb</h4>
-                        <li className="footer-contents-list"><a href="">Careers</a></li>
-                        <li className="footer-contents-list"><a href="">Press</a></li>
-                        <li className="footer-contents-list"><a href=""> Policies</a></li>
+                        <li className="footer-contents-list"><a href="https://careers.airbnb.com/">Careers</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Press</a></li>
+                        <li className="footer-contents-list"><a href="https://www.airbnb.co.id/help/topic/250"> Policies</a></li>
                         <li className="footer-contents-list"><a href=""> Help</a></li>
                         <li className="footer-contents-list"><a href=""> Diversity & Belonging</a></li>
                         <li className="footer-contents-list"><a href=""> Accessibility</a></li>
