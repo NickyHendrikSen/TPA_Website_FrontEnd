@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Header.scss"
 import logo from "./img/logo.png"
-// import {BrowserRouter as Router, Route, Link} from "react-router-dom"
+import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 
 export default class Header extends React.Component{
     render(){
@@ -9,7 +9,9 @@ export default class Header extends React.Component{
             <header>
                 <div className="navBar">
                     <div className="logo">
-                        <img src={logo} alt="image not found"/>
+                    <Router>
+                        <Link to="/"><img src={logo} alt="image not found"/></Link>
+                    </Router>
                     </div>
                     <div className="menu">
                         <button>Log in</button>
