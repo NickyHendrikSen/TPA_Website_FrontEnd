@@ -3,19 +3,18 @@
     width: 100vw;
     .headerContent{
         width: 100%;
-        height: 1000px; 
+        height: 100vh;
         background-color:#fff;
         background-image: url("img/headerBg1.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         display:flex;
         .description{
-            height: 100px;
-            width: 300px;
+            padding: 24px;
             // background-color:black;
             color:white;
             position: absolute;
-            top: 900px;
+            bottom:0px;
             right: 0px;
         }
         .homeSearchWrapper{
@@ -62,53 +61,21 @@
                 .homeSearchLocationWhereWrapper{
                     width: 100%;
                     z-index: 1;
-                    .homeSearchLocationWhere{
-                        align-items: center;
-                        background-color: #ffffff;
-                        border: 1px solid #EBEBEB;
-                        border-radius: 4px;
-                        display:flex;
-                        height: 48px;
-                        width: 100%;
-                        .homeSearchLocationWhere_InputWrapper{
-                            width: 100%;
-                            // height: 100%;
-                            padding-left: 12px;
-                            padding-right: 15px;
-                            position: relative;
-                            input{
-                                width: 100%;
-                                font-size: 17px;
-                                border:none;
-                                outline: none;
-                            }
-                            // &:focus{
-                            //     width: 100%;
-                            //     font-size: 17px;
-                            //     border:none;
-                            //     outline: none;
-                            // }
-                        }
-                    }
-                }
-                .homeSearchLocationWhereFocused{
-                    align-items: center;
-                    background-color: #ffffff;
-                    border: 1px solid #EBEBEB;
-                    border-radius: 4px;
-                    display:flex;
-                    height: 48px;
-                    width: 100%;
-                    border-color: rgb(0, 132, 137);
-                    input:focus{
-                        outline: none;
-                        border: none;
+                    .homeSearchLocationWhere_Input{
                         font-size: 17px;
-                        width: 100%;
+                        padding-top:13px;
+                        padding-bottom:13px;
+                        border-radius: 4px;
                         padding-left: 12px;
                         padding-right: 15px;
+                        border: 1px solid #EBEBEB;
+                        width: 100%;
+                        &:focus{
+                            border: 1px solid rgb(0, 132, 137);
+                            outline:none;
+                            
+                        }
                     }
-                    
                 }
             }
             //CheckIn and CheckOut
@@ -132,26 +99,16 @@
                     .homeSearchCheckInWrapper{
                         width: 100%;
                         z-index: 1;
-                        .homeSearchCheckIn{
-                            align-items: center;
-                            background-color: #ffffff;
-                            border: 1px solid #EBEBEB;
+                        .homeSearchCheckIn_Input{
+                            font-size: 17px;
+                            padding: 11px 0px 11px 11px;
                             border-radius: 4px;
-                            display:flex;
-                            height: 48px;
-                            width: 100%;
-                            .homeSearchCheckIn_InputWrapper{
-                                width: 100%;
-                                // height: 100%;
-                                padding-left: 12px;
-                                padding-right: 15px;
-                                position: relative;
-                                input{
-                                    width: 100%;
-                                    font-size: 17px;
-                                    border:none;
-                                    outline: none;
-                                }
+                            border: 1px solid #EBEBEB;
+                            width: 93.5%;
+                            color:rgb(72, 72, 72);
+                            &:focus{
+                                border: 1px solid rgb(0, 132, 137);
+                                outline:none;
                             }
                         }
                     }
@@ -171,26 +128,17 @@
                     .homeSearchCheckOutWrapper{
                         width: 100%;
                         z-index: 1;
-                        .homeSearchCheckOut{
-                            align-items: center;
-                            background-color: #ffffff;
-                            border: 1px solid #EBEBEB;
+                        
+                        .homeSearchCheckOut_Input{
+                            font-size: 17px;
+                            padding: 11px 0px 11px 11px;
                             border-radius: 4px;
-                            display:flex;
-                            height: 48px;
-                            width: 100%;
-                            .homeSearchCheckOut_InputWrapper{
-                                width: 100%;
-                                // height: 100%;
-                                padding-left: 12px;
-                                padding-right: 15px;
-                                position: relative;
-                                input{
-                                    width: 100%;
-                                    font-size: 17px;
-                                    border:none;
-                                    outline: none;
-                                }
+                            border: 1px solid #EBEBEB;
+                            width: 93%;
+                            color:rgb(72, 72, 72);
+                            &:focus{
+                                border: 1px solid rgb(0, 132, 137);
+                                outline:none;
                             }
                         }
                     }
@@ -215,6 +163,9 @@
                 .homeSearchGuestWrapper{
                     width: 100%;
                     z-index: 1;
+                    button:active + .homeSearch_addGuestWrapper{
+                        display: block;
+                    }
                     button{
                         position: relative;
                         text-align: left;
@@ -281,31 +232,48 @@
                                 div{
                                     text-align: left;
                                     div{
-                                        display:inline-block;
+                                        display:flex;
+                                        justify-content: space-between;
                                     }
-                                    .homeSearch_addGuestContent_adultLeft{
+                                    .homeSearch_addGuestContent_Left{
                                         font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
                                         font-weight: 600;
                                         div{
                                             display:block;
                                         }
                                     }
-                                    .homeSearch_addGuestContent_adultRight{
-                                        div{
-                                            display:inline-block;
-                                            vertical-align: middle;
-                                            img{
-                                                height: 32px;
-                                                width: 32px;
-                                                margin-left: 10px;
-                                                margin-right: 10px;
+                                    .homeSearch_addGuestContent_Right{
+                                            div{
+                                                display:inline-block;
+                                                width: 28px;
+                                                height: 28px;
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: center;
+                                                cursor: pointer;
                                             }
-                                        }
+                                            .homeSearch_addGuestContent_RightLeft{
+                                                border-radius: 50%;
+                                                border: 1px solid rgba(0, 132, 137,0.3);
+                                                color: rgba(0, 132, 137,0.3);
+                                            }
+                                            .homeSearch_addGuestContent_RightRight{
+                                                border-radius: 50%;
+                                                border: 1px solid rgba(0, 132, 137,1);
+                                                color: rgba(0, 132, 137, 1);
+                                            }
                                     }
                                 }
                             }
                             .homeSearch_addGuestButton{
+                                text-align: right;
+                                color:#008489;
+                                font-size: 14px; 
 
+                                cursor:pointer;
+                                &:hover{
+                                    text-decoration: underline;
+                                }
                             }
                         }
                     }
