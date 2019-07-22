@@ -1,14 +1,14 @@
 .wrapper{
-    height: 100vh;
+    height: 2000px;
     width: 100vw;
-    .headerContent{
-        width: 100%;
+    display: flex;
+    .header-contents{
+        width: inherit;
         height: 1000px; 
         background-color:#fff;
         background-image: url("img/headerBg1.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-        display:flex;
         .description{
             height: 100px;
             width: 300px;
@@ -19,5 +19,4 @@
             right: 0px;
         }
     }
-
 }

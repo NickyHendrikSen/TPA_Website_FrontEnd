@@ -1,0 +1,19 @@
+.footer-button{
+    cursor: pointer;
+    width: auto;
+    height: 30px;
+    position: fixed;
+    padding: 2px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 5px;
+    background-color: white;
+    font-family: Helvetica Neue, sans-serif;
+    font-size: 8pt;
+    border: 1px solid transparent;
+    color: grey;
+    box-shadow: 1px 1px 3px 1px #888888;
+    z-index: 1;
+}
