@@ -15,6 +15,7 @@ const App: React.FC = () => {
           <Switch>
               <Route path="/" component={Home}/>
           </Switch>
+          {/* <Home /> */}
         </Router>
     </div>
   );

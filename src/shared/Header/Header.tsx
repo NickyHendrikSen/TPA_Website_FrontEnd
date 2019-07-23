@@ -3,8 +3,25 @@ import "./Header.scss"
 import logo from "./img/logo.png"
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 import search_select from "./img/search_select.png"
+import SignUp from "./SignEmail/SignEmail"
+import Login from "./Login/Login"
 
 export default class Header extends React.Component{
+    lightBox_reg_show(){
+        var lightBox = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
+        lightBox[0].style.display = "flex";
+        console.log(lightBox[0]);   
+        var body = document.getElementsByTagName("Body")[0] as HTMLElement;
+        body.style.position="fixed";
+    }    
+    lightBox_login_show(){
+        var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
+        lightBox[0].style.display = "flex";
+        console.log(lightBox[0]);   
+        var body = document.getElementsByTagName("Body")[0] as HTMLElement;
+        body.style.position="fixed";
+    }
+
     render(){
         return(
             <header>
@@ -19,12 +36,14 @@ export default class Header extends React.Component{
                         <input type="search" name="" id="" className="HeaderSearch" placeholder='Try "THIS"'/>
                     </div>
                     <div className="menu">
-                        <button>Log in</button>
-                        <button>Sign up</button>
+                        <button onClick={this.lightBox_login_show}>Log in</button>
+                        <button onClick={this.lightBox_reg_show}>Sign up</button>
                         <button>Help</button>
                         <button>Become a host</button>
                     </div>
                 </div>
+                <SignUp />
+                <Login />
             </header>
         )
     }

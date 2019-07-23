@@ -1,0 +1,227 @@
+.login_lightBoxWrapper{
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0,0.8);
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 3001;
+    // display:flex;
+    display:none;
+    .login_lightBox{
+        max-width: 568px;
+        width: 100%;
+        height: auto;
+        margin:auto;
+        background-color: rgba(255, 255, 255, 1);
+        display:block;
+        .login_close{
+            text-align: left;
+            margin-bottom: 20px;
+            img{
+                cursor: pointer;
+                height: 24px;
+                width: 24px;
+                margin-top: 20px;
+                margin-left: 24px;
+                border-radius: 50%;
+                transition-duration: 0.3s;
+                &:active{
+                    background-color: rgba(72, 72, 72, 0.2);  
+                }
+            }
+        }
+        .login_alt{
+            width: 504px;
+            // line-height: 48px;
+            display:block;
+            margin-left: 30px;
+            div{
+                height: 48px;
+                width: 100%;
+                // border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 8px;
+            }
+            .login_errMessage{
+                height: 20px;
+                display:none;
+                font-weight: 400;
+                font-size: 14px;
+                text-align: left;
+                color: rgb(217, 57, 0);
+            }
+            .login_fb{
+                background-color: rgb(69, 104, 178);
+                color:white;
+                border: 2px solid rgb(69, 104, 178);
+                cursor: pointer;
+                transition-duration: 0.5s;
+                vertical-align: middle;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                &:active{
+                    background-color:rgb(37, 80, 151);
+                    border: 2px solid rgb(37, 80, 151);
+                }
+                img{
+                    // position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 10px;
+                }
+            }
+            .login_google{
+                border: 2px solid rgb(118, 118, 118);
+                color: rgb(72, 72, 72);
+                cursor: pointer;
+                transition-duration: 0.5s;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                &:active{
+                    background-color: rgb(226, 226, 226);
+                }
+                img{
+                    // position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 10px;
+                }
+            }
+            .login_or{
+                color:rgb(118, 118, 118);
+                font-size: 14px;
+                font-weight: 600;
+                height: 12px;
+                &:after {
+                    display: inline-block;
+                    overflow: hidden;
+                    margin-bottom: 3px;
+                    margin-left: 10px;
+                    height: 1px;
+                    content: "";
+                    text-shadow: none;
+                    background-color: #999;
+                    width: 230px;
+                }
+                &:before {
+                    display: inline-block;
+                    overflow: hidden;
+                    margin-bottom: 3px;
+                    margin-right: 10px;
+                    height: 1px;
+                    content: "";
+                    text-shadow: none;
+                    background-color: #999;
+                    width: 230px;
+                }
+            }
+            .login_input{
+                width: 480px;
+                // height: 48px;
+                margin-top: 8px;
+                // margin-bottom: 8px;
+                border-radius: 4px;
+                font-size: 16px;
+                border: 1px solid #EBEBEB;
+                padding: 14px 11px;
+                outline:none;
+                &:focus{
+                    border: 1px solid #008489;
+                }
+            }
+            .login_rememShow{
+                display:flex;
+                justify-content: space-between;
+                margin-top: 8px;
+                margin-bottom: 0;
+                height: 30px;
+                .login_remem{
+                    font-size: 16px;
+                    font-weight: 400;
+                    color: rgb(72, 72, 72);
+                    display:inline-block;
+                    text-align: left;
+                }
+                .login_showPass{
+                    display:inline-block;
+                    position: relative;
+                    margin:0;
+                    padding: 0;
+                    text-align: right;
+                    font-weight: 400;
+                    font-size: 14px;
+                    color:rgb(0, 132, 137);
+                    cursor: pointer;
+                    height: 20px;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .login_login    {
+                background-color: rgb(255, 90, 95);
+                color:white;
+                border: 2px solid rgb(255, 90, 95);
+                cursor: pointer;
+                transition-duration: 0.5s;
+                vertical-align: middle;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 46px;
+                height: 46px;
+                &:active{
+                    background-color:rgb(243, 79, 86);
+                    border: 2px solid rgb(243, 79, 86);
+                }
+                img{
+                    // position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 10px;
+                }
+            }
+            .login_forgotPassword{
+                line-height: 20px;
+                color:rgb(0, 132, 137);
+                font-weight: 600;
+                height: 20px;
+                font-size: 14px;
+            }
+            hr{
+                border: 0.3px solid rgb(72, 72, 72);
+                opacity: 0.2;
+                margin-top: 12px;
+                width: 100%;
+                line-height: 2px;
+                height: 2px;
+            }
+            .login_reg{
+                color: rgb(72, 72, 72);
+                font-weight: 400;
+                font-size: 16px;
+                text-align: left;
+                transition-duration: 0.1s;
+                a{
+                    text-decoration: none;
+                    color: #008489;
+                    font-weight: 700;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                    &:active{
+                        color: #006c70;
+                    }
+                }
+                
+            }
+        }
+    }
+}

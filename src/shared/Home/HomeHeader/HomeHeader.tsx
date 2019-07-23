@@ -168,8 +168,8 @@ export default class Home extends React.Component{
             guestValue.innerText  = "Guests";
             guestValue.style.color = '#767676';
         }
-        else if(a+b == 1){
-            guestValue.innerText  = "1 guest";
+        else if(a+b >= 1){
+            guestValue.innerText  = a+b + " guest";
             guestValue.style.color = '#424242';
             if(a+b > 1)
             guestValue.innerText  += "s";

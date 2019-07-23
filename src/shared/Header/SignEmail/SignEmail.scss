@@ -1,0 +1,167 @@
+.regE_lightBoxWrapper{
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0,0.8);
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: 3001;
+    // display:flex;
+    padding-top: 64px;
+    display:none;
+    .regE_lightBox{
+        max-width: 568px;
+        width: 100%;
+        height: 791px;
+        padding: 32px;
+        margin:auto;
+        background-color: rgba(255, 255, 255, 1);
+        display:block;
+        position: relative;
+        //x close
+        .regE_close{
+            text-align: left;
+            margin-bottom: 20px;
+            img{
+                cursor: pointer;
+                height: 32px;
+                width: 32px;
+                border-radius: 50%;
+                transition-duration: 0.3s;
+                &:active{
+                    background-color: rgba(72, 72, 72, 0.2);  
+                }
+            }
+        }
+        //sign up other type
+        .regE_otherType{
+            font-weight: 600;
+            color: rgb(72, 72, 72);
+            font-size: 14px;
+            a{
+                text-decoration: none;
+                color: #008489;
+                font-weight: 500;
+                &:hover{
+                    text-decoration: underline;
+                }
+                &:active{
+                    color: #006c70;
+                }
+            }
+        }
+        //or
+        .regE_or{
+            color:rgb(118, 118, 118);
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            &:after {
+                display: inline-block;
+                overflow: hidden;
+                margin-bottom: 3px;
+                margin-left: 10px;
+                height: 1px;
+                content: "";
+                text-shadow: none;
+                background-color: #999;
+                width: 265px;
+            }
+            &:before {
+                display: inline-block;
+                overflow: hidden;
+                margin-bottom: 3px;
+                margin-right: 10px;
+                height: 1px;
+                content: "";
+                text-shadow: none;
+                background-color: #999;
+                width: 265px;
+            }
+        }
+        //input
+        .regE_input{
+            margin-top: 8px;
+            margin-bottom: 8px;
+            //Email
+            input{
+                margin-top: 8px;
+                margin-bottom: 8px;
+                // height: 48px;
+                width: 536px;
+                color:#484848;
+                border-radius: 4px;
+                border: 1px solid #EBEBEB;
+                font-size: 16px;
+                padding: 11px;
+                outline:none;
+                &:focus{
+                    border:1px solid #008489;
+                }
+            }
+            //password
+            .regE_inputPassWrapper{
+                display: flex;
+                justify-content: left;
+                .regE_inputPass{
+                    width: 497px;
+                    padding-right: 50px;
+                }
+                button{
+                    cursor:pointer; 
+                    // position: absolute;
+                    margin-top: 8px;
+                    height: 42px;
+                    float:right;
+                    border: none;
+                    font-size: 20px;
+                    background-color:transparent;
+                    transition-duration: 0.3s;
+                    outline:none;
+                    // border-radius: 50%;
+                    &:active{
+                        background-color:#f1f1f1;
+                    }
+                }
+            }
+            //all lbl error
+            .regE_lblError{
+                // margin-left: 5px;
+                text-align: left;
+                color:#FC642D;
+                display:none;
+                font-size: 14px;
+                font-weight: 600;
+            }
+            //check pass
+            .regE_checkPass{
+                display:none;
+                text-align: left;
+                color : rgb(252, 100, 45);
+            }
+            //Sign up button
+            .regE_btnSignUp{
+                cursor:pointer;
+                background-color : #FF5a5F;
+                width: 100%;
+                padding: 10px 22px;
+                border-radius: 4px;
+                font-weight: 600;
+                color:white;
+                border:none;
+                outline:none;
+                font-size: 16px;
+                line-height: 24px;
+                transition-duration: 0.3s;
+                &:active{
+                    background-color:rgb(223, 60, 71);
+                }
+            }
+
+        }
+    }
+    
+}

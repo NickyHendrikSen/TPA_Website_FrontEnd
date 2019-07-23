@@ -29,9 +29,13 @@ header{
                 font-size: 14px;
                 height: 100%;
                 font-weight: 300;
+                outline: none;
                 &:hover{
                     border-bottom: 2px solid white;
                 }//tes
+                &:active{
+                    border-bottom: 2px solid transparent;
+                }
             }
         }
         .Header_SearchInput{
@@ -79,6 +83,7 @@ header{
             }
         }
     }
+
+   
     
 }
-
