@@ -11,117 +11,168 @@
         .description{
             height: 100px;
             width: 300px;
-            // background-color:black;
             color:white;
             position: absolute;
             top: 900px;
             right: 0px;
         }
     }
-    $xlarge-screen: 1200px;
-    $large-screen: 992px;
-    $medium-screen: 768px;
-    $small-screen: 576px;
-    $xsmall-screen: 576px;
-    @media screen {
-        
-    }
     .bottom-contents{
         height: 1000px;
         width: 100%;
-        display: flex;
-        justify-content: center;
-        .slider-container{
-            width: 100%;
-            box-sizing: content-box;
-            max-width: 1500px;
-            min-height: 1px;    
-            .a{
-                // height: 100px;
-            }
-            .b{
-                // height: 100px;
-            }
-            .c{
-                // height: 100px;
-            }
-            .d{
-                // height: 100px;
-            }
-            .e{
-                // height: 100px;
-            }
-            .f{
-                // height: 100px;
-            }
-        }
+        display: inline-block;
         .grid-wrapper{
-            width: 100%;
             max-width: 1200px;
+            // border: 0.1px solid blue;
+            margin-left: auto;
+            margin-right: auto;
             [class*='col-']{
                 float: left;
-                border: 0.1px solid aquamarine;
+                // border: 0.1px solid aquamarine;
                 padding: 10px;
                 box-sizing: border-box;
             }
-            .small-card{
+            .xsmall-card{
                 height: 100px;
-                .small-card-content{
-                    height: 100%;
-                    width: 100%;
-                    border: 0.1px solid #F2F2F2;
+                @media all and (min-width: 600px) {
+                    .xsmall-card-content{
+                        height: 100%;
+                        width: 100%;
+                        // border: 0.1px solid #F2F2F2;
+                        display: flex;
+                        box-shadow: 1px 1px 3px 1px #888888;
+                        .xsmall-photo{
+                            float: left;
+                            height: 100%;
+                            // border: 0.1px solid red;
+                            &.xs-photo{
+                                background-repeat: no-repeat;
+                                background-size: 100%;
+                                &.xs-p-a{
+                                    background-image: url("./img/smallcards/stays.jpg");
+                                    width: 225px;
+                                }
+                                &.xs-p-b{
+                                    background-image: url("./img/smallcards/experiences.jpg");
+                                    width: 275px;
+                                }
+                                &.xs-p-c{
+                                    background-image: url("./img/smallcards/restaurants.jpg");
+                                    width: 225px;
+                                }
+                                &.xs-p-d{
+                                    background-image: url("./img/smallcards/adventure.jpg");
+                                    width: 225px;
+                                }
+                            }
+                        }
+                        .xsmall-photo-description{
+                            box-sizing: border-box;
+                            text-align: justify;
+                            padding: 10px;
+                            height: 100%;
+                            width: 100%;
+                            // border: 0.1px solid blue;
+                        }
+                    }
+                }
+                @media all and (max-width: 600px) {
+                    height: 200px;
+                    .xsmall-card-content{
+                        height: 100%;
+                        width: 100%;
+                        border: 0.1px solid #F2F2F2;
+                        display: block;
+                        box-shadow: 1px 1px 3px 1px #888888;
+                        .xsmall-photo{
+                            float: left;
+                            width: 100%;
+                            height: 70%;
+                            // border: 0.1px solid red;
+                            &.xs-photo{
+                                background-size: 100%;
+                                background-repeat: no-repeat;
+                                &.xs-p-a{
+                                    background-image: url("./img/smallcards/stays.jpg");
+                                }
+                                &.xs-p-b{
+                                    background-image: url("./img/smallcards/experiences.jpg");
+                                }
+                                &.xs-p-c{
+                                    background-image: url("./img/smallcards/restaurants.jpg");
+                                }
+                                &.xs-p-d{
+                                    background-image: url("./img/smallcards/adventure.jpg");
+                                }
+                            }
+                        }
+                        .xsmall-photo-description{
+                            box-sizing: border-box;
+                            text-align: justify;
+                            padding: 10px;
+                            height: 100%;
+                            width: 100%;
+                            // border: 0.1px solid blue;
+                        }
+                    }
                 }
             }
             .big-card{
-                height: 200px;
+                height: 80%;
                 .big-card-content{
                     height: 100%;
                     width: 100%;
-                    border: 0.1px solid green;
+                    // border: 0.1px solid green;
+                    border-radius: 5px;
+                    background-color: rgb(244, 242, 239);
                 }
             }
             .medium-card{
-                height: 150px;
+                height: 60%;
             }
-            @media all and (min-width: 1200px){
-                .col-md-12{width: 100%} 
-                .col-md-6 {width: 50%}
-                .col-md-4 {width: 33.3%}
-                .col-md-3 {width: 25%}
-                .col-md-2 {width: 16.6%}
-                .col-md-1 {width: 8.3%}
+
+            .col-md-12{width: 100%} 
+            .col-md-6 {width: 50%}
+            .col-md-4 {width: 33.3%}
+            .col-md-3 {width: 25%}
+            .col-md-2 {width: 16.6%}
+            .col-md-1 {width: 8.3%}
+
+            .explore-grid{
+                height: auto;
+                width: 200%;
+                max-width: 1200px;
+                // border: 0.1px solid red;
+                display: inline-block;
+                .explore-title{
+                    color: #727272;
+                    text-align: left;
+                    width: 100%;
+                }
             }
-            @media all and (min-width: 992px) and (max-width: 1199px){
-                .col-md-12{width: 100%} 
-                .col-md-6 {width: 50%}
-                .col-md-4 {width: 33.3%}
-                .col-md-3 {width: 25%}
-                .col-md-2 {width: 16.6%}
-                .col-md-1 {width: 8.3%}
+            .luxe-grid{
+                height: 400px;
+                width: 100%;
+                max-width: 1200px;
+                // border: 0.1px solid green;
+                display: inline-block;
+                .luxe-title{
+                    color: #727272;
+                    text-align: left;
+                    width: 100%;
+                }
             }
-            @media all and (min-width: 768px) and (max-width: 991px){
-                .col-md-12{width: 100%} 
-                .col-md-6 {width: 100%}
-                .col-md-4 {width: 100%}
-                .col-md-3 {width: 50%}
-                .col-md-2 {width: 33.3%}
-                .col-md-1 {width: 25%}
-            }
-            @media all and (min-width: 576px) and (max-width: 767px){
-                .col-md-12{width: 100%} 
-                .col-md-6 {width: 100%}
-                .col-md-4 {width: 100%}
-                .col-md-3 {width: 100%}
-                .col-md-2 {width: 100%}
-                .col-md-1 {width: 50%}
-            }
-            @media all and (max-width: 575px){
-                .col-md-12{width: 100%} 
-                .col-md-6 {width: 100%}
-                .col-md-4 {width: 100%}
-                .col-md-3 {width: 100%}
-                .col-md-2 {width: 100%}
-                .col-md-1 {width: 100%}
+            .recommendation-grid{
+                height: 400px;
+                width: 200%;
+                max-width: 1200px;
+                border: 0.1px solid blue;
+                display: inline-block;
+                .recommendation-title{
+                    color: #727272;
+                    text-align: left;
+                    width: 100%;
+                }
             }
         }
     }
