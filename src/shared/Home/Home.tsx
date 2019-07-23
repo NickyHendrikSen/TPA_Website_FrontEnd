@@ -12,9 +12,26 @@ export default class Home extends React.Component{
                     <div className="description">
                         Introducing Aivbnb.com
                     </div>
-                    <Footer />
-                    <FooterButton />
                 </div>
+                <div className="bottom-contents">
+                    <div className="grid-wrapper">
+                        <div className="col-md-3 small-card"><div className="small-card-content">asd</div></div>
+                        <div className="col-md-3 small-card"><div className="small-card-content">asd</div></div>
+                        <div className="col-md-3 small-card"><div className="small-card-content">asd</div></div>
+                        <div className="col-md-3 small-card"><div className="small-card-content">asd</div></div>
+                        <div className="col-md-12 big-card"><div className="big-card-content">panjang</div></div>
+                        <div className="slider-container">
+                            <div className="col-md-2 medium-card a">slidera</div>
+                            <div className="col-md-2 medium-card b">sliderb</div>
+                            <div className="col-md-2 medium-card c">sliderc</div>
+                            <div className="col-md-2 medium-card d">sliderd</div>
+                            <div className="col-md-2 medium-card e">slidere</div> 
+                            <div className="col-md-2 medium-card f">sliderf</div>                        
+                        </div>
+                    </div>
+                </div>
+                <Footer />
+                <FooterButton />
             </div>
         )
     }
