@@ -1,0 +1,126 @@
+.medium-card{
+    box-sizing: border-box;
+    height: 65%;
+    padding: 10px;
+    clip-path: polygon(0 0 50% 0);
+    .medium-card-slide{
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+        padding: 10px;
+        border-radius: 3px;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        &.medium-card-slide-photo1{
+            background-image: url("./mediumcards/paris.png");
+        }
+        &.medium-card-slide-photo2{
+            background-image: url("./mediumcards/tokyo.png");
+        }
+        &.medium-card-slide-photo3{
+            background-image: url("./mediumcards/london.png");
+        }
+        &.medium-card-slide-photo4{
+            background-image: url("./mediumcards/losangeles.png");
+        }
+        &.medium-card-slide-photo5{
+            background-image: url("./mediumcards/barcelona.png");
+        }
+    }
+}
+.recommendation-slider{
+    height: 400px;
+    width: 100%;
+    max-width: 1600px;
+    display: flex;
+    .recommendation-grid{
+        width: 100vw;
+        display: inline-block;
+        .recommendation-title{
+            color: #727272;
+            text-align: left;
+            width: 100%;
+        }
+    }
+}
+.slider-control{
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    max-width: 1200px;
+    display: inline-flex;
+    align-items: center;
+    .slider-controller-backward{
+        width: 50%;
+        height: 100px;
+        margin: 10px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+    .slider-controller-forward{
+        width: 50%;
+        height: 100px;
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        float: right;
+    }
+    .square-slider-backward{
+        cursor: pointer;
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 0px;
+        border-radius: 50%;
+        background-color: white;
+        box-shadow: 0.5px 0.5px 1.5px 0.5px #727272;
+        z-index: 3;
+        &:active{
+            border: 1px solid black;
+        }
+    }
+    .square-slider-forward{
+        cursor: pointer;
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right: 0px;
+        border-radius: 50%;
+        background-color: white;
+        box-shadow: 0.5px 0.5px 1.5px 0.5px #727272;
+        z-index: 3;
+        &:active{
+            border: 1px solid black;
+        }
+    }
+    .arrow-slider-backward{
+        height: 5px;
+        width: 5px;
+        margin-left: 2px;
+        border-width: 1px 1px 0 0;
+        border-style: solid;
+        border-color: black;
+        cursor: pointer;
+        z-index: 4;
+        transform: rotate(-135deg);
+    }
+    .arrow-slider-forward{
+        height: 5px;
+        width: 5px;
+        margin-right: 2px; 
+        border-width: 1px 1px 0 0;
+        border-style: solid;
+        border-color: black;
+        cursor: pointer;
+        z-index: 4;
+        transform: rotate(45deg);
+    }
+}

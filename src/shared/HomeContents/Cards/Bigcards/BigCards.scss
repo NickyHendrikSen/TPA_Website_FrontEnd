@@ -1,0 +1,55 @@
+
+.big-card{
+    height: 100%;
+    .big-card-content{
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        background-color: rgb(244, 242, 239);
+        display: flex;
+        &.big-card-photo{
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            &.big-card-photo-1{
+                height: 100%;
+                width: 100%;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-image: url("./bigcards/luxe-photo1.jpg");
+                background-position: center center;
+                .big-card-description{
+                    height: 100%;
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 20px;
+                    text-align: left;
+                    color: white;
+                    &.big-card-description-container{
+                        margin: 20px;
+                        width: 40%;
+                        a{
+                            width: 100%;
+                            text-decoration: none;
+                            color: white;
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.luxe-grid{
+    height: 500px;
+    width: 100%;
+    margin: 20px 0px;
+    max-width: 1200px;
+    display: inline-block;
+    .luxe-title{
+        color: #727272;
+        text-align: left;
+        width: 100%;
+    }
+}
