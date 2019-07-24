@@ -1,20 +1,20 @@
 .regE_lightBoxWrapper{
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 1000px;
     background-color:rgba(0, 0, 0,0.8);
-    position: fixed;
+    position: absolute;
     top:0;
     left:0;
     right:0;
     bottom:0;
     z-index: 3001;
     // display:flex;
-    padding-top: 64px;
+    // padding-top: 64px;
     display:none;
     .regE_lightBox{
         max-width: 568px;
         width: 100%;
-        height: 791px;
+        height: auto;
         padding: 32px;
         margin:auto;
         background-color: rgba(255, 255, 255, 1);
@@ -86,6 +86,55 @@
         .regE_input{
             margin-top: 8px;
             margin-bottom: 8px;
+            text-align: left;
+            
+            .regE_login{
+                color: rgb(72, 72, 72);
+                font-weight: 400;
+                font-size: 16px;
+                text-align: left;
+                transition-duration: 0.1s;
+                a{
+                    text-decoration: none;
+                    color: #008489;
+                    font-weight: 700;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                    &:active{
+                        color: #006c70;
+                    }
+                }
+                
+            }
+            .regE_recieveEmail{
+                font-weight: 400;
+                font-size: 14px;
+                color: rgb(72, 72, 72);
+                input{
+                    width: 20px;
+                    display:inline-block;
+                }
+            }
+            .regE_notif{
+                font-size: 14px;
+                font-weight: 400;
+                color: rgb(72, 72, 72);
+            }
+            .regE_birthdayWrapper{
+                text-align: left;
+                .regE_birthdayBold{
+                    font-size: 16px;
+                    font-weight: 600;
+                    color:rgb(72, 72, 72);
+                }
+                .regE_birthdayDesc{
+                    font-size: 14px;
+                    font-weight: 400;
+                    color:rgb(72, 72, 72);
+                }
+                
+            }
             //Email
             input{
                 margin-top: 8px;
@@ -135,12 +184,6 @@
                 display:none;
                 font-size: 14px;
                 font-weight: 600;
-            }
-            //check pass
-            .regE_checkPass{
-                display:none;
-                text-align: left;
-                color : rgb(252, 100, 45);
             }
             //Sign up button
             .regE_btnSignUp{

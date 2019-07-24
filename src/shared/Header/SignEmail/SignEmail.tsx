@@ -17,41 +17,29 @@ export default class SignEmail extends React.Component{
         }
     }
 
-    regE_validatePass = () =>{
-        var txtPass = document.getElementById("regE_txtPass") as HTMLInputElement;
-        var txtPass_a = document.getElementById("regE_checkPass1") as HTMLElement;
-        var txtPass_b = document.getElementsByClassName("regE_checkPassA") as HTMLCollectionOf<HTMLElement>;
-        var txtPass_c = document.getElementById("regE_checkPass2") as HTMLElement;
-        var txtPass_d = document.getElementsByClassName("regE_checkPassB") as HTMLCollectionOf<HTMLElement>;
-        var txtPass_e = document.getElementById("regE_checkPass3") as HTMLElement;
-        var txtPass_f = document.getElementsByClassName("regE_checkPassC") as HTMLCollectionOf<HTMLElement>;
-        var txtPass_g = document.getElementById("regE_checkPass4") as HTMLElement;
-        var txtPass_h = document.getElementsByClassName("regE_checkPassD") as HTMLCollectionOf<HTMLElement>;
-        if(txtPass.value.length >= 8)
-        {
-            txtPass_e.innerText = "O"
-            txtPass_f[0].style.color = "rgb(0, 166, 153)";
-            txtPass_f[1].style.color = "rgb(0, 166, 153)";
-        }
-        else{
-            txtPass_e.innerText = "X"
-            txtPass_f[0].style.color = "#FC642D";
-            txtPass_f[1].style.color = "#FC642D";
-        }
-    }
-
     validate = () =>{
         var txtEmail = document.getElementById("regE_txtEmail") as HTMLInputElement;
         var txtFirst = document.getElementById("regE_txtFirst") as HTMLInputElement;
         var txtLast = document.getElementById("regE_txtLast") as HTMLInputElement;
         var txtPass = document.getElementById("regE_txtPass") as HTMLInputElement;
         
+
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var boole = re.test(txtEmail.value) as boolean;
+        var a = boole == false? 1 : 0;
+
         //email empty
         if(txtEmail.value == ""){
             var errEmail = document.getElementById("regE_emailError") as HTMLInputElement;
             txtEmail.style.border = "1px solid #FC642D";
             errEmail.style.display = "block";
             errEmail.innerText = "Email is required.";
+        }
+        else if(a == 1){
+            var errEmail = document.getElementById("regE_emailError") as HTMLInputElement;
+            txtEmail.style.border = "1px solid #FC642D";
+            errEmail.style.display = "block";
+            errEmail.innerText = "Enter a valid email.";
         }
         else{
             var errEmail = document.getElementById("regE_emailError") as HTMLInputElement;
@@ -92,16 +80,18 @@ export default class SignEmail extends React.Component{
             errPass.style.display = "block";
             errPass.innerText = "Password is required.";
         }
+        else if(txtPass.value.length < 8){
+            var errPass = document.getElementById("regE_passError") as HTMLInputElement;
+            txtPass.style.border = "1px solid #FC642D";
+            errPass.style.display = "block";
+            errPass.innerText = "Your password must be at least 8 characters";
+        }
         else{
             var errPass = document.getElementById("regE_passError") as HTMLInputElement;
             txtPass.style.border = "1px solid #EBEBEB";
             errPass.style.display = "none";
         }
         
-    }
-    showCheckPass(){
-        var check = document.getElementsByClassName("regE_checkPass") as HTMLCollectionOf<HTMLElement>;
-        check[0].style.display = "block";
     }
     regE_close(){
         var check = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
@@ -137,24 +127,32 @@ export default class SignEmail extends React.Component{
                         <div className="regE_lblError" id="regE_lastError">Last name is required.</div>
 
                         <div className="regE_inputPassWrapper">
-                            <input type="password" name="" id="regE_txtPass" onFocus={this.showCheckPass}
-                            className="regE_inputPass" onChange={this.regE_validatePass} placeholder="Create a Password" />
+                            <input type="password" name="" id="regE_txtPass"
+                            className="regE_inputPass" placeholder="Create a Password" />
                             <button onClick={this.regE_setPassword} className="regE_seePass">O</button>
                         </div>
-                        <div className="regE_lblError" id="regE_passError">Password is required.</div>    
-                        <div className="regE_checkPass">
-                            <div><span id="regE_checkPass1" className="regE_checkPassA">X</span>
-                            <span className="regE_checkPassA">&nbsp;Password strength: weak</span></div>
-                            <div><span id="regE_checkPass2" className="regE_checkPassB">X</span>
-                            <span className="regE_checkPassB">&nbsp;Cannot contain your name or email address</span></div>
-                            <div><span id="regE_checkPass3" className="regE_checkPassC">X</span>
-                            <span  className="regE_checkPassC">&nbsp;At least 8 characters</span></div>
-                            <div><span id="regE_checkPass4" className="regE_checkPassD">X</span>
-                            <span className="regE_checkPassD">&nbsp;Contains a number or symbol</span></div>
+                        <div className="regE_lblError" id="regE_passError">Password is required.</div>  
+                        <div className="regE_birthdayWrapper">
+                            <div className="regE_birthdayBold">Birthday</div>
+                            {/* <div className="regE_birthdayDesc">To sign up, you must be 18 or older. Other people won’t see your birthday.</div> */}
+                            <input type="date" name="" id="regE_txtBirthDate" className="regE_inputBirthday"/>
                         </div>
+                        <div className="regE_lblError" id="regE_birthdayError">You must be 18 or older.</div>
+                        <div className="regE_notif">We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.</div>
                         <button className="regE_btnSignUp" onClick={this.validate}>
                             Sign Up
                         </button>
+                        <div className="regE_recieveEmail">
+                            <input type="checkbox" name="" id=""/>
+                            <span>I don’t want to receive marketing messages from Airbnb. I can also opt out of receiving these at any time in my account settings or via the link in the message.</span>
+                        </div>
+                        <hr/>
+                        <div className="regE_login">
+                            Already have an Airbnb account?&nbsp;
+                            <Router>
+                                <Link to ="/login">Log in</Link>
+                            </Router>
+                        </div>
                     </div>
                 </div>
             </div>
