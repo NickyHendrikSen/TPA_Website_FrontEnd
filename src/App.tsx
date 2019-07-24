@@ -18,7 +18,7 @@ const App: React.FC = () => {
               <Route path="/Home" component={Home}/>asd
               <Route path="/Places" component={Places}/>
           </Switch>
-          {/* <Home /> */}
+          <Home />
           <Footer />
           <FooterButton />
         </Router>
