@@ -4,8 +4,6 @@ import React from "react";
 // import downArrow from "./img/down-chevron.png"
 // import plusLogo from "./img/plusLogo.png"
 import HomeHeader from "./HomeHeader/HomeHeader"
-import Footer from "../Footer/Footer"
-import FooterButton from "../Footer/FooterButton/FooterButton";
 
 export default class Home extends React.Component{
     // constructor(props : any){
@@ -17,8 +15,6 @@ export default class Home extends React.Component{
             <div className="wrapper">
                 <div className="header-contents">
                     <HomeHeader />
-                    <Footer />
-                    <FooterButton />
                 </div>
             </div>
         )

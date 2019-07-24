@@ -4,18 +4,23 @@ import './App.css';
 import Header from "./shared/Header/Header"
 import Home from "./shared/Home/Home"
 import Footer from "./shared/Footer/Footer"
+import FooterButton from "./shared/Footer/FooterButton/FooterButton";
+import Places from "./shared/Places/Places"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 
 
 const App: React.FC = () => {
   return (
     <div className="App">
-        <Header />
         <Router>
+          <Header />
           <Switch>
-              <Route path="/" component={Home}/>
+              <Route path="/Home" component={Home}/>asd
+              <Route path="/Places" component={Places}/>
           </Switch>
           {/* <Home /> */}
+          <Footer />
+          <FooterButton />
         </Router>
     </div>
   );

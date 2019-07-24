@@ -1,13 +1,21 @@
 .wrapper{
     height: 100vh;
     width: 100vw;
+    top:0;
     .headerContent{
         width: 100%;
         height: 100vh;
-        background-color:#fff;
-        background-image: url("img/headerBg1.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
+        background-color:transparent;
+        .headerContent_img{
+            top:0;
+            position: absolute;
+            z-index: -2000;
+            height: 100%;
+            width: 100vw;
+        }
+        // background-image: url("img/headerBg1.jpg");
+        // background-repeat: no-repeat;
+        // background-size: cover;
         display:flex;
         .description{
             padding: 24px;
@@ -22,8 +30,8 @@
             font-family: Roboto,Helvetica Neue,sans-serif;
             height: 447px;
             background-color: #fff;
-            margin-left: 100px;
-            margin-top:calc(80px + 50px/*+ 5%*/);
+            margin-left: 80px;
+            margin-top:calc(/*80px +*/ 50px/*+ 5%*/);
             width: 377px;
             height: 423px;
             padding: 32px 32px 24px;
@@ -283,7 +291,7 @@
             .homeSearch_SearchButtonWrapper{
                 padding-top: 8px;
                 display:block;
-                .homeSearch_SearchButton{
+                a>.homeSearch_SearchButton{
                     background-color:#FF5A5F;
                     border-radius: 4px;
                     color:white;

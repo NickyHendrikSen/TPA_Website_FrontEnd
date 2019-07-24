@@ -12,14 +12,15 @@ export default class Header extends React.Component{
         lightBox[0].style.display = "flex";
         console.log(lightBox[0]);   
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
-        body.style.position="fixed";
+        // body.style.position="fixed";
+        // lightBox[0].style.position = "absolute";
     }    
     lightBox_login_show(){
         var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
         lightBox[0].style.display = "flex";
         console.log(lightBox[0]);   
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
-        body.style.position="fixed";
+        // body.style.position="fixed";
     }
 
     render(){

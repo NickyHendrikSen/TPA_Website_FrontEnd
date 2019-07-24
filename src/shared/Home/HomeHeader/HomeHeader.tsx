@@ -1,7 +1,8 @@
 import React from "react";
 import "./HomeHeader.scss"
-import {Link} from "react-router-dom"
+import {BrowserRouter as Router, Link} from "react-router-dom"
 import downArrow from "./img/down-chevron.png"
+import bg from "./img/headerBg1.jpg"
 
 export default class Home extends React.Component{
     // constructor(props : any){
@@ -218,6 +219,7 @@ export default class Home extends React.Component{
         return(
             <div className="wrapper">
                 <div className="headerContent">
+                    <img src={bg} alt="" className="headerContent_img"/>
                     <div className="homeSearchWrapper">
                         <div className="homeSearch_title">
                         {/* The link is temporary */}
@@ -351,9 +353,13 @@ export default class Home extends React.Component{
                         </div>
                         {/* Search Button */}
                         <div className="homeSearch_SearchButtonWrapper">
-                            <button className="homeSearch_SearchButton">
-                                Search
-                            </button>
+                            <Router>
+                                <Link to="/Places">
+                                    <button className="homeSearch_SearchButton">
+                                        Search
+                                    </button>
+                                </Link>
+                            </Router>
                         </div>
                     </div>
                     <div className="description">
