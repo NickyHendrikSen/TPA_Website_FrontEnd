@@ -1,0 +1,10 @@
+.grid-wrapper{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    [class*='col-']{
+        float: left;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+}

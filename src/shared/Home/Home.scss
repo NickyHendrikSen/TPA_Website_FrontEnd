@@ -4,10 +4,10 @@
     .headerContent{
         width: 100%;
         height: 1000px; 
-        background-color:#fff;
-        background-image: url("img/headerBg1.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
+        // background-color:#fff;
+        // background-image: url("img/headerBg1.jpg");
+        // background-repeat: no-repeat;
+        // background-size: cover;
         display:flex;
         .description{
             height: 100px;
@@ -332,5 +332,9 @@
             }
         }
     }
-
+    .bottom-contents{
+        height: 1000px;
+        width: 100%;
+        display: inline-block;
+    }
 }

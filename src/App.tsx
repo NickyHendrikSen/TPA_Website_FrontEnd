@@ -19,8 +19,6 @@ const App: React.FC = () => {
               <Route path="/Places" component={Places}/>
           </Switch>
           <Home />
-          <Footer />
-          <FooterButton />
         </Router>
     </div>
   );
