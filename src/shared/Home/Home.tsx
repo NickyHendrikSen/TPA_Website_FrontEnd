@@ -4,6 +4,7 @@ import React from "react";
 // import downArrow from "./img/down-chevron.png"
 // import plusLogo from "./img/plusLogo.png"
 import HomeHeader from "./HomeHeader/HomeHeader"
+import Header from "../Header/Header"
 
 export default class Home extends React.Component{
     // constructor(props : any){

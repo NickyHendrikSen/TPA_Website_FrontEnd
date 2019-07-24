@@ -28,9 +28,7 @@ export default class Header extends React.Component{
             <header>
                 <div className="navBar">
                     <div className="logo">
-                    <Router>
                         <Link to="/"><img src={logo} alt="image not found"/></Link>
-                    </Router>
                     </div>
                     <div className="Header_SearchInput">
                         <img src={search_select} alt=""/>
