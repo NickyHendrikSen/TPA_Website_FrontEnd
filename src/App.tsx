@@ -15,10 +15,10 @@ const App: React.FC = () => {
         <Router>
           <Header />
           <Switch>
-              <Route path="/Home" component={Home}/>asd
+              <Route path="/Home" component={Home}/>
               <Route path="/Places" component={Places}/>
           </Switch>
-          <Home />
+          {/* <Home /> */}
         </Router>
     </div>
   );

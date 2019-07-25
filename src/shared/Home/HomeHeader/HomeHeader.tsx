@@ -353,13 +353,13 @@ export default class Home extends React.Component{
                         </div>
                         {/* Search Button */}
                         <div className="homeSearch_SearchButtonWrapper">
-                            <Router>
+                            {/* <Router> */}
                                 <Link to="/Places">
                                     <button className="homeSearch_SearchButton">
                                         Search
                                     </button>
                                 </Link>
-                            </Router>
+                            {/* </Router> */}
                         </div>
                     </div>
                     <div className="description">
