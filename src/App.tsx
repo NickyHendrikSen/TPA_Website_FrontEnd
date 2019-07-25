@@ -6,6 +6,7 @@ import Home from "./shared/Home/Home"
 import Footer from "./shared/Footer/Footer"
 import FooterButton from "./shared/Footer/FooterButton/FooterButton";
 import Places from "./shared/Places/Places"
+import Experiences from "./shared/Experience/ExperienceHeader/ExperienceHeader"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 
 
@@ -13,11 +14,14 @@ const App: React.FC = () => {
   return (
     <div className="App">
         <Router>
-          <Header />
+          {/* <Header /> */}
           <Switch>
-              <Route path="/Home" component={Home}/>
               <Route path="/Places" component={Places}/>
+              <Route path="/Experiences" component={Experiences}/>
+              <Route path="/" component={Home}/>
           </Switch>
+          <Footer />
+          <FooterButton />
           {/* <Home /> */}
         </Router>
     </div>

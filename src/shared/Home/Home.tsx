@@ -4,7 +4,8 @@ import "./Home.scss"
 // import downArrow from "./img/down-chevron.png"
 // import plusLogo from "./img/plusLogo.png"
 import HomeHeader from "./HomeHeader/HomeHeader"
-import HomeContents from "../HomeContents/HomeContents"
+import HomeContents from "./HomeContents/HomeContents"
+import Header from "../Header/Header"
 import Footer from "../Footer/Footer";
 import FooterButton from "../Footer/FooterButton/FooterButton";
 
@@ -16,14 +17,14 @@ export default class Home extends React.Component{
     {
         return(
             <div className="wrapper">
+                <Header />
                 <div className="header-contents">
                     <HomeHeader />
                 </div>
+
                 <div className="bottom-contents">
                     <HomeContents/>
                 </div>
-                <Footer />
-                <FooterButton />
             </div>
         )
     }

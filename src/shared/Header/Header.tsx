@@ -22,19 +22,44 @@ export default class Header extends React.Component{
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
         // body.style.position="fixed";
     }
-
+    Header_ShowPick(){
+        var pickBlock = document.getElementsByClassName("Header_Search_PickWrapper")[0] as HTMLElement;
+        // pickBlock.style.display = "block";
+        pickBlock.style.width = "534px";
+        pickBlock.style.opacity = "1";
+        // pickBlock.style.visibility = "visible";
+    }
+    Header_hidePick(){
+        var pickBlock = document.getElementsByClassName("Header_Search_PickWrapper")[0] as HTMLElement;
+        // pickBlock.style.display = "none";
+        pickBlock.style.width = "0px";
+        pickBlock.style.opacity = "0";
+        // pickBlock.style.visibility = "hidden";
+    }
     render(){
         return(
             <header>
                 <div className="navBar">
                     <div className="logo">
-                    <Router>
+                    {/* <Router> */}
                         <Link to="/"><img src={logo} alt="image not found"/></Link>
-                    </Router>
+                    {/* </Router> */}
                     </div>
                     <div className="Header_SearchInput">
                         <img src={search_select} alt=""/>
-                        <input type="search" name="" id="" className="HeaderSearch" placeholder='Try "THIS"'/>
+                        <input type="search" name="" id="" className="HeaderSearch" placeholder='Try "THIS"'
+                        onBlur={this.Header_hidePick} onFocus={this.Header_ShowPick}/>
+                    </div>
+                    <div className="Header_Search_PickWrapper">
+                        <div className="Header_Search_PickText">
+                            EXPLORE AIRBNB
+                        </div>
+                        <div className="Header_Search_PickContent">
+                            <Link to="/Places"><button>All</button></Link>
+                            <button>Stays</button>
+                            <Link to="/Experiences"><button>Experiences</button></Link>
+                            <button>Restaurants</button>
+                        </div>
                     </div>
                     <div className="menu">
                         <button onClick={this.lightBox_login_show}>Log in</button>

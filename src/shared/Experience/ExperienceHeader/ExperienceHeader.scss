@@ -1,17 +1,32 @@
-header{
-    // background-color:red;
-}
-.places_Wrapper{
-
-    .places_MapWidget{
-        position: fixed;
-        right:0;
-        // width: 40%;
-        height: 100%;
-        display:none;
-        // background-color:red;
+.expsH_Wrapper{
+    .exsH_HeaderWrapper{
+        height: 80px;
+        position: relative;
+        .expsH_Header{
+            top:0;
+            position: fixed;
+            background-color:white;
+            width: 100%;
+            z-index: 2000;
+        }
     }
-    .placesNav{
+
+    .exps_MapContent{
+        // position: fixed;
+        .exps_MapWidget{
+            position: fixed;
+            // display: block;
+            right:0;
+            // width: 400px;
+            height: 100%;
+            display:none;
+            background-color:green;
+        }
+    }
+    .expsNav{
+        // position: fixed;
+        z-index: 1999;
+        margin-top: 6px;
         height: 48px;
         padding: 0px 16px;
         border: 1px solid #d3d3d3;
@@ -19,8 +34,10 @@ header{
         width: 100%;
         display:flex;
         justify-content: space-between;
+        position: fixed;
+        background-color: white;
         
-        .placesNav_left{
+        .expsNav_left{
             display: inline-block;
             vertical-align: middle;
             button{
@@ -40,7 +57,7 @@ header{
                 }
             }
         }
-        .placesNav_right{
+        .expsNav_right{
             margin-right: 40px;
             display: inline-block;
             vertical-align: middle;

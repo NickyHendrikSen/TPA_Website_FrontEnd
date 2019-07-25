@@ -1,6 +1,7 @@
 import React from "react"
 import "./Places.scss"
-import Map from "./Map/Map"
+import Map from "../Map/Map"
+import Header from "../Header/Header"
 
 export default class Places extends React.Component{
     places_showMap(){
@@ -14,6 +15,7 @@ export default class Places extends React.Component{
     render(){
         return(
             <div className="places_Wrapper">
+                <Header />
                 <div className="placesNav">
                     <div className="placesNav_left">
                         <button>Dates</button>
