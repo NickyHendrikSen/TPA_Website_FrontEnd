@@ -1,24 +1,100 @@
-.menu{
-    top:0;
-    height: 80px;
-    button{
-        cursor:pointer;
-        padding: 0px 8px;
-        float:right;
-        color:white;
-        text-decoration: none;
-        font-family: Helvetica Neue, sans-serif;
-        background-color: transparent;
-        border: 2px solid transparent;
-        font-size: 14px;
+.places_Wrapper{
+
+    .places_MapWidget{
+        position: fixed;
+        right:0;
+        // width: 40%;
         height: 100%;
-        font-weight: 300;
-        outline: none;
-        &:hover{
-            border-bottom: 2px solid white;
-        }//tes
-        &:active{
-            border-bottom: 2px solid transparent;
+        display:none;
+        // background-color:red;
+    }
+    .placesNav{
+        height: 48px;
+        padding: 0px 16px;
+        border: 1px solid #d3d3d3;
+        line-height: 48px;
+        width: 100%;
+        display:flex;
+        justify-content: space-between;
+        
+        .placesNav_left{
+            display: inline-block;
+            vertical-align: middle;
+            button{
+                color:rgb(72, 72, 72);
+                border: 1px solid rgb(220, 224, 224);
+                border-radius: 4px;
+                background-color:transparent;
+                font-size: 14px;
+                padding: 6px 12px;
+                outline:none;
+                margin-right: 4px;
+                margin-left: 8px;
+                cursor: pointer;
+                &:hover{
+                    background-color: rgb(242, 242, 242);
+                    border: 1px solid rgb(242, 242, 242);
+                }
+            }
+        }
+        .placesNav_right{
+            margin-right: 40px;
+            display: inline-block;
+            vertical-align: middle;
+            span{
+                padding-right: 8px;
+                font-size: 14px;
+                color: #484848;
+            }
+            .switch {
+                vertical-align: middle;
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+                input:checked + .slider:before {
+                    -webkit-transform: translateX(26px);
+                    -ms-transform: translateX(26px);
+                    transform: translateX(26px);
+                }
+                input:focus + .slider {
+                    box-shadow: 0 0 1px rgb(0, 132, 137);
+                }
+                input:checked + .slider {
+                    background-color: rgb(0, 132, 137);
+                }
+                .slider {
+                  position: absolute;
+                  cursor: pointer;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background-color: #ccc;
+                  -webkit-transition: .4s;
+                  transition: .4s;
+                  &:before{
+                    position: absolute;
+                    content: "";
+                    height: 26px;
+                    width: 26px;
+                    left: 4px;
+                    bottom: 4px;
+                    background-color: white;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                  }
+                }
+                .slider.round {
+                    border-radius: 34px;
+                    
+                }
+                
+                .slider.round:before {
+                    border-radius: 50%;
+                }
+            }
         }
     }
+
 }
