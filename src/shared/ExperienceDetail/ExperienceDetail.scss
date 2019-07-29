@@ -7,11 +7,86 @@
         height: 100%;
         .expD_Content{
             padding: 40px 48px;
+            text-align: left;
             .expD_Insta{
                 margin-right: 24px;
+                display:inline-block;
+                float:left;
             }
             .expD_Description{
-                margin-left: 16px;
+                .expD_header{
+                    margin-left: 16px;
+                    .expD_theme{
+                        font-size: 12px;
+                        font-weight: 700;
+                        color:rgb(72, 72, 72);
+                        text-transform: uppercase;
+                    }
+                    .expD_title{
+                        width: 80%;
+                        font-size: 38px;
+                        font-weight: 700;
+                        color:rgb(72, 72, 72);
+                        text-transform: uppercase;
+                    }
+                    .expD_location , .expD_time, .expD_benefit, .expD_language{
+                        i{
+                            span{
+                                font-size: 18px;
+                                font-weight: 300;
+                                color:rgb(72, 72, 72);
+                                margin-left: 10px;
+                            }
+                        }
+                    }
+                }
+                hr{
+                    color:#0000002a;
+                    margin-top: 50px;
+                    margin-bottom: 50px;
+                    border-width: 0.8px;
+                }
+            }
+            .expD_aboutWrapper{
+                display:flex;
+                .expD_about{
+                    display:inline-block;
+                    .expD_aboutTitle{
+                        font-size: 18px;
+                        font-weight: 600;
+                        color:rgb(72, 72, 72);
+                        margin-bottom: 10px;
+                    }
+                    .expD_aboutDescription{
+                        margin-top: 10px;
+                        font-size: 18px;
+                        font-weight: 400;
+                        color:rgb(72, 72, 72);
+                    }
+                }
+                .expD_about_img{
+                    display:inline-block;
+                    width: 500px;
+                    margin-top: 30px;
+                    img{
+                        width: 72px;
+                        height: 72px;
+                        border-radius: 50%;
+                    }
+                    .expD_about_name{
+                        font-size: 18px;
+                        font-weight: 600;
+                        color:rgb(72, 72, 72);
+                    }
+                    .expD_about_contact{
+                        cursor:pointer;
+                        font-size: 14px;
+                        color : #008489;
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                }
             }
         }
     }

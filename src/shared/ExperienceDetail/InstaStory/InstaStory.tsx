@@ -8,8 +8,8 @@ export default class App extends Component {
       <Stories
         stories={stories}
         defaultInterval={1500}
-        width={432}
-        height={768}
+        width={390}
+        height={517}
       />
     )
   }
