@@ -25,6 +25,8 @@ export default class Home extends React.Component{
                 <div className="bottom-contents">
                     <HomeContents/>
                 </div>
+                <Footer />
+                <FooterButton />
             </div>
         )
     }

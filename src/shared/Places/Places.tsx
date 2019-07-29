@@ -2,40 +2,56 @@ import React from "react"
 import "./Places.scss"
 import Map from "../Map/Map"
 import Header from "../Header/Header"
+import PlacesNavbar from "./PlacesNavbar/PlacesNavbar";
+import "./PlacesGridSystem/PlacesGridSystems.scss";
+import Footer from "../Footer/Footer";
 
 export default class Places extends React.Component{
-    places_showMap(){
-        var switchs = document.getElementById("places_switchMap") as HTMLInputElement;
-        var map = document.getElementsByClassName("places_MapWidget") as HTMLCollectionOf<HTMLElement>;
-        if(switchs.checked)
-            map[0].style.display = "block";
-        else
-            map[0].style.display = "none";
-    }
     render(){
         return(
             <div className="places_Wrapper">
                 <Header />
-                <div className="placesNav">
-                    <div className="placesNav_left">
-                        <button>Dates</button>
-                        <button>Guests</button>
-                        <button>Work Trip</button>
-                        <button>Type of place</button>
-                        <button>Price</button>
-                        <button>Instant Book</button>
-                        <button>More filters</button>
+                <PlacesNavbar />
+                <div className="contents_wrapper">
+                    <div className="list-wrapper">
+                        <div className="list-container">
+                            <div className="frame-title">
+                                <div className="title">
+                                    Category
+                                </div>    
+                            </div>
+                            <div className="frame-wrapper-category">
+                                <div className="col-slider-2 frame-container-category"></div>
+                                <div className="col-slider-2 frame-container-category"></div>
+                                <div className="col-slider-2 frame-container-category"></div>
+                                <div className="col-slider-2 frame-container-category"></div>
+                                <div className="col-slider-2 frame-container-category"></div>
+                            </div>
+                        </div>
+                        <div className="list-container">
+                            <div className="frame-title">
+                                <div className="title">
+                                    Places to stay
+                                </div>    
+                            </div>
+                            <div className="frame-wrapper-room">
+                                <div className="col-slider-2 frame-container"></div>
+                                <div className="col-slider-2 frame-container"></div>
+                                <div className="col-slider-2 frame-container"></div>
+                                <div className="col-slider-2 frame-container"></div>
+                                <div className="col-slider-2 frame-container"></div>
+                                <div className="col-slider-2 frame-container"></div>
+                                <div className="col-slider-2 frame-container"></div>
+                                <div className="col-slider-2 frame-container"></div>
+                                <div className="col-slider-2 frame-container"></div>
+                                <div className="col-slider-2 frame-container"></div>
+                                <div className="col-md-12 page"><h1>1 2 3 4</h1></div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="placesNav_right">
-                        <span>Show Map</span>
-                        <label className="switch">
-                        <input type="checkbox" name="" id="places_switchMap" onChange={this.places_showMap}/>
-                            <span className="slider round"></span>
-                        </label>
+                    <div className="places_MapWidget">
+                        <Map />
                     </div>
-                </div>
-                <div className="places_MapWidget">
-                    <Map />
                 </div>
             </div>
         )
