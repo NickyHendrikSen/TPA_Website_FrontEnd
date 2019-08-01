@@ -8,6 +8,7 @@ import FooterButton from "./shared/Footer/FooterButton/FooterButton";
 import Places from "./shared/Places/Places"
 import Experiences from "./shared/Experience/ExperienceHeader/ExperienceHeader"
 import ExperienceDetail from "./shared/ExperienceDetail/ExperienceDetail"
+import PlaceDetail from "./shared/PlaceDetail/PlaceDetail"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 
 
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Router>
           {/* <Header /> */}
           <Switch>
+              <Route path="/PlaceDetail" component={PlaceDetail}/>
               <Route path="/Places" component={Places}/>
               <Route path="/Experiences" component={Experiences}/>
               <Route path="/ExperiencesDetail" component={ExperienceDetail}/>
