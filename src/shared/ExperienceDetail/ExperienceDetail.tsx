@@ -24,17 +24,17 @@ export default class ExperienceDetail extends React.Component{
                                 Capture Memories at Jakarta Old Town
                                 </div>
                                 <div className="expD_location">
-                                    <i className="fas fa-cloud">
+                                    <i className="fas fa-map-marker-alt">
                                     <span>TamanSari</span></i>
                                 </div>
                                 <div className="expD_time">
-                                    <i className="fas fa-cloud"><span>2 Hours total</span></i>
+                                    <i className="fas fa-clock"><span>2 Hours total</span></i>
                                 </div>
                                 <div className="expD_benefit">
-                                    <i className="fas fa-cloud"><span>Drinks, 1 ticket and Transportation</span></i>
+                                    <i className="fa fa-list-alt"><span>Drinks, 1 ticket and Transportation</span></i>
                                 </div>  
                                 <div className="expD_language">
-                                    <i className="fas fa-cloud"><span>Offered in English</span></i>
+                                    <i className="fas fa-comments"><span>Offered in English</span></i>
                                 </div>  
                             </div>
                             <hr/>
