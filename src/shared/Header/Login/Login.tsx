@@ -5,6 +5,7 @@ import close_icon from "../img/close_icon.png"
 import facebook_icon from "../img/facebook_img.png"
 import google_icon from "../img/google_icon.png"
 import email_icon from "../img/email_png.png"
+import Facebook from "./components/Facebook"
 
 export default class SignUp extends React.Component{
 
@@ -74,12 +75,13 @@ export default class SignUp extends React.Component{
                         <img src={close_icon} alt="" onClick={this.lightBox_login_hide}/>
                     </div>
                     <div className="login_alt">
-                        <div className="login_fb"  >
-                            <img src={facebook_icon} alt=""/>
-                        <span>
-                            Continue with Facebook
-                        </span>
-                        </div>
+                        {/* <div className="login_fb"  > */}
+                            <Facebook />
+                            {/* <img src={facebook_icon} alt=""/>
+                            <span>
+                                Continue with Facebook
+                            </span> */}
+                        {/* </div> */}
                         <div className="login_google">
                             <img src={google_icon} alt=""/>
                             <span>

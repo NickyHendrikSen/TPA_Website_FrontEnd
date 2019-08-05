@@ -36,6 +36,7 @@ export default class Header extends React.Component{
         pickBlock.style.opacity = "0";
         // pickBlock.style.visibility = "hidden";
     }
+
     render(){
         return(
             <header>
