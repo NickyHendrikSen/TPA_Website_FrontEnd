@@ -66,7 +66,7 @@ export default class Header extends React.Component{
                         <button onClick={this.lightBox_login_show}>Log in</button>
                         <button onClick={this.lightBox_reg_show}>Sign up</button>
                         <button>Help</button>
-                        <button>Become a host</button>
+                        <Link to="become-a-host/room"><button>Become a host</button></Link>
                     </div>
                 </div>
                 <SignUp />

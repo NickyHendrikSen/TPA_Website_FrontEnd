@@ -1,0 +1,121 @@
+body{
+    background-color:rgb(247, 247, 247);
+}
+.bhr{
+    .bhr_step1Content{
+        width: 60%;
+        background-color:white;
+        height: calc(100vh - 64px - 10px);
+        position: relative;
+        .bhr_step1Question{
+            right:0;
+            padding: 30px 30px 16px;
+            font-size: 19px;
+            .bhr_step1Question_title{
+                padding-top: 32px;
+                padding-bottom: 24px;
+                color: #484848;
+                font-size: 24px !important;
+                font-weight: 700 !important;
+            }
+            .bhr_step1Question_content{
+                color: rgb(118, 118, 118);
+                font-size: 16px;
+                font-weight: 600;
+            }
+            .bhr_step1Question_select{
+                padding: 11px;
+                padding-right: 40px;
+                width: 318px;
+                margin-top: 10px;
+                border-radius: 4px;
+                outline: none;
+                &:focus{
+                    border-color:#008489;
+                }
+                .bhr_step1Question_selectOption{
+                    color:#484848;
+                }
+            }
+        }
+    }
+    .bhr_progressBar{
+        display:flex;
+        width: 100%;
+        .bhr_progress{
+            width: 3%;
+            position: absolute;
+            height: 10px;
+            background-color:#008489;
+            border-bottom-right-radius: 100px;
+            border-top-right-radius: 100px;
+            z-index: 200;
+        }
+        .bhr_progressBar1{
+            background-color: #edefed !important;
+            border-right: 0.3px solid #dce0e0 !important;
+            height: 10px !important;
+            width: 100%;
+        }
+        .bhr_progressBar2{
+            background-color: #edefed !important;
+            border-right: 0.3px solid #dce0e0 !important;
+            height: 10px !important;
+            width: 100%;
+        }
+        .bhr_progressBar3{
+            background-color: #edefed !important;
+            border-right: 0.3px solid #dce0e0 !important;
+            height: 10px !important;
+            width: 100%;
+        }
+        .bhr_progressBar4{
+            background-color: #edefed !important;
+            border-right: 0.3px solid #dce0e0 !important;
+            height: 10px !important;
+            width: 100%;
+        }
+        .bhr_progressBar5{
+            background-color: #edefed !important;
+            border-right: 0.3px solid #dce0e0 !important;
+            height: 10px !important;
+            width: 100%;
+        }
+        .bhr_progressBar6{
+            background-color: #edefed !important;
+            border-right: 0.3px solid #dce0e0 !important;
+            height: 10px !important;
+            width: 100%;
+        }
+        .bhr_progressBar7{
+            background-color: #edefed !important;
+            border-right: 0.3px solid #dce0e0 !important;
+            height: 10px !important;
+            width: 100%;
+        }
+    }
+    .bhr_Header{
+        background-color:white;
+        height: 64px;
+        // background-color:red;
+        position: relative;
+        .bhr_step{
+            position: absolute;
+            left:70px;
+            line-height: 64px;
+            vertical-align: middle;
+            font-size: 18px;
+            color:#484848;
+            font-weight: 400;
+        }
+        .bhr_logo{
+            position: absolute;
+            left:16px;
+            img{
+                margin-top: 16px;
+                height: 32px;
+                width: 32px;
+            }
+        }
+    }
+}
