@@ -27,21 +27,105 @@
                     .title{
                         font-family: Arial, Helvetica, sans-serif;
                         text-align: left;
-                        font-weight: 500;
+                        font-weight: 800;
                         font-size: 24px;
                         color: #484848;
                     }
                 }
                 .frame-wrapper-category, .frame-wrapper-room{
                     width: 100%;
-                    height: 80%;
-                    border: 0.1px solid red;
+                    height: 100%;
                     .frame-container{
                         float: left;
                         box-sizing: border-box;
-                        padding: 5px;
+                        padding: 10px;
                         height: 100%;
-                        border: 0.1px solid green;
+                        .frame-photo{
+                            width: 100%;
+                            border-radius: 5px;
+                            box-sizing: border-box;
+                            overflow: hidden;
+                            position: relative;
+                            background-size: 100%;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            transition-duration: 0.5s;
+                            &:hover{
+                                cursor: pointer;
+                                background-size: 110%
+                            }
+                            &.photo1{
+                                background-image: url("https://a0.muscache.com/im/pictures/f208bdd7-bdab-4d4d-b529-8e6b1e5a83c1.jpg?aki_policy=large");
+                            }
+                            &.photo2{
+                                background-image: url("https://a0.muscache.com/im/pictures/b2119f25-42e1-4770-8072-20de92e65893.jpg?aki_policy=large");
+                            }
+                            &.photo3{
+                                background-image: url("https://a0.muscache.com/im/pictures/5b408b9e-45da-4808-be65-4edc1f29c453.jpg?aki_policy=large");
+                            }
+                            &.photo4{
+                                background-image: url("https://a0.muscache.com/im/pictures/5b1f4beb-6e06-41f0-970b-044f2f28d957.jpg?aki_policy=large");
+                            }
+                            &.photo5{
+                                background-image: url("https://a0.muscache.com/im/pictures/59c516bd-c7c3-4dae-8625-aff5f55ece53.jpg?aki_policy=large");
+                            }
+                        }
+                        .frame-desc{
+                            width: 100%;
+                            padding: 5px;
+                            box-sizing: border-box;
+                            font-family: Arial, Helvetica, sans-serif;
+                            .room-type{
+                                width: 100%;
+                                text-align: justify;
+                                color: #767676;
+                                line-height: 20px;
+                                font-size: 14px;
+                                font-weight: bold;
+                                display: flex;
+                                align-items: center;
+                            }
+                            .room-name{
+                                width: 100%;
+                                text-align: justify;                             
+                                color: #484848;
+                                line-height: 26px;
+                                font-size: 20px;
+                                font-weight: 500;
+                                display: flex;
+                                align-items: center;
+                            }
+                            .room-price{
+                                width: 100%;
+                                text-align: justify;
+                                color: #484848;
+                                line-height: 22px;
+                                font-size: 16px;
+                                font-weight: normal;
+                                display: flex;
+                                align-items: center;
+                            }
+                            .room-rate-count{
+                                width: 100%;
+                                height: 20%;
+                                display: flex;
+                                align-items: center;
+                                text-align: justify;
+                                .room-rate{
+
+                                }
+                                .count-rate{
+                                    text-align: justify;
+                                    color: #767676;
+                                    font-size: 14px;
+                                    font-weight: normal;
+                                }
+                            }
+                            &:hover{
+                                cursor: pointer;
+                                background-size: 105%;
+                            }
+                        }
                     }
                     .frame-container-category{
                         float: left;
@@ -49,6 +133,7 @@
                         padding: 5px;
                         height: 100%;
                         border: 0.1px solid green;
+                        display: inline-flex;
                     }
                     .page{
                         padding: 5px 5px; 
@@ -63,8 +148,9 @@
         .places_MapWidget{
             background-color: red;
             position: fixed;
-            top: 0px;
+            // top: 0px;
             right: 0px;
+            bottom: 0px;
             width: 40%;
             height: 100%;
             display:none;
