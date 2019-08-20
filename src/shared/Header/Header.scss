@@ -71,7 +71,7 @@ header{
             height: 80px;
             button{
                 cursor:pointer;
-                padding: 0px 8px;
+                // padding: 0px 8px;
                 float:right;
                 // color:white;
                 color:black;
@@ -144,14 +144,12 @@ header{
     
 }
 
+
 @media only screen and(max-width: 850px){
     .Header_SearchInput{
         display:none;
-    }
-    .menu{
-        // width: 100%;
         button{
-            // width: 50%;
+            width: 100% !important;
         }
-    }   
+    }
 }

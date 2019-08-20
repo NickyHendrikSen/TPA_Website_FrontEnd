@@ -10,6 +10,7 @@ import Experiences from "./shared/Experience/ExperienceHeader/ExperienceHeader"
 import ExperienceDetail from "./shared/ExperienceDetail/ExperienceDetail"
 import PlaceDetail from "./shared/PlaceDetail/PlaceDetail"
 import BeHost_Room from "./shared/BeHost_Room/BeHost_Room"
+import Tes from "./shared/GetDataTes/tes"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 
 
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <Router>
           {/* <Header /> */}
           <Switch>
+              <Route path="/tes" component={Tes} />
               <Route path="/become-a-host/room" component={BeHost_Room}/>
               <Route path="/PlaceDetail" component={PlaceDetail}/>
               <Route path="/Places" component={Places}/>
