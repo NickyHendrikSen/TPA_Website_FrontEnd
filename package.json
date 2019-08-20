@@ -21,8 +21,11 @@
     "react-facebook-login": "^4.1.1",
     "react-insta-stories": "^1.5.2",
     "react-leaflet": "^2.4.0",
+    "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "typescript": "3.5.3"
   },
   "scripts": {

@@ -15,11 +15,13 @@
         // position: fixed;
         .exps_MapWidget{
             position: fixed;
-            // display: block;
+            display: block;
             right:0;
+            top:0;
+            // width: 100%;
             // width: 400px;
             height: 100%;
-            display:none;
+            // display:none;
             background-color:green;
         }
     }
@@ -57,64 +59,82 @@
                 }
             }
         }
-        .expsNav_right{
-            margin-right: 40px;
-            display: inline-block;
-            vertical-align: middle;
-            span{
-                padding-right: 8px;
-                font-size: 14px;
-                color: #484848;
-            }
-            .switch {
-                vertical-align: middle;
-                position: relative;
-                display: inline-block;
-                width: 60px;
-                height: 34px;
-                input:checked + .slider:before {
-                    -webkit-transform: translateX(26px);
-                    -ms-transform: translateX(26px);
-                    transform: translateX(26px);
-                }
-                input:focus + .slider {
-                    box-shadow: 0 0 1px rgb(0, 132, 137);
-                }
-                input:checked + .slider {
-                    background-color: rgb(0, 132, 137);
-                }
-                .slider {
-                  position: absolute;
-                  cursor: pointer;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  background-color: #ccc;
-                  -webkit-transition: .4s;
-                  transition: .4s;
-                  &:before{
-                    position: absolute;
-                    content: "";
-                    height: 26px;
-                    width: 26px;
-                    left: 4px;
-                    bottom: 4px;
-                    background-color: white;
-                    -webkit-transition: .4s;
-                    transition: .4s;
-                  }
-                }
-                .slider.round {
-                    border-radius: 34px;
+        // .expsNav_right{
+        //     margin-right: 40px;
+        //     display: inline-block;
+        //     vertical-align: middle;
+        //     span{
+        //         padding-right: 8px;
+        //         font-size: 14px;
+        //         color: #484848;
+        //     }
+        //     .switch {
+        //         vertical-align: middle;
+        //         position: relative;
+        //         display: inline-block;
+        //         width: 60px;
+        //         height: 34px;
+        //         input:checked + .slider:before {
+        //             -webkit-transform: translateX(26px);
+        //             -ms-transform: translateX(26px);
+        //             transform: translateX(26px);
+        //         }
+        //         input:focus + .slider {
+        //             box-shadow: 0 0 1px rgb(0, 132, 137);
+        //         }
+        //         input:checked + .slider {
+        //             background-color: rgb(0, 132, 137);
+        //         }
+        //         .slider {
+        //           position: absolute;
+        //           cursor: pointer;
+        //           top: 0;
+        //           left: 0;
+        //           right: 0;
+        //           bottom: 0;
+        //           background-color: #ccc;
+        //           -webkit-transition: .4s;
+        //           transition: .4s;
+        //           &:before{
+        //             position: absolute;
+        //             content: "";
+        //             height: 26px;
+        //             width: 26px;
+        //             left: 4px;
+        //             bottom: 4px;
+        //             background-color: white;
+        //             -webkit-transition: .4s;
+        //             transition: .4s;
+        //           }
+        //         }
+        //         .slider.round {
+        //             border-radius: 34px;
                     
-                }
+        //         }
                 
-                .slider.round:before {
-                    border-radius: 50%;
-                }
-            }
-        }
+        //         .slider.round:before {
+        //             border-radius: 50%;
+        //         }
+        //     }
+        // }
     }
 
+}
+
+@media only screen and (max-width: 720px){
+    .exps_MapWidget{
+        top:0;
+        height: 40vh !important;
+        width: 100vw;
+        z-index: 2;
+    }
+    .leaflet-container{
+        width: 100vw;
+        height: 40vh;
+    }
+    .exps_Wrapper{
+        width: 100% !important;
+        z-index: 1;
+        margin-top: 30vh;
+    }
 }

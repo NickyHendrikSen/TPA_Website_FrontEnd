@@ -6,11 +6,13 @@ import oldtown from "./img/oldtown.jpg"
 import stars from "./img/stars.png"
 import heart from "./img/heart.png"
 import {Link} from "react-router-dom"
+import Header from "../Header/Header"
 
 export default class Experience extends React.Component{
     render(){
         return(
             <div className="exps_Wrapper">
+                {/* <Header/> */}
                 <div className="exps_Content">
                 {/* Card Wrapper */}
                     <div className="exps_CardWrapper">

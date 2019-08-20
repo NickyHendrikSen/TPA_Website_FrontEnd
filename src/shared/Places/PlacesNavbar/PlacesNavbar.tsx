@@ -33,13 +33,13 @@ export class PlacesNavbar extends Component {
                     <button>Instant Book</button>
                     <button>More filters</button>
                 </div>
-                <div className="placesNav_right">
+                {/* <div className="placesNav_right">
                     <span>Show Map</span>
                     <label className="switch">
                     <input type="checkbox" name="" id="places_switchMap" onChange={this.places_showMap}/>
                         <span className="slider round"></span>
                     </label>
-                </div>
+                </div> */}
             </div>
         )
     }

@@ -39,7 +39,7 @@ class Places extends React.Component<IProps>{
         return(
             <div className="places_Wrapper">
                 <Header />
-                <PlacesNavbar />
+                {/* <PlacesNavbar /> */}
                 {/* {console.log(placeDetail)} */}
                 <div className="contents_wrapper">
                     <div className="list-wrapper">
@@ -170,8 +170,8 @@ class Places extends React.Component<IProps>{
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-12 page">
-                                    {/* <ReactPaginate
+                                {/* <div className="col-md-12 page">
+                                    <ReactPaginate
                                         pageCount={1}
                                         pageRangeDisplayed={10}
                                         marginPagesDisplayed={2}
@@ -196,8 +196,8 @@ class Places extends React.Component<IProps>{
                                         disabledClassName={'disabled'}
                                         hrefBuilder={(pageIndex: number) => null}
                                         extraAriaContext={'aria'}
-                                    /> */}
-                                </div>
+                                    />
+                                </div> */}
                             </div>
                         </div>
                     </div>
