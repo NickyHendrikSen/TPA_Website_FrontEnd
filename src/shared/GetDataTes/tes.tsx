@@ -2,7 +2,7 @@ import React from "react"
 import axios from 'axios'
 export default class Tes extends React.Component{
     state = {
-        Id:[]
+        data:[{experience_category:''}]
     }
     componentWillMount(){
         axios.get('http://backendtpaweb.herokuapp.com/api/experience')
@@ -10,16 +10,20 @@ export default class Tes extends React.Component{
                 console.log(res.data);
                 this.setState(
                     {
-                        Id:res.data.Images
+                        data: res.data
+
                     }
                 )
+                console.log(this.state)
             }
         )
     }
     render(){
         return(
             <div>
-               {this.state.Id.map(i=>i)}
+               {this.state.data.map(data => {
+                   return (<div> {data.experience_category}</div>)
+               })}
             </div>
         )
     }

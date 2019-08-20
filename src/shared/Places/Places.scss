@@ -145,16 +145,16 @@
                 }
             }
         }
-        .places_MapWidget{
-            background-color: red;
-            position: fixed;
-            // top: 0px;
-            right: 0px;
-            bottom: 0px;
-            width: 40%;
-            height: 100%;
-            // display:none;
-            z-index: -10;
-        }
+    }
+    .places_MapWidget{
+        background-color: red;
+        position: fixed;
+        // top: 0px;
+        right: 0px;
+        bottom: 0px;
+        width: 40%;
+        height: calc(100vh - 80px);
+        // display:none;
+        
     }
 }

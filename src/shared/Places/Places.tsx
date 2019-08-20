@@ -38,7 +38,7 @@ class Places extends React.Component<IProps>{
         // );
         return(
             <div className="places_Wrapper">
-                <Header />
+                {/* <Header /> */}
                 {/* <PlacesNavbar /> */}
                 {/* {console.log(placeDetail)} */}
                 <div className="contents_wrapper">
@@ -201,9 +201,10 @@ class Places extends React.Component<IProps>{
                             </div>
                         </div>
                     </div>
-                    <div className="places_MapWidget">
+                </div>
+                
+                <div className="places_MapWidget">
                         <Map />
-                    </div>
                 </div>
             </div>
         )

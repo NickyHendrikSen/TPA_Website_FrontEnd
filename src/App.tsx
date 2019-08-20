@@ -5,7 +5,7 @@ import Header from "./shared/Header/Header"
 import Home from "./shared/Home/Home"
 import Footer from "./shared/Footer/Footer"
 import FooterButton from "./shared/Footer/FooterButton/FooterButton";
-import Places from "./shared/Places/Places"
+import Places from "./shared/Places/PlacesNavbar/PlacesNavbar"
 import Experiences from "./shared/Experience/ExperienceHeader/ExperienceHeader"
 import ExperienceDetail from "./shared/ExperienceDetail/ExperienceDetail"
 import PlaceDetail from "./shared/PlaceDetail/PlaceDetail"
