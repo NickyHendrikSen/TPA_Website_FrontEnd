@@ -25,7 +25,7 @@ const App: React.FC = () => {
               <Route path="/PlaceDetail" component={PlaceDetail}/>
               <Route path="/Places" component={Places}/>
               <Route path="/Experiences" component={Experiences}/>
-              <Route path="/ExperiencesDetail" component={ExperienceDetail}/>
+              <Route path="/ExperiencesDetail/:id" component={ExperienceDetail}/>
               <Route path="/" component={Home}/>
           </Switch>
           {/* <Footer /> */}

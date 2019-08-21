@@ -1,4 +1,52 @@
 .expD_Wrapper{
+    
+    //Review Div
+    .expD_review{
+        display:flex;
+        justify-content: left;
+        padding: 50px;
+        .expD_reviewLeft{
+            display: inline-block;
+            width: 30vw;
+            font-weight: 700;
+            text-align: left;
+            .expD_reviewLeftTitle{
+                font-size: 32px;
+                color: #484848;
+            }
+            .expD_reviewLeftRating{
+                line-height: 30px;
+                .expD_reviewLeftNum{
+                    color: #484848;
+                    display:inline-block;
+                    font-size:18px;
+                    margin-right: 10px;
+                }
+                .expD_reviewLeftStar{
+                    display:inline-block;
+                    font-size: 28px;
+                    color:#008489;
+                }
+            }
+        }
+        .expD_reviewRight{
+            display: inline-block;
+            width: 70vw;
+            .expD_reviewRightContent{
+                text-align: left;
+                color:#484848;
+                .expD_reviewRightName{
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+                .expD_reviewRightContent_Content{
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+
     header{
     border-bottom: 1px solid #0000002a;
     }
@@ -14,6 +62,16 @@
                 float:left;
             }
             .expD_Description{
+                .expD_provide{
+                    border-top: 0.8px solid #0f0f0fad;
+                    padding-top: 30px;
+                    color: #484848;
+                    margin-top: 50px;
+                    .expD_provideTitle{
+                        font-weight: 600;
+                        margin-bottom: 15px;
+                    }
+                }
                 .expD_header{
                     margin-left: 16px;
                     .expD_theme{
@@ -49,6 +107,7 @@
             }
             .expD_aboutWrapper{
                 display:flex;
+                justify-content: space-between;
                 .expD_about{
                     display:inline-block;
                     .expD_aboutTitle{
@@ -67,6 +126,7 @@
                 .expD_about_img{
                     display:inline-block;
                     width: 500px;
+                    text-align:center;
                     margin-top: 30px;
                     img{
                         width: 72px;

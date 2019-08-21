@@ -11,12 +11,13 @@ import axios from 'axios'
 export default class Experience extends React.Component{
     state = {
         data:[{
+            _id:'',
             experience_category:'',
             address:{suburb:''},
             experience_title:'',
             price:0,
             estimated_total_hours:'',
-            // amenities
+            amenities:[],
             rating_star:0,
             total_rating_count:0,
         }]
@@ -46,7 +47,7 @@ export default class Experience extends React.Component{
                     <div className="exps_CardWrapper">
                         <div className="exps_Card">
                             <div className="exps_CardImage">
-                                <Link to="/ExperiencesDetail"><img src={oldtown} alt=""/></Link>
+                                <Link to={"/ExperiencesDetail/" + data._id}><img src={oldtown} alt=""/></Link>
                                 {/* <img src={heart} alt="" className="exps_CardLove"/> */}
                                 <span className="exps_white_heart">&#9825;</span>
                             </div>
@@ -60,10 +61,10 @@ export default class Experience extends React.Component{
                                 <div className="exps_CardDescription">
                                     <li className="exps_CardPrice">${data.price} per person</li>
                                     <li className="exps_CardTime">{data.estimated_total_hours}</li>
-                                    <li className="exps_CardBenefit">Transportation, Drinks, 1 ticket included</li>
+                                    <li className="exps_CardBenefit">{data.amenities[0]}, {data.amenities[1]}, {data.amenities[2]} included</li>
                                 </div>
                                 <div className="exps_CardRating">
-                                    {data.rating_star/data.total_rating_count}
+                                    {(Math.round(data.rating_star/data.total_rating_count*100)/100).toFixed(2)}
                                     <img src={stars} alt=""/>
                                     <span className="exps_CardRatingResponds">({data.total_rating_count})</span>
                                 </div>
