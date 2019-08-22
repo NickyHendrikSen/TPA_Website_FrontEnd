@@ -4,6 +4,7 @@ import Map from "../Map/Map"
 import Header from "../Header/Header"
 import PlacesNavbar from "./PlacesNavbar/PlacesNavbar";
 import "./PlacesGridSystem/PlacesGridSystems.scss";
+import axios from 'axios'
 import { getDetailPlace } from "../../actions/placesAction"
 import { connect } from "react-redux";
 
@@ -14,17 +15,36 @@ interface IProps{
 
 class Places extends React.Component<IProps>{
 
-    constructor(props:any){
-        super(props)
+    state = {
+        data:{
+            _id:'',
+            name:'',
+            summary:'',
+            space:'',
+            description:'',
+            neighborhood_overview:'',
+            access:'',
+            house_rules:'',
+            property_type:'',
+            room_type:'',
+            bed_type:'',
+            price:'',
 
-        this.state = {
-            getDetailPlace:[],
-            details: []
         }
     }
 
     componentWillMount(){
-        this.props.getDetailPlace();
+        // const { fromNotifications } = this.props.location.state
+        axios.get('http://backendtpaweb.herokuapp.com/api/experience/')
+            .then(res => {
+                this.setState(
+                    {
+                        data: res.data
+                    }
+                )
+                console.log(res.data)
+            }
+        )
     }
 
     render(){
@@ -170,39 +190,10 @@ class Places extends React.Component<IProps>{
                                         </div>
                                     </div>
                                 </div>
-                                {/* <div className="col-md-12 page">
-                                    <ReactPaginate
-                                        pageCount={1}
-                                        pageRangeDisplayed={10}
-                                        marginPagesDisplayed={2}
-                                        previousLabel={'previous'}
-                                        nextLabel={'next'}
-                                        breakLabel={'break-me'}
-                                        breakClassName={'break-class'}
-                                        breakLinkClassName={'break-link'}
-                                        onPageChange={(selectedItem: {selected: number}) => null}
-                                        initialPage={2}
-                                        forcePage={3}
-                                        disableInitialCallback={false}
-                                        containerClassName={'container'}
-                                        pageClassName={'page-li'}
-                                        pageLinkClassName={'page-a'}
-                                        activeClassName={'active'}
-                                        activeLinkClassName={'active'}
-                                        previousClassName={'previous-li'}
-                                        nextClassName={'next-li'}
-                                        previousLinkClassName={'previous-a'}
-                                        nextLinkClassName={'next-a'}
-                                        disabledClassName={'disabled'}
-                                        hrefBuilder={(pageIndex: number) => null}
-                                        extraAriaContext={'aria'}
-                                    />
-                                </div> */}
                             </div>
                         </div>
                     </div>
                 </div>
-                
                 <div className="places_MapWidget">
                         <Map />
                 </div>

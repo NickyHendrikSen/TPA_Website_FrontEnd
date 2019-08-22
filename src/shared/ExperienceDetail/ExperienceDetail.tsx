@@ -5,9 +5,12 @@ import "react-fa-icon"
 import photo from "./img/oldtown.jpg"
 import InstaStory from "./InstaStory/InstaStory"
 import axios from 'axios'
+import Stories from 'react-insta-stories'
+import StarRatings from 'react-star-ratings';
 import {RouteComponentProps, withRouter} from "react-router";
 
 export default class ExperienceDetail extends React.Component<RouteComponentProps<any>>{
+    refVal:any
     state = {
         data:{
             _id:'',
@@ -32,10 +35,39 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                 reviewer_id:'',
                 reviewer_name:'',
                 comments:'',
-            }]
+                reviewer_score:0,
+                reviewer_thumbnail_url:'',
+            }],
+            Images:[{url:'',}]
         }
     }
+
+
+    stories = (story:any) =>{
+        this.refVal = story
+    }
+    instaToggle(){
+        var btn = document.getElementsByClassName('expD_Insta_Button')[0] as HTMLElement;
+        console.log(btn.innerHTML)
+        if(btn.innerText == "Pause")
+        {
+            btn.innerHTML = "Play"   
+            this.refVal.pause();
+        }
+        else{
+            btn.innerHTML = "Pause"   
+            this.refVal.play();
+        }
+    }
+    starLoading(){
+    //     var div = document.getElementsByClassName('expD_reviewRightStar')[0] as HTMLElement;
+    //     for(let i = 1; i <= this.state.hos)
+    //     <div className="expD_reviewRightStarColor">&#x2605;
+    //     <div className="expD_reviewRightStarGray">&#x2605;</div>
+    // </div>
+    }
     componentWillMount(){
+        this.refVal = React.createRef();
         let id: any = this.props.match.params.id
         // const { fromNotifications } = this.props.location.state
         axios.get('http://backendtpaweb.herokuapp.com/api/experience/' + id)
@@ -49,6 +81,8 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             }
         )
     }
+
+
     render(){
         return(
             <div className="expD_Wrapper">
@@ -58,7 +92,17 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                         <div className="expD_ContentWrapper">
                             <div className="expD_Content">
                                 <div className="expD_Insta">
-                                {/* <InstaStory /> */}
+                                    {/* <InstaStory /> */}
+                                    <Stories ref={this.stories}
+                                        stories={this.state.data.Images}
+                                        defaultInterval={1500}
+                                        width={390}
+                                        height={517}
+                                        loop={true}
+                                    />
+                                    <div className="expD_Insta_Button" onClick={this.instaToggle.bind(this)}>
+                                        Pause
+                                    </div>
                                 </div>
                                 <div className="expD_Description">
                                     <div className="expD_header">
@@ -129,12 +173,36 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                             {this.state.data.reviews.map(rev =>{
                                 return(
                                     <div className="expD_reviewRightContent">
-                                        <div className="expD_reviewRightName">
-                                            {rev.reviewer_name}
+                                        <div className="expD_reviewRightInfo">
+                                            <div className="expD_reviewRightImage">
+                                                <img src={rev.reviewer_thumbnail_url} alt=""/>
+                                            </div>
+                                            <div className="expD_reviewRightNameStar">
+                                                <div className="expD_reviewRightNameDate">
+                                                    <div className="expD_reviewRightName">
+                                                        {rev.reviewer_name} · &nbsp;
+                                                    </div>
+                                                    <div className="expD_reviewRightDate">
+                                                        {rev.date.split("T")[0]}
+                                                    </div>
+                                                </div>
+                                                <div className="expD_reviewRightStar">
+                                                <StarRatings
+                                                    rating={rev.reviewer_score/2}
+                                                    starRatedColor="#008489"
+                                                    // changeRating={this.changeRating}
+                                                    numberOfStars={5}
+                                                    name='rating'
+                                                    starDimension= '20px'
+                                                    starSpacing = '1px'
+                                                />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="expD_reviewRightContent_Content">
                                             {rev.comments}
                                         </div>
+                                        <hr/>
                                     </div>
                                 )
                             })}
