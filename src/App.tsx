@@ -22,7 +22,7 @@ const App: React.FC = () => {
           <Switch>
               <Route path="/tes" component={Tes} />
               <Route path="/become-a-host/room" component={BeHost_Room}/>
-              <Route path="/PlaceDetail" component={PlaceDetail}/>
+              <Route path="/PlaceDetail/:id" component={PlaceDetail}/>
               <Route path="/Places" component={Places}/>
               <Route path="/Experiences" component={Experiences}/>
               <Route path="/ExperiencesDetail/:id" component={ExperienceDetail}/>

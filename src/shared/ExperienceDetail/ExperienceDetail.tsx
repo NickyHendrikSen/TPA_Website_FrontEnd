@@ -12,6 +12,7 @@ import {RouteComponentProps, withRouter} from "react-router";
 export default class ExperienceDetail extends React.Component<RouteComponentProps<any>>{
     refVal:any
     state = {
+        total_rating:0,
         data:{
             _id:'',
             experience_category:'asd',
@@ -74,17 +75,18 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             .then(res => {
                 this.setState(
                     {
-                        data: res.data
+                        data: res.data,
+                        total_rating: res.data.rating_star/res.data.total_rating_count
                     }
                 )
                 console.log(res.data)
             }
         )
+        
     }
-
-
     render(){
         return(
+            
             <div className="expD_Wrapper">
             <Header />
                 {/* {this.state.data.map(data => {
@@ -165,7 +167,15 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                 {(Math.round(this.state.data.rating_star/this.state.data.total_rating_count*100)/100).toFixed(2)}
                             </div>
                             <div className="expD_reviewLeftStar">
-                                &#9733;&#9733;&#9733;&#9733;&#9733;
+                                <StarRatings
+                                    rating={this.state.total_rating}
+                                    starRatedColor="#008489"
+                                    // changeRating={this.changeRating}
+                                    numberOfStars={5}
+                                    name='rating'
+                                    starDimension= '28px'
+                                    starSpacing = '1px'
+                                />
                             </div>
                         </div>
                     </div>

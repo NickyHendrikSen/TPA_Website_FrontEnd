@@ -1,6 +1,7 @@
 import React from "react"
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 import "./Login.scss"
+import axios from "axios"
 import close_icon from "../img/close_icon.png"
 import facebook_icon from "../img/facebook_img.png"
 import google_icon from "../img/google_icon.png"
@@ -9,7 +10,27 @@ import Facebook from "./components/Facebook"
 
 export default class SignUp extends React.Component{
 
-
+    state={
+        data:[{
+            UserID:'',
+            Username:'',
+            Useremail:'',
+            Password:''
+        }]
+    }
+    componentWillMount(){
+        // const { fromNotifications } = this.props.location.state
+        axios.get('http://backendtpaweb.herokuapp.com/api/users')
+            .then(res => {
+                this.setState(
+                    {
+                        data: res.data
+                    }
+                )
+                console.log(res.data)
+            }
+        )
+    }
     lightBox_login_hide(){
         var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;        lightBox[0].style.display = "none";
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
@@ -37,14 +58,17 @@ export default class SignUp extends React.Component{
         var boole = re.test(txtEmail.value) as boolean;
         var a = boole == false? 1 : 0;
         console.log(a);
+        var success = true;
         if(txtEmail.value == ""){
             txtEmail.style.border = "1px solid rgb(217, 57, 0)";
             errMessage[0].innerText = "Email is required.";
             errMessage[0].style.display = "block";
+            success = false;
         }else if(a == 1){
             txtEmail.style.border = "1px solid rgb(217, 57, 0)";
             errMessage[0].innerText = "Enter a valid email.";
             errMessage[0].style.display = "block";
+            success = false;
         }else{
             txtEmail.style.border = "1px solid #EBEBEB";
             errMessage[0].innerText = "";
@@ -55,16 +79,27 @@ export default class SignUp extends React.Component{
             txtPass.style.border = "1px solid rgb(217, 57, 0)";
             errMessage[1].innerText = "Password is required.";
             errMessage[1].style.display = "block";
+            success = false;
         }
         else if(txtPass.value.length < 8){
             txtPass.style.border = "1px solid rgb(217, 57, 0)";
             errMessage[1].innerText = "Your password must be at least 8 characters. Please try again.";
             errMessage[1].style.display = "block";
+            success = false;
         }else{
             txtPass.style.border = "1px solid #EBEBEB";
             errMessage[1].innerText = "";
             errMessage[1].style.display = "none";
         }
+        if(success == false) return;
+        //Login check here
+        this.state.data.map(users=>{
+            if(users.Useremail == txtEmail.value && users.Password == txtPass.value){
+                alert('success login');
+                return;
+            }
+        })
+        alert('failed login');
     }
 
     render(){

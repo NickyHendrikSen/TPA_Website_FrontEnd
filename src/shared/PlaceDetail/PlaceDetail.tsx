@@ -2,12 +2,45 @@ import React from "react"
 import Header from "../Header/Header"
 import "./PlaceDetail.scss"
 import imagePlaceDetail from "./img/oldtown.jpg"
+import axios from 'axios'
+import {RouteComponentProps, withRouter} from "react-router";
 import 'react-fa-icon'
 import { url } from "inspector";
 
-export default class PlaceDetail extends React.Component{
+export default class PlaceDetail extends React.Component <RouteComponentProps<any>>{
     state={
-        image : imagePlaceDetail
+        image : imagePlaceDetail,
+        data:{
+            _id:'',
+            name:'',
+            summary:'',
+            space:'',
+            description:'',
+            neighborhood_overview:'',
+            access:'',
+            house_rules:'',
+            property_type:'',
+            room_type:'',
+            bed_type:'',
+            price:'',
+            address:{suburb:''},
+            images:{picture_url:''},
+        }
+    }
+    componentWillMount(){
+        let id: any = this.props.match.params.id
+        // const { fromNotifications } = this.props.location.state
+        axios.get('http://backendtpaweb.herokuapp.com/api/rooms/' + id)
+            .then(res => {
+                this.setState(
+                    {
+                        data: res.data,
+                    }
+                )
+                console.log(res.data)
+            }
+        )
+        
     }
     render(){
         return(
@@ -47,6 +80,12 @@ export default class PlaceDetail extends React.Component{
                         View Photos
                     </div>
                 </div>
+                {/* Delete aja.. Ini cuma buat tes data masuk.. sebelum buat layoutnya */}
+                <h1 style={{backgroundColor: 'red'}}>Delete aja.. Ini cuma buat tes data masuk.. sebelum buat layoutnya</h1>
+                <h1 style={{backgroundColor: 'yellow'}}>Room ID : {this.state.data._id}</h1>
+                <br/>
+                <h1 style={{backgroundColor: 'green'}}>description : <br/>{this.state.data.description}</h1>
+                {/*  */}
             </div>
         )
     }

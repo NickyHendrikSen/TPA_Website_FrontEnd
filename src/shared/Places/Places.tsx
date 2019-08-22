@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from "react-router-dom"
 import "./Places.scss"
 import Map from "../Map/Map"
 import Header from "../Header/Header"
@@ -16,7 +17,7 @@ interface IProps{
 class Places extends React.Component<IProps>{
 
     state = {
-        data:{
+        data:[{
             _id:'',
             name:'',
             summary:'',
@@ -29,13 +30,14 @@ class Places extends React.Component<IProps>{
             room_type:'',
             bed_type:'',
             price:'',
-
-        }
+            address:{suburb:''},
+            images:{picture_url:''},
+        }]
     }
 
     componentWillMount(){
         // const { fromNotifications } = this.props.location.state
-        axios.get('http://backendtpaweb.herokuapp.com/api/experience/')
+        axios.get('http://backendtpaweb.herokuapp.com/api/rooms/place/Brazil')
             .then(res => {
                 this.setState(
                     {
@@ -70,19 +72,33 @@ class Places extends React.Component<IProps>{
                                 </div>    
                             </div>
                             <div className="frame-wrapper-room">
-                                <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo1"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
+                                {this.state.data.map(room => {
+                                    return(
+                                        <div className="col-slider-2 frame-container">
+                                            <Link to={"/PlaceDetail/" + room._id}>
+                                            <div className="row-md-6 frame-photo photo1" style={{backgroundImage: `url(${room.images.picture_url})`}}>
+                                            </div>
+                                            </Link>
+                                            <div className="row-md-4 frame-desc">
+                                                <div className="room-type">{room.room_type} &nbsp; &#8226; &nbsp; {room.address.suburb}</div>
+                                                <div className="room-name">{room.name}</div>
+                                                <div className="room-price">${room.price}/night</div>
+                                                <div className="room-rate-count">
+                                                    <span className="room-rate">4.8
+                                                        <span>*</span>
+                                                        <span>*</span>
+                                                        <span>*</span>
+                                                        <span>*</span>
+                                                        <span>*</span>
+                                                    </span>
+                                                    <span className="count-rate">(12)</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="col-slider-2 frame-container">
+                                    )
+                                })}
+                                {/* From */}
+                                {/* <div className="col-slider-2 frame-container">
                                     <div className="row-md-6 frame-photo photo2"></div>
                                     <div className="row-md-4 frame-desc">
                                         <div className="room-type">room_type</div>
@@ -93,103 +109,8 @@ class Places extends React.Component<IProps>{
                                             <span className="count-rate">count</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo3"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo4"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo5"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo1"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo2"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo3"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo4"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo5"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> */}
+                                {/* Until */}
                             </div>
                         </div>
                     </div>
