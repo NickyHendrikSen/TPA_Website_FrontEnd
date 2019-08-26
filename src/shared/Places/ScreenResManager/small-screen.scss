@@ -1,0 +1,124 @@
+@mixin small-screen-container{ 
+    .frame-container{
+        float: left;
+        padding: 0.2vw;
+        overflow: hidden;
+        margin: 0.5vw 0px;
+        border-radius: 3px;
+        border: 1px solid rgba(76,76,76,0.3);
+        .frame-photo{
+            width: 100%;
+            height: 60%;
+            border-radius: 3px;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
+            transition-duration: 0.5s;
+            &:hover{
+                cursor: pointer;
+                background-size: 105% 105%;
+            }
+        }
+        .frame-desc{
+            width: 100%;
+            padding: 0.7vw 1.2vw;
+            height: 40%;
+            font-family: Helvetica;
+            display: block;
+            .desc-wrapper{
+                position: relative;
+                height: 100%;
+                .top-wrapper{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .room-type{
+                        text-align: justify;
+                        color: rgba(76,76,76,0.5);
+                        line-height: 1.5vw;
+                        font-size: 1.5vw;
+                        font-weight: 700;
+                    }
+                    .far{display: block; color: black}
+                    .fas{display: none; color: black}
+                }
+                .room-name{
+                    text-align: justify;       
+                    padding: 0.2vw 0px;                      
+                    color: rgba(76,76,76,1);
+                    line-height: 1.6vw;
+                    font-size: 1.5vw;
+                    font-weight: bold;
+                }
+                .room-amenities{
+                    text-align: justify;                             
+                    color: rgba(76,76,76,1);
+                    line-height: 1.7vw;
+                    font-size: 1.5vw;
+                    font-weight: normal;
+                }
+                .room-informations{
+                    text-align: justify;                             
+                    color: rgba(76,76,76,1);
+                    line-height: 1.7vw;
+                    font-size: 1.5vw;
+                    font-weight: normal;
+                }
+                .room-rate-count{
+                    position: absolute;
+                    bottom: 0px;
+                    width: 100%;
+                    .rate-price-wrapper{
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        .room-star{
+                            display: flex;
+                            align-items: center;
+                            .count-rate{
+                                color: #767676;
+                                font-size: 1.5vw;
+                                font-weight: normal;
+                            }
+                            .room-rate{
+                                color: teal;
+                                font-size: 1.5vw;
+                                font-weight: normal;
+                            }
+                        }
+                        .room-price{
+                            text-align: right;
+                            width: 50%;
+                            color: #484848;
+                            line-height: 1.5vw;
+                            font-size: 1.5vw;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            &:hover{
+                cursor: pointer;
+                background-size: 105%;
+            }
+        }
+        &:hover{
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(76,76,76,0.25);
+        }
+    }
+    .frame-container-category{
+        float: left;
+        padding: 5px;
+        height: 100%;
+        border: 0.1px solid green;
+        display: inline-flex;
+    }
+    .page{
+        padding: 5px 5px; 
+        border: 0.1px solid turquoise;
+        display: flex;
+        justify-content: center;
+    }
+}
