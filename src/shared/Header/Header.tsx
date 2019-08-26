@@ -12,7 +12,7 @@ export default class Header extends React.Component{
         lightBox[0].style.display = "flex";
         console.log(lightBox[0]);   
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
-        // body.style.position="fixed";
+        body.style.position="fixed";
         // lightBox[0].style.position = "absolute";
     }    
     lightBox_login_show(){
@@ -20,7 +20,7 @@ export default class Header extends React.Component{
         lightBox[0].style.display = "flex";
         console.log(lightBox[0]);   
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
-        // body.style.position="fixed";
+        body.style.position="fixed";
     }
     Header_ShowPick(){
         var pickBlock = document.getElementsByClassName("Header_Search_PickWrapper")[0] as HTMLElement;

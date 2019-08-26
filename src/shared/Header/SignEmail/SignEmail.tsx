@@ -1,6 +1,7 @@
 import React from "react"
 import "./SignEmail.scss"
 import close_icon from "../img/close_icon.png";
+import axios from "axios"
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 
 export default class SignEmail extends React.Component{
@@ -20,26 +21,28 @@ export default class SignEmail extends React.Component{
     validate = () =>{
         var txtEmail = document.getElementById("regE_txtEmail") as HTMLInputElement;
         var txtFirst = document.getElementById("regE_txtFirst") as HTMLInputElement;
-        var txtLast = document.getElementById("regE_txtLast") as HTMLInputElement;
+        // var txtLast = document.getElementById("regE_txtLast") as HTMLInputElement;
         var txtPass = document.getElementById("regE_txtPass") as HTMLInputElement;
         
 
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var boole = re.test(txtEmail.value) as boolean;
         var a = boole == false? 1 : 0;
-
+        var success = true;
         //email empty
         if(txtEmail.value == ""){
             var errEmail = document.getElementById("regE_emailError") as HTMLInputElement;
             txtEmail.style.border = "1px solid #FC642D";
             errEmail.style.display = "block";
             errEmail.innerText = "Email is required.";
+            success = false;
         }
         else if(a == 1){
             var errEmail = document.getElementById("regE_emailError") as HTMLInputElement;
             txtEmail.style.border = "1px solid #FC642D";
             errEmail.style.display = "block";
             errEmail.innerText = "Enter a valid email.";
+            success = false;
         }
         else{
             var errEmail = document.getElementById("regE_emailError") as HTMLInputElement;
@@ -53,6 +56,7 @@ export default class SignEmail extends React.Component{
             txtFirst.style.border = "1px solid #FC642D";
             errFirst.style.display = "block";
             errFirst.innerText = "First name is required.";
+            success = false;
         }
         else{
             var errFirst = document.getElementById("regE_firstError") as HTMLInputElement;
@@ -61,17 +65,18 @@ export default class SignEmail extends React.Component{
         }
 
         //last name empty
-        if(txtLast.value == ""){
-            var errLast = document.getElementById("regE_lastError") as HTMLInputElement;
-            txtLast.style.border = "1px solid #FC642D";
-            errLast.style.display = "block";
-            errLast.innerText = "Last name is required.";
-        }
-        else{
-            var errLast = document.getElementById("regE_lastError") as HTMLInputElement;
-            txtLast.style.border = "1px solid #EBEBEB";
-            errLast.style.display = "none";
-        }
+        // if(txtLast.value == ""){
+        //     var errLast = document.getElementById("regE_lastError") as HTMLInputElement;
+        //     txtLast.style.border = "1px solid #FC642D";
+        //     errLast.style.display = "block";
+        //     errLast.innerText = "Last name is required.";
+        //     success = false;
+        // }
+        // else{
+        //     var errLast = document.getElementById("regE_lastError") as HTMLInputElement;
+        //     txtLast.style.border = "1px solid #EBEBEB";
+        //     errLast.style.display = "none";
+        // }
 
         //password empty
         if(txtPass.value == ""){
@@ -79,21 +84,49 @@ export default class SignEmail extends React.Component{
             txtPass.style.border = "1px solid #FC642D";
             errPass.style.display = "block";
             errPass.innerText = "Password is required.";
+            success = false;
         }
         else if(txtPass.value.length < 8){
             var errPass = document.getElementById("regE_passError") as HTMLInputElement;
             txtPass.style.border = "1px solid #FC642D";
             errPass.style.display = "block";
             errPass.innerText = "Your password must be at least 8 characters";
+            success = false;
         }
         else{
             var errPass = document.getElementById("regE_passError") as HTMLInputElement;
             txtPass.style.border = "1px solid #EBEBEB";
             errPass.style.display = "none";
         }
-        
+
+        if(success){
+            var txtEmail = document.getElementById("regE_txtEmail") as HTMLInputElement;
+            var txtFirst = document.getElementById("regE_txtFirst") as HTMLInputElement;
+            var txtPass = document.getElementById("regE_txtPass") as HTMLInputElement;
+            var date = new Date().getFullYear();
+            var noPicture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsZ2jUO2WVf_TyxRvqQR36RTVn6EvaZRTvWdn6naMTn7HD8-guLw";
+            axios({
+                url: 'http://backendtpaweb.herokuapp.com/api/users', 
+                method : "POST",
+                data : {
+                "Username": txtFirst.value,
+                "Useremail": txtEmail.value,
+                "Password": txtPass.value,
+                "UserLocation": "Jakarta Barat, Indonesia",
+                "UserAbout": "Not Set",
+                "UserJoinDate": date.toString(),
+                "UserLanguage": "Indonesia",
+                "UserResponseTime": "Within a second",
+                "UserResponseRate": 100, 
+                "UserThumbnailURL": noPicture
+            },
+            headers:{"Content-Type": "application/x-www-form-urlencoded"}
+            }
+        );
+            this.regE_close();
+        }
     }
-    regE_close(){
+    regE_close = () => {
         var check = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
         check[0].style.display = "none";
     }
@@ -121,10 +154,10 @@ export default class SignEmail extends React.Component{
                     <div className="regE_input">
                         <input type="email" name="" id="regE_txtEmail" className="regE_inputEmail" placeholder="Email address"/>
                         <div className="regE_lblError" id="regE_emailError"></div>
-                        <input type="text" name="" id="regE_txtFirst" className="regE_inputFirst" placeholder="First name" />
-                        <div className="regE_lblError" id="regE_firstError">First name is required.</div>
-                        <input type="text" name="" id="regE_txtLast" className="regE_inputLast" placeholder="Last name" />
-                        <div className="regE_lblError" id="regE_lastError">Last name is required.</div>
+                        <input type="text" name="" id="regE_txtFirst" className="regE_inputFirst" placeholder="Username" />
+                        <div className="regE_lblError" id="regE_firstError">Username is required.</div>
+                        {/* <input type="text" name="" id="regE_txtLast" className="regE_inputLast" placeholder="Last name" />
+                        <div className="regE_lblError" id="regE_lastError">Last name is required.</div> */}
 
                         <div className="regE_inputPassWrapper">
                             <input type="password" name="" id="regE_txtPass"
@@ -132,12 +165,12 @@ export default class SignEmail extends React.Component{
                             <button onClick={this.regE_setPassword} className="regE_seePass">O</button>
                         </div>
                         <div className="regE_lblError" id="regE_passError">Password is required.</div>  
-                        <div className="regE_birthdayWrapper">
-                            <div className="regE_birthdayBold">Birthday</div>
+                        {/* <div className="regE_birthdayWrapper">
+                            <div className="regE_birthdayBold">Birthday</div> */}
                             {/* <div className="regE_birthdayDesc">To sign up, you must be 18 or older. Other people won’t see your birthday.</div> */}
-                            <input type="date" name="" id="regE_txtBirthDate" className="regE_inputBirthday"/>
+                            {/* <input type="date" name="" id="regE_txtBirthDate" className="regE_inputBirthday"/>
                         </div>
-                        <div className="regE_lblError" id="regE_birthdayError">You must be 18 or older.</div>
+                        <div className="regE_lblError" id="regE_birthdayError">You must be 18 or older.</div> */}
                         <div className="regE_notif">We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.</div>
                         <button className="regE_btnSignUp" onClick={this.validate}>
                             Sign Up

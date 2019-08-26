@@ -2,7 +2,7 @@
     width: 100vw;
     height: 1000px;
     background-color:rgba(0, 0, 0,0.8);
-    position: absolute;
+    position: fixed;
     top:0;
     left:0;
     right:0;
@@ -12,14 +12,17 @@
     // padding-top: 64px;
     display:none;
     .regE_lightBox{
+        margin: 0;
         max-width: 568px;
         width: 100%;
         height: auto;
         padding: 32px;
+        top: calc(50% - 480px);
+        left: calc(50% - 289px);
         margin:auto;
         background-color: rgba(255, 255, 255, 1);
         display:block;
-        position: relative;
+        position: absolute;
         //x close
         .regE_close{
             text-align: left;
