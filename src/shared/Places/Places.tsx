@@ -2,8 +2,6 @@ import React from "react"
 import {Link} from "react-router-dom"
 import "./Places.scss"
 import Map from "../Map/Map"
-import Header from "../Header/Header"
-import PlacesNavbar from "./PlacesNavbar/PlacesNavbar";
 import "./PlacesGridSystem/PlacesGridSystems.scss";
 import axios from 'axios'
 import { getDetailPlace } from "../../actions/placesAction"
@@ -30,6 +28,12 @@ class Places extends React.Component<IProps>{
             room_type:'',
             bed_type:'',
             price:'',
+            bathrooms:'',
+            bedrooms:'',
+            beds:'',
+            guest_included:'',
+            amenities:[],
+            review_scores:{review_scores_rating:''},
             address:{suburb:''},
             images:{picture_url:''},
         }]
@@ -49,68 +53,70 @@ class Places extends React.Component<IProps>{
         )
     }
 
+    toggleLove = (idx : any) => {
+        var fari = document.getElementsByClassName("far") as HTMLCollectionOf<HTMLElement>;
+        var fasi = document.getElementsByClassName("fas") as HTMLCollectionOf<HTMLElement>;
+    
+        fari[idx].style.display = 'none';
+        fasi[idx].style.display = 'block';
+    }
+    
+    toggleDislove = (idx : any) => {
+        var fari = document.getElementsByClassName("far") as HTMLCollectionOf<HTMLElement>;
+        var fasi = document.getElementsByClassName("fas") as HTMLCollectionOf<HTMLElement>;
+        
+        fari[idx].style.display = 'block';
+        fasi[idx].style.display = 'none';
+    }
+
     render(){
-        // const placeDetail = this.props.details.map((detail:any) => (
-        //     detail.address
-        // ));
-        // const placeObject = Object.keys(placeDetail).map((key:any) => 
-        //     <div>
-        //         {placeDetail[key]}
-        //     </div>
-        // );
         return(
             <div className="places_Wrapper">
-                {/* <Header /> */}
-                {/* <PlacesNavbar /> */}
-                {/* {console.log(placeDetail)} */}
-                <div className="contents_wrapper">
+                <div className="col-md-6 contents_wrapper">
                     <div className="list-wrapper">
                         <div className="list-container">
                             <div className="frame-title">
                                 <div className="title">
-                                    Places to stay
+                                    300+ Places to stay
                                 </div>    
                             </div>
                             <div className="frame-wrapper-room">
                                 {this.state.data.map(room => {
                                     return(
-                                        <div className="col-slider-2 frame-container">
-                                            <Link to={"/PlaceDetail/" + room._id}>
-                                            <div className="row-md-6 frame-photo photo1" style={{backgroundImage: `url(${room.images.picture_url})`}}>
-                                            </div>
-                                            </Link>
-                                            <div className="row-md-4 frame-desc">
-                                                <div className="room-type">{room.room_type} &nbsp; &#8226; &nbsp; {room.address.suburb}</div>
-                                                <div className="room-name">{room.name}</div>
-                                                <div className="room-price">${room.price}/night</div>
-                                                <div className="room-rate-count">
-                                                    <span className="room-rate">4.8
-                                                        <span>*</span>
-                                                        <span>*</span>
-                                                        <span>*</span>
-                                                        <span>*</span>
-                                                        <span>*</span>
-                                                    </span>
-                                                    <span className="count-rate">(12)</span>
+                                        <Link to={"/PlaceDetail/" + room._id}>
+                                            <div className="row-md-3 col-md-12 frame-container">
+                                                <div className="frame-photo photo1" style={{backgroundImage: `url(${room.images.picture_url})`}}>
+                                                </div>
+                                                <div className="frame-desc">
+                                                    <div className="desc-wrapper">
+                                                        <div className="top-wrapper">
+                                                            <div className="room-type">{room.room_type} • {room.address.suburb}</div>
+                                                            <i className="far fa-heart" /*onClick={(idx : any) => {this.toggleLove(room)}}*/></i>
+                                                            {/* <i className="fas fa-heart" onClick={(idx : any) => {this.toggleDislove(room)}}></i>*/}
+                                                        </div>
+                                                        <div className="room-name">{room.name}</div>
+                                                        <div className="room-informations">
+                                                            {room.guest_included} guests • {room.bedrooms} bedroom • {room.beds} bed • {room.bathrooms} bath
+                                                        </div>
+                                                        <div className="room-amenities">
+                                                            {room.amenities[0]} • {room.amenities[1]} • {room.amenities[2]} 
+                                                        </div>
+                                                        <div className="room-rate-count">
+                                                            <div className="rate-price-wrapper">
+                                                                <div className="room-star">
+                                                                    <div className="room-rate">
+                                                                        ✪✪✪✪✪ {room.review_scores.review_scores_rating}
+                                                                    </div>
+                                                                </div>
+                                                                <div className="room-price">${room.price} / night</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     )
                                 })}
-                                {/* From */}
-                                {/* <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo2"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
-                                        </div>
-                                    </div>
-                                </div> */}
-                                {/* Until */}
                             </div>
                         </div>
                     </div>

@@ -24,9 +24,9 @@ export default class Home extends React.Component{
     homeSearch_displayGuest(){
         var show = document.getElementsByClassName("homeSearch_addGuestWrapper") as HTMLCollectionOf<HTMLElement>;
         if(show[0].style.display == 'block')
-        show[0].style.display = 'none';
+            show[0].style.display = 'none';
         else
-        show[0].style.display = 'block';
+            show[0].style.display = 'block';
     }
 
     homeSearch_addInfant = () =>{

@@ -1,26 +1,19 @@
 .places_Wrapper{
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    background-color: white;
     min-height: 1px;
     height: 100vh;
     width: 100%;
-    
+    overflow: auto;
     .contents_wrapper{
-        width: 60%;
         height: 100%;
         .list-wrapper{
             padding: 10px;
             height: 100%;
-            width: 100%;
-            box-sizing: border-box;
             .list-container{
-                width: 100%;
                 padding: 5px 10px;
-                height: 50%;
-                box-sizing: border-box;
-                position: relative;
-                display: block;
+                height: 100%;
                 .frame-title{
-                    width: 100%;
-                    height: 20%;
                     display: flex;
                     justify-content: left;
                     align-items: center;
@@ -33,79 +26,105 @@
                     }
                 }
                 .frame-wrapper-category, .frame-wrapper-room{
-                    display:block;
                     width: 100%;
                     height: 100%;
                     .frame-container{
                         float: left;
-                        box-sizing: border-box;
-                        padding: 10px;
-                        height: 100%;
-                        // width: 100%;
+                        padding: 5px;
+                        overflow: hidden;
+                        display: flex;
+                        margin: 1% 0px;
+                        border-radius: 5px;
+                        border: 1px solid rgba(76,76,76,0.3);
                         .frame-photo{
-                            width: 100%;
+                            width: 40%;
                             border-radius: 5px;
-                            box-sizing: border-box;
-                            overflow: hidden;
-                            position: relative;
-                            background-size: 100%;
+                            background-size: 100% 100%;
                             background-repeat: no-repeat;
-                            background-position: center;
+                            background-position: center center;
                             transition-duration: 0.5s;
                             &:hover{
                                 cursor: pointer;
-                                background-size: 110%
+                                background-size: 105% 105%;
                             }
                         }
                         .frame-desc{
-                            width: 100%;
-                            padding: 5px;
-                            box-sizing: border-box;
-                            font-family: Arial, Helvetica, sans-serif;
-                            .room-type{
-                                width: 100%;
-                                text-align: justify;
-                                color: #767676;
-                                line-height: 20px;
-                                font-size: 14px;
-                                font-weight: bold;
-                                display: flex;
-                                align-items: center;
-                            }
-                            .room-name{
-                                width: 100%;
-                                text-align: justify;                             
-                                color: #484848;
-                                line-height: 26px;
-                                font-size: 20px;
-                                font-weight: 500;
-                                display: flex;
-                                align-items: center;
-                            }
-                            .room-price{
-                                width: 100%;
-                                text-align: justify;
-                                color: #484848;
-                                line-height: 22px;
-                                font-size: 16px;
-                                font-weight: normal;
-                                display: flex;
-                                align-items: center;
-                            }
-                            .room-rate-count{
-                                width: 100%;
-                                height: 20%;
-                                display: flex;
-                                align-items: center;
-                                text-align: justify;
-                                .room-rate{
-
+                            width: 60%;
+                            padding: 10px 15px;
+                            height: 100%;
+                            font-family: Helvetica;
+                            display: block;
+                            .desc-wrapper{
+                                position: relative;
+                                height: 100%;
+                                .top-wrapper{
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    .room-type{
+                                        text-align: justify;
+                                        color: rgba(76,76,76,0.5);
+                                        line-height: 20px;
+                                        font-size: 14px;
+                                        font-weight: 700;
+                                    }
+                                    .far{display: block; color: black}
+                                    .fas{display: none; color: black}
                                 }
-                                .count-rate{
-                                    text-align: justify;
-                                    color: #767676;
-                                    font-size: 14px;
+                                .room-name{
+                                    text-align: justify;       
+                                    padding: 5px 0px;                      
+                                    color: rgba(76,76,76,1);
+                                    line-height: 26px;
+                                    font-size: 20px;
+                                    font-weight: bold;
+                                }
+                                .room-amenities{
+                                    text-align: justify;                             
+                                    color: rgba(76,76,76,1);
+                                    line-height: 20px;
+                                    font-size: 15px;
                                     font-weight: normal;
+                                }
+                                .room-informations{
+                                    text-align: justify;                             
+                                    color: rgba(76,76,76,1);
+                                    line-height: 20px;
+                                    font-size: 15px;
+                                    font-weight: normal;
+                                }
+                                .room-rate-count{
+                                    position: absolute;
+                                    bottom: 0px;
+                                    width: 100%;
+                                    .rate-price-wrapper{
+                                        width: 100%;
+                                        display: flex;
+                                        justify-content: space-between;
+                                        align-items: center;
+                                        .room-star{
+                                            display: flex;
+                                            align-items: center;
+                                            .count-rate{
+                                                color: #767676;
+                                                font-size: 14px;
+                                                font-weight: normal;
+                                            }
+                                            .room-rate{
+                                                color: teal;
+                                                font-size: 16px;
+                                                font-weight: normal;
+                                            }
+                                        }
+                                        .room-price{
+                                            text-align: right;
+                                            width: 50%;
+                                            color: #484848;
+                                            line-height: 22px;
+                                            font-size: 16px;
+                                            font-weight: bold;
+                                        }
+                                    }
                                 }
                             }
                             &:hover{
@@ -113,10 +132,13 @@
                                 background-size: 105%;
                             }
                         }
+                        &:hover{
+                            cursor: pointer;
+                            box-shadow: 0 0 10px rgba(76,76,76,0.25);
+                        }
                     }
                     .frame-container-category{
                         float: left;
-                        box-sizing: border-box;
                         padding: 5px;
                         height: 100%;
                         border: 0.1px solid green;
@@ -124,7 +146,6 @@
                     }
                     .page{
                         padding: 5px 5px; 
-                        box-sizing: border-box;
                         border: 0.1px solid turquoise;
                         display: flex;
                         justify-content: center;
@@ -136,12 +157,9 @@
     .places_MapWidget{
         background-color: red;
         position: fixed;
-        // top: 0px;
         right: 0px;
         bottom: 0px;
         width: 40%;
-        height: calc(100vh - 80px);
-        // display:none;
-        
+        height: calc(100vh - 80px);   
     }
 }
