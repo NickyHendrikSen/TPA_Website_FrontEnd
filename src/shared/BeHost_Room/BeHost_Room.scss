@@ -11,6 +11,36 @@ body{
             right:0;
             padding: 30px 30px 16px;
             font-size: 19px;
+            .bhr_step1Question_errLbl{
+                display:none;
+                color:rgb(217, 57, 0);
+                font-size: 14px;
+                font-weight: 600;
+            }
+            button{
+                padding: 10px 22px;
+                background-color: rgb(0, 132, 137);
+                font-size: 16px;
+                font-weight: bold;
+                color:white;
+                border: 0;
+                border-radius: 4px;
+                position: fixed;
+                bottom: 20px;
+                right: 42%;
+                cursor:pointer;
+                outline: none;
+                transition-duration: 0.3s;
+                &:active{
+                    background-color:rgb(0, 107, 110);
+                }
+            }
+            .bhr_step1Question_guestHave{
+                div{
+                    font-size: 16px;
+                    color:#484848;
+                }
+            }
             .bhr_step1Question_title{
                 padding-top: 32px;
                 padding-bottom: 24px;

@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 import search_select from "./img/search_select.png"
 import SignUp from "./SignEmail/SignEmail"
 import Login from "./Login/Login"
+import "../../reducers/auth"
 
 export default class Header extends React.Component{
     lightBox_reg_show(){
