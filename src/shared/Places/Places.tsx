@@ -179,12 +179,7 @@ class Places extends React.Component{
         if (this.state.isLoading) {
             return ( <div>Loading...</div> )
         }
-
-        // const [posts, setPosts] = useState([]);
-        // const [loading, setLoading] = useState(false);
-        // const [currentPage, setCurrentPage] = useState(1);
-        // const [postsPerPage, setPostsPerPage] = useState(5);
-
+        
         return(
             <div className="col-md-12 places_Wrapper">
                 <div className="col-md-6 contents_wrapper">

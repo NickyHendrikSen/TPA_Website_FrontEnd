@@ -1,94 +1,60 @@
-.placeDetail{
-    .placeD_imageWrapper{
-        margin-top: 6px;
-        // padding: 0;
-        height: 294.656px;
-        width: 100%;
-        background-color:red;
-        position: relative;
-        .placeD_view{
-            bottom: 15px;
-            right: 5px;
-            position: absolute;
-            padding:6px 15px;
-            display: inline-block;
-            margin-right: 18px;
-            background-color:#fff;
-            border-radius: 4px;
-            color:#484848;
-            cursor: pointer;
-        }
+@import"./utils.scss";
 
-        .placeD_saveshare{
-            top:15px;
-            right: 5px;
-            position: absolute;
-            // display:inline-block;
-            div{
-                padding:6px 15px;
-                display: inline-block;
-                margin-right: 18px;
-                background-color:#fff;
-                border-radius: 4px;
-                color:#484848;
-                cursor: pointer;
-            }
-        }
-        .placeD_leftImage{
-            overflow: hidden;
-            // float:left;
-            display:inline-block;
-            width: calc(50% - 2px);
-            border: 1px solid #484848;
-            // height: 100%;
-            height: calc(100% - 2px);
-            cursor:pointer;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            transition-duration: 0.5s;
-            &:hover{
-                background-size: 105%;
-            }
-            // img{
-            //     width: 100%;
-            //     height: 100%;
-            //     transition-duration: 0.3s;
-            //     &:hover{
-            //         width: 110%;
-            //         height: 110%;
-            //     }
-            // }
-        }
-        .placeD_midImage , .placeD_rightImage{
-            // border: 1px solid #484848;
-            display:inline-block;
-            overflow: hidden;
-            width: 25%;
+.place-detail-wrapper{
+    width: 100vw;
+    height: 100vh;
+    .top-nav{
+        width: 100%;
+        height: 10%;
+        header{
             height: 100%;
-            .placeD_topImage , .placeD_botImage{
-                height: calc(50% - 2px);
-                // width: calc(100% - 2px);
-                border: 1px solid #484848;
-                // height: 100%;
-                cursor:pointer;
-                background-size: 100%;
-                background-repeat: no-repeat;
-                background-position: center;
-                transition-duration: 0.5s;
-                &:hover{
-                    background-size: 105%;
+            width: 100%;
+            background-color:white;
+            display:block;
+        }
+    }
+    .contents-wrapper{
+        height: 90%;
+        .top-list-photos{
+            height: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .big-photos{
+                height: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                .big-photo{
+                    @include photo-setting;
+                    height: 50%;
+                    transition-duration: 0.5s;
+                    border: 1px solid #464646;
+                    &:hover{
+                        cursor: pointer;
+                        background-size: 105% 105%;
+                    }
                 }
-                // img{
-                //     width: 100%;
-                //     height: 100%;
-                //     transition-duration: 0.3s;
-                //     &:hover{
-                //         width: 110%;
-                //         height: 110%;
-                //     }
-                // }
             }
+            .small-photos{
+                height: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                .small-photo{
+                    @include photo-setting;
+                    height: 50%;
+                    transition-duration: 0.5s;
+                    border: 1px solid #464646;
+                    &:hover{
+                        cursor: pointer;
+                        background-size: 105% 105%;
+                    }
+                }
+            }
+        }
+        .host-info-wrapper{
+            height: 40%;
+            overflow: auto;
+            border:1px solid green;
         }
     }
 }

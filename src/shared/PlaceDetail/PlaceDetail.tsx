@@ -5,11 +5,12 @@ import imagePlaceDetail from "./img/oldtown.jpg"
 import axios from 'axios'
 import {RouteComponentProps, withRouter} from "react-router";
 import 'react-fa-icon'
+import '../Places/PlacesGridSystem/PlacesGridSystems.scss';
 import { url } from "inspector";
+import { hostname } from "os";
 
 export default class PlaceDetail extends React.Component <RouteComponentProps<any>>{
-    state={
-        image : imagePlaceDetail,
+    state = {
         data:{
             _id:'',
             name:'',
@@ -25,7 +26,9 @@ export default class PlaceDetail extends React.Component <RouteComponentProps<an
             price:'',
             address:{suburb:''},
             images:{picture_url:''},
-        }
+        },
+        image : imagePlaceDetail,
+        isLoading:true
     }
     componentWillMount(){
         let id: any = this.props.match.params.id
@@ -35,57 +38,53 @@ export default class PlaceDetail extends React.Component <RouteComponentProps<an
                 this.setState(
                     {
                         data: res.data,
+                        isLoading: false
                     }
                 )
-                console.log(res.data)
             }
         )
-        
     }
     render(){
+        const{data} = this.state
+        
+        const bigPhoto = () => {
+            return(
+                <div className="col-md-12 big-photo">
+                    
+                </div>
+            )
+        }
+
+        const smallPhoto = () => {
+            return(
+                <div className="col-md-4 small-photo">
+                    
+                </div>
+            )
+        }
+
         return(
-            <div className="placeDetail">
-                <div>
+            <div className="place-detail-wrapper">
+                <div className="top-nav">
                     <Header />
                 </div>
-                <div className="placeD_imageWrapper">
-                    <div className="placeD_leftImage" style={{backgroundImage : `url(${this.state.image})`}}>
-                        {/* <img src={imagePlaceDetail} alt=""/> */}
-                    </div>
-                    <div className="placeD_midImage">
-                        <div className="placeD_topImage" style={{backgroundImage : `url(${this.state.image})`}}>
-                            {/* <img src={imagePlaceDetail} alt=""/> */}
+                <div className="col-md-12 contents-wrapper">
+                    <div className="col-md-12 top-list-photos">
+                        <div className="col-md-4 big-photos">
+                            <div className="col-md-12 big-photo" style={{backgroundImage: `url(${data.images.picture_url})`}}></div>
+                            <div className="col-md-12 big-photo" style={{backgroundImage: `url(${data.images.picture_url})`}}></div>
                         </div>
-                        <div className="placeD_botImage" style={{backgroundImage : `url(${this.state.image})`}}>
-                            {/* <img src={imagePlaceDetail} alt=""/> */}
-                        </div>
-                    </div>
-                    <div className="placeD_rightImage">
-                        <div className="placeD_topImage" style={{backgroundImage : `url(${this.state.image})`}}>
-                            {/* <img src={imagePlaceDetail} alt=""/> */}
-                        </div>
-                        <div className="placeD_botImage" style={{backgroundImage : `url(${this.state.image})`}}>
-                            {/* <img src={imagePlaceDetail} alt=""/> */}
+                        <div className="col-md-4 small-photos">
+                            <div className="col-md-4 small-photo" style={{backgroundImage: `url(${data.images.picture_url})`}}></div>
+                            <div className="col-md-4 small-photo" style={{backgroundImage: `url(${data.images.picture_url})`}}></div>
+                            <div className="col-md-4 small-photo" style={{backgroundImage: `url(${data.images.picture_url})`}}></div>
+                            <div className="col-md-4 small-photo" style={{backgroundImage: `url(${data.images.picture_url})`}}></div>
                         </div>
                     </div>
-                    <div className="placeD_saveshare">
-                        <div className="placeD_share">
-                            <i className="fas fa-upload"></i> &nbsp;Share
-                        </div>
-                        <div className="placeD_save">
-                            <i className="far fa-heart"></i> &nbsp;Save
-                        </div>
-                    </div>
-                    <div className="placeD_view">
-                        View Photos
+                    <div className="col-md-12 host-info-wrapper">
+                
                     </div>
                 </div>
-                {/* Delete aja.. Ini cuma buat tes data masuk.. sebelum buat layoutnya */}
-                <h1 style={{backgroundColor: 'red'}}>Delete aja.. Ini cuma buat tes data masuk.. sebelum buat layoutnya</h1>
-                <h1 style={{backgroundColor: 'yellow'}}>Room ID : {this.state.data._id}</h1>
-                <br/>
-                <h1 style={{backgroundColor: 'green'}}>description : <br/>{this.state.data.description}</h1>
-                {/*  */}
             </div>
         )
     }
