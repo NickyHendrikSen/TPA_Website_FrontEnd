@@ -48,8 +48,9 @@
                         font-size: 1.5vw;
                         font-weight: 700;
                     }
-                    .far{display: block; color: black}
-                    .fas{display: none; color: black}
+                    .fa-heart{z-index: 100px;};
+                    .far{display: block; color: black;}
+                    .fas{display: none; color: red;}
                 }
                 .room-name{
                     text-align: justify;       

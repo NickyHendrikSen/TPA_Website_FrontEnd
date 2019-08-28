@@ -51,9 +51,31 @@
                 border: 1px solid black;
                 .paginate-container{
                     cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 80%;
+                    width: 100%;
+                    border: 1px solid green;
+                    .pageNumber{
+                        height: 2.5vw;
+                        width: 2.5vw;
+                        margin: 0vw 0.2vw;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: teal;
+                        border: none;
+                        font-size: 12px;
+                    }
                 }
                 .bottom-credit{
-
+                    height: 20%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
             }
         }

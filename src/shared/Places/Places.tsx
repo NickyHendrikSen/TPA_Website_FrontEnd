@@ -6,6 +6,7 @@ import axios from 'axios'
 import StarRatings from 'react-star-ratings';
 import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
 import BeHost_Room from "../BeHost_Room/BeHost_Room";
+import { resetWarningCache } from "prop-types";
 
 class Places extends React.Component{
 
@@ -68,26 +69,44 @@ class Places extends React.Component{
         )
     }
 
+    clickState = {
+        lastClick:-1
+    }
+
+    reset(){
+        var page = document.getElementsByClassName("pageNumber") as HTMLCollectionOf<HTMLElement>;
+
+        for(let i = 0; i < Math.ceil(this.state.data.length/this.state.placesPerPage); i++){
+            page[i].style.backgroundColor = "white";
+            page[i].style.color = "teal";
+        }
+
+    }
+
     handleClick(e:number){
         this.setState({
             currentPage: e
         })
+        var page = document.getElementsByClassName("pageNumber") as HTMLCollectionOf<HTMLElement>;
+        let idx = e-1;
+        if(page[idx]){
+            this.reset();
+            page[idx].style.backgroundColor = "teal";
+            page[idx].style.color = "white";
+        }
     }
 
-    toggleLove = (idx : any) => {
-        var fari = document.getElementsByClassName("far") as HTMLCollectionOf<HTMLElement>;
-        var fasi = document.getElementsByClassName("fas") as HTMLCollectionOf<HTMLElement>;
-    
-        fari[idx].style.display = 'none';
-        fasi[idx].style.display = 'block';
-    }
-    
-    toggleDislove = (idx : any) => {
-        var fari = document.getElementsByClassName("far") as HTMLCollectionOf<HTMLElement>;
-        var fasi = document.getElementsByClassName("fas") as HTMLCollectionOf<HTMLElement>;
-        
-        fari[idx].style.display = 'block';
-        fasi[idx].style.display = 'none';
+    toggleLove = (idx : number) => {
+        var fari = document.getElementsByClassName("fa-heart") as HTMLCollectionOf<HTMLElement>;
+
+        if(fari[idx].className === "fas fa-heart"){
+            fari[idx].className = "far fa-heart";
+            //do save to love list
+        }
+        else{
+            fari[idx].className = "fas fa-heart";
+            //remove love from lova list
+        }
     }
 
     render(){
@@ -108,8 +127,7 @@ class Places extends React.Component{
                             <div className="desc-wrapper">
                                 <div className="top-wrapper">
                                     <div className="room-type">{room.room_type} • {room.address.suburb}</div>
-                                    <i className="far fa-heart" /*onClick={(idx : any) => {this.toggleLove(room)}}*/></i>
-                                    {/* <i className="fas fa-heart" onClick={(idx : any) => {this.toggleDislove(room)}}></i>*/}
+                                    <i className="far fa-heart" onClick={() => {this.toggleLove(index)}}></i>
                                 </div>
                                 <div className="room-name">{room.name}</div>
                                 <div className="room-informations">
@@ -129,7 +147,7 @@ class Places extends React.Component{
                                                     name='rating'
                                                     starDimension= '1.5vw'
                                                     starSpacing = '0.1vw'
-                                                />
+                                                    />
                                             </div>
                                             <div className="count-rate">
                                                     • ({room.reviews.length})
@@ -152,9 +170,9 @@ class Places extends React.Component{
 
         const renderPageNumbers = pageNumber.map((number:any) => {
             return (
-                <li key={number} id={number} onClick={() => this.handleClick(number)}>
+                <div className="pageNumber" key={number} id={number} onClick={() => this.handleClick(number)}>
                     {number}
-                </li>
+                </div>
             )
         });
 
@@ -197,7 +215,6 @@ class Places extends React.Component{
                     <LeafletMap
                             center={[-6.201151, 106.782900]}
                             zoom={15}
-                            // maxZoom={10}
                             attributionControl={true}
                             zoomControl={true}
                             doubleClickZoom={true}
@@ -218,16 +235,12 @@ class Places extends React.Component{
                                     </Popup>
                                 </Marker>
                             )}
-                        </LeafletMap>
+                    </LeafletMap>
                     )
                 </div>
             </div>
         )
     }
 }
-
-const mapStateToProps = (state:any) => ({
-    details: state.placeState.details
-});
 
 export default Places

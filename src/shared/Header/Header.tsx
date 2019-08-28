@@ -43,14 +43,17 @@ export default class Header extends React.Component{
             <header className="col-md-12">
                 <div className="navBar">
                     <div className="logo">
-                    {/* <Router> */}
-                        <Link to="/"><img src={logo} alt="image not found"/></Link>
-                    {/* </Router> */}
+                        <Link to="/">
+                            <div className="aiv-logo"></div>
+                        </Link>
                     </div>
                     <div className="Header_SearchInput">
-                        <img src={search_select} alt=""/>
-                        <input type="search" name="" id="" className="HeaderSearch" placeholder='Try "THIS"'
-                        onBlur={this.Header_hidePick} onFocus={this.Header_ShowPick}/>
+                        <div className="header-search-wrapper">
+                            {/* <img src={search_select} alt=""/> */}
+                            <div className="magnifier fas fa-search"></div>
+                            <input type="search" name="" id="" className="HeaderSearch" placeholder='Try "THIS"'
+                            onBlur={this.Header_hidePick} onFocus={this.Header_ShowPick}/>
+                        </div>
                     </div>
                     <div className="Header_Search_PickWrapper">
                         <div className="Header_Search_PickText">
