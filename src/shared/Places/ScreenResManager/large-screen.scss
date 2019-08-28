@@ -8,7 +8,12 @@
         border-radius: 3px;
         border: 1px solid rgba(76,76,76,0.3);
         .frame-photo{
-            width: 40%;
+            @media all and (max-width:1098px) {
+                width: 30%;
+            }
+            @media all and (min-width:1099px) {
+                width: 40%;
+            }
             border-radius: 3px;
             background-size: 100% 100%;
             background-repeat: no-repeat;
@@ -20,7 +25,12 @@
             }
         }
         .frame-desc{
-            width: 60%;
+            @media all and (max-width:1098px) {
+                width: 70%;
+            }
+            @media all and (min-width:1099px) {
+                width: 60%;
+            }
             padding: 0.7vw 1.2vw;
             height: 100%;
             font-family: Helvetica;
@@ -77,12 +87,12 @@
                             display: flex;
                             align-items: center;
                             .count-rate{
-                                color: #767676;
-                                font-size: 1vw;
+                                color: rgba(76,76,76,0.75);
+                                font-size: 1.2vw;
+                                padding: 0vw 0.2vw;
                                 font-weight: normal;
                             }
                             .room-rate{
-                                color: teal;
                                 font-size: 1.1vw;
                                 font-weight: normal;
                             }

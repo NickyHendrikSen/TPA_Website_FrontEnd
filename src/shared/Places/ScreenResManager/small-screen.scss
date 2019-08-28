@@ -7,7 +7,12 @@
         border-radius: 3px;
         border: 1px solid rgba(76,76,76,0.3);
         .frame-photo{
-            width: 100%;
+            @media all and (min-width:440px) {
+                height: 75%;
+            }
+            @media all and (max-width:439px){
+                height: 80%;
+            }
             height: 60%;
             border-radius: 3px;
             background-size: 100% 100%;
@@ -20,9 +25,13 @@
             }
         }
         .frame-desc{
-            width: 100%;
+            @media all and (min-width:440px) {
+                height: 25%;
+            }
+            @media all and (max-width:439px){
+                height: 20%;
+            }
             padding: 0.7vw 1.2vw;
-            height: 40%;
             font-family: Helvetica;
             display: block;
             .desc-wrapper{
@@ -77,8 +86,9 @@
                             display: flex;
                             align-items: center;
                             .count-rate{
-                                color: #767676;
+                                color: rgba(76,76,76,0.75);
                                 font-size: 1.5vw;
+                                padding: 0vw 0.4vw;
                                 font-weight: normal;
                             }
                             .room-rate{
