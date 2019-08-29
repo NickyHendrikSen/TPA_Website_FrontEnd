@@ -42,22 +42,19 @@
         .bottom-wrapper{
             display: flex;
             align-items: flex-end;
-            height: 30%;
+            height: 20%;
             width: 100%;
-            border: 1px solid red;
             .paginate-wrapper{
                 height: 100%;
                 width: 100%;
-                border: 1px solid black;
                 .paginate-container{
-                    cursor: pointer;
                     display: flex;
                     justify-content: center;
-                    align-items: center;
-                    height: 80%;
+                    align-items: flex-end;
+                    height: 40%;
                     width: 100%;
-                    border: 1px solid green;
                     .pageNumber{
+                        cursor: pointer;
                         height: 2.5vw;
                         width: 2.5vw;
                         margin: 0vw 0.2vw;
@@ -70,18 +67,28 @@
                         font-size: 12px;
                     }
                 }
+                .total-data{
+                    width: 100%;
+                    height: 40%;
+                    font-size: 12pt;
+                    display: flex;
+                    justify-content: center;
+                    color: rgba(0, 0, 0, 0.5);
+                }
                 .bottom-credit{
+                    font-size: 10pt;
+                    padding: 0vw 2vw;
                     height: 20%;
                     width: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    color: rgba(0, 0, 0, 0.5);
                 }
             }
         }
     }
     .places_MapWidget{
-        background-color: red;
         position: fixed;
         right: 0px;
         bottom: 0px;

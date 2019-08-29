@@ -6,7 +6,7 @@
         display: flex;
         margin: 0.5vw 0px;
         border-radius: 3px;
-        border: 1px solid rgba(76,76,76,0.3);
+        border: 1px solid rgba(76,76,76,0.25);
         .frame-photo{
             @media all and (max-width:1098px) {
                 width: 30%;
@@ -89,12 +89,12 @@
                             align-items: center;
                             .count-rate{
                                 color: rgba(76,76,76,0.75);
-                                font-size: 1.2vw;
+                                font-size: 1vw;
                                 padding: 0vw 0.2vw;
                                 font-weight: normal;
                             }
                             .room-rate{
-                                font-size: 1.1vw;
+                                font-size: 1vw;
                                 font-weight: normal;
                             }
                         }

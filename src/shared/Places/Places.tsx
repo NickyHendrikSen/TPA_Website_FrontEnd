@@ -145,7 +145,7 @@ class Places extends React.Component{
                                                     starRatedColor="#008489"
                                                     numberOfStars={5}
                                                     name='rating'
-                                                    starDimension= '1.5vw'
+                                                    starDimension= '1vw'
                                                     starSpacing = '0.1vw'
                                                     />
                                             </div>
@@ -200,8 +200,11 @@ class Places extends React.Component{
                             <div className="paginate-container">
                                 {renderPageNumbers}
                             </div>
+                            <div className="total-data">
+                                1 - {data.length} dari 300+ Sewa Tempat
+                            </div>
                             <div className="bottom-credit">
-                                asd
+                                Masukkan tanggal untuk melihat harga lengkap. Biaya tambahan berlaku. Mungkin dikenakan pajak. Pembatalan gratis hanya berlaku dalam waktu 48 setelah pemesanan.
                             </div>
                         </div>
                     </div>
