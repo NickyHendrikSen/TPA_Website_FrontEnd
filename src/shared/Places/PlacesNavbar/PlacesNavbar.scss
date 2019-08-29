@@ -1,12 +1,15 @@
 .placesNavWrapper{
-    height: 1000px;
+    height: 100vh;
     .placesNavHeader{
-        height: 80px;
+        height: 10%;
+        width: 100%;
         header{
-            z-index: 200;
             background-color:white;
             position: fixed;
             display:block;
         }
+    }
+    .places-contents{
+        height: 90%;
     }
 }

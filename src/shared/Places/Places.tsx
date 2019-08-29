@@ -1,20 +1,13 @@
 import React from "react"
 import {Link} from "react-router-dom"
 import "./Places.scss"
-import Map from "../Map/Map"
-import Header from "../Header/Header"
-import PlacesNavbar from "./PlacesNavbar/PlacesNavbar";
 import "./PlacesGridSystem/PlacesGridSystems.scss";
 import axios from 'axios'
-import { getDetailPlace } from "../../actions/placesAction"
-import { connect } from "react-redux";
+import StarRatings from 'react-star-ratings';
+import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
+import "./pagination/pagination.scss"
 
-interface IProps{
-    getDetailPlace: any,
-    details: any
-}
-
-class Places extends React.Component<IProps>{
+class Places extends React.Component{
 
     state = {
         data:[{
@@ -30,10 +23,22 @@ class Places extends React.Component<IProps>{
             room_type:'',
             bed_type:'',
             price:'',
-            address:{suburb:''},
+            bathrooms:'',
+            bedrooms:'',
+            beds:'',
+            guest_included:'',
+            amenities:[],
+            review_scores:{review_scores_rating:''},
+            address:{suburb:'', location:{coordinates:[]}},
             images:{picture_url:''},
-        }]
+            reviews:[],
+        }],
+        isLoading: true,
+        currentPage: 1,
+        placesPerPage: 5,
     }
+
+    // currPosition = [-1, -1];
 
     componentWillMount(){
         // const { fromNotifications } = this.props.location.state
@@ -41,90 +46,184 @@ class Places extends React.Component<IProps>{
             .then(res => {
                 this.setState(
                     {
-                        data: res.data
+                        data: res.data,
+                        isLoading: false
                     }
                 )
-                console.log(res.data)
             }
         )
     }
 
+    clickState = {
+        lastClick:-1
+    }
+
+    reset(){
+        var page = document.getElementsByClassName("pageNumber") as HTMLCollectionOf<HTMLElement>;
+
+        for(let i = 0; i < Math.ceil(this.state.data.length/this.state.placesPerPage); i++){
+            page[i].style.backgroundColor = "white";
+            page[i].style.color = "teal";
+        }
+
+    }
+
+    handleClick(e:number){
+        this.setState({
+            currentPage: e
+        })
+        var page = document.getElementsByClassName("pageNumber") as HTMLCollectionOf<HTMLElement>;
+        let idx = e-1;
+        if(page[idx]){
+            this.reset();
+            page[idx].style.backgroundColor = "teal";
+            page[idx].style.color = "white";
+        }
+    }
+
+    toggleLove = (idx : number) => {
+        var fari = document.getElementsByClassName("fa-heart") as HTMLCollectionOf<HTMLElement>;
+
+        if(fari[idx].className === "fas fa-heart"){
+            fari[idx].className = "far fa-heart";
+            //do save to love list
+        }
+        else{
+            fari[idx].className = "fas fa-heart";
+            //remove love from lova list
+        }
+    }
+
     render(){
-        // const placeDetail = this.props.details.map((detail:any) => (
-        //     detail.address
-        // ));
-        // const placeObject = Object.keys(placeDetail).map((key:any) => 
-        //     <div>
-        //         {placeDetail[key]}
-        //     </div>
-        // );
+        this.handleClick.bind(this.state);
+        const {data, currentPage, placesPerPage} = this.state;
+
+        const indexOfLastData = currentPage * placesPerPage;
+        const indexOfFirstData = indexOfLastData - placesPerPage;
+        const currentData = data.slice(indexOfFirstData, indexOfLastData);
+
+        const renderData = currentData.map((room, index) => {
+            return (
+                <div className="row-md-3 col-md-12 frame-container" key={index}>
+                    <div className="frame-photo" style={{backgroundImage: `url(${room.images.picture_url})`}}>
+                    </div>
+                    <div className="frame-desc">
+                        <div className="desc-wrapper">
+                            <div className="top-wrapper">
+                                <div className="room-type">{room.room_type} • {room.address.suburb}</div>
+                                <i className="far fa-heart" onClick={() => {this.toggleLove(index)}}></i>
+                            </div>
+                            <Link to={"/PlaceDetail/" + room._id} className="room-info-wrapper">
+                                <div className="room-name">{room.name}</div>
+                                <div className="room-informations">
+                                    {room.guest_included} guests • {room.bedrooms} bedroom • {room.beds} bed • {room.bathrooms} bath
+                                </div>
+                                <div className="room-amenities">
+                                    {room.amenities[0]} • {room.amenities[1]} • {room.amenities[2]} 
+                                </div>
+                                <div className="room-rate-count">
+                                    <div className="rate-price-wrapper">
+                                        <div className="room-star">
+                                            <div className="room-rate">
+                                                <StarRatings
+                                                    rating={Number(room.review_scores.review_scores_rating)}
+                                                    starRatedColor="#008489"
+                                                    numberOfStars={5}
+                                                    name='rating'
+                                                    starDimension= '1vw'
+                                                    starSpacing = '0.1vw'
+                                                    />
+                                            </div>
+                                            <div className="count-rate">
+                                                    • ({room.reviews.length})
+                                            </div>
+                                        </div>
+                                        <div className="room-price">${room.price} / night</div>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            )
+        });
+
+        const pageNumber = [];
+        for(let i = 1; i <= Math.ceil(data.length/placesPerPage); i++){
+            pageNumber.push(i);
+        }
+
+        const renderPageNumbers = pageNumber.map((number:any) => {
+            return (
+                <div className="pageNumber" key={number} id={number} onClick={() => this.handleClick(number)}>
+                    {number}
+                </div>
+            )
+        });
+
+        if (this.state.isLoading) {
+            return ( <div>Loading...</div> )
+        }
+        
         return(
-            <div className="places_Wrapper">
-                {/* <Header /> */}
-                {/* <PlacesNavbar /> */}
-                {/* {console.log(placeDetail)} */}
-                <div className="contents_wrapper">
+            <div className="col-md-12 places_Wrapper">
+                <div className="col-md-6 contents_wrapper">
                     <div className="list-wrapper">
                         <div className="list-container">
                             <div className="frame-title">
                                 <div className="title">
-                                    Places to stay
+                                    300+ Places to stay
                                 </div>    
                             </div>
                             <div className="frame-wrapper-room">
-                                {this.state.data.map(room => {
-                                    return(
-                                        <div className="col-slider-2 frame-container">
-                                            <Link to={"/PlaceDetail/" + room._id}>
-                                            <div className="row-md-6 frame-photo photo1" style={{backgroundImage: `url(${room.images.picture_url})`}}>
-                                            </div>
-                                            </Link>
-                                            <div className="row-md-4 frame-desc">
-                                                <div className="room-type">{room.room_type} &nbsp; &#8226; &nbsp; {room.address.suburb}</div>
-                                                <div className="room-name">{room.name}</div>
-                                                <div className="room-price">${room.price}/night</div>
-                                                <div className="room-rate-count">
-                                                    <span className="room-rate">4.8
-                                                        <span>*</span>
-                                                        <span>*</span>
-                                                        <span>*</span>
-                                                        <span>*</span>
-                                                        <span>*</span>
-                                                    </span>
-                                                    <span className="count-rate">(12)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                })}
-                                {/* From */}
-                                {/* <div className="col-slider-2 frame-container">
-                                    <div className="row-md-6 frame-photo photo2"></div>
-                                    <div className="row-md-4 frame-desc">
-                                        <div className="room-type">room_type</div>
-                                        <div className="room-name">room_name</div>
-                                        <div className="room-price">room_price</div>
-                                        <div className="room-rate-count">
-                                            <span className="room-rate"></span>
-                                            <span className="count-rate">count</span>
-                                        </div>
-                                    </div>
-                                </div> */}
-                                {/* Until */}
+                                {renderData}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bottom-wrapper"> 
+                        <div className="paginate-wrapper">
+                            <div className="paginate-container">
+                                {renderPageNumbers}
+                            </div>
+                            <div className="total-data">
+                                1 - {data.length} dari 300+ Sewa Tempat
+                            </div>
+                            <div className="bottom-credit">
+                                Masukkan tanggal untuk melihat harga lengkap. Biaya tambahan berlaku. Mungkin dikenakan pajak. Pembatalan gratis hanya berlaku dalam waktu 48 setelah pemesanan.
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="places_MapWidget">
-                        <Map />
+                    <LeafletMap
+                            center={[-22.970722, -43.182365]}
+                            zoom={15}
+                            attributionControl={true}
+                            zoomControl={true}
+                            doubleClickZoom={true}
+                            scrollWheelZoom={true}
+                            dragging={true}
+                            animate={true}
+                            easeLinearity={0.35}
+                        >
+                            <TileLayer
+                                url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                            />
+                            {data.map((point, index) => 
+                                <Marker key={index} position={[point.address.location.coordinates[1], point.address.location.coordinates[0]]}>
+                                    <Popup>
+                                        • Name : {point.name}
+                                        <br/>
+                                        • Price : ${point.price} / Night
+                                    </Popup>
+                                </Marker>
+                            )}
+                    </LeafletMap>
+                    )
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state:any) => ({
-    details: state.placeState.details
-});
-
-export default connect(mapStateToProps, { getDetailPlace })(Places)
+export default Places

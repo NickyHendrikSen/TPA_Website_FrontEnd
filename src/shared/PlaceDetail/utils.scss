@@ -1,0 +1,27 @@
+@mixin photo-setting{
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@mixin guest-type-setting{
+    width: 100%;
+    height: 20%;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+}
+
+@mixin review-n-text{
+    .text-ratings-cat{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .review-cat{
+        display: flex;
+        justify-content: space-between;
+    }
+}

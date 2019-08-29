@@ -1,93 +1,603 @@
-.placeDetail{
-    .placeD_imageWrapper{
-        margin-top: 6px;
-        // padding: 0;
-        height: 294.656px;
-        width: 100%;
-        background-color:red;
-        position: relative;
-        .placeD_view{
-            bottom: 15px;
-            right: 5px;
-            position: absolute;
-            padding:6px 15px;
-            display: inline-block;
-            margin-right: 18px;
-            background-color:#fff;
-            border-radius: 4px;
-            color:#484848;
-            cursor: pointer;
-        }
+@import"./utils.scss";
+$strip-color: #cccccc;
+$button-color: #ff5A5F;
 
-        .placeD_saveshare{
-            top:15px;
-            right: 5px;
-            position: absolute;
-            // display:inline-block;
-            div{
-                padding:6px 15px;
-                display: inline-block;
-                margin-right: 18px;
-                background-color:#fff;
-                border-radius: 4px;
-                color:#484848;
-                cursor: pointer;
-            }
-        }
-        .placeD_leftImage{
-            overflow: hidden;
-            // float:left;
-            display:inline-block;
-            width: calc(50% - 2px);
-            border: 1px solid #484848;
-            // height: 100%;
-            height: calc(100% - 2px);
-            cursor:pointer;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            transition-duration: 0.5s;
-            &:hover{
-                background-size: 105%;
-            }
-            // img{
-            //     width: 100%;
-            //     height: 100%;
-            //     transition-duration: 0.3s;
-            //     &:hover{
-            //         width: 110%;
-            //         height: 110%;
-            //     }
-            // }
-        }
-        .placeD_midImage , .placeD_rightImage{
-            // border: 1px solid #484848;
-            display:inline-block;
-            overflow: hidden;
-            width: 25%;
+.place-detail-wrapper{
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    overflow: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    .top-nav{
+        width: 100%;
+        height: 10%;
+        header{
             height: 100%;
-            .placeD_topImage , .placeD_botImage{
-                height: calc(50% - 2px);
-                // width: calc(100% - 2px);
-                border: 1px solid #484848;
-                // height: 100%;
-                cursor:pointer;
-                background-size: 100%;
-                background-repeat: no-repeat;
-                background-position: center;
-                transition-duration: 0.5s;
-                &:hover{
-                    background-size: 105%;
+            width: 100%;
+            background-color:white;
+            display:block;
+        }
+    }
+    .contents-wrapper{
+        height: 90%;
+        .top-list-photos{
+            height: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .big-photos{
+                height: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                .big-photo{
+                    @include photo-setting;
+                    height: 50%;
+                    transition-duration: 0.5s;
+                    border: 1px solid #464646;
+                    &:hover{
+                        cursor: pointer;
+                        background-size: 105% 105%;
+                    }
                 }
-                // img{
-                //     width: 100%;
-                //     height: 100%;
-                //     transition-duration: 0.3s;
-                //     &:hover{
-                //         width: 110%;
-                //         height: 110%;
-                //     }
-                // }
+            }
+            .small-photos{
+                height: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                .small-photo{
+                    @include photo-setting;
+                    height: 50%;
+                    width: 50%;
+                    transition-duration: 0.5s;
+                    border: 1px solid #464646;
+                    &:hover{
+                        cursor: pointer;
+                        background-size: 105% 105%;
+                    }
+                }
+            }
+        }
+        .host-info-wrapper{
+            height: 2000px;
+            // overflow: auto;
+            position: relative;
+            .contents-wrapper{
+                max-width: 1080px;
+                margin: 0px auto;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                .left-contents-wrapper{
+                    height: 100%;
+                    width: 60%;
+                    .top-contents{
+                        width: 100%;
+                        height: 10%;
+                        padding: 1vw 0vw;
+                        text-align: start;
+                        overflow: hidden;
+                        .place-header-wrapper{
+                            width: 100%;
+                            height: 40%;
+                            display: flex;
+                            justify-content: space-between;
+                            .place-name{
+                                height: 100%;
+                                width: 90%;
+                                font-size: 2.5vw;
+                                font-weight: bold;
+                                color: rgba(0, 0, 0, 0.75);
+                                display: flex;
+                                align-items: flex-end;
+                                flex-wrap: wrap;
+                                .place-suburb{
+                                    font-size: 1vw;
+                                    font-weight: normal;
+                                }
+                            }
+                            .place-host{
+                                height: 90%;
+                                width: 10%;
+                                display: flex;
+                                flex-wrap: wrap;
+                                justify-content: center;
+                                .place-host-name{
+                                    text-align: center;
+                                    font-size: 1vw;
+                                    color: rgba(0, 0, 0, 0.75);
+                                }
+                                .place-host-photo{
+                                    margin: 0.2vw 0vw;
+                                    @include photo-setting;
+                                    height: 100%;
+                                    width: 100%;
+                                    border-radius: 50%;
+                                }
+                            }
+                        }
+                        .place-detail{
+                            margin: 4vw 0vw;
+                            width: 100%;
+                            height: 60%;
+                            color: rgba(0, 0, 0, 0.75);
+                            font-size: 1vw;
+                            .room-type{
+                                font-weight: bold;
+                                padding: 0.5vw 0vw;
+                            }
+                            .room-info{
+                                border-bottom: 1px solid $strip-color;
+                                padding: 0.5vw 4vw;
+                                font-weight: normal;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                            }
+                        }
+                    }
+                    .mid-contents{
+                        padding: 1vw 0vw;
+                        width: 100%;
+                        .desc-container{
+                            width: 100%;
+                            display: flex;
+                            align-items: flex-start;
+                            flex-wrap: wrap;
+                            border-bottom: 1px solid $strip-color;
+                            .desc{
+                                width: 100%;
+                                padding: 1vw 0vw;
+                                text-align: justify;
+                                color: rgba(0, 0, 0, 0.5);
+                            }
+                            >h3{
+                                padding: 0px;
+                                margin: 0px;
+                                color: rgba(0, 0, 0, 0.75);
+                            }
+                            .house-about{
+                                width: 100%;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                text-align: left;
+                                color: rgba(0, 0, 0, 0.5);
+                                .host-about-text{
+                                    padding: 0.5vw 0vw;
+                                }
+                            }
+                            .contact-btn{
+                                margin: 1vw 0vw;
+                                width: 100%;
+                                .contact{
+                                    cursor: pointer;
+                                    width: 100%;
+                                    height: 2.5vw;
+                                    font-size: 1vw;
+                                    border-radius: 5px;
+                                    background-color: transparent;
+                                    color: teal;
+                                    border: 1px solid teal;
+                                    &:hover{
+                                        background-color: teal;
+                                        color: white;
+                                    }
+                                }
+                            }
+                        }
+                        .amenities-wrapper{
+                            width: 100%;
+                            border-bottom: 1px solid $strip-color;
+                            >h3{
+                                width: 100%;
+                                text-align: left;
+                                padding: 0px;
+                                margin: 1vw 0vw;
+                                color: rgba(0, 0, 0, 0.75);
+                            }
+                            .amenities-container{
+                                justify-content: center;
+                                flex-wrap: wrap;
+                                display: flex;
+                                .amenities-value{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    height: 5vw;
+                                    width: 45%;
+                                    border: 1px solid $strip-color;
+                                    margin: 1vw;
+                                }
+                            }
+                            .show-all-btn{
+                                margin: 1vw 0vw;
+                                width: 100%;
+                                .show-all{
+                                    cursor: pointer;
+                                    width: 100%;
+                                    height: 2.5vw;
+                                    font-size: 1vw;
+                                    border-radius: 5px;
+                                    background-color: transparent;
+                                    color: teal;
+                                    border: 1px solid teal;
+                                    &:hover{
+                                        background-color: teal;
+                                        color: white;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .bot-contents{
+                        width: 100%;
+                        height: 50%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: flex-end;
+                        .review-wrapper{
+                            height: 100%;
+                            width: 100%;
+                            .review-heading-wrapper{
+                                height: 20%;
+                                width: 100%;
+                                .review-heading{
+                                    width: 100%;
+                                    height: 25%;
+                                    border-bottom: 1px solid $strip-color;
+                                    display: flex;
+                                    font-size: 2vw;
+                                    font-weight: bold;
+                                    align-items: center;
+                                    justify-content: flex-start;
+                                    color: rgba(0, 0, 0, 0.75);
+                                    .overall-rating{
+                                        padding: 0vw 0.5vw;
+                                    }
+                                }
+                                .review-ratings{
+                                    width: 100%;
+                                    height: 60%;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    padding: 1vw 0vw;
+                                    .left-ratings-category{
+                                        width: 50%;
+                                        height: 100%;
+                                        padding: 0vw 0.5vw;
+                                        @include review-n-text;
+                                    }
+                                    .right-ratings-category{
+                                        width: 50%;
+                                        height: 100%;
+                                        padding: 0vw 0.5vw;
+                                        @include review-n-text;
+                                    }
+                                }
+                                .translate-btn{
+                                    width: 100%;
+                                    .translate{
+                                        cursor: pointer;
+                                        width: 100%;
+                                        outline: none;
+                                        height: 2.5vw;
+                                        font-size: 1vw;
+                                        border-radius: 5px;
+                                        background-color: transparent;
+                                        color: teal;
+                                        border: 1px solid teal;
+                                        &:hover{
+                                            background-color: teal;
+                                            color: white;
+                                        }
+                                    }
+                                }
+                            }
+                            .reviews-wrapper{
+                                width: 100%;
+                                height: 80%;
+                                display: flex;
+                                flex-wrap: wrap;
+                                .reviews{
+                                    width: 100%;
+                                    height: 100%;
+                                    .review-container{
+                                        padding: 1vw 0vw;
+                                        width: 100%;
+                                        border-bottom: 1px solid $strip-color;
+                                        color: rgba(0, 0, 0, 0.75);
+                                        .reviewer-heading-wrapper{
+                                            margin: 1vw 0vw;
+                                            width: 100%;
+                                            display: flex;
+                                            .reviewer-photo{
+                                                width: 10%;
+                                                @include photo-setting;
+                                                border-radius: 50%;
+                                            }
+                                            .reviewer-identity{
+                                                padding: 1vw 1vw;
+                                                width: 90%;
+                                                .reviewer-name{
+                                                    width: 100%;
+                                                    text-align: left;
+                                                    font-weight: bold;
+                                                }
+                                                .reviewer-date{
+                                                    width: 100%;
+                                                    text-align: left;
+                                                    font-weight: normal;
+                                                }
+                                            }
+                                        }
+                                        .reviewer-comments{
+                                            width: 100%;
+                                            text-align: justify;
+                                            font-weight: normal;
+                                        }
+                                    }
+                                    .paginate-wrapper{  
+                                        width: 100%;
+                                        height: 10%;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .right-contents-wrapper{
+                    height: 100%;
+                    width: 40%;
+                    .book-modal{
+                        top: 3vw;
+                        height: 400px;
+                        width: 90%;
+                        margin-top: 2vw;
+                        padding: 0vw 2vw;
+                        position: sticky;
+                        margin-left: auto;
+                        border: 1px solid $strip-color;
+                        .top-modal-wrapper{
+                            width: 100%;
+                            height: 20%;
+                            padding: 1vw 0vw;
+                            display: flex;
+                            align-items: center;
+                            border-bottom: 1px solid $strip-color;
+                            .price-wrapper{
+                                display: flex;
+                                .price{
+                                    font-size: 1.5vw;
+                                    font-weight: bold;
+                                    color: rgba(0, 0, 0, 0.75);
+                                }
+                                .price-info{
+                                    padding: 0.2vw 0.3vw;
+                                    display: flex;
+                                    align-items: flex-end;
+                                    font-size: 1vw;
+                                    font-weight: bold;
+                                    color: rgba(0, 0, 0, 0.75);
+                                }
+                            }
+                            .rating{
+                                display: flex;
+                                justify-content: left;
+                                font-size: 1vw;
+                                color: rgba(0, 0, 0, 1);
+                            }
+                        }
+                        .form-wrapper{
+                            width: 100%;
+                            height: 80%;
+                            text-align: left;
+                            .form-container{
+                                height: 100%;
+                                width: 100%;
+                                .date-wrapper{
+                                    height: 30%;
+                                    width: 100%;
+                                    .date-container{
+                                        height: 100%;
+                                        width: 100%;
+                                        .text-date{
+                                            padding: 0.5vw 0vw;
+                                            display: flex;
+                                            align-items: flex-end;
+                                            width: 100%;
+                                            height: 50%;
+                                            font-weight: 700;
+                                            font-size: 1vw;
+                                            color: rgba(0, 0, 0, 0.75);  
+                                        }
+                                        .in-n-out-wrapper{
+                                            width: 100%;
+                                            height: 50%;
+                                            display: flex;
+                                            border-radius: 5px;
+                                            border: 1px solid $strip-color;
+                                            padding: 0.5vw 0.5vw;
+                                            .date{
+                                                outline: none;
+                                                border: none;
+                                                border-radius: 5px;
+                                                width: 100%;
+                                            }
+                                            .arrow{
+                                                margin: 0.5vw 1vw;
+                                            }
+                                        }
+                                    }
+                                }
+                                .guest-wrapper{
+                                    height: 30%;
+                                    width: 100%;
+                                    position: relative;
+                                    color: rgba(0, 0, 0, 0.75);
+                                    .input-guest{
+                                        font-size: 1vw;
+                                        padding: 1vw;
+                                        height: 50%;
+                                        width: 100%;
+                                        outline: none;
+                                        border-radius: 5px;
+                                        border: 1px solid $strip-color;
+                                        font-weight: 500;
+                                        color: rgba(0, 0, 0, 1);   
+                                    }
+                                    .guest-type{
+                                        display: none;
+                                        position: absolute;
+                                        background-color: white;
+                                        width: 100%;
+                                        height: 300px;
+                                        overflow: hidden;
+                                        border: 1px solid $strip-color;
+                                        box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
+                                        .controller-wrapper{
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            padding: 1vw;
+                                            .minus{
+                                                pointer-events: none;
+                                                cursor: pointer;
+                                                color: rgba(0, 127, 128, 0.5);
+                                                padding: 1vw;
+                                            }
+                                            .plus{
+                                                cursor: pointer;
+                                                color: rgba(0, 127, 128, 1);
+                                                padding: 1vw;
+                                            }
+                                        }
+                                        .adult-wrapper{
+                                            @include guest-type-setting;
+                                        }
+                                        .child-wrapper{
+                                            @include guest-type-setting;
+                                        }
+                                        .infant-wrapper{
+                                            @include guest-type-setting;
+                                        }
+                                        .notes-wrapper{
+                                            @include guest-type-setting;
+                                            font-weight: normal;
+                                            color: rgba(0, 0, 0, 0.75);
+                                            font-size: 1vw;
+                                        }
+                                        .close-btn{
+                                            @include guest-type-setting;
+                                            justify-content: flex-end;
+                                            color: teal;
+                                            .close-text{
+                                                cursor: pointer;
+                                                &:hover{
+                                                    border-bottom: 1px solid teal;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .text-guest{
+                                        padding: 0.5vw 0vw;
+                                        height: 50%;
+                                        width: 100%;
+                                        display: flex;
+                                        align-items: flex-end;
+                                        font-weight: 700;
+                                        font-size: 1vw;
+                                        color: rgba(0, 0, 0, 0.75);   
+                                    }
+                                }
+                                .book-wrapper{
+                                    height: 30%;
+                                    width: 100%;
+                                    margin: 1.5vw 0vw;
+                                    .btn-book{
+                                        cursor: pointer;
+                                        height: 50%;
+                                        width: 100%;
+                                        border: none;
+                                        border-radius: 5px;
+                                        background-color: $button-color;
+                                        color: white;
+                                        font-size: 1.1vw;
+                                        font-weight: bold;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        outline: none;
+                                        &:active{
+                                            background-color: rgb(216, 61, 66);
+                                        }
+                                    }
+                                    .info-text{
+                                        width: 100%;
+                                        height: 50%;
+                                        font-size: 1vw;
+                                        padding: 0.5vw;
+                                        display: flex;
+                                        align-items: flex-start;
+                                        justify-content: center;
+                                        color: rgba(0, 0, 0, 0.5);
+                                    }
+                                }
+                            }
+                        }   
+                    }
+                }
+            }
+        }
+    }
+    .all-amenities-wrapper{
+        overflow: auto;
+        z-index: -1;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.75);
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5vw;
+        .all-amenities-container{
+            height: 100%;
+            width: 60%;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+            .close-btn-wrapper{
+                margin: 1vw;
+                width: 100%;
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                .close-btn{
+                    cursor: pointer;
+                    border-radius: 50%;
+                    height: 3vw;
+                    width: 3vw;
+                    background-color: white;
+                    border: 0.5px solid white;
+                    font-size: 2vw;
+                    color: rgba(0, 0, 0, 0.5);
+                    outline: none;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+                }
+            }
+            >h1{
+                padding: 0vw 2vw;
+                margin: 1vw 1vw;
+                text-align: left;
+            }
+            .amenities{
+                margin: 0px auto;
+                text-align: left;
+                color: rgba(0, 0, 0, 0.75);
+                padding: 1vw 2vw;
+                width: 90%;
+                border-bottom: 1px solid $strip-color;
             }
         }
     }

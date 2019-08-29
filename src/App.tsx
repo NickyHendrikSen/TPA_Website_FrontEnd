@@ -19,7 +19,6 @@ const App: React.FC = () => {
   return (
     <div className="App">
         <Router>
-          {/* <Header /> */}
           <Switch>
               <Route path="/tes" component={Tes} />
               <Route path="/become-a-host/bedroom" component={BeHost_Bedroom}/>
@@ -30,9 +29,6 @@ const App: React.FC = () => {
               <Route path="/ExperiencesDetail/:id" component={ExperienceDetail}/>
               <Route path="/" component={Home}/>
           </Switch>
-          {/* <Footer /> */}
-          {/* <FooterButton /> */}
-          {/* <Home /> */}
         </Router>
     </div>
   );

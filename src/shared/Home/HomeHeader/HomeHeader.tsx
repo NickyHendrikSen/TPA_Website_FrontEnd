@@ -24,9 +24,9 @@ export default class Home extends React.Component{
     homeSearch_displayGuest(){
         var show = document.getElementsByClassName("homeSearch_addGuestWrapper") as HTMLCollectionOf<HTMLElement>;
         if(show[0].style.display == 'block')
-        show[0].style.display = 'none';
+            show[0].style.display = 'none';
         else
-        show[0].style.display = 'block';
+            show[0].style.display = 'block';
     }
 
     homeSearch_addInfant = () =>{
@@ -189,7 +189,7 @@ export default class Home extends React.Component{
 
     setInvisible(element : HTMLElement){
         element.style.border = "1px solid rgba(0, 132, 137,0.3)";
-        element.style.color = "rgba(0, 132 , 137, 0.3)";
+        element.style.color = "rgba(0, 132, 137, 0.3)";
     }
 
     homeSearch_addAdult = () => {
@@ -351,7 +351,6 @@ export default class Home extends React.Component{
                                 </div>
                             </div>
                         </div>
-                        {/* Search Button */}
                         <div className="homeSearch_SearchButtonWrapper">
                             {/* <Router> */}
                                 <Link to="/Places">
@@ -361,6 +360,7 @@ export default class Home extends React.Component{
                                 </Link>
                             {/* </Router> */}
                         </div>
+                        {/* Search Button */}
                     </div>
                     <div className="description">
                         Introducing Aivbnb.com

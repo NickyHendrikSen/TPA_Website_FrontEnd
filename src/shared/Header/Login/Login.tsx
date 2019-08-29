@@ -27,7 +27,6 @@ export default class SignUp extends React.Component{
                         data: res.data
                     }
                 )
-                console.log(res.data)
             }
         )
     }

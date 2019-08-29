@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 import search_select from "./img/search_select.png"
 import SignUp from "./SignEmail/SignEmail"
 import Login from "./Login/Login"
-import "../../reducers/auth"
+import "../Home/HomeContents/GridSystem/GridSystems.scss"
 
 export default class Header extends React.Component{
     lightBox_reg_show(){
@@ -13,7 +13,7 @@ export default class Header extends React.Component{
         lightBox[0].style.display = "flex";
         console.log(lightBox[0]);   
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
-        body.style.position="fixed";
+        // body.style.position="fixed";
         // lightBox[0].style.position = "absolute";
     }    
     lightBox_login_show(){
@@ -21,7 +21,7 @@ export default class Header extends React.Component{
         lightBox[0].style.display = "flex";
         console.log(lightBox[0]);   
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
-        body.style.position="fixed";
+        // body.style.position="fixed";
     }
     Header_ShowPick(){
         var pickBlock = document.getElementsByClassName("Header_Search_PickWrapper")[0] as HTMLElement;
@@ -40,17 +40,20 @@ export default class Header extends React.Component{
 
     render(){
         return(
-            <header>
+            <header className="col-md-12">
                 <div className="navBar">
                     <div className="logo">
-                    {/* <Router> */}
-                        <Link to="/"><img src={logo} alt="image not found"/></Link>
-                    {/* </Router> */}
+                        <Link to="/">
+                            <div className="aiv-logo"></div>
+                        </Link>
                     </div>
                     <div className="Header_SearchInput">
-                        <img src={search_select} alt=""/>
-                        <input type="search" name="" id="" className="HeaderSearch" placeholder='Try "THIS"'
-                        onBlur={this.Header_hidePick} onFocus={this.Header_ShowPick}/>
+                        <div className="header-search-wrapper">
+                            {/* <img src={search_select} alt=""/> */}
+                            <div className="magnifier fas fa-search"></div>
+                            <input type="search" name="" id="" className="HeaderSearch" placeholder='Try "THIS"'
+                            onBlur={this.Header_hidePick} onFocus={this.Header_ShowPick}/>
+                        </div>
                     </div>
                     <div className="Header_Search_PickWrapper">
                         <div className="Header_Search_PickText">

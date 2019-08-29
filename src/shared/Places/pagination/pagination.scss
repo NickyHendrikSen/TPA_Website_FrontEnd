@@ -1,0 +1,20 @@
+.paginate-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 40%;
+    width: 100%;
+    .pageNumber{
+        cursor: pointer;
+        height: 2.5vw;
+        width: 2.5vw;
+        margin: 0vw 0.2vw;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: teal;
+        border: none;
+        font-size: 12px;
+    }
+}

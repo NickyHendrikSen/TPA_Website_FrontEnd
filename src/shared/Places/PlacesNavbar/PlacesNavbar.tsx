@@ -10,8 +10,9 @@ export class PlacesNavbar extends Component {
                 <div className="placesNavHeader">
                     <Header/>
                 </div>
-                
-                <Places />
+                <div className="places-contents">
+                    <Places />
+                </div>
             </div>
         )
     }
