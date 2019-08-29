@@ -189,7 +189,7 @@ export default class Home extends React.Component{
 
     setInvisible(element : HTMLElement){
         element.style.border = "1px solid rgba(0, 132, 137,0.3)";
-        element.style.color = "rgba(0, 132, 137, 0.3)";
+        element.style.color = "rgba(0, 132 , 137, 0.3)";
     }
 
     homeSearch_addAdult = () => {

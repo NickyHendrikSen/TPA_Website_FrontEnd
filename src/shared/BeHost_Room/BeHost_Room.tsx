@@ -33,9 +33,11 @@ export default class BeHost_Room extends React.Component{
         var placeType = document.getElementById('PlaceType') as HTMLInputElement;
         var propertyType = document.getElementById('PropertyType') as HTMLInputElement;
         var guestHave = document.getElementsByName('guestHave') as NodeListOf<HTMLInputElement>;
-        console.log(placeType.value);
+        var success = true;
+        // console.log(placeType.value);
         if(placeType.value == "none"){
             (document.getElementById('bhr_step1Question_errPlace') as HTMLElement).style.display = "block";
+            success = false;
         }
         else{
             (document.getElementById('bhr_step1Question_errPlace') as HTMLElement).style.display = "none";
@@ -43,6 +45,7 @@ export default class BeHost_Room extends React.Component{
 
         if(propertyType.value == "none"){
             (document.getElementById('bhr_step1Question_errProperty') as HTMLElement).style.display = "block";
+            success = false;
         }
         else{
             (document.getElementById('bhr_step1Question_errProperty') as HTMLElement).style.display = "none";
@@ -58,10 +61,13 @@ export default class BeHost_Room extends React.Component{
             (document.getElementById('bhr_step1Question_errGuestHave') as HTMLElement).style.display = "none";
         }
         else{
+            success = false;
             (document.getElementById('bhr_step1Question_errGuestHave') as HTMLElement).style.display = "block";
         }
 
-
+        if(success == true){
+            window.location.href = '/become-a-host/bedroom';
+        }
 
     }
     render(){
