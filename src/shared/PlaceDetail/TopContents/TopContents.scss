@@ -1,0 +1,67 @@
+@import"../utils.scss";
+$strip-color: #cccccc;
+$button-color: #ff5A5F;
+
+.top-contents{
+    width: 100%;
+    padding: 1vw 0vw;
+    text-align: start;
+    .place-header-wrapper{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .place-name-wrapper{
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            .place-name{
+                width: 100%;
+                font-size: 2.5vw;
+                font-weight: bold;
+                color: rgba(0, 0, 0, 0.75);
+                .place-suburb{
+                    width: 100%;
+                    font-size: 1vw;
+                    font-weight: normal;
+                }
+            }
+        }
+        .place-host{
+            width: 10%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            .place-host-name{
+                text-align: center;
+                font-size: 1vw;
+                color: rgba(0, 0, 0, 0.75);
+            }
+            .place-host-photo{
+                margin: 0.2vw 0vw;
+                @include photo-setting;
+                height: 5vw;
+                width: 5vw;
+                border-radius: 50%;
+            }
+        }
+    }
+    .place-detail{
+        margin-top: 2vw;
+        width: 100%;
+        color: rgba(0, 0, 0, 0.75);
+        font-size: 1vw;
+        .room-type{
+            font-weight: bold;
+            padding: 0.5vw 0vw;
+        }
+        .room-info{
+            border-bottom: 1px solid $strip-color;
+            padding: 0.5vw 4vw;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}

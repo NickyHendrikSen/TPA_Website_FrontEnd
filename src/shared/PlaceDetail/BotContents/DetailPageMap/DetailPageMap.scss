@@ -1,0 +1,8 @@
+.map-wrapper{
+    height: 30vw;
+    .marker-shape:hover{
+        .popup-marker{
+            display: flex
+        }
+    }
+}

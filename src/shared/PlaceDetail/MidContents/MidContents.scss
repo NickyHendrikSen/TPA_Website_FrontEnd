@@ -1,0 +1,98 @@
+@import".././utils.scss";
+$strip-color: #cccccc;
+$button-color: #ff5A5F;
+
+.mid-contents{
+    padding: 1vw 0vw;
+    width: 100%;
+    .desc-container{
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        border-bottom: 1px solid $strip-color;
+        .desc{
+            width: 100%;
+            padding: 1vw 0vw;
+            text-align: justify;
+            color: rgba(0, 0, 0, 0.5);
+        }
+        >h3{
+            padding: 0px;
+            margin: 0px;
+            color: rgba(0, 0, 0, 0.75);
+        }
+        .house-about{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            color: rgba(0, 0, 0, 0.5);
+            .host-about-text{
+                padding: 0.5vw 0vw;
+            }
+        }
+        .contact-btn{
+            margin: 1vw 0vw;
+            width: 100%;
+            .contact{
+                cursor: pointer;
+                width: 100%;
+                height: 2.5vw;
+                font-size: 1vw;
+                border-radius: 5px;
+                background-color: transparent;
+                color: teal;
+                border: 1px solid teal;
+                &:hover{
+                    background-color: teal;
+                    color: white;
+                }
+            }
+        }
+    }
+    .amenities-wrapper{
+        width: 100%;
+        border-bottom: 1px solid $strip-color;
+        >h3{
+            width: 100%;
+            text-align: left;
+            padding: 0px;
+            margin: 1vw 0vw;
+            color: rgba(0, 0, 0, 0.75);
+        }
+        .amenities-container{
+            justify-content: center;
+            flex-wrap: wrap;
+            display: flex;
+            .amenities-value{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 5vw;
+                width: 45%;
+                border: 1px solid $strip-color;
+                margin: 1vw;
+            }
+        }
+        .show-all-btn{
+            margin: 1vw 0vw;
+            width: 100%;
+            .show-all{
+                cursor: pointer;
+                width: 100%;
+                height: 2.5vw;
+                font-size: 1vw;
+                border-radius: 5px;
+                background-color: transparent;
+                color: teal;
+                border: 1px solid teal;
+                &:hover{
+                    background-color: teal;
+                    color: white;
+                }
+            }
+        }
+    }
+}
