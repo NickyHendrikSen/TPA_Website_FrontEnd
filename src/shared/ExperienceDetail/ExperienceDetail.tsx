@@ -18,11 +18,13 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             experience_category:'asd',
             address:{suburb:''},
             experience_title:'',
+            experience_detail:'',
             price:0,
             estimated_total_hours:'',
             amenities:[],
             rating_star:0,
             total_rating_count:0,
+            should_bring:[],
             host:{
                 host_language:[],
                 host_about:'',
@@ -128,6 +130,9 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                             <i className="fas fa-comments"><span>Offered in {this.state.data.host.host_language[0]}</span></i>
                                         </div>  
                                     </div>
+                                    <div className="expD_expDetail">
+                                        {this.state.data.experience_detail}
+                                    </div>
                                     <hr/>
                                     <div className="expD_aboutWrapper">
                                         <div className="expD_about">
@@ -150,6 +155,25 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                         {this.state.data.amenities.map(e => {
                                             return(
                                                 <div>{e}</div>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className="expD_provide">
+                                        <div className="expD_provideTitle">Should bring</div>
+                                        {this.state.data.should_bring.map(e => {
+                                            return(
+                                                <div>{e}</div>
+                                            )
+                                        })}
+                                    </div>
+                                    <hr/>
+                                    <div className="expD_galleryTitle">
+                                        GALLERY
+                                    </div>
+                                    <div className="expD_galleryImg">
+                                        {this.state.data.Images.map(e => {
+                                            return(
+                                                <div><img src={e.url} alt=""/></div>
                                             )
                                         })}
                                     </div>

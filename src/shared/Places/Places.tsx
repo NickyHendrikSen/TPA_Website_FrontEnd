@@ -1,12 +1,11 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import {Link, RouteComponentProps} from "react-router-dom"
 import "./Places.scss"
 import "./PlacesGridSystem/PlacesGridSystems.scss";
 import axios from 'axios'
 import StarRatings from 'react-star-ratings';
 import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
-import BeHost_Room from "../BeHost_Room/BeHost_Room";
-import { resetWarningCache } from "prop-types";
+import "./pagination/pagination.scss"
 
 class Places extends React.Component{
 
@@ -39,25 +38,13 @@ class Places extends React.Component{
         placesPerPage: 5,
     }
 
-    position = {
-        address:[
-            {
-                name: 'Icon',
-                price: 'Mahal',
-                coordinates: [-6.201922, 106.783014],
-            },
-            {
-                name: 'Kost Haji Indra',
-                price: 'Terjangkau',
-                coordinates: [-6.200070, 106.783317],
-            }
-        ],
-        minLat: [-6.201151, 106.782900]
-    }
-
     componentWillMount(){
         // const { fromNotifications } = this.props.location.state
-        axios.get('http://backendtpaweb.herokuapp.com/api/rooms/place/Brazil')
+        let search = window.location.search
+        let params = new URLSearchParams(search)
+        let country = params.get('country')
+        console.log(country)
+        axios.get('http://backendtpaweb.herokuapp.com/api/rooms/place/'+country)
             .then(res => {
                 this.setState(
                     {
@@ -119,16 +106,16 @@ class Places extends React.Component{
 
         const renderData = currentData.map((room, index) => {
             return (
-                <Link to={"/PlaceDetail/" + room._id}>
-                    <div className="row-md-3 col-md-12 frame-container" key={index}>
-                        <div className="frame-photo photo1" style={{backgroundImage: `url(${room.images.picture_url})`}}>
-                        </div>
-                        <div className="frame-desc">
-                            <div className="desc-wrapper">
-                                <div className="top-wrapper">
-                                    <div className="room-type">{room.room_type} • {room.address.suburb}</div>
-                                    <i className="far fa-heart" onClick={() => {this.toggleLove(index)}}></i>
-                                </div>
+                <div className="row-md-3 col-md-12 frame-container" key={index}>
+                    <div className="frame-photo" style={{backgroundImage: `url(${room.images.picture_url})`}}>
+                    </div>
+                    <div className="frame-desc">
+                        <div className="desc-wrapper">
+                            <div className="top-wrapper">
+                                <div className="room-type">{room.room_type} • {room.address.suburb}</div>
+                                <i className="far fa-heart" onClick={() => {this.toggleLove(index)}}></i>
+                            </div>
+                            <Link to={"/PlaceDetail/" + room._id} className="room-info-wrapper">
                                 <div className="room-name">{room.name}</div>
                                 <div className="room-informations">
                                     {room.guest_included} guests • {room.bedrooms} bedroom • {room.beds} bed • {room.bathrooms} bath
@@ -156,10 +143,10 @@ class Places extends React.Component{
                                         <div className="room-price">${room.price} / night</div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
-                </Link>
+                </div>
             )
         });
 
@@ -211,7 +198,7 @@ class Places extends React.Component{
                 </div>
                 <div className="places_MapWidget">
                     <LeafletMap
-                            center={[-6.201151, 106.782900]}
+                            center={[-22.970722, -43.182365]}
                             zoom={15}
                             attributionControl={true}
                             zoomControl={true}
@@ -224,12 +211,12 @@ class Places extends React.Component{
                             <TileLayer
                                 url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
                             />
-                            {this.position.address.map(point => 
-                                <Marker position={[point.coordinates[0], point.coordinates[1]]}>
+                            {data.map((point, index) => 
+                                <Marker key={index} position={[point.address.location.coordinates[1], point.address.location.coordinates[0]]}>
                                     <Popup>
-                                        • Place : {point.name}
+                                        • Name : {point.name}
                                         <br/>
-                                        • Price : {point.price}
+                                        • Price : ${point.price} / Night
                                     </Popup>
                                 </Marker>
                             )}

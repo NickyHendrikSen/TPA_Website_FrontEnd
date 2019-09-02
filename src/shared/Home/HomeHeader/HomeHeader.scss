@@ -4,8 +4,9 @@
     top:0;
     .headerContent{
         width: 100%;
-        height: 100vh;
+        height: 100%;
         background-color:transparent;
+        display:flex;
         .headerContent_img{
             top:0;
             position: absolute;
@@ -13,30 +14,23 @@
             height: 100%;
             width: 100%;
         }
-        // background-image: url("img/headerBg1.jpg");
-        // background-repeat: no-repeat;
-        // background-size: cover;
-        display:flex;
         .description{
             padding: 24px;
-            // background-color:black;
             color:white;
             position: absolute;
             bottom:0px;
             right: 0px;
         }
         .homeSearchWrapper{
+            padding: 2vw;
             box-shadow:0 16px 40px rgba(0,0,0,0.12);
             font-family: Roboto,Helvetica Neue,sans-serif;
-            height: 447px;
+            height: 450px;
             background-color: #fff;
             margin-left: 80px;
             margin-top:calc(/*80px +*/ 50px/*+ 5%*/);
-            width: 377px;
-            // width: auto;
-            height: 412px;
+            width: 400px;
             // height: auto;
-            padding: 32px 32px 24px;
             color:#484848;
             border-radius: 4px;
             //Title
@@ -291,7 +285,6 @@
             }
             //Search
             .homeSearch_SearchButtonWrapper{
-                padding-top: 8px;
                 display:block;
                 a>.homeSearch_SearchButton{
                     background-color:#FF5A5F;
@@ -301,9 +294,7 @@
                     cursor: pointer;
                     font-size: 16px;
                     font-weight: 600;
-                    height: 48px;
                     font-stretch: 100%;
-                    width: 100px;
                     border: none;
                 }
 

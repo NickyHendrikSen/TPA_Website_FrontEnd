@@ -1,0 +1,127 @@
+@import".././utils.scss";
+$strip-color: #cccccc;
+$button-color: #ff5A5F;
+
+.bot-contents{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    .review-wrapper{
+        height: 100%;
+        width: 100%;
+        .review-heading-wrapper{
+            height: 20%;
+            width: 100%;
+            .review-heading{
+                width: 100%;
+                height: 25%;
+                border-bottom: 1px solid $strip-color;
+                display: flex;
+                font-size: 2vw;
+                font-weight: bold;
+                align-items: center;
+                justify-content: flex-start;
+                color: rgba(0, 0, 0, 0.75);
+                .overall-rating{
+                    padding: 0vw 0.5vw;
+                }
+            }
+            .review-ratings{
+                width: 100%;
+                height: 60%;
+                display: flex;
+                justify-content: space-between;
+                padding: 1vw 0vw;
+                .left-ratings-category{
+                    width: 50%;
+                    height: 100%;
+                    padding: 0vw 0.5vw;
+                    @include review-n-text;
+                }
+                .right-ratings-category{
+                    width: 50%;
+                    height: 100%;
+                    padding: 0vw 0.5vw;
+                    @include review-n-text;
+                }
+            }
+            .translate-btn{
+                width: 100%;
+                .translate{
+                    cursor: pointer;
+                    width: 100%;
+                    outline: none;
+                    height: 2.5vw;
+                    font-size: 1vw;
+                    border-radius: 5px;
+                    background-color: transparent;
+                    color: teal;
+                    border: 1px solid teal;
+                    &:hover{
+                        background-color: teal;
+                        color: white;
+                    }
+                }
+            }
+        }
+        .reviews-wrapper{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            .reviews{
+                width: 100%;
+                height: 100%;
+                .review-container{
+                    padding: 1vw 0vw;
+                    width: 100%;
+                    border-bottom: 1px solid $strip-color;
+                    color: rgba(0, 0, 0, 0.75);
+                    .reviewer-heading-wrapper{
+                        margin: 1vw 0vw;
+                        width: 100%;
+                        display: flex;
+                        .reviewer-photo{
+                            width: 10%;
+                            @include photo-setting;
+                            border-radius: 50%;
+                        }
+                        .reviewer-identity{
+                            padding: 1vw 1vw;
+                            width: 90%;
+                            .reviewer-name{
+                                width: 100%;
+                                text-align: left;
+                                font-weight: bold;
+                            }
+                            .reviewer-date{
+                                width: 100%;
+                                text-align: left;
+                                font-weight: normal;
+                            }
+                        }
+                    }
+                    .reviewer-comments{
+                        width: 100%;
+                        text-align: justify;
+                        font-weight: normal;
+                    }
+                }
+                .paginate-wrapper{  
+                    width: 100%;
+                    height: 10%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+    }
+    .map-widget-wrapper{
+        width: 100%;
+        flex-wrap: wrap;
+        display: flex;
+        padding: 3vw 0vw;
+    }
+}

@@ -351,7 +351,6 @@ export default class Home extends React.Component{
                                 </div>
                             </div>
                         </div>
-                        {/* Search Button */}
                         <div className="homeSearch_SearchButtonWrapper">
                             {/* <Router> */}
                                 <Link to="/Places">
@@ -361,6 +360,7 @@ export default class Home extends React.Component{
                                 </Link>
                             {/* </Router> */}
                         </div>
+                        {/* Search Button */}
                     </div>
                     <div className="description">
                         Introducing Aivbnb.com

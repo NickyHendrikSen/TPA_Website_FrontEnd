@@ -1,0 +1,201 @@
+@import".././utils.scss";
+$strip-color: #cccccc;
+$button-color: #ff5A5F;
+
+.book-modal{
+    top: 3vw;
+    height: 400px;
+    width: 90%;
+    margin-top: 2vw;
+    padding: 0vw 2vw;
+    position: sticky;
+    margin-left: auto;
+    border: 1px solid $strip-color;
+    .top-modal-wrapper{
+        width: 100%;
+        height: 20%;
+        padding: 1vw 0vw;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $strip-color;
+        .price-wrapper{
+            display: flex;
+            .price{
+                font-size: 1.5vw;
+                font-weight: bold;
+                color: rgba(0, 0, 0, 0.75);
+            }
+            .price-info{
+                padding: 0.2vw 0.3vw;
+                display: flex;
+                align-items: flex-end;
+                font-size: 1vw;
+                font-weight: bold;
+                color: rgba(0, 0, 0, 0.75);
+            }
+        }
+        .rating{
+            display: flex;
+            justify-content: left;
+            font-size: 1vw;
+            color: rgba(0, 0, 0, 1);
+        }
+    }
+    .form-wrapper{
+        width: 100%;
+        height: 80%;
+        text-align: left;
+        .form-container{
+            height: 100%;
+            width: 100%;
+            .date-wrapper{
+                height: 30%;
+                width: 100%;
+                .date-container{
+                    height: 100%;
+                    width: 100%;
+                    .text-date{
+                        padding: 0.5vw 0vw;
+                        display: flex;
+                        align-items: flex-end;
+                        width: 100%;
+                        height: 50%;
+                        font-weight: 700;
+                        font-size: 1vw;
+                        color: rgba(0, 0, 0, 0.75);  
+                    }
+                    .in-n-out-wrapper{
+                        width: 100%;
+                        height: 50%;
+                        display: flex;
+                        border-radius: 5px;
+                        border: 1px solid $strip-color;
+                        padding: 0.5vw 0.5vw;
+                        .date{
+                            outline: none;
+                            border: none;
+                            border-radius: 5px;
+                            width: 100%;
+                        }
+                        .arrow{
+                            margin: 0.5vw 1vw;
+                        }
+                    }
+                }
+            }
+            .guest-wrapper{
+                height: 30%;
+                width: 100%;
+                position: relative;
+                color: rgba(0, 0, 0, 0.75);
+                .input-guest{
+                    font-size: 1vw;
+                    padding: 1vw;
+                    height: 50%;
+                    width: 100%;
+                    outline: none;
+                    border-radius: 5px;
+                    border: 1px solid $strip-color;
+                    font-weight: 500;
+                    color: rgba(0, 0, 0, 1);   
+                }
+                .guest-type{
+                    display: none;
+                    position: absolute;
+                    background-color: white;
+                    width: 100%;
+                    height: 300px;
+                    overflow: hidden;
+                    border: 1px solid $strip-color;
+                    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
+                    .controller-wrapper{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 1vw;
+                        .minus{
+                            pointer-events: none;
+                            cursor: pointer;
+                            color: rgba(0, 127, 128, 0.5);
+                            padding: 1vw;
+                        }
+                        .plus{
+                            cursor: pointer;
+                            color: rgba(0, 127, 128, 1);
+                            padding: 1vw;
+                        }
+                    }
+                    .adult-wrapper{
+                        @include guest-type-setting;
+                    }
+                    .child-wrapper{
+                        @include guest-type-setting;
+                    }
+                    .infant-wrapper{
+                        @include guest-type-setting;
+                    }
+                    .notes-wrapper{
+                        @include guest-type-setting;
+                        font-weight: normal;
+                        color: rgba(0, 0, 0, 0.75);
+                        font-size: 1vw;
+                    }
+                    .close-btn{
+                        @include guest-type-setting;
+                        justify-content: flex-end;
+                        color: teal;
+                        .close-text{
+                            cursor: pointer;
+                            &:hover{
+                                border-bottom: 1px solid teal;
+                            }
+                        }
+                    }
+                }
+                .text-guest{
+                    padding: 0.5vw 0vw;
+                    height: 50%;
+                    width: 100%;
+                    display: flex;
+                    align-items: flex-end;
+                    font-weight: 700;
+                    font-size: 1vw;
+                    color: rgba(0, 0, 0, 0.75);   
+                }
+            }
+            .book-wrapper{
+                height: 30%;
+                width: 100%;
+                margin: 1.5vw 0vw;
+                .btn-book{
+                    cursor: pointer;
+                    height: 50%;
+                    width: 100%;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: $button-color;
+                    color: white;
+                    font-size: 1.1vw;
+                    font-weight: bold;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    outline: none;
+                    &:active{
+                        background-color: rgb(216, 61, 66);
+                    }
+                }
+                .info-text{
+                    width: 100%;
+                    height: 50%;
+                    font-size: 1vw;
+                    padding: 0.5vw;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: center;
+                    color: rgba(0, 0, 0, 0.5);
+                }
+            }
+        }
+    }   
+}

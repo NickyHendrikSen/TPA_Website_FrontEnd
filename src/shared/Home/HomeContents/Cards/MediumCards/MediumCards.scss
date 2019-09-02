@@ -1,49 +1,92 @@
-.medium-card{
-    box-sizing: border-box;
-    height: 65%;
-    padding: 10px;
-    clip-path: polygon(0 0 50% 0);
-    .medium-card-slide{
-        box-sizing: border-box;
-        height: 100%;
-        width: 100%;
-        padding: 10px;
-        border-radius: 3px;
-        background-position: center center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        &.medium-card-slide-photo1{
-            background-image: url("./mediumcards/paris.png");
-        }
-        &.medium-card-slide-photo2{
-            background-image: url("./mediumcards/tokyo.png");
-        }
-        &.medium-card-slide-photo3{
-            background-image: url("./mediumcards/london.png");
-        }
-        &.medium-card-slide-photo4{
-            background-image: url("./mediumcards/losangeles.png");
-        }
-        &.medium-card-slide-photo5{
-            background-image: url("./mediumcards/barcelona.png");
-        }
-    }
-}
 .recommendation-slider{
-    height: 400px;
     width: 100%;
     max-width: 1600px;
     display: flex;
+    flex-wrap: wrap;
     .recommendation-grid{
-        width: 100vw;
-        display: inline-block;
+        display: flex;
+        flex-wrap: wrap;
+        .card-wrapper{
+            padding: 1em 0.5em;
+            text-decoration: none;
+            .medium-card-wrapper{
+                display: flex;
+                flex-wrap: wrap;
+                .medium-card{
+                    padding: 0.1em 0.1em;
+                    cursor: pointer;
+                    border-radius: 1%;
+                    transition: 500ms ease;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    &:hover{
+                        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+                    }
+                    .medium-card-slide{
+                        padding-bottom: 70%;
+                        border-radius: 3px;
+                        background-position: center center;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                    }
+                    .medium-card-desc{
+                        display: flex;
+                        padding: 0.5em 0em;
+                        flex-wrap: wrap;
+                        text-align: left;
+                        font-size: 20px;
+                        .medium-card-place-category{
+                            width: 100%;
+                            font-size: 0.8em;
+                            color: rgba(0, 0, 0, 0.5);
+                            font-weight: bold;
+                        }
+                        .medium-card-place-name{
+                            width: 100%;
+                            font-weight: 650;
+                            padding: 0.1em 0em;
+                            font-size: 1em;
+                            color: rgba(0, 0, 0, 0.8);
+                        }
+                        .medium-card-place-price{
+                            width: 100%;
+                            font-size: 0.8em;
+                            color: rgba(0, 0, 0, 0.8);
+                        }
+                        .medium-card-place-rating{
+                            width: 100%;
+                            padding: 0.1em 0em;
+                            font-size: 0.6em;
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            color: rgba(0, 0, 0, 0.8);
+                            .medium-card-place-reputations{
+                                color: rgba(0, 0, 0, 0.5);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         .recommendation-title{
             color: #727272;
             text-align: left;
             width: 100%;
         }
+        .show-all-btn{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            .link-to-place{
+                font-weight: 600;
+                font-size: 1.2em;
+                color: teal;
+                text-decoration: none;
+            }
+        }
     }
 }
+
 .slider-control{
     position: absolute;
     width: 100%;

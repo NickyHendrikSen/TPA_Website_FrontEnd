@@ -13,3 +13,15 @@
     align-items: center;
     padding: 1vw;
 }
+
+@mixin review-n-text{
+    .text-ratings-cat{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .review-cat{
+        display: flex;
+        justify-content: space-between;
+    }
+}

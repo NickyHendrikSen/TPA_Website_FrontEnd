@@ -12,7 +12,7 @@
             text-align: left;
             .expD_reviewLeftTitle{
                 font-size: 32px;
-                color: #484848;
+                color: rgb(72, 72, 72)
             }
             .expD_reviewLeftRating{
                 line-height: 30px;
@@ -142,6 +142,11 @@
                     }
                 }
             }
+            .expD_galleryTitle{
+                color:#484848;
+                font-size: 24px;
+                font-weight: bold;
+            }
             .expD_Description{
                 .expD_provide{
                     // border-top: 0.8px solid #0f0f0fad;
@@ -186,8 +191,13 @@
                     border-width: 0.8px;
                 }
             }
+            .expD_expDetail{
+                color:#484848;
+                margin-top: 32px;
+            }
             .expD_aboutWrapper{
                 display:flex;
+                width: 100%;
                 justify-content: space-between;
                 padding-bottom: 50px;
                 border-bottom: 1px solid #0f0f0f70;

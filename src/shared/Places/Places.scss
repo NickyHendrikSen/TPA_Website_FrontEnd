@@ -37,6 +37,24 @@
                         @include small-screen-container;
                     }
                 }
+                .total-data{
+                    width: 100%;
+                    height: 40%;
+                    font-size: 12pt;
+                    display: flex;
+                    justify-content: center;
+                    color: rgba(0, 0, 0, 0.5);
+                }
+                .bottom-credit{
+                    font-size: 10pt;
+                    padding: 0vw 2vw;
+                    height: 20%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: rgba(0, 0, 0, 0.5);
+                }
             }
         }
         .bottom-wrapper{
@@ -47,26 +65,6 @@
             .paginate-wrapper{
                 height: 100%;
                 width: 100%;
-                .paginate-container{
-                    display: flex;
-                    justify-content: center;
-                    align-items: flex-end;
-                    height: 40%;
-                    width: 100%;
-                    .pageNumber{
-                        cursor: pointer;
-                        height: 2.5vw;
-                        width: 2.5vw;
-                        margin: 0vw 0.2vw;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        color: teal;
-                        border: none;
-                        font-size: 12px;
-                    }
-                }
                 .total-data{
                     width: 100%;
                     height: 40%;

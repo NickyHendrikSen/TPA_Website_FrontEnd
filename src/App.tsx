@@ -10,6 +10,8 @@ import Experiences from "./shared/Experience/ExperienceHeader/ExperienceHeader"
 import ExperienceDetail from "./shared/ExperienceDetail/ExperienceDetail"
 import PlaceDetail from "./shared/PlaceDetail/PlaceDetail"
 import BeHost_Room from "./shared/BeHost_Room/BeHost_Room"
+import BeHost_Bedroom from "./shared/BeHost_Room/BeHost_Bedroom"
+import BeHost_Bathroom from "./shared/BeHost_Room/BeHost_Bathroom";
 import Tes from "./shared/GetDataTes/tes"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 
@@ -18,19 +20,17 @@ const App: React.FC = () => {
   return (
     <div className="App">
         <Router>
-          {/* <Header /> */}
           <Switch>
               <Route path="/tes" component={Tes} />
+              <Route path="/become-a-host/bathroom" component={BeHost_Bathroom}/>
+              <Route path="/become-a-host/bedroom" component={BeHost_Bedroom}/>
               <Route path="/become-a-host/room" component={BeHost_Room}/>
               <Route path="/PlaceDetail/:id" component={PlaceDetail}/>
-              <Route path="/Places" component={Places}/>
+              <Route path="/Places/:country" component={Places}/>
               <Route path="/Experiences" component={Experiences}/>
               <Route path="/ExperiencesDetail/:id" component={ExperienceDetail}/>
               <Route path="/" component={Home}/>
           </Switch>
-          {/* <Footer /> */}
-          {/* <FooterButton /> */}
-          {/* <Home /> */}
         </Router>
     </div>
   );

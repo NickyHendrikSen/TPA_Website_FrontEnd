@@ -1,0 +1,39 @@
+@import"../utils.scss";
+
+.top-list-photos{
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .big-photos{
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        .big-photo{
+            @include photo-setting;
+            height: 50%;
+            transition-duration: 0.5s;
+            border: 1px solid #464646;
+            &:hover{
+                cursor: pointer;
+                background-size: 105% 105%;
+            }
+        }
+    }
+    .small-photos{
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        .small-photo{
+            @include photo-setting;
+            height: 50%;
+            width: 50%;
+            transition-duration: 0.5s;
+            border: 1px solid #464646;
+            &:hover{
+                cursor: pointer;
+                background-size: 105% 105%;
+            }
+        }
+    }
+}
