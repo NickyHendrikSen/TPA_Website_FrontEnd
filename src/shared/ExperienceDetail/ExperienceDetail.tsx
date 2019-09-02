@@ -30,6 +30,7 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                 host_about:'',
                 host_thumbnail_url:'',
                 host_name:'',
+                host_location:'',
             },
             reviews:[{
                 _id:'',
@@ -69,6 +70,12 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
     //     <div className="expD_reviewRightStarGray">&#x2605;</div>
     // </div>
     }
+    showAllAmenities(){
+        (document.getElementsByClassName('amenitiesShowAll')[0] as HTMLElement).style.display="flex";
+    }
+    closeAmenities(){
+        (document.getElementsByClassName('amenitiesShowAll')[0] as HTMLElement).style.display="none";
+    }
     componentWillMount(){
         this.refVal = React.createRef();
         let id: any = this.props.match.params.id
@@ -90,6 +97,19 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
         return(
             
             <div className="expD_Wrapper">
+            <div className="amenitiesShowAll">
+                <div className="amenitiesShowAllContent">
+                    <button onClick={this.closeAmenities}>X</button>
+                    <div className="amenitiesTitle">
+                        All Amenities
+                    </div>
+                {this.state.data.amenities.map(e => {
+                    return(
+                        <div className="amenitiesShowAllAmenities">{e}</div>
+                    )
+                })}
+                </div>
+            </div>
             <Header />
                 {/* {this.state.data.map(data => {
                    return ( */}
@@ -144,6 +164,7 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                             <div className="expD_about_name">
                                             {this.state.data.host.host_name}
                                             </div>
+                                            <div>{this.state.data.host.host_location}</div>
                                             <div className="expD_about_contact">
                                             Contact Host
                                             </div>
@@ -151,13 +172,14 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
 
                                     </div>
                                     <div className="expD_provide">
-                                        <div className="expD_provideTitle">What I'll provide</div>
-                                        {this.state.data.amenities.map(e => {
+                                        <div className="expD_provideTitle">What I'll provide ( Amenities )</div>
+                                        {this.state.data.amenities.slice(0,5).map(e => {
                                             return(
                                                 <div>{e}</div>
                                             )
                                         })}
                                     </div>
+                                    <button className="expD_showAllAmenities" onClick={this.showAllAmenities}>Show All Amenities</button>
                                     <div className="expD_provide">
                                         <div className="expD_provideTitle">Should bring</div>
                                         {this.state.data.should_bring.map(e => {

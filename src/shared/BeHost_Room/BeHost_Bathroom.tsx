@@ -5,10 +5,20 @@ import {Link} from "react-router-dom"
 
 export default class BeHost_Room extends React.Component{
     bathDec(){
-
+        var a = parseInt((document.getElementById('bath') as HTMLInputElement).innerText);
+        if(a != 1)
+        (document.getElementById('bath') as HTMLInputElement).innerText = a - 1 + "";
+        
+        if(parseInt((document.getElementById('bath') as HTMLInputElement).innerText) == 1){
+            (document.getElementsByClassName('bhr_step1Question_min')[0] as HTMLElement).style.color = 'rgb(0, 132, 137, 0.3)';
+            (document.getElementsByClassName('bhr_step1Question_min')[0] as HTMLElement).style.borderColor = 'rgb(0, 132, 137, 0.3)';
+        }
     }
     bathInc(){
-        
+        var a = parseInt((document.getElementById('bath') as HTMLInputElement).innerText);
+        (document.getElementById('bath') as HTMLInputElement).innerText = a + 1 + "";
+        (document.getElementsByClassName('bhr_step1Question_min')[0] as HTMLElement).style.color = 'rgb(0, 132, 137)';
+        (document.getElementsByClassName('bhr_step1Question_min')[0] as HTMLElement).style.borderColor = 'rgb(0, 132, 137)';
     }
     validate1(){
         
@@ -46,7 +56,7 @@ export default class BeHost_Room extends React.Component{
                             Bathrooms
                             <div className="bhr_step1Question_varRight">
                                 <div className="bhr_step1Question_min" onClick={this.bathDec}>-</div>
-                                <span id="accomodate">1</span>
+                                <span id="bath">1</span>
                                 <div className="bhr_step1Question_plus" onClick={this.bathInc}>+</div>
                             </div>
                         </div>

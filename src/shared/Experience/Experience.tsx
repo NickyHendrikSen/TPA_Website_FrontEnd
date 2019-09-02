@@ -7,6 +7,7 @@ import stars from "./img/stars.png"
 import heart from "./img/heart.png"
 import {Link} from "react-router-dom"
 import axios from 'axios'
+import StarRatings from 'react-star-ratings';
 
 export default class Experience extends React.Component{
     state = {
@@ -25,14 +26,11 @@ export default class Experience extends React.Component{
     componentWillMount(){
         axios.get('http://backendtpaweb.herokuapp.com/api/experience')
             .then(res => {
-                console.log(res.data);
                 this.setState(
                     {
-                        data: res.data
-
+                        data: res.data,
                     }
                 )
-                console.log(this.state)
             }
         )
     }
@@ -61,11 +59,26 @@ export default class Experience extends React.Component{
                                 <div className="exps_CardDescription">
                                     <li className="exps_CardPrice">${data.price} per person</li>
                                     <li className="exps_CardTime">{data.estimated_total_hours}</li>
-                                    <li className="exps_CardBenefit">{data.amenities[0]}, {data.amenities[1]}, {data.amenities[2]} included</li>
+                                    <li className="exps_CardBenefit">{data.amenities[0]}
+                                    {data.amenities.slice(1,3).map(e=>{
+                                        return(
+                                            <span>, {e} </span>
+                                        )
+                                    })}
+                                     included</li>
                                 </div>
                                 <div className="exps_CardRating">
                                     {(Math.round(data.rating_star/data.total_rating_count*100)/100).toFixed(2)}
-                                    <img src={stars} alt=""/>
+                                    {/* <img src={stars} alt=""/> */}
+                                    <StarRatings
+                                    rating={data.total_rating_count == 0 ? 0 : data.rating_star/data.total_rating_count}
+                                    starRatedColor="#008489"
+                                    // changeRating={this.changeRating}
+                                    numberOfStars={5}
+                                    name='rating'
+                                    starDimension= '20px'
+                                    starSpacing = '1px'
+                                    />
                                     <span className="exps_CardRatingResponds">({data.total_rating_count})</span>
                                 </div>
                             </div>
