@@ -123,6 +123,7 @@ export default class SignEmail extends React.Component{
             headers:{"Content-Type": "application/x-www-form-urlencoded"}
             }
         );
+            alert('Register Success');
             this.regE_close();
         }
     }
@@ -149,7 +150,7 @@ export default class SignEmail extends React.Component{
                     </div>
                     {/* or */}
                     <div className="regE_or">
-                        <span>or</span>
+                        {/* <span>or</span> */}
                     </div>
                     <div className="regE_input">
                         <input type="email" name="" id="regE_txtEmail" className="regE_inputEmail" placeholder="Email address"/>
@@ -171,14 +172,14 @@ export default class SignEmail extends React.Component{
                             {/* <input type="date" name="" id="regE_txtBirthDate" className="regE_inputBirthday"/>
                         </div>
                         <div className="regE_lblError" id="regE_birthdayError">You must be 18 or older.</div> */}
-                        <div className="regE_notif">We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.</div>
+                        <div className="regE_notif"></div>
                         <button className="regE_btnSignUp" onClick={this.validate}>
                             Sign Up
                         </button>
-                        <div className="regE_recieveEmail">
+                        {/* <div className="regE_recieveEmail">
                             <input type="checkbox" name="" id=""/>
                             <span>I don’t want to receive marketing messages from Airbnb. I can also opt out of receiving these at any time in my account settings or via the link in the message.</span>
-                        </div>
+                        </div> */}
                         <hr/>
                         <div className="regE_login">
                             Already have an Airbnb account?&nbsp;

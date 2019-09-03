@@ -8,6 +8,15 @@ import Login from "./Login/Login"
 import "../Home/HomeContents/GridSystem/GridSystems.scss"
 
 export default class Header extends React.Component{
+    logout(){
+        localStorage.setItem('UserID', "");
+        localStorage.setItem('UserURL', "");
+        (document.getElementById('login_header') as HTMLElement).style.display = "block";
+        (document.getElementById('signup_header') as HTMLElement).style.display = "block";
+        (document.getElementById('logout_header') as HTMLElement).style.display = "none";
+        (document.getElementsByClassName('menu_picture')[0] as HTMLElement).style.display = "none";
+        (document.getElementsByClassName('menu_logged')[0] as HTMLElement).style.display = "none";
+    }
     lightBox_reg_show(){
         var lightBox = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
         lightBox[0].style.display = "flex";
@@ -37,7 +46,6 @@ export default class Header extends React.Component{
         pickBlock.style.opacity = "0";
         // pickBlock.style.visibility = "hidden";
     }
-
     render(){
         return(
             <header className="col-md-12">
@@ -67,10 +75,15 @@ export default class Header extends React.Component{
                         </div>
                     </div>
                     <div className="menu">
-                        <button onClick={this.lightBox_login_show}>Log in</button>
-                        <button onClick={this.lightBox_reg_show}>Sign up</button>
+                        <div className="menu_picture">
+                            <img src="" alt="" className="menu_pictureImg"/>
+                        </div>
+                        <button id="login_header" onClick={this.lightBox_login_show}>Log in</button>
+                        <button id="signup_header" onClick={this.lightBox_reg_show}>Sign up</button>
+                        <button id="logout_header" onClick={this.logout}>Log out</button>
                         <button>Help</button>
-                        <Link to="become-a-host/room"><button>Become a host</button></Link>
+                        <Link to="become-a-host/room"><button className="menu_logged">Become a host</button></Link>
+                        
                     </div>
                 </div>
                 <SignUp />

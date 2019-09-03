@@ -18,9 +18,45 @@ export default class ExperienceHeader extends React.Component{
             // map[0].style.display = "none";
         }
     }
+    modal_saveNewList(){
+        var planName = (document.getElementById('txtPlanName') as HTMLInputElement);
+        if(planName.value == ""){
+            planName.style.borderColor = "red";
+            alert("Plan name can't be empty");
+        }
+        else{
+            //ADD NEW LIST HERE
+
+            //CLOSE LIGHTBOX
+            (document.getElementsByClassName('exps_saveModal')[0] as HTMLElement).style.display = "none";
+            alert('Success Added New List');
+        }
+    }
+    closeSaveModal(){
+        (document.getElementsByClassName('exps_saveModal')[0] as HTMLElement).style.display = "none";
+    }
     render(){
         return(
             <div className="expsH_Wrapper">
+                <div className="exps_saveModal">
+                    <div className="exps_saveModalContent">
+                        <button className="exps_saveModalClose" onClick={this.closeSaveModal}>X</button>
+                        <div className="exps_createPlanTitle">
+                            Create New List
+                        </div>
+                        Name<input type="text" id="txtPlanName"/>
+                        Privacy
+                        <select name="planPrivacy" id="txtPlanPrivacy">
+                            <option value="public">Public</option>
+                            <option value="private">Private</option>
+                        </select>
+                        <button className="exps_createNewListButton" onClick={this.modal_saveNewList}>Create New List</button>
+                        <hr/>
+                        <div className="exps_createPlanTitle">
+                            Saved List
+                        </div>
+                    </div>
+                </div>
                 <div className="exsH_HeaderWrapper">
                     <div className="expsH_Header">
                         <Header />

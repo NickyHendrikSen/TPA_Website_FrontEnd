@@ -1,4 +1,70 @@
 .expsH_Wrapper{
+    .exps_saveModal{
+        width: 100vw;
+        height: 100vh;
+        background-color:rgba(0, 0, 0,0.8);
+        position: fixed;
+        z-index: 10000;
+        display:flex;
+        justify-content: center;
+        // display: none;
+        .exps_saveModalContent{
+            padding: 30px;
+            background-color: white;
+            width: 50%;
+            height: 100%;
+            text-align: left;
+            .exps_createPlanTitle{
+                text-align: left;
+                // float:left;
+                display:inline-block;
+                width: 100%;
+                // margin-left: 30px;
+                font-size: 20px;
+            }
+            .exps_createNewListButton{
+                background-color: #008489;
+                border-radius: 4px;
+                padding: 11px 20px;
+                border: none;
+                outline: none;
+                transition-duration: 0.3s;
+                margin-top: 5px;
+                cursor: pointer;
+                &:active{
+                    background-color:#00696d;
+                }
+            }
+            input, select{
+                width: 100%;
+                border-radius: 4px;
+                outline: none;
+                // border-color: black;
+                border: 1px solid black;
+                padding: 10px;
+                &:focus{
+                    border-color: #008489;
+                }
+            }
+            .exps_saveModalClose{
+                border-radius: 50%;
+                border: none;
+                padding: 10px 15px;
+                background-color:white;
+                transition-duration: 0.3s;
+                outline: none;
+                cursor: pointer;
+                float:left;
+                // text-align: left;
+                // display:inline-block;
+                // margin-top: 15px;
+                // margin-left: 15px;
+                &:active{
+                    background-color: rgba(184, 184, 184, 0.8);
+                }
+            }
+        }
+    }
     .exsH_HeaderWrapper{
         height: 80px;
         position: relative;

@@ -21,7 +21,19 @@ export default class Experience extends React.Component{
             amenities:[],
             rating_star:0,
             total_rating_count:0,
+            Images:[],
         }]
+    }
+    showSaveModal(){
+        if(localStorage.getItem('UserID') == null || localStorage.getItem('UserID') == ""){
+            var lightBox = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
+            lightBox[0].style.display = "flex";
+            console.log(lightBox[0]);   
+            var body = document.getElementsByTagName("Body")[0] as HTMLElement;
+        }
+        else{
+            (document.getElementsByClassName('exps_saveModal')[0] as HTMLElement).style.display = "flex";
+        }
     }
     componentWillMount(){
         axios.get('http://backendtpaweb.herokuapp.com/api/experience')
@@ -45,9 +57,9 @@ export default class Experience extends React.Component{
                     <div className="exps_CardWrapper">
                         <div className="exps_Card">
                             <div className="exps_CardImage">
-                                <Link to={"/ExperiencesDetail/" + data._id}><img src={oldtown} alt=""/></Link>
+                                <Link to={"/ExperiencesDetail/" + data._id}><img src={data.Images[0]} alt=""/></Link>
                                 {/* <img src={heart} alt="" className="exps_CardLove"/> */}
-                                <span className="exps_white_heart">&#9825;</span>
+                                <span className="exps_white_heart" onClick={this.showSaveModal}>&#9825;</span>
                             </div>
                             <div className="exps_CardInformation">
                                 <div className="exps_CardLocation">
