@@ -7,7 +7,7 @@ import StarRatings from 'react-star-ratings';
 import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
 import "./pagination/pagination.scss"
 
-class Places extends React.Component{
+class Places extends React.Component<RouteComponentProps<any>>{
 
     state = {
         data:[{
@@ -40,9 +40,7 @@ class Places extends React.Component{
 
     componentWillMount(){
         // const { fromNotifications } = this.props.location.state
-        let search = window.location.search
-        let params = new URLSearchParams(search)
-        let country = params.get('country')
+        let country: any = this.props.match.params.country
         console.log(country)
         axios.get('http://backendtpaweb.herokuapp.com/api/rooms/place/'+country)
             .then(res => {

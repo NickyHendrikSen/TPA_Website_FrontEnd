@@ -9,7 +9,7 @@ import { hostname } from 'os';
 import { url } from 'inspector';
 import Places from '../../../../Places/Places';
 
-export class MediumCards extends Component {
+export class MediumCards extends Component{
     
     state = {
         data:[{

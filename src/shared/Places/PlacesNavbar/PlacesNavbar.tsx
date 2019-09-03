@@ -3,9 +3,9 @@ import "./PlacesNavbar.scss"
 import Header from "../../Header/Header"
 import Places from "../Places"
 import Axios from 'axios';
-import { Route } from 'react-router';
+import { Route, RouteComponentProps, match } from 'react-router';
 
-export class PlacesNavbar extends Component {
+export class PlacesNavbar extends Component<RouteComponentProps<any>> {
 
     state = {
         callback:
@@ -38,7 +38,7 @@ export class PlacesNavbar extends Component {
                     <Header/>
                 </div>
                 <div className="places-contents">
-                    <Places/>
+                    <Route path="/Places/:country" component={Places}/> 
                 </div>
             </div>
         )
