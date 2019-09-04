@@ -12,37 +12,37 @@ export class FooterContents extends Component {
                         <h4>AirBnb</h4>
                         <li className="footer-contents-list"><a href="https://careers.airbnb.com/">Careers</a></li>
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/">Press</a></li>
-                        <li className="footer-contents-list"><a href="https://www.airbnb.co.id/help/topic/250"> Policies</a></li>
-                        <li className="footer-contents-list"><a href=""> Help</a></li>
-                        <li className="footer-contents-list"><a href=""> Diversity & Belonging</a></li>
-                        <li className="footer-contents-list"><a href=""> Accessibility</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/"> Policies</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/"> Help</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/"> Diversity & Belonging</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/"> Accessibility</a></li>
                     </li>
                     <li className="footer-contents-titles">
                         <h4>Discover</h4>
-                        <li className="footer-contents-list"><a href="">Trust & Safety</a></li>
-                        <li className="footer-contents-list"><a href="">Invite Friends</a></li>
-                        <li className="footer-contents-list"><a href="">Gift Cards</a></li>
-                        <li className="footer-contents-list"><a href="">Airbnb Citizen</a></li>
-                        <li className="footer-contents-list"><a href="">Business Travel</a></li>
-                        <li className="footer-contents-list"><a href="">Guidebooks</a></li>
-                        <li className="footer-contents-list"><a href="">Airbnbmag</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Trust & Safety</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Invite Friends</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Gift Cards</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Airbnb Citizen</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Business Travel</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Guidebooks</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Airbnbmag</a></li>
                     </li>
                     <li className="footer-contents-titles">
                         <h4>Hosting</h4>
-                        <li className="footer-contents-list"><a href="">Why Host</a></li>
-                        <li className="footer-contents-list"><a href="">Hospitality</a></li>
-                        <li className="footer-contents-list"><a href="">Responsible Hosting</a></li>
-                        <li className="footer-contents-list"><a href="">Community Center</a></li>
-                        <li className="footer-contents-list"><a href="">Host an Experience</a></li>
-                        <li className="footer-contents-list"><a href="">Open Homes</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Why Host</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Hospitality</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Responsible Hosting</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Community Center</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Host an Experience</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Open Homes</a></li>
                     </li>
                     <li className="footer-contents-titles">
                         <span className="footer-contents-logo-facebook"></span>
                         <span className="footer-contents-logo-twitter"></span>
                         <span className="footer-contents-logo-instagram"></span>
-                        <li className="footer-contents-list"><a href="">Terms</a></li>
-                        <li className="footer-contents-list"><a href="">Privacy</a></li>
-                        <li className="footer-contents-list"><a href="">Site Map</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Terms</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Privacy</a></li>
+                        <li className="footer-contents-list"><a href="https://press.airbnb.com/">Site Map</a></li>
                     </li>
                 </ol>
                 <hr className="footer-separator"/>

@@ -6,8 +6,47 @@ import search_select from "./img/search_select.png"
 import SignUp from "./SignEmail/SignEmail"
 import Login from "./Login/Login"
 import "../Home/HomeContents/GridSystem/GridSystems.scss"
+import Axios from "axios";
 
 export default class Header extends React.Component{
+
+    state = {
+        language:[{
+            languageName:'',
+            code:'',
+        }],
+        currency:[{
+            "symbol": '',
+            "name": '',
+            "symbol_native": '',
+            "decimal_digits": '',
+            "rounding": '',
+            "code": '',
+            "name_plural": ''
+        }],
+        exchange_rate:{
+            "base": '',
+            "date": '',
+            "rates": {}
+        }
+    }
+
+    componentWillMount(){
+        Axios.all([
+            Axios.get('https://api.myjson.com/bins/13i713'),
+            Axios.get('https://api.myjson.com/bins/ns7n7'),
+            Axios.get('https://api.exchangeratesapi.io/latest?base=USD')
+        ])
+            .then(Axios.spread((currencyRes, langRes, exchangeRes)=>
+            {
+                this.setState({
+                    currency:currencyRes.data,
+                    language:langRes.data,
+                    exchange_rate:exchangeRes
+                })   
+            }))
+    }
+
     lightBox_reg_show(){
         var lightBox = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
         lightBox[0].style.display = "flex";
@@ -38,7 +77,45 @@ export default class Header extends React.Component{
         // pickBlock.style.visibility = "hidden";
     }
 
+    changeCurrency(index:number, currency_code:string){
+        console.log(""+index+", code: "+currency_code);
+    }
+
+    changeLanguage(index:number, language_code:string){
+        console.log(""+index+", code: "+language_code);
+    }
+
+    showLangList(){
+        let language = document.getElementsByClassName('language') as HTMLCollectionOf<HTMLElement>
+        
+        if(language[0].style.display === "none")
+            language[0].style.display = "block"
+        else
+            language[0].style.display = "none"        
+    }
+
+    showCurrList(){
+        let currency = document.getElementsByClassName('currency') as HTMLCollectionOf<HTMLElement>
+        
+        if(currency[0].style.display === "none")
+            currency[0].style.display = "block"
+        else
+            currency[0].style.display = "none"
+
+    }
+
     render(){
+        const {currency, language} = this.state
+        const allLanguages = language.map((lang, index) => {
+            return(
+                <div key={index} className="popup-list" onClick={()=>this.changeLanguage(index, lang.code)}>{lang.code} • {lang.languageName}</div>
+            )
+        })
+        const allCurrencies = currency.map((curr, index) => {
+            return(
+                <div key={index} className="popup-list" onClick={()=>this.changeCurrency(index, curr.code)}>{curr.symbol} • {curr.name}</div>
+            )
+        })
         return(
             <header className="col-md-12">
                 <div className="navBar">
@@ -67,6 +144,26 @@ export default class Header extends React.Component{
                         </div>
                     </div>
                     <div className="menu">
+                        <div className="popup-list-wrapper">
+                            <div className="buttons btn-language" onClick={this.showLangList}>
+                                language
+                            </div>
+                            <div className="popup-list-container language">
+                                <div className="list-wrapper">
+                                    {allLanguages}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="popup-list-wrapper">
+                            <div className="buttons btn-currency" onClick={this.showCurrList}>
+                                Currency
+                            </div>
+                            <div className="popup-list-container currency">
+                                <div className="list-wrapper">
+                                    {allCurrencies}
+                                </div>
+                            </div>
+                        </div>
                         <button onClick={this.lightBox_login_show}>Log in</button>
                         <button onClick={this.lightBox_reg_show}>Sign up</button>
                         <button>Help</button>
