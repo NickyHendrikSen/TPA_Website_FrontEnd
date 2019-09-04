@@ -196,7 +196,7 @@ class Places extends React.Component<RouteComponentProps<any>>{
                 </div>
                 <div className="places_MapWidget">
                     <LeafletMap
-                            center={[-22.970722, -43.182365]}
+                            center={[Number(currentData[0].address.location.coordinates[1]), Number(currentData[0].address.location.coordinates[0])]}
                             zoom={15}
                             attributionControl={true}
                             zoomControl={true}
@@ -219,7 +219,6 @@ class Places extends React.Component<RouteComponentProps<any>>{
                                 </Marker>
                             )}
                     </LeafletMap>
-                    )
                 </div>
             </div>
         )
