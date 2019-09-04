@@ -5,15 +5,30 @@
         background-color:rgba(0, 0, 0,0.8);
         position: fixed;
         z-index: 10000;
-        display:flex;
+        // display:flex;
         justify-content: center;
-        // display: none;
+        display: none;
         .exps_saveModalContent{
             padding: 30px;
             background-color: white;
             width: 50%;
             height: 100%;
             text-align: left;
+            .exps_planList{
+                margin-top: 5px;
+                padding: 0px 20px;
+                background-color:red;
+                display:flex;
+                justify-content: space-between;
+                background-color: #1414142a;
+                .exps_planName{
+                    line-height: 67px;
+                }
+                .exps_planHeart{
+                    font-size: 50px;
+                    color:white;
+                }
+            }
             .exps_createPlanTitle{
                 text-align: left;
                 // float:left;

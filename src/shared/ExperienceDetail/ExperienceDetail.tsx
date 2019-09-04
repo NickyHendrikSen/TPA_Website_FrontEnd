@@ -7,10 +7,15 @@ import InstaStory from "./InstaStory/InstaStory"
 import axios from 'axios'
 import Stories from 'react-insta-stories'
 import StarRatings from 'react-star-ratings';
+import ImageGallery from "react-image-gallery"
+import "react-image-gallery/styles/scss/image-gallery.scss";
 import {RouteComponentProps, withRouter} from "react-router";
 
 export default class ExperienceDetail extends React.Component<RouteComponentProps<any>>{
     refVal:any
+    images = [{thumbnail:'',
+        original:'',
+    }];
     state = {
         total_rating:0,
         data:{
@@ -76,6 +81,13 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
     closeAmenities(){
         (document.getElementsByClassName('amenitiesShowAll')[0] as HTMLElement).style.display="none";
     }
+    showAllGallery = () =>{
+        // console.log(this.state.data.Images)
+        (document.getElementsByClassName('expD_ShowAllGalery')[0] as HTMLElement).style.display="flex";
+    }
+    closeShowAll = () => {
+        // (document.getElementsByClassName('expD_ShowAllGalery')[0] as HTMLElement).style.display="none";
+    }
     componentWillMount(){
         this.refVal = React.createRef();
         let id: any = this.props.match.params.id
@@ -88,15 +100,29 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                         total_rating: res.data.rating_star/res.data.total_rating_count
                     }
                 )
-                console.log(res.data)
+                for(var i = 0; i < res.data.Images.length; i++){
+                    if(i == 0){
+                        this.images[0].thumbnail = res.data.Images[i];
+                        this.images[0].original = res.data.Images[i];
+                        continue;
+                    }
+                    let obj = {
+                        thumbnail: res.data.Images[i],
+                        original: res.data.Images[i]
+                    }
+                    // if(i != 0)
+                    this.images.push(obj)
+                }
             }
         )
-        
     }
     render(){
+        console.log(this.images)
         return(
-            
             <div className="expD_Wrapper">
+            <div className="expD_ShowAllGalery" onClick={this.closeShowAll}>
+                <ImageGallery items={this.images}/>
+            </div>
             <div className="amenitiesShowAll">
                 <div className="amenitiesShowAllContent">
                     <button onClick={this.closeAmenities}>X</button>
@@ -190,12 +216,17 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                     </div>
                                     <hr/>
                                     <div className="expD_galleryTitle">
-                                        GALLERY
+                                        <div>
+                                            GALLERY
+                                        </div>
+                                        <div className="expD_galleryShowAll" onClick={this.showAllGallery}>
+                                            Show All
+                                        </div>
                                     </div>
                                     <div className="expD_galleryImg">
-                                        {this.state.data.Images.map(e => {
+                                        {this.state.data.Images.slice(0,6).map(e => {
                                             return(
-                                                <div><img src={e.url} alt=""/></div>
+                                                <div className="expD_Img"><img src={e + ""} alt="Image not found" /></div>
                                             )
                                         })}
                                     </div>

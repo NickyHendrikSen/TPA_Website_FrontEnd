@@ -1,5 +1,21 @@
 .expD_Wrapper{
     
+    .expD_ShowAllGalery{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: 5000;
+        // display:flex;
+        justify-content: center;
+        background-color: #575757e8;
+        padding-top: 5vh;
+        display:none;
+        .image-gallery-image{
+            width: 90vw;
+            // margin-top: 5vh;
+            height: 70vh;
+        }
+    }
     //Review Div
     .expD_review{
         display:flex;
@@ -166,7 +182,7 @@
                     position: absolute;
                     top:20px;
                     left:20px;
-                    z-index: 30000;
+                    z-index: 1500;
                     cursor: pointer;
                     transition-duration: 0.3s;
                     font-size: 25px;
@@ -194,8 +210,35 @@
                 color:#484848;
                 font-size: 24px;
                 font-weight: bold;
+                display:flex;
+                justify-content: space-between;
+                .expD_galleryShowAll{
+                    font-size: 16px;
+                    color: #008489;
+                    cursor: pointer;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
             }
             .expD_Description{
+                .expD_galleryImg{
+                    display:flex;
+                    justify-content: center;
+                    .expD_Img{
+                        width: 100%;
+                        img{
+                            border: 2px solid black;
+                            height: 100%;
+                            width: 100%;
+                            cursor: pointer;
+                            &:hover{
+                                opacity: 0.8;
+                                // width: 110%;
+                            }
+                        }
+                    }
+                }
                 .expD_showAllAmenities{
                     margin-top: 20px;
                     border-radius: 4px;

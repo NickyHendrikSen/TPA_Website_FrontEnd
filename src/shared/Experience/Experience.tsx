@@ -26,9 +26,9 @@ export default class Experience extends React.Component{
     }
     showSaveModal(){
         if(localStorage.getItem('UserID') == null || localStorage.getItem('UserID') == ""){
-            var lightBox = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
+            var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
             lightBox[0].style.display = "flex";
-            console.log(lightBox[0]);   
+            // console.log(lightBox[0]);  
             var body = document.getElementsByTagName("Body")[0] as HTMLElement;
         }
         else{

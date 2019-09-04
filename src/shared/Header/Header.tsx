@@ -16,6 +16,7 @@ export default class Header extends React.Component{
         (document.getElementById('logout_header') as HTMLElement).style.display = "none";
         (document.getElementsByClassName('menu_picture')[0] as HTMLElement).style.display = "none";
         (document.getElementsByClassName('menu_logged')[0] as HTMLElement).style.display = "none";
+        (document.getElementById('plan_header') as HTMLElement).style.display = "none";
     }
     lightBox_reg_show(){
         var lightBox = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
@@ -83,7 +84,7 @@ export default class Header extends React.Component{
                         <button id="logout_header" onClick={this.logout}>Log out</button>
                         <button>Help</button>
                         <Link to="become-a-host/room"><button className="menu_logged">Become a host</button></Link>
-                        
+                        <Link to="PlanList"><button id="plan_header">Plan List</button></Link>
                     </div>
                 </div>
                 <SignUp />

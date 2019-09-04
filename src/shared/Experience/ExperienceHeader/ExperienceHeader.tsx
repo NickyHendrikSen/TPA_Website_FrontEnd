@@ -1,10 +1,29 @@
 import React from "react"
 import "./ExperienceHeader.scss"
+import axios from "axios"
 import Map from "../../Map/Map"
 import Experience from "../Experience"
 import Header from "../../Header/Header"
 
 export default class ExperienceHeader extends React.Component{
+    state = {
+        data:[{
+            PlansName:'',
+        }]
+    };
+    componentWillMount(){
+        if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null) return;
+        axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
+        .then(res => {
+            this.setState(
+                {
+                    data: res.data
+                }
+                )
+            // console.log(res);
+            }
+        )
+    }
     exps_showMap(){
         var switchs = document.getElementById("exps_switchMap") as HTMLInputElement;
         var map = document.getElementsByClassName("exps_MapWidget") as HTMLCollectionOf<HTMLElement>;
@@ -26,7 +45,24 @@ export default class ExperienceHeader extends React.Component{
         }
         else{
             //ADD NEW LIST HERE
+            // console.log((document.getElementById('txtPlanPrivacy') as HTMLInputElement).value);
+            
+            axios({
+                url: 'http://backendtpaweb.herokuapp.com/api/plans', 
+                method : "POST",
+                data : {
+                    // "PlansID" : 2,   
+                    "UserID" : 11,
+                    "PlansName" : "asd",
+                    "PrivacyType" : "Public"
 
+                },
+                headers:{"Content-Type": "application/x-www-form-urlencoded"}
+                }
+            ).catch(function(error){
+                console.log(error);
+            })
+            ;
             //CLOSE LIGHTBOX
             (document.getElementsByClassName('exps_saveModal')[0] as HTMLElement).style.display = "none";
             alert('Success Added New List');
@@ -55,6 +91,14 @@ export default class ExperienceHeader extends React.Component{
                         <div className="exps_createPlanTitle">
                             Saved List
                         </div>
+                        {this.state.data.map(e => {
+                            return(
+                                <div className="exps_planList">
+                                    <div className="exps_planName">{e.PlansName}</div>
+                                    <div className="exps_planHeart">♡</div>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
                 <div className="exsH_HeaderWrapper">

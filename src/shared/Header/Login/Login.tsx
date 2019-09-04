@@ -27,7 +27,7 @@ export default class SignUp extends React.Component{
     }
     componentWillMount(){
         // const { fromNotifications } = this.props.location.state
-        if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null){
+        // if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null){
             axios.get('http://backendtpaweb.herokuapp.com/api/users')
                 .then(res => {
                     this.setState(
@@ -38,8 +38,8 @@ export default class SignUp extends React.Component{
                     // console.log(res);
                 }
             )
-            return;
-        }
+            // return;
+        // }
         axios.get('http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'))
             .then(res => {
                     this.setState(
@@ -47,7 +47,7 @@ export default class SignUp extends React.Component{
                             logged : res.data
                         }
                     )
-                    console.log(res.data);
+                    // console.log(res.data);
                 }
             )
     }
@@ -59,8 +59,9 @@ export default class SignUp extends React.Component{
             (document.getElementById('logout_header') as HTMLElement).style.display = "block";
             (document.getElementsByClassName('menu_picture')[0] as HTMLElement).style.display = "block";
             (document.getElementsByClassName('menu_logged')[0] as HTMLElement).style.display = "block";
+            (document.getElementById('plan_header') as HTMLElement).style.display = "block";
             if(localStorage.getItem("UserURL") == "" || localStorage.getItem("UserURL") == null){
-                (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://anno.ai/assets/img/people/no-user-image.gif";
+                (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsZ2jUO2WVf_TyxRvqQR36RTVn6EvaZRTvWdn6naMTn7HD8-guLw";
             }
             else
                 (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://" + localStorage.getItem("UserURL");
@@ -95,7 +96,7 @@ export default class SignUp extends React.Component{
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var boole = re.test(txtEmail.value) as boolean;
         var a = boole == false? 1 : 0;
-        console.log(a);
+        // console.log(a);
         var success = true;
         if(txtEmail.value == ""){
             txtEmail.style.border = "1px solid rgb(217, 57, 0)";
@@ -132,6 +133,7 @@ export default class SignUp extends React.Component{
         if(success == false) return;
         //Login check here
         // console.log(state.length);
+        console.log(localStorage.getItem('UserID') + " <-");
         for(var i = 0; i < state.length; i++){
             if(state[i].Useremail == txtEmail.value && state[i].Password == txtPass.value){
                 alert('success login');
