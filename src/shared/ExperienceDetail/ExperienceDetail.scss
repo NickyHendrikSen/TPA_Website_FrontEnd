@@ -15,6 +15,21 @@
             // margin-top: 5vh;
             height: 70vh;
         }
+        .closeShowAllGallery{
+            height: 20px;
+            button{
+                outline: none;
+                border: none;
+                background-color:transparent;
+                font-size: 20px;
+                cursor: pointer;
+                border-radius: 50%;
+                transition-duration: 0.5s;
+                &:active{
+                    background-color:#0000006e;
+                }
+            }
+        }
     }
     //Review Div
     .expD_review{

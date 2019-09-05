@@ -116,11 +116,17 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             }
         )
     }
+    closeGallery(){
+        (document.getElementsByClassName('expD_ShowAllGalery')[0] as HTMLElement).style.display="none";
+    }
     render(){
         console.log(this.images)
         return(
             <div className="expD_Wrapper">
             <div className="expD_ShowAllGalery" onClick={this.closeShowAll}>
+                <div className="closeShowAllGallery">
+                    <button onClick={this.closeGallery}>X</button>
+                </div>
                 <ImageGallery items={this.images}/>
             </div>
             <div className="amenitiesShowAll">

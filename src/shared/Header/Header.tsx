@@ -17,6 +17,7 @@ export default class Header extends React.Component{
         (document.getElementsByClassName('menu_picture')[0] as HTMLElement).style.display = "none";
         (document.getElementsByClassName('menu_logged')[0] as HTMLElement).style.display = "none";
         (document.getElementById('plan_header') as HTMLElement).style.display = "none";
+        window.location.reload();
     }
     lightBox_reg_show(){
         var lightBox = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;

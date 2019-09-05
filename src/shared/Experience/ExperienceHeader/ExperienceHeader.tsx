@@ -8,6 +8,7 @@ import Header from "../../Header/Header"
 export default class ExperienceHeader extends React.Component{
     state = {
         data:[{
+            PlansID:'',
             PlansName:'',
         }]
     };
@@ -15,14 +16,20 @@ export default class ExperienceHeader extends React.Component{
         if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null) return;
         axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
         .then(res => {
+            if(res.data == null) return;
             this.setState(
-                {
-                    data: res.data
-                }
+                    {
+                        data: res.data
+                    }
                 )
             // console.log(res);
             }
         )
+    }
+    componentDidMount(){
+        if(this.state.data[0].PlansName == ''){
+            (document.getElementsByClassName('exps_planList')[0] as HTMLElement).style.display = "none";    
+        }
     }
     exps_showMap(){
         var switchs = document.getElementById("exps_switchMap") as HTMLInputElement;
@@ -91,7 +98,7 @@ export default class ExperienceHeader extends React.Component{
                         <div className="exps_createPlanTitle">
                             Saved List
                         </div>
-                        {this.state.data.map(e => {
+                        {this.state.data.slice(0,3).map(e => {
                             return(
                                 <div className="exps_planList">
                                     <div className="exps_planName">{e.PlansName}</div>
