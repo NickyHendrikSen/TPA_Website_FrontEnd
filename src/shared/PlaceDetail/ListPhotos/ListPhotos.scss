@@ -1,4 +1,5 @@
 @import"../utils.scss";
+$strip-color: #cccccc;
 
 .top-list-photos{
     height: 70%;
@@ -7,15 +8,63 @@
     align-items: center;
     position: relative;
     .share-modal-wrapper{
-        z-index: 1;
+        overflow: auto;
+        z-index: -100;
+        width: 100%;
         position: absolute;
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        margin: 0 auto;
-        width: 70%;
-        background-color: #464646;
+        padding: 5vw;
+        .share-modal-container{
+            width: 40%;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+            .close-btn-wrapper{
+                margin: 1vw;
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                .close-btn{
+                    cursor: pointer;
+                    border-radius: 50%;
+                    height: 3vw;
+                    width: 3vw;
+                    background-color: white;
+                    border: 0.5px solid white;
+                    font-size: 2vw;
+                    color: rgba(0, 0, 0, 0.5);
+                    outline: none;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+                }
+            }
+            >h1{
+                padding: 0vw 2vw;
+                margin: 1vw 0vw;
+                text-align: left;
+                border-bottom: 1px solid $strip-color;
+            }
+            .share{
+                cursor: pointer;
+                margin: 0px auto;
+                text-align: left;
+                color: rgba(0, 0, 0, 0.75);
+                padding: 1vw 2vw;
+                width: 90%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                border-bottom: 1px solid $strip-color;
+                >i{
+                    padding: 0em 1em;
+                }
+                .text{
+                    text-align: justify;
+                    color: #008489;
+                }
+            }
+        }
     }
     .big-photos{
         height: 100%;
@@ -39,7 +88,6 @@
         position: relative;
         .icons-wrapper{
             position: absolute;
-            height: 100%;
             width: 100%;
             text-align: right;
             .top-icon-wrapper{
@@ -49,14 +97,15 @@
                     outline: none;
                     cursor: pointer;
                     color:  rgba(0, 0, 0, 0.5);
-                    padding: 15%;
+                    padding: 0.5em;
                     margin: 0.5em 0.5em;
                     border-radius: 50%;
                     background-color: transparent;
                     border:none;
                     transition: all 500ms ease-in-out;
+                    background-color: rgba(100, 100, 100, 0.5) !important;
                     &:hover{
-                        background-color: white;
+                        background-color: white !important;
                     }
                 }
             }

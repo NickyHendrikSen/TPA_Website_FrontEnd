@@ -1,5 +1,36 @@
 .expD_Wrapper{
     
+    .expD_ShowAllGalery{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: 5000;
+        // display:flex;
+        justify-content: center;
+        background-color: #575757e8;
+        padding-top: 5vh;
+        display:none;
+        .image-gallery-image{
+            width: 90vw;
+            // margin-top: 5vh;
+            height: 70vh;
+        }
+        .closeShowAllGallery{
+            height: 20px;
+            button{
+                outline: none;
+                border: none;
+                background-color:transparent;
+                font-size: 20px;
+                cursor: pointer;
+                border-radius: 50%;
+                transition-duration: 0.5s;
+                &:active{
+                    background-color:#0000006e;
+                }
+            }
+        }
+    }
     //Review Div
     .expD_review{
         display:flex;
@@ -103,6 +134,54 @@
     header{
     border-bottom: 1px solid #0000002a;
     }
+    .amenitiesShowAll{
+        position: fixed;
+        display:flex;
+        z-index: 5000;
+        background-color: #3a3a3a8c;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        display:none;
+        .amenitiesShowAllContent{
+            text-align: left;
+            background-color:white;
+            width: 50%;
+            button{
+                margin-left: 20px;
+                margin-top: 20px;
+                border-radius: 50%;
+                border: none;
+                outline:none;
+                padding: 5px 10px;
+                float:left;
+                cursor: pointer;
+                background-color:white;
+                transition-duration: 0.3s;
+                &:active{
+                    background-color:rgb(228, 228, 228);
+                }
+            }
+            .amenitiesTitle{
+                font-weight: 600;
+                text-align: center;
+                font-size: 20px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .amenitiesShowAllAmenities{
+                border-radius: 4px;
+                border: 1px solid #484848;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                padding-left: 20px;
+                margin-right: 20px;
+                margin-top: 2px;
+                background-color: #00000007;
+                margin-left: 20px;
+            }
+        }
+    }
     .expD_ContentWrapper{
         width: 100%;
         height: 100%;
@@ -118,7 +197,7 @@
                     position: absolute;
                     top:20px;
                     left:20px;
-                    z-index: 30000;
+                    z-index: 1500;
                     cursor: pointer;
                     transition-duration: 0.3s;
                     font-size: 25px;
@@ -146,8 +225,51 @@
                 color:#484848;
                 font-size: 24px;
                 font-weight: bold;
+                display:flex;
+                justify-content: space-between;
+                .expD_galleryShowAll{
+                    font-size: 16px;
+                    color: #008489;
+                    cursor: pointer;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
             }
             .expD_Description{
+                .expD_galleryImg{
+                    display:flex;
+                    justify-content: center;
+                    .expD_Img{
+                        width: 100%;
+                        img{
+                            border: 2px solid black;
+                            height: 100%;
+                            width: 100%;
+                            cursor: pointer;
+                            &:hover{
+                                opacity: 0.8;
+                                // width: 110%;
+                            }
+                        }
+                    }
+                }
+                .expD_showAllAmenities{
+                    margin-top: 20px;
+                    border-radius: 4px;
+                    padding: 11px 20px;
+                    color:white;
+                    border: none;
+                    outline:none;
+                    font-size: 12px;
+                    font-weight: 600;
+                    background-color:rgb(0, 132, 137);
+                    transition-duration: 0.3s;
+                    cursor: pointer;
+                    &:active{
+                        background-color:rgb(0, 109, 121);
+                    }
+                }
                 .expD_provide{
                     // border-top: 0.8px solid #0f0f0fad;
                     // padding-top: 30px;

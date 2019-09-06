@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import "./Header.scss"
-import logo from "./img/logo.png"
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
-import search_select from "./img/search_select.png"
 import SignUp from "./SignEmail/SignEmail"
 import Login from "./Login/Login"
 import "../Home/HomeContents/GridSystem/GridSystems.scss"
-import Axios from "axios";
+import Axios from "axios"
 
 export default class Header extends React.Component{
 
@@ -37,7 +35,7 @@ export default class Header extends React.Component{
             Axios.get('https://api.myjson.com/bins/ns7n7'),
             Axios.get('https://api.exchangeratesapi.io/latest?base=USD')
         ])
-            .then(Axios.spread((currencyRes, langRes, exchangeRes)=>
+            .then(Axios.spread((currencyRes:any, langRes:any, exchangeRes:any)=>
             {
                 this.setState({
                     currency:currencyRes.data,
@@ -47,6 +45,17 @@ export default class Header extends React.Component{
             }))
     }
 
+    logout(){
+        localStorage.setItem('UserID', "");
+        localStorage.setItem('UserURL', "");
+        (document.getElementById('login_header') as HTMLElement).style.display = "block";
+        (document.getElementById('signup_header') as HTMLElement).style.display = "block";
+        (document.getElementById('logout_header') as HTMLElement).style.display = "none";
+        (document.getElementsByClassName('menu_picture')[0] as HTMLElement).style.display = "none";
+        (document.getElementsByClassName('menu_logged')[0] as HTMLElement).style.display = "none";
+        (document.getElementById('plan_header') as HTMLElement).style.display = "none";
+        window.location.reload();
+    }
     lightBox_reg_show(){
         var lightBox = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
         lightBox[0].style.display = "flex";
@@ -137,8 +146,8 @@ export default class Header extends React.Component{
                             EXPLORE AIRBNB
                         </div>
                         <div className="Header_Search_PickContent">
-                            <Link to="/Places"><button>All</button></Link>
-                            <button>Stays</button>
+                            <Link to="/Places/Australia"><button>All</button></Link>
+                            <Link to="/Places/Australia"><button>Stays</button></Link>
                             <Link to="/Experiences"><button>Experiences</button></Link>
                             <button>Restaurants</button>
                         </div>
@@ -164,10 +173,15 @@ export default class Header extends React.Component{
                                 </div>
                             </div>
                         </div>
-                        <button onClick={this.lightBox_login_show}>Log in</button>
-                        <button onClick={this.lightBox_reg_show}>Sign up</button>
+                        <button id="login_header" onClick={this.lightBox_login_show}>Log in</button>
+                        <button id="signup_header" onClick={this.lightBox_reg_show}>Sign up</button>
+                        <button id="logout_header" onClick={this.logout}>Log out</button>
                         <button>Help</button>
-                        <Link to="become-a-host/room"><button>Become a host</button></Link>
+                        <Link to="become-a-host/room"><button className="menu_logged">Become a host</button></Link>
+                        <Link to="PlanList"><button id="plan_header">Plan List</button></Link>
+                        <div className="menu_picture">
+                            <img src="" alt="" className="menu_pictureImg"/>
+                        </div>
                     </div>
                 </div>
                 <SignUp />

@@ -24,11 +24,32 @@ export class ListPhotos extends Component<IPhotos> {
 
     }
 
+    closeModal(){
+        
+    }
+
     render() {
         return (
             <div className="col-md-12 top-list-photos">
                 <div className="share-modal-wrapper">
-                    asd
+                    <div className="share-modal-container">
+                        <div className="close-btn-wrapper">
+                            <button type="button" className="close-btn" onClick={this.closeModal}>X</button>
+                        </div>
+                        <h1>Share</h1>
+                        <div className="share">
+                            <i className="fab"></i>
+                            <div className="text">Facebook</div>
+                        </div>
+                        <div className="share">
+                            <i className="far fa-envelope"></i>
+                            <div className="text">Email</div>
+                        </div>
+                        <div className="share">
+                            <i className="fas fa-clipboard-list"></i>
+                            <div className="text">Copy to clipboard</div>
+                        </div>
+                    </div>
                 </div>
                 <div className="col-md-4 big-photos">
                     <div className="col-md-12 big-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>

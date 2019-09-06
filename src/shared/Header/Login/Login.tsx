@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {BrowserRouter as Router, Route, Link} from "react-router-dom"
 import "./Login.scss"
 import axios from "axios"
@@ -7,6 +7,7 @@ import facebook_icon from "../img/facebook_img.png"
 import google_icon from "../img/google_icon.png"
 import email_icon from "../img/email_png.png"
 import Facebook from "./components/Facebook"
+import { isUserWhitespacable } from "@babel/types";
 
 export default class SignUp extends React.Component{
 
@@ -15,23 +16,62 @@ export default class SignUp extends React.Component{
             UserID:'',
             Username:'',
             Useremail:'',
-            Password:''
-        }]
+            Password:'',
+            UserThumbnailURL:'',
+        }],
+        logged:{
+            UserID:'',
+            Username:'',
+            UserThumbnailURL:'',
+        }
     }
     componentWillMount(){
         // const { fromNotifications } = this.props.location.state
-        axios.get('http://backendtpaweb.herokuapp.com/api/users')
+        // if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null){
+            axios.get('http://backendtpaweb.herokuapp.com/api/users')
+                .then(res => {
+                    this.setState(
+                        {
+                            data: res.data
+                        }
+                    )
+                    // console.log(res);
+                }
+            )
+            // return;
+        // }
+        axios.get('http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'))
             .then(res => {
-                this.setState(
-                    {
-                        data: res.data
-                    }
-                )
-            }
-        )
+                    this.setState(
+                        {
+                            logged : res.data
+                        }
+                    )
+                    // console.log(res.data);
+                }
+            )
     }
+    componentDidMount(){
+        // console.log(localStorage.getItem('UserID'))
+        if(localStorage.getItem('UserID') != null && localStorage.getItem('UserID') != ""){
+            (document.getElementById('login_header') as HTMLElement).style.display = "none";
+            (document.getElementById('signup_header') as HTMLElement).style.display = "none";
+            (document.getElementById('logout_header') as HTMLElement).style.display = "block";
+            (document.getElementsByClassName('menu_picture')[0] as HTMLElement).style.display = "block";
+            (document.getElementsByClassName('menu_logged')[0] as HTMLElement).style.display = "block";
+            (document.getElementById('plan_header') as HTMLElement).style.display = "block";
+            if(localStorage.getItem("UserURL") == "" || localStorage.getItem("UserURL") == null){
+                (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsZ2jUO2WVf_TyxRvqQR36RTVn6EvaZRTvWdn6naMTn7HD8-guLw";
+            }
+            else
+                (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://" + localStorage.getItem("UserURL");
+            
+        }
+    }
+
     lightBox_login_hide(){
-        var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;        lightBox[0].style.display = "none";
+        var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;        
+        lightBox[0].style.display = "none";
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
         body.style.position="relative";
     }
@@ -47,7 +87,7 @@ export default class SignUp extends React.Component{
             btn[0].innerText = "Hide Password";
         }
     }
-    login_validate(){
+    login_validate(state : any){
         var txtEmail = document.getElementById("login_txtEmail") as HTMLInputElement;
         var txtPass = document.getElementById("login_txtPass") as HTMLInputElement;
         var errMessage = document.getElementsByClassName("login_errMessage") as HTMLCollectionOf<HTMLElement>;
@@ -56,7 +96,7 @@ export default class SignUp extends React.Component{
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var boole = re.test(txtEmail.value) as boolean;
         var a = boole == false? 1 : 0;
-        console.log(a);
+        // console.log(a);
         var success = true;
         if(txtEmail.value == ""){
             txtEmail.style.border = "1px solid rgb(217, 57, 0)";
@@ -92,12 +132,38 @@ export default class SignUp extends React.Component{
         }
         if(success == false) return;
         //Login check here
-        this.state.data.map(users=>{
-            if(users.Useremail == txtEmail.value && users.Password == txtPass.value){
+        // console.log(state.length);
+        console.log(localStorage.getItem('UserID') + " <-");
+        for(var i = 0; i < state.length; i++){
+            if(state[i].Useremail == txtEmail.value && state[i].Password == txtPass.value){
                 alert('success login');
+                var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;        lightBox[0].style.display = "none";
+                var body = document.getElementsByTagName("Body")[0] as HTMLElement;
+                body.style.position="relative";
+                localStorage.setItem('UserID', state[i].UserID);
+                localStorage.setItem('UserURL', state[i].UserThumbnailURL);
+                (document.getElementById('login_header') as HTMLElement).style.display = "none";
+                (document.getElementById('signup_header') as HTMLElement).style.display = "none";
+                (document.getElementById('logout_header') as HTMLElement).style.display = "block";
+                (document.getElementsByClassName('menu_picture')[0] as HTMLElement).style.display = "block";
+                (document.getElementsByClassName('menu_logged')[0] as HTMLElement).style.display = "block";
+                if(state[i].UserThumbnailURL == "" || state[i].UserThumbnailURL == null){
+                    (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://anno.ai/assets/img/people/no-user-image.gif";
+                }
+                else
+                    (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://" + state[i].UserThumbnailURL;
+            
+                    window.location.reload();
                 return;
             }
-        })
+        }
+        // this.state.data.map(users=>{
+            // if(users.Useremail == txtEmail.value && users.Password == txtPass.value){
+            //     alert('success login');
+            //     return;
+            // }
+        // })
+        
         alert('failed login');
     }
 
@@ -131,19 +197,19 @@ export default class SignUp extends React.Component{
                         <div className="login_errMessage"></div>
                         <div className="login_rememShow">
                             <div className="login_remem">
-                                <input type="checkbox" name="" id=""value=""/>Remember Me
+                                {/* <input type="checkbox" name="" id=""value=""/>Remember Me */}
                             </div>
                             <div className="login_showPass" onClick={this.login_showPassword}>
                             Show Password
                             </div>
                         </div>
-                        <div className="login_login" onClick={this.login_validate}>
+                        <div className="login_login" onClick={() => this.login_validate(this.state.data)}>
                             <span>
                                 Log in
                             </span>
                         </div>
                         <div className="login_forgotPassword">
-                            Forgot password?
+                            {/* Forgot password? */}
                         </div>
                         <hr/>
                         <div className="login_reg">

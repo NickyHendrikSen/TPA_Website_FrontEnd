@@ -3,11 +3,7 @@ import "./MediumCards.scss"
 import '../../GridSystem/GridSystems.scss'
 import StarRatings from 'react-star-ratings';
 import { Link } from 'react-router-dom';
-import Axios from 'axios';
-import $ from 'jquery';
-import { hostname } from 'os';
-import { url } from 'inspector';
-import Places from '../../../../Places/Places';
+import Axios from "axios"
 
 export class MediumCards extends Component{
     
@@ -56,7 +52,7 @@ export class MediumCards extends Component{
             Axios.get('https://backendtpaweb.herokuapp.com/api/toptenrooms'),
             Axios.get('https://geoip-db.com/json')
         ])
-        .then(Axios.spread((roomRes, ipRes) => {
+        .then(Axios.spread((roomRes:any, ipRes:any) => {
             this.setState(
                     {
                         data:roomRes.data,

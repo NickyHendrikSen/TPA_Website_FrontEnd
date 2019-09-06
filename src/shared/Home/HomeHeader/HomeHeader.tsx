@@ -3,6 +3,7 @@ import "./HomeHeader.scss"
 import {BrowserRouter as Router, Link} from "react-router-dom"
 import downArrow from "./img/down-chevron.png"
 import bg from "./img/headerBg1.jpg"
+import Axios from "axios";
 
 export default class Home extends React.Component{
     // constructor(props : any){
@@ -21,6 +22,30 @@ export default class Home extends React.Component{
     //     InputWrapperDiv.classList.remove("homeSearchLocationWhereFocused");   //remove the class
     //     InputWrapperDiv.classList.add("homeSearchLocationWhere");   //add the class
     // }
+    state={
+        callback:
+            {
+                country_code:'',
+                country_name:'',
+                city:'',
+                postal:'',
+                latitude:'',
+                longitude:'',
+                IPv4:'',
+                state:''
+            }
+    }
+    componentWillMount(){
+        Axios.get('https://geoip-db.com/json')
+        .then(ipRes => {
+            this.setState(
+                    {
+                        callback:ipRes.data,
+                        isLoading:false
+                    }
+                )
+        })
+    }
     homeSearch_displayGuest(){
         var show = document.getElementsByClassName("homeSearch_addGuestWrapper") as HTMLCollectionOf<HTMLElement>;
         if(show[0].style.display == 'block')
@@ -223,7 +248,7 @@ export default class Home extends React.Component{
                     <div className="homeSearchWrapper">
                         <div className="homeSearch_title">
                         {/* The link is temporary */}
-                        <h1>Book unique places to <Link to = "/stay">stay</Link> and things to do.</h1>
+                        <h1>Book unique places to <Link to = "/Places/Australia">stay</Link> and things to do.</h1>
                         </div>
                         {/* inputs wrapper */}
                         <div className="homeSearchLocationWrapper">
@@ -353,7 +378,7 @@ export default class Home extends React.Component{
                         </div>
                         <div className="homeSearch_SearchButtonWrapper">
                             {/* <Router> */}
-                                <Link to="/Places">
+                                <Link to="/Places/Australia">
                                     <button className="homeSearch_SearchButton">
                                         Search
                                     </button>
@@ -361,9 +386,6 @@ export default class Home extends React.Component{
                             {/* </Router> */}
                         </div>
                         {/* Search Button */}
-                    </div>
-                    <div className="description">
-                        Introducing Aivbnb.com
                     </div>
                 </div>
             </div>
