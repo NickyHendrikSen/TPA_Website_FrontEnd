@@ -27,6 +27,14 @@
                 .exps_planHeart{
                     font-size: 50px;
                     color:white;
+                    cursor:pointer;
+                    transition-duration: 0.5s;
+                    &:hover{
+                        color:pink;
+                    }
+                    &:active{
+                        color:red;
+                    }
                 }
             }
             .exps_createPlanTitle{

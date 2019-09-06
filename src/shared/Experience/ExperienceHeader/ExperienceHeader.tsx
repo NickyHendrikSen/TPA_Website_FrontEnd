@@ -12,6 +12,7 @@ export default class ExperienceHeader extends React.Component{
             PlansName:'',
         }]
     };
+    none = 0
     componentWillMount(){
         if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null) return;
         axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
@@ -22,14 +23,19 @@ export default class ExperienceHeader extends React.Component{
                         data: res.data
                     }
                 )
+                if(res.data[0].PlansName == ''){
+                    this.none = 1;
+                }
             // console.log(res);
             }
         )
     }
     componentDidMount(){
-        if(this.state.data[0].PlansName == ''){
+        // if(this.state.data[0].PlansName == ''){
+        if(this.none == 1){
             (document.getElementsByClassName('exps_planList')[0] as HTMLElement).style.display = "none";    
         }
+        // }
     }
     exps_showMap(){
         var switchs = document.getElementById("exps_switchMap") as HTMLInputElement;
@@ -75,6 +81,33 @@ export default class ExperienceHeader extends React.Component{
             alert('Success Added New List');
         }
     }
+    love(Plansid : string){
+        var a = (document.getElementsByClassName('exps_planHeart')) as HTMLCollectionOf<HTMLElement>;
+        for(let i = 0; i < a.length; i++){
+            if(a[i].style.color == "red")
+            return;
+        }
+        if((document.getElementById("love" + Plansid) as HTMLElement).style.color == "white"){
+            //insert
+            (document.getElementById("love" + Plansid) as HTMLElement).style.color = "red";
+            axios({
+                url: 'http://backendtpaweb.herokuapp.com/api/experience-plans', 
+                method : "POST",
+                data : {
+                    "ExperienceID": localStorage.getItem('ExperienceChosen'),
+                    "PlansID": Plansid
+                },
+                headers:{"Content-Type": "application/x-www-form-urlencoded"}
+                }
+            );
+            alert('Experience Saved');
+            window.location.reload();
+        }
+        else{
+            //delete
+            (document.getElementById("love" + Plansid) as HTMLElement).style.color = "white";
+        }
+    }
     closeSaveModal(){
         (document.getElementsByClassName('exps_saveModal')[0] as HTMLElement).style.display = "none";
     }
@@ -98,11 +131,11 @@ export default class ExperienceHeader extends React.Component{
                         <div className="exps_createPlanTitle">
                             Saved List
                         </div>
-                        {this.state.data.slice(0,3).map(e => {
+                        {this.state.data.map(e => {
                             return(
                                 <div className="exps_planList">
                                     <div className="exps_planName">{e.PlansName}</div>
-                                    <div className="exps_planHeart">♡</div>
+                                    <div className="exps_planHeart" id={"love" + e.PlansID} onClick={() => this.love(e.PlansID)}>♡</div>
                                 </div>
                             )
                         })}

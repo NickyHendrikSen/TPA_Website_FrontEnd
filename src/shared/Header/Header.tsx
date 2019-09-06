@@ -173,14 +173,14 @@ export default class Header extends React.Component{
                                 </div>
                             </div>
                         </div>
-                        <button id="login_header" onClick={this.lightBox_login_show}>Log in</button>
-                        <button id="signup_header" onClick={this.lightBox_reg_show}>Sign up</button>
-                        <button id="logout_header" onClick={this.logout}>Log out</button>
-                        <button>Help</button>
+                        <button className="buttonRight" id="login_header" onClick={this.lightBox_login_show}>Log in</button>
+                        <button className="buttonRight" id="signup_header" onClick={this.lightBox_reg_show}>Sign up</button>
+                        <button className="buttonRight" id="logout_header" onClick={this.logout}>Log out</button>
+                        <button className="buttonRight">Help</button>
                         <Link to="become-a-host/room"><button className="menu_logged">Become a host</button></Link>
                         <Link to="PlanList"><button id="plan_header">Plan List</button></Link>
                         <div className="menu_picture">
-                            <img src="" alt="" className="menu_pictureImg"/>
+                            <img src="" alt="" className="menu_pictureImg" onClick={() => window.location.href="/Profile"}/>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,49 @@
+.savedPlan_contentWrapper{
+    background-color:#b9b9b975;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .savedPlan_content{
+        width: calc(33.3333% - 20px);
+        display:inline-block;
+        text-align: left;
+        margin-left: 20px;
+        padding-bottom: 20px;
+        border: 1px solid black;
+        margin-bottom: 20px;
+        .savedPlan_planName{
+            background-color:rgb(179, 179, 179);
+            color:black;
+        }
+        .savedPlan_exp{
+            
+        }
+        .savedPlan_room{
+    
+        }
+        transition-duration: 0.3s;
+        cursor: pointer;
+        &:hover{
+            opacity: 0.5;
+
+        }
+    }
+}
+.savedPlan_Title{
+    font-size: 20px;
+    color:#008489;
+    text-align: left;
+    font-weight: bold;
+    margin: 10px;
+}
+@media only screen and (max-width: 768px) {
+    .savedPlan_content {
+        width: calc(50% - 20px) !important;
+        // background-color:red;   
+    }
+}
+@media only screen and (max-width: 425px) {
+    .savedPlan_content {
+        width: calc(100% - 20px) !important;
+        // background-color:red;   
+    }
+}

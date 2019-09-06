@@ -1,0 +1,110 @@
+.User_Wrapper{
+    background-color:rgb(199, 199, 199);
+    padding-top: 10px;
+}
+.UserHeader{
+    margin-top: 20px;
+    margin-left: 50px;
+    display:flex;
+    justify-content: row;
+    img{
+        display:inline-block;
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+    }
+    .UserName{
+        display:inline-block;
+        font-size: 40px;
+        font-weight: bold;
+        color:black;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+}
+hr{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.User_FacebookLink{
+    font-size: 20px;
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 20px;
+    color: #4568b2;
+}
+.login_fb{
+    background-color: #4568b2;
+    color:white;
+    border-radius: 4px;
+    padding: 10px 25px;
+    text-align: left;
+    // margin-top: 10px;
+    margin-left: 50px;
+    border:none;
+    transition-duration: 0.5s;
+    outline:none;
+    cursor: pointer;
+    font-size: 14px;
+    &:active{
+        background-color:#324368;
+    }
+}
+div{
+    text-align: left;
+}
+.User_GoogleLink{
+    margin-left: 50px;
+    margin-top: 20px;
+    color: #34A853;
+    font-size: 20px;
+}
+.User_Google{
+    border:none;
+    border-radius: 4px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    padding: 10px 25px;
+    font-size: 14px;
+}
+.User_ChangePasswordTitle{
+    font-size: 26px;
+    margin-left: 50px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: rgb(85, 84, 84);
+
+}
+.User_OldPassword, .User_NewPassword{
+    margin-left: 50px;
+    margin-top: 10px;
+    input{
+        border-radius: 4px;
+        border: 1px solid black;
+        margin-left: 5px;
+        padding: 5px;
+        width: 30%;
+        font-size: 15px;
+    }
+}
+.User_OldPasswordErr, .User_NewPasswordErr{
+    color:red;
+    font-size: 15px;
+    margin-left: 50px;
+    display:none;
+}
+.User_ChangePasswordBtn{
+    border-radius: 4px;
+    color:white;
+    background-color: #008489;
+    border:none;
+    outline:none;
+    padding: 10px 20px;
+    margin-left: 50px;  
+    margin-top: 5px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+    &:active{
+        background-color: #015457;
+    }
+}
