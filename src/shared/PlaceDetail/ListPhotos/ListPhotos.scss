@@ -5,6 +5,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    .share-modal-wrapper{
+        z-index: 1;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        width: 70%;
+        background-color: #464646;
+    }
     .big-photos{
         height: 100%;
         display: flex;
@@ -24,6 +36,31 @@
         height: 100%;
         display: flex;
         flex-wrap: wrap;
+        position: relative;
+        .icons-wrapper{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            text-align: right;
+            .top-icon-wrapper{
+                display: flex;
+                justify-content: flex-end;
+                button{
+                    outline: none;
+                    cursor: pointer;
+                    color:  rgba(0, 0, 0, 0.5);
+                    padding: 15%;
+                    margin: 0.5em 0.5em;
+                    border-radius: 50%;
+                    background-color: transparent;
+                    border:none;
+                    transition: all 500ms ease-in-out;
+                    &:hover{
+                        background-color: white;
+                    }
+                }
+            }
+        }
         .small-photo{
             @include photo-setting;
             height: 50%;

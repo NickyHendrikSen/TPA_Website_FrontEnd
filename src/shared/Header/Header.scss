@@ -81,6 +81,7 @@ header{
             font-size: 14px;
             .popup-list-wrapper{
                 margin: 0.5em;
+                z-index: 1;
                 .buttons{
                     cursor: pointer;
                     color: black;
