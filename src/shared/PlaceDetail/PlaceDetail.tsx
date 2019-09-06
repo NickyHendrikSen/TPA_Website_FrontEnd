@@ -1,7 +1,7 @@
 import React from "react"
 import Header from "../Header/Header"
 import "./PlaceDetail.scss"
-import axios from 'axios'
+import Axios from "axios"
 import {RouteComponentProps, withRouter} from "react-router";
 import 'react-fa-icon'
 import '../Places/PlacesGridSystem/PlacesGridSystems.scss';
@@ -60,13 +60,13 @@ export default class PlaceDetail extends React.Component <RouteComponentProps<an
     componentWillMount(){
         let id: any = this.props.match.params.id
         // const { fromNotifications } = this.props.location.state
-        axios.get('http://backendtpaweb.herokuapp.com/api/rooms/' + id)
+        Axios.get('http://backendtpaweb.herokuapp.com/api/rooms/' + id)
             .then(res => {
                 this.setState(
-                    {
-                        data: res.data,
-                        isLoading: false
-                    }
+                        {
+                            data: res.data,
+                            isLoading: false
+                        }
                     )
                 }
            )

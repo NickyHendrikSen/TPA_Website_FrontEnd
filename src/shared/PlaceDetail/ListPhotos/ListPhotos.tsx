@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import '../../Places/PlacesGridSystem/PlacesGridSystems.scss';
 import './ListPhotos.scss'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import Axios from 'axios';
 
 interface IPhotos{
     url:any
@@ -9,9 +11,24 @@ interface IPhotos{
 export class ListPhotos extends Component<IPhotos> {
 
     state = {
-        url: this.props.url
+        url: this.props.url,
+        plans:{
+            PlansID:'',
+            PlansName:'',
+            UserID:'',
+            PrivacyType:'',
+            ExperienceID:[],
+            RoomID:[],
+        }
     }
     
+    componentWillMount(){
+        Axios.get('http://backendtpaweb.herokuapp.com/api/plans')
+            .then(res => ({
+                plans:res.data
+            }))
+    }
+
     doViewPhotos(){
 
     }
@@ -21,11 +38,17 @@ export class ListPhotos extends Component<IPhotos> {
     }
 
     doShare(){
+        let modal = document.getElementsByClassName("share-modal-wrapper") as HTMLCollectionOf<HTMLElement>
 
+        modal[0].style.display = "flex";
+        modal[0].style.zIndex = "1";
     }
 
     closeModal(){
-        
+        let modal = document.getElementsByClassName("share-modal-wrapper") as HTMLCollectionOf<HTMLElement>
+
+        modal[0].style.display = "none";
+        modal[0].style.zIndex = "-1";        
     }
 
     render() {
@@ -45,10 +68,12 @@ export class ListPhotos extends Component<IPhotos> {
                             <i className="far fa-envelope"></i>
                             <div className="text">Email</div>
                         </div>
-                        <div className="share">
-                            <i className="fas fa-clipboard-list"></i>
-                            <div className="text">Copy to clipboard</div>
-                        </div>
+                        <CopyToClipboard text={window.location.href}>
+                            <div className="share">
+                                <i className="fas fa-clipboard-list"></i>
+                                <div className="text">Copy to clipboard</div>
+                            </div>
+                        </CopyToClipboard>
                     </div>
                 </div>
                 <div className="col-md-4 big-photos">

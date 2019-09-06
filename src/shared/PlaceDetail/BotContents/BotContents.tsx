@@ -2,6 +2,7 @@ import "./BotContents.scss"
 import StarRatings from 'react-star-ratings';
 import React, { Component } from 'react'
 import DetailPageMap from "./DetailPageMap/DetailPageMap";
+import "google-translate";
 
 interface IProps{
     data:{
@@ -57,7 +58,7 @@ export class BotContents extends Component<IProps> {
 
     reset(){
         var page = document.getElementsByClassName("pageNumber") as HTMLCollectionOf<HTMLElement>;
-
+        
         for(let i = 0; i < Math.ceil(this.state.data.reviews.length/this.state.reviewPerPage); i++){
             page[i].style.backgroundColor = "white";
             page[i].style.color = "teal";
@@ -83,6 +84,20 @@ export class BotContents extends Component<IProps> {
         }
     }
 
+    doTranslate(text:IProps){
+        // console.log("asd")
+        // translate(text.data.reviews[0].comments, {to:'en'})
+        //     .then((res:any) => {console.log(res)})
+        // console.log(text.data.reviews[0].comments)
+        // var googleTranslate = require('google-translate')(apikey);
+        // for(let i = 0; i < text.data.reviews.length; i++){
+            
+        //     googleTranslate.translate(this.state.data.reviews[i].comments, 'es', (err:any, translation:any) => {
+        //         console.log(translation);
+        //     })
+        // }
+    }
+    
     render() {
         this.handleClick.bind(this.state);
         const{data, currentPage, reviewPerPage} = this.state
@@ -169,7 +184,7 @@ export class BotContents extends Component<IProps> {
                             </div>
                         </div>
                         <div className="translate-btn">
-                            <button type="button" className="translate">Translate to</button>
+                            <button type="button" className="translate" onClick={() => this.doTranslate(this.state)}>Translate to</button>
                         </div>
                     </div>
                     <div className="reviews-wrapper">

@@ -2,7 +2,7 @@ import React from "react"
 import {Link, RouteComponentProps} from "react-router-dom"
 import "./Places.scss"
 import "./PlacesGridSystem/PlacesGridSystems.scss";
-import axios from 'axios'
+import axios from "axios";
 import StarRatings from 'react-star-ratings';
 import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
 import "./pagination/pagination.scss"
@@ -36,22 +36,35 @@ class Places extends React.Component<RouteComponentProps<any>>{
         isLoading: true,
         currentPage: 1,
         placesPerPage: 5,
+        plans:[
+            {
+                PlansID:'',
+                UserID:'',
+                PlansName:'',
+                PrivacyType:'',
+                ExperienceID:'',
+                RoomID:'',
+            }
+        ]
     }
 
     componentWillMount(){
         // const { fromNotifications } = this.props.location.state
         let country: any = this.props.match.params.country
         console.log(country)
-        axios.get('http://backendtpaweb.herokuapp.com/api/rooms/place/'+country)
-            .then(res => {
-                this.setState(
+        axios.all([
+            axios.get('http://backendtpaweb.herokuapp.com/api/rooms/place/'+country),
+            axios.get('http://backendtpaweb.herokuapp.com/api/plans/11')
+        ])
+        .then(axios.spread((roomRes:any, planRes:any) => {
+            this.setState(
                     {
-                        data: res.data,
-                        isLoading: false
+                        data:roomRes.data,
+                        plans:planRes.data,
+                        isLoading:false
                     }
                 )
-            }
-        )
+        }))
     }
 
     clickState = {
@@ -81,22 +94,73 @@ class Places extends React.Component<RouteComponentProps<any>>{
         }
     }
 
+    insertRoomPlan(idx : number){
+        console.log("asd");
+        let id = Number(this.state.data[idx]._id)
+        let plansid = Number(this.state.plans[idx].PlansID)
+        axios({
+            method: 'post',
+            url: 'http://backendtpaweb.herokuapp.com/api/room-plans',
+            data: {
+                RoomID:id,
+                PlansID:plansid
+            },
+                headers:{"Content-Type": "application/x-www-form-urlencoded"}
+            }
+        );
+        // axios.('http://backendtpaweb.herokuapp.com/api/room-plans', {
+        //     RoomID:this.state.data[idx]._id,
+        //     PlansID:this.state.plans[idx].PlansID
+        // })
+    }
+
+    deleteRoomPlan(roomID : string, plansID : string){
+        console.log("qwe");
+        axios.delete('http://backendtpaweb.herokuapp.com/api/room-plans/'+roomID+'/'+plansID)
+    }
+
     toggleLove = (idx : number) => {
         var fari = document.getElementsByClassName("fa-heart") as HTMLCollectionOf<HTMLElement>;
-
+        let modal = document.getElementsByClassName("plan-list-wrapper") as HTMLCollectionOf<HTMLElement>
+        
         if(fari[idx].className === "fas fa-heart"){
             fari[idx].className = "far fa-heart";
-            //do save to love list
+            
         }
         else{
             fari[idx].className = "fas fa-heart";
-            //remove love from lova list
+            modal[0].style.display = "flex";
+            modal[0].style.zIndex = "1";
+            
         }
+    }
+
+    insertPlan(idx : number){
+        var fari = document.getElementsByClassName("fa-heart") as HTMLCollectionOf<HTMLElement>;
+        let modal = document.getElementsByClassName("plan-list-wrapper") as HTMLCollectionOf<HTMLElement>
+        
+        if(fari[idx].className === "fas fa-heart"){
+            fari[idx].className = "far fa-heart";
+            this.insertRoomPlan(idx)
+        }
+        else{
+            fari[idx].className = "fas fa-heart";
+            modal[0].style.display = "flex";
+            modal[0].style.zIndex = "1";
+            this.deleteRoomPlan(this.state.data[idx]._id, this.state.plans[idx].PlansID)
+        }
+    }
+
+    closeModal(){
+        let modal = document.getElementsByClassName("plan-list-wrapper") as HTMLCollectionOf<HTMLElement>
+
+        modal[0].style.display = "none";
+        modal[0].style.zIndex = "-1";        
     }
 
     render(){
         this.handleClick.bind(this.state);
-        const {data, currentPage, placesPerPage} = this.state;
+        const {data, currentPage, placesPerPage, plans} = this.state;
 
         const indexOfLastData = currentPage * placesPerPage;
         const indexOfFirstData = indexOfLastData - placesPerPage;
@@ -161,12 +225,32 @@ class Places extends React.Component<RouteComponentProps<any>>{
             )
         });
 
+        const allPlans = plans.map((plans, index) => {
+            return (
+                <div className="plans-container" key={index}>
+                    <div className="plans">
+                        {plans.PlansName}
+                    </div>
+                    <i className="far fa-heart icon" onClick={() =>this.insertPlan(index)}></i>
+                </div>
+            )
+        })
+
         if (this.state.isLoading) {
             return ( <div>Loading...</div> )
         }
         
         return(
             <div className="col-md-12 places_Wrapper">
+                <div className="plan-list-wrapper">
+                    <div className="plan-list-container">
+                        <div className="close-btn-wrapper">
+                            <button type="button" className="close-btn" onClick={this.closeModal}>X</button>
+                        </div>
+                        <h1>Save Plan</h1>
+                        {allPlans}
+                    </div>
+                </div>
                 <div className="col-md-6 contents_wrapper">
                     <div className="list-wrapper">
                         <div className="list-container">
