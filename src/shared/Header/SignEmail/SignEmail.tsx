@@ -124,6 +124,7 @@ export default class SignEmail extends React.Component{
             }
         );
             alert('Register Success');
+            window.location.reload();
             this.regE_close();
         }
     }

@@ -1,9 +1,12 @@
-import FacebookLogin from "react-facebook-login"
-import React from "react"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import GoogleLogin from 'react-google-login';
 import axios from "axios"
-import { CLIENT_RENEG_LIMIT } from "tls";
-
-export default class Facebook extends React.Component{
+// or
+// import { GoogleLogin } from 'react-google-login';
+ 
+ 
+export default class Google extends React.Component{
     state = {
         isLoggedIn: false,
         userID: '',
@@ -17,29 +20,11 @@ export default class Facebook extends React.Component{
             Password:''
         }]
     }
-    componentWillMount(){
-        axios.get('http://backendtpaweb.herokuapp.com/api/users')
-            .then(res => {
-                this.setState(
-                    {
-                        data: res.data
-                    }
-                )
-            }
-        )
-    }
-    responseFacebook = (response:any)=>{
-        this.setState({
-            isLoggedIn: true,
-            userID: response.userID,
-            name: response.name,
-            email: response.email,
-            picture: response.picture.data.url
-        });
+    responseGoogle = (response : any) => {
+        this.state.email = response.profileObj.email
         var found = false;
         this.state.data.map(users=>{
-            console.log(users.Useremail + " " + this.state.email)
-            if(users.Useremail == this.state.email){
+            if(users.Useremail == response.profileObj.email){
                 localStorage.setItem('UserID', users.UserID);
                 (document.getElementById('login_header') as HTMLElement).style.display = "none";
                 (document.getElementById('signup_header') as HTMLElement).style.display = "none";
@@ -64,30 +49,29 @@ export default class Facebook extends React.Component{
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
         body.style.position="relative";
         (document.getElementById('regE_txtEmail') as HTMLInputElement).value = this.state.email
+        // console.log(response)
     }
-
-    componentClicked = () =>{
-        console.log('clicked');
+    componentWillMount(){
+        axios.get('http://backendtpaweb.herokuapp.com/api/users')
+            .then(res => {
+                this.setState(
+                    {
+                        data: res.data
+                    }
+                )
+            }
+        )
     }
     render(){
-        let fbContent;
-        if(this.state.isLoggedIn){
-            fbContent = null;
-        }
-        else{
-            fbContent=(<FacebookLogin 
-                appId = "393167704736501" 
-                autoLoad={false} 
-                fields="name,email,picture" 
-                onClick={this.componentClicked} 
-                callback={this.responseFacebook}
-                icon="fa-facebook-f"
-                textButton="&nbsp;&nbsp;&nbsp;Continue with facebook"
-                cssClass="login_fb"
-                />)
-        }
         return(
-            <div>{fbContent}</div>
+            <GoogleLogin
+                clientId="155522261846-9c6bo7ru2d6beihpve134ile2m0m3bs7.apps.googleusercontent.com"
+                buttonText="Continue with Google"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+                cookiePolicy={'single_host_origin'}
+            />
+            // document.getElementById('googleButton')
         )
     }
 }

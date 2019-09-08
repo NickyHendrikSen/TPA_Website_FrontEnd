@@ -81,7 +81,7 @@ export default class Facebook extends React.Component{
                 onClick={this.componentClicked} 
                 callback={this.responseFacebook}
                 icon="fa-facebook-f"
-                textButton="&nbsp;&nbsp;&nbsp;Continue with facebook"
+                textButton="&nbsp;&nbsp;&nbsp;Link Facebook"
                 cssClass="login_fb"
                 />)
         }

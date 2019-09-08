@@ -7,6 +7,7 @@ import facebook_icon from "../img/facebook_img.png"
 import google_icon from "../img/google_icon.png"
 import email_icon from "../img/email_png.png"
 import Facebook from "./components/Facebook"
+import Google from "./components/Google"
 import { isUserWhitespacable } from "@babel/types";
 
 export default class SignUp extends React.Component{
@@ -182,12 +183,13 @@ export default class SignUp extends React.Component{
                                 Continue with Facebook
                             </span> */}
                         {/* </div> */}
-                        <div className="login_google">
+                        {/* <div className="login_google">
                             <img src={google_icon} alt=""/>
                             <span>
                                 Continue with Google
                             </span>
-                        </div>
+                        </div> */}
+                        <Google />
                         <div className="login_or">
                             <span>or</span>
                         </div>

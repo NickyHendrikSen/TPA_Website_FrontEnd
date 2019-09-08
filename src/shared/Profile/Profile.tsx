@@ -3,6 +3,7 @@ import axios from "axios"
 import "./Profile.scss"
 import Header from "../Header/Header"
 import Facebook from "./components/Facebook"
+import Google from "./components/Google"
 
 export default class Profile extends React.Component{
     state={
@@ -78,9 +79,12 @@ export default class Profile extends React.Component{
                     <div className="User_GoogleLink">
                         Google Link : Unlink
                     </div>
-                    <button className="User_Google">
+                    <div className="User_Google">
+                        <Google />
+                    </div>
+                    {/* <button className="User_Google">
                         Continue with Google
-                    </button>
+                    </button> */}
                     <hr/>
                     <div className="User_ChangePasswordTitle">
                         Change Password
