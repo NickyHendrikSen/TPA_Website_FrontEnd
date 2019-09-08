@@ -12,7 +12,14 @@ export default class Profile extends React.Component{
             Username:'',
             Useremail:'',
             Password:'',
-            UserThumbnailURL:''
+            UserThumbnailURL:'',
+            FacebookEmail:'',
+            GoogleEmail:''
+        },
+        login:{
+            Loginhistory:{
+                LastLoginTime:'',
+            }
         }
     }
     componentWillMount(){
@@ -30,6 +37,17 @@ export default class Profile extends React.Component{
                 // console.log(res.data);
             }
         )
+        axios.get('http://backendtpaweb.herokuapp.com/api/history-show-last/' + localStorage.getItem('UserID'))
+            .then(res => {
+                this.setState(
+                    {
+                        login : res.data
+                    }
+                )
+                // console.log(res.data);
+            }
+        )
+        
     }
     changePasswordValidate = () =>{
         var oldP = (document.getElementById('oldPassword') as HTMLInputElement).value;
@@ -59,6 +77,18 @@ export default class Profile extends React.Component{
         }
         if(success == false) return;
         //Update password
+        axios({
+            url: 'http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'), 
+            method : "POST",
+            data : {
+                Password: newP + "",
+                FacebookEmail: this.state.profile.FacebookEmail + "",
+                GoogleEmail: this.state.profile.GoogleEmail + ""
+            },
+            headers:{"Content-Type": "application/x-www-form-urlencoded"}
+            }
+        );
+        alert('Password successfully changed!')
     }
     render(){
         return(
@@ -71,13 +101,16 @@ export default class Profile extends React.Component{
                             {this.state.profile.Username}
                         </div>
                     </div>
+                    <div className = "LastLoginTime">
+                        Last login time : {this.state.login.Loginhistory.LastLoginTime}
+                    </div>
                     <hr/>
                     <div className="User_FacebookLink">
-                        Facebook Link : Unlink
+                        Facebook Email : {this.state.profile.FacebookEmail == "Not Set" ? "Unlink" : this.state.profile.FacebookEmail}
                     </div>
-                    <Facebook />
+                        <Facebook />
                     <div className="User_GoogleLink">
-                        Google Link : Unlink
+                        Google Email : {this.state.profile.GoogleEmail == "Not Set" ? "Unlink" : this.state.profile.GoogleEmail}
                     </div>
                     <div className="User_Google">
                         <Google />

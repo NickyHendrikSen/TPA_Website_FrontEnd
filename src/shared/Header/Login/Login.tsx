@@ -154,7 +154,7 @@ export default class SignUp extends React.Component{
                 else
                     (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://" + state[i].UserThumbnailURL;
             
-                    window.location.reload();
+                window.location.reload();
                 return;
             }
         }

@@ -72,7 +72,7 @@ export default class Facebook extends React.Component{
     render(){
         let fbContent;
         if(this.state.isLoggedIn){
-            fbContent = null;
+            // fbContent = null;
         }
         else{
             fbContent=(<FacebookLogin 

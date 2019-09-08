@@ -276,8 +276,9 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                                         {rev.reviewer_name} · &nbsp;
                                                     </div>
                                                     <div className="expD_reviewRightDate">
-                                                        {rev.date.split("T")[0]}
-                                                    </div>
+                                                        {(rev.date.split("T")[0]).split('-')[1] == "01" ? "January" : (rev.date.split("T")[0]).split('-')[1] == "02" ? "February" : (rev.date.split("T")[0]).split('-')[1] == "03" ? "March" : (rev.date.split("T")[0]).split('-')[1] == "04" ? "April" : (rev.date.split("T")[0]).split('-')[1] == "05" ? "May" : (rev.date.split("T")[0]).split('-')[1] == "06" ? "June" : (rev.date.split("T")[0]).split('-')[1] == "07" ? "July" : (rev.date.split("T")[0]).split('-')[1] == "08" ? "August" : (rev.date.split("T")[0]).split('-')[1] == "09" ? "September" : (rev.date.split("T")[0]).split('-')[1] == "10" ? "October" : (rev.date.split("T")[0]).split('-')[1] == "11" ? "November" : (rev.date.split("T")[0]).split('-')[1] == "12" ? "December" : "Loading"}
+                                                        &nbsp;{((rev.date.split("T")[0]).split('-')[0])}
+                                                    </div> 
                                                 </div>
                                                 <div className="expD_reviewRightStar">
                                                 <StarRatings

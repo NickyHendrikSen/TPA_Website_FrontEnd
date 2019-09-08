@@ -3,6 +3,13 @@
     padding-top: 10px;
     min-height: 100vh;
 }
+.LastLoginTime{
+    margin-left: 50px;
+    margin-top: 10px;
+    color:grey;
+    display:inline-block;
+    background-color:white;
+}
 .UserHeader{
     margin-top: 20px;
     margin-left: 50px;
@@ -106,5 +113,19 @@ div{
     transition-duration: 0.5s;
     &:active{
         background-color: #015457;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    input{
+        width: 80% !important;
+        // background-color:red;   
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    input{
+        display:block;
+        // background-color:red;   
     }
 }
