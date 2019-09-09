@@ -6,6 +6,7 @@ import axios from "axios";
 import StarRatings from 'react-star-ratings';
 import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
 import "./pagination/pagination.scss"
+import Imagecarousel from "./Imagecarousel/Imagecarousel";
 
 class Places extends React.Component<RouteComponentProps<any>>{
 
@@ -32,6 +33,7 @@ class Places extends React.Component<RouteComponentProps<any>>{
             address:{suburb:'', location:{coordinates:[]}},
             images:{picture_url:''},
             reviews:[],
+            image_list:[],
         }],
         isLoading: true,
         currentPage: 1,
@@ -108,15 +110,22 @@ class Places extends React.Component<RouteComponentProps<any>>{
                 headers:{"Content-Type": "application/x-www-form-urlencoded"}
             }
         );
-        // axios.('http://backendtpaweb.herokuapp.com/api/room-plans', {
-        //     RoomID:this.state.data[idx]._id,
-        //     PlansID:this.state.plans[idx].PlansID
-        // })
     }
 
     deleteRoomPlan(roomID : string, plansID : string){
-        console.log("qwe");
-        axios.delete('http://backendtpaweb.herokuapp.com/api/room-plans/'+roomID+'/'+plansID)
+        let id = Number(roomID)
+        let plansid = Number(plansID)
+        console.log(""+id+", "+plansID);
+        axios({
+            method: 'post',
+            url: 'http://backendtpaweb.herokuapp.com/api/delete-room-plans',
+            data: {
+                RoomID:id,
+                PlansID:plansid
+            },
+                headers:{"Content-Type": "application/x-www-form-urlencoded"}
+            }
+        );
     }
 
     toggleLove = (idx : number) => {
@@ -167,49 +176,95 @@ class Places extends React.Component<RouteComponentProps<any>>{
         const currentData = data.slice(indexOfFirstData, indexOfLastData);
 
         const renderData = currentData.map((room, index) => {
-            return (
-                <div className="row-md-3 col-md-12 frame-container" key={index}>
-                    <div className="frame-photo" style={{backgroundImage: `url(${room.images.picture_url})`}}>
-                    </div>
-                    <div className="frame-desc">
-                        <div className="desc-wrapper">
-                            <div className="top-wrapper">
-                                <div className="room-type">{room.room_type} • {room.address.suburb}</div>
-                                <i className="far fa-heart" onClick={() => {this.toggleLove(index)}}></i>
-                            </div>
-                            <Link to={"/PlaceDetail/" + room._id} className="room-info-wrapper">
-                                <div className="room-name">{room.name}</div>
-                                <div className="room-informations">
-                                    {room.guest_included} guests • {room.bedrooms} bedroom • {room.beds} bed • {room.bathrooms} bath
+            if(room.image_list.length < 1){
+                return (
+                    <div className="col-md-12 frame-container" key={index}>
+                        <div className="frame-photo" style={{backgroundImage: `url(${room.images.picture_url})`}}>
+                        </div>
+                        <div className="frame-desc">
+                            <div className="desc-wrapper">
+                                <div className="top-wrapper">
+                                    <div className="room-type">{room.room_type} • {room.address.suburb}</div>
+                                    <i className="far fa-heart" onClick={() => {this.toggleLove(index)}}></i>
                                 </div>
-                                <div className="room-amenities">
-                                    {room.amenities[0]} • {room.amenities[1]} • {room.amenities[2]} 
-                                </div>
-                                <div className="room-rate-count">
-                                    <div className="rate-price-wrapper">
-                                        <div className="room-star">
-                                            <div className="room-rate">
-                                                <StarRatings
-                                                    rating={Number(room.review_scores.review_scores_rating)}
-                                                    starRatedColor="#008489"
-                                                    numberOfStars={5}
-                                                    name='rating'
-                                                    starDimension= '1vw'
-                                                    starSpacing = '0.1vw'
-                                                    />
-                                            </div>
-                                            <div className="count-rate">
-                                                    • ({room.reviews.length})
-                                            </div>
-                                        </div>
-                                        <div className="room-price">${room.price} / night</div>
+                                <Link to={"/PlaceDetail/" + room._id} className="room-info-wrapper">
+                                    <div className="room-name">{room.name}</div>
+                                    <div className="room-informations">
+                                        {room.guest_included} guests • {room.bedrooms} bedroom • {room.beds} bed • {room.bathrooms} bath
                                     </div>
-                                </div>
-                            </Link>
+                                    <div className="room-amenities">
+                                        {room.amenities[0]} • {room.amenities[1]} • {room.amenities[2]} 
+                                    </div>
+                                    <div className="room-rate-count">
+                                        <div className="rate-price-wrapper">
+                                            <div className="room-star">
+                                                <div className="room-rate">
+                                                    <StarRatings
+                                                        rating={Number(room.review_scores.review_scores_rating)}
+                                                        starRatedColor="#008489"
+                                                        numberOfStars={5}
+                                                        name='rating'
+                                                        starDimension= '1em'
+                                                        starSpacing = '0.1em'
+                                                        />
+                                                </div>
+                                                <div className="count-rate">
+                                                        • ({room.reviews.length})
+                                                </div>
+                                            </div>
+                                            <div className="room-price">${room.price} / night</div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )
+                )
+            }
+            else {
+                return (
+                    <div className="col-md-12 frame-container" key={index}>
+                        <Imagecarousel lengthOfData={indexOfLastData} index={index} image_list={room.image_list}/>
+                        <div className="frame-desc">
+                            <div className="desc-wrapper">
+                                <div className="top-wrapper">
+                                    <div className="room-type">{room.room_type} • {room.address.suburb}</div>
+                                    <i className="far fa-heart" onClick={() => {this.toggleLove(index)}}></i>
+                                </div>
+                                <Link to={"/PlaceDetail/" + room._id} className="room-info-wrapper">
+                                    <div className="room-name">{room.name}</div>
+                                    <div className="room-informations">
+                                        {room.guest_included} guests • {room.bedrooms} bedroom • {room.beds} bed • {room.bathrooms} bath
+                                    </div>
+                                    <div className="room-amenities">
+                                        {room.amenities[0]} • {room.amenities[1]} • {room.amenities[2]} 
+                                    </div>
+                                    <div className="room-rate-count">
+                                        <div className="rate-price-wrapper">
+                                            <div className="room-star">
+                                                <div className="room-rate">
+                                                    <StarRatings
+                                                        rating={Number(room.review_scores.review_scores_rating)}
+                                                        starRatedColor="#008489"
+                                                        numberOfStars={5}
+                                                        name='rating'
+                                                        starDimension= '1em'
+                                                        starSpacing = '0.1em'
+                                                        />
+                                                </div>
+                                                <div className="count-rate">
+                                                        • ({room.reviews.length})
+                                                </div>
+                                            </div>
+                                            <div className="room-price">${room.price} / night</div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
         });
 
         const pageNumber = [];

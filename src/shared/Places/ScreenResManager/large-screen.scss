@@ -3,92 +3,84 @@
         float: left;
         padding: 0.2vw;
         display: flex;
+        flex-wrap: wrap;
         margin: 0.5vw 0px;
         border-radius: 3px;
         border: 1px solid rgba(76,76,76,0.25);
         .frame-photo{
-            @media all and (max-width:1098px) {
-                width: 30%;
+            position: relative;
+            @media all and (max-width:1024px){
+                width:30%;
             }
-            @media all and (min-width:1099px) {
-                width: 40%;
-            }
-            border-radius: 3px;
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-position: center center;
-            transition-duration: 0.5s;
-            &:hover{
-                cursor: pointer;
-                background-size: 105% 105%;
+            @media all and (min-width:1025px){
+                width:40%;
             }
         }
-        .far{display: block; color: black; z-index: 1px}
-        .fas{display: block; color: red;}
+        >.far{display: block; color: black; z-index: 1px}
+        >.fas{display: block; color: red;}
         .frame-desc{
-            @media all and (max-width:1098px) {
-                width: 70%;
+            @media all and (max-width:1024px){
+                width:70%;
             }
-            @media all and (min-width:1099px) {
-                width: 60%;
+            @media all and (min-width:1025px){
+                width:60%;
             }
             text-decoration: none;
             padding: 0.7vw 1.2vw;
-            height: 100%;
             font-family: Helvetica;
-            display: block;
+            display: flex;
+            flex-wrap: wrap;
             .desc-wrapper{
                 position: relative;
-                height: 100%;
+                width: 100%;
                 .top-wrapper{
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
+                    width: 100%;
                     .room-type{
                         text-align: justify;
                         color: rgba(76,76,76,0.5);
-                        line-height: 1vw;
-                        font-size: 0.9vw;
+                        font-size: 0.9em;
                         font-weight: 700;
                     }
                     
                 }
                 .room-info-wrapper{
                     width: 100%;
-                    height: 90%;
                     text-decoration: none;
                     .room-name{
+                        width: 100%;
                         text-align: justify;       
                         padding: 0.2vw 0px;                      
                         color: rgba(76,76,76,1);
-                        line-height: 1.6vw;
-                        font-size: 1.5vw;
+                        font-size: 1.4em;
                         font-weight: bold;
                     }
                     .room-amenities{
+                        width: 100%;
                         text-align: justify;                             
                         color: rgba(76,76,76,1);
-                        line-height: 1.2vw;
-                        font-size: 1vw;
+                        font-size: 1em;
                         font-weight: normal;
                     }
                     .room-informations{
+                        width: 100%;
                         text-align: justify;                             
                         color: rgba(76,76,76,1);
-                        line-height: 1.2vw;
-                        font-size: 1vw;
+                        font-size: 1em;
                         font-weight: normal;
                     }
                     .room-rate-count{
-                        position: absolute;
-                        bottom: 0px;
                         width: 100%;
+                        padding: 4em 0em 0em 0em;
                         .rate-price-wrapper{
                             width: 100%;
                             display: flex;
                             justify-content: space-between;
-                            align-items: center;
+                            align-items: flex-end;
                             .room-star{
+                                width: 100%;
                                 display: flex;
                                 align-items: center;
                                 .count-rate{
@@ -98,7 +90,7 @@
                                     font-weight: normal;
                                 }
                                 .room-rate{
-                                    font-size: 1vw;
+                                    font-size: 1em;
                                     font-weight: normal;
                                 }
                             }
@@ -106,8 +98,7 @@
                                 text-align: right;
                                 width: 50%;
                                 color: #484848;
-                                line-height: 1.1vw;
-                                font-size: 1vw;
+                                font-size: 1em;
                                 font-weight: bold;
                             }
                         }
@@ -127,7 +118,6 @@
     .frame-container-category{
         float: left;
         padding: 5px;
-        height: 100%;
         border: 0.1px solid green;
         display: inline-flex;
     }

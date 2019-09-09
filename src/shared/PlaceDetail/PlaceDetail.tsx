@@ -50,6 +50,7 @@ export default class PlaceDetail extends React.Component <RouteComponentProps<an
             address:{suburb:'', country:'', location:{coordinates:[]}},
             images:{picture_url:''},
             reviews:[{_id:'', reviewer_name:'', date:'', comments:''}],
+            image_list:[]
         },
         totalguest:1,
         isLoading:true,
@@ -112,7 +113,7 @@ export default class PlaceDetail extends React.Component <RouteComponentProps<an
                     <Header />
                 </div>
                 <div className="col-md-12 contents-wrapper">
-                    <ListPhotos url={data.images.picture_url}/>
+                    <ListPhotos image_list={data.image_list} url={data.images.picture_url}/>
                     <div className="col-md-12 host-info-wrapper">
                         <div className="contents-wrapper">
                             <div className="left-contents-wrapper">

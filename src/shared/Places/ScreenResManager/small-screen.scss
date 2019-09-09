@@ -6,83 +6,60 @@
         border-radius: 3px;
         border: 1px solid rgba(76,76,76,0.25);
         .frame-photo{
-            border: 1px solid red;
-            @media all and (min-width:440px) {
-                height: 75%;
-            }
-            @media all and (max-width:439px){
-                height: 80%;
-            }
-            border-radius: 3px;
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-position: center center;
-            transition-duration: 0.5s;
-            &:hover{
-                cursor: pointer;
-                background-size: 105% 105%;
-            }
+            position: relative;
+            width: 100%;
         }
-        .far{display: block; color: black; z-index: 1px}
-        .fas{display: block; color: red;}
+        >.far{display: block; color: black; z-index: 1px}
+        >.fas{display: block; color: red;}
         .frame-desc{
-            @media all and (min-width:440px) {
-                height: 25%;
-            }
-            @media all and (max-width:439px){
-                height: 20%;
-            }
-            border: 1px solid red;
             text-decoration: none;
             padding: 0.7vw 1.2vw;
             font-family: Helvetica;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
             .desc-wrapper{
+                width: 100%;
                 position: relative;
-                height: 100%;
                 .top-wrapper{
+                    width: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
                     .room-type{
                         text-align: justify;
                         color: rgba(76,76,76,0.5);
-                        line-height: 1vw;
-                        font-size: 0.9vw;
+                        font-size: 0.8em;
                         font-weight: 700;
                     }
                     
                 }
                 .room-info-wrapper{
                     width: 100%;
-                    height: 90%;
                     text-decoration: none;
                     .room-name{
                         text-align: justify;       
                         padding: 0.2vw 0px;                      
                         color: rgba(76,76,76,1);
-                        line-height: 1.6vw;
-                        font-size: 1.5vw;
+                        font-size: 1.3em;
                         font-weight: bold;
                     }
                     .room-amenities{
                         text-align: justify;                             
                         color: rgba(76,76,76,1);
-                        line-height: 1.2vw;
-                        font-size: 1vw;
+                        font-size: 0.8em;
                         font-weight: normal;
                     }
                     .room-informations{
                         text-align: justify;                             
                         color: rgba(76,76,76,1);
-                        line-height: 1.2vw;
-                        font-size: 1vw;
+                        font-size: 1em;
                         font-weight: normal;
                     }
                     .room-rate-count{
-                        position: absolute;
-                        bottom: 0px;
                         width: 100%;
                         .rate-price-wrapper{
+                            padding: 2em 0em 0em 0em;
                             width: 100%;
                             display: flex;
                             justify-content: space-between;
@@ -92,12 +69,12 @@
                                 align-items: center;
                                 .count-rate{
                                     color: rgba(76,76,76,0.75);
-                                    font-size: 1vw;
+                                    font-size: 1em;
                                     padding: 0vw 0.2vw;
                                     font-weight: normal;
                                 }
                                 .room-rate{
-                                    font-size: 1vw;
+                                    font-size: 1em;
                                     font-weight: normal;
                                 }
                             }
@@ -105,8 +82,7 @@
                                 text-align: right;
                                 width: 50%;
                                 color: #484848;
-                                line-height: 1.1vw;
-                                font-size: 1vw;
+                                font-size: 1em;
                                 font-weight: bold;
                             }
                         }

@@ -5,13 +5,15 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import Axios from 'axios';
 
 interface IPhotos{
-    url:any
+    url:any,
+    image_list:any[]
 }
 
 export class ListPhotos extends Component<IPhotos> {
 
     state = {
         url: this.props.url,
+        image_list:this.props.image_list,
         plans:{
             PlansID:'',
             PlansName:'',
@@ -51,7 +53,23 @@ export class ListPhotos extends Component<IPhotos> {
         modal[0].style.zIndex = "-1";        
     }
 
+
+
     render() {
+
+        const {image_list, url} = this.state
+
+        if(ListPhotos.length <= 0){
+            // const showAllPhotos = image_list.map((url, index) => {
+            //     return(
+
+            //     )
+            // })
+        }
+        else{
+
+        }
+
         return (
             <div className="col-md-12 top-list-photos">
                 <div className="share-modal-wrapper">
@@ -61,7 +79,7 @@ export class ListPhotos extends Component<IPhotos> {
                         </div>
                         <h1>Share</h1>
                         <div className="share">
-                            <i className="fab"></i>
+                            <i className="fab facebook"></i>
                             <div className="text">Facebook</div>
                         </div>
                         <div className="share">

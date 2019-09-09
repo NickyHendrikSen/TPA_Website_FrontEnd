@@ -112,7 +112,7 @@ export class MediumCards extends Component{
                     <h1 className="recommendation-title"><b>Recommendation for you</b></h1>
                     {showFilteredData}
                     <div className="show-all-btn">
-                        <Link to={"/Places/Australia"} className="link-to-place">
+                        <Link to={"/Places/"+callback.country_name} className="link-to-place">
                             See All (2000+) > 
                         </Link>
                     </div>
