@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import '../../Places/PlacesGridSystem/PlacesGridSystems.scss';
 import './ListPhotos.scss'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -58,20 +58,60 @@ export class ListPhotos extends Component<IPhotos> {
     render() {
 
         const {image_list, url} = this.state
+        // const showAllSmallPhotos = '' 
+        var showAllSmallPhotos;
+        var showAllBigPhotos;
 
-        if(ListPhotos.length <= 0){
-            // const showAllPhotos = image_list.map((url, index) => {
-            //     return(
-
-            //     )
-            // })
+        if(image_list.length <= 0){
+            showAllBigPhotos = 
+                <div className="col-md-4 big-photos">
+                    <div className="col-md-12 big-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
+                    <div className="col-md-12 big-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
+                </div>
+            showAllSmallPhotos = 
+                <div className="col-md-12 photos-container">
+                    <div className="col-md-4 small-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
+                    <div className="col-md-4 small-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
+                    <div className="col-md-4 small-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
+                    <div className="col-md-4 small-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
+                </div>
         }
         else{
-
+            showAllSmallPhotos = 
+                <div className="col-md-12 photos-container">
+                    {image_list.slice(2, 6).map((url, index) => 
+                    (    <React.Fragment>
+                            <div key={index} className="col-md-4 small-photo" style={{backgroundImage: `url(${url})`}}></div>
+                        </React.Fragment>
+                    ))}
+                </div>
+            showAllBigPhotos = 
+            <div className="col-md-4 big-photos">
+                {image_list.slice(0, 2).map((url, index) => (
+                    <React.Fragment>
+                        <div key={index} className="col-md-12 big-photo" style={{backgroundImage: `url(${url})`}}></div>
+                    </React.Fragment>
+                ))}
+            </div>
         }
 
         return (
             <div className="col-md-12 top-list-photos">
+                <div className="icons-wrapper">
+                    <div className="top-icon-wrapper">
+                        <div className="share-icon" onClick={this.doShare}>
+                            <button className="far fa-share-square share"></button>
+                        </div>
+                        <div className="save-icon" onClick={this.doSave}>
+                            <button className="far fa-heart save"></button>
+                        </div>
+                        <div className="view-photos" onClick={this.doViewPhotos}>
+                            <div>
+                                <button className="far fa-images view"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="share-modal-wrapper">
                     <div className="share-modal-container">
                         <div className="close-btn-wrapper">
@@ -94,30 +134,9 @@ export class ListPhotos extends Component<IPhotos> {
                         </CopyToClipboard>
                     </div>
                 </div>
-                <div className="col-md-4 big-photos">
-                    <div className="col-md-12 big-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
-                    <div className="col-md-12 big-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
-                </div>
+                {showAllBigPhotos}
                 <div className="col-md-4 small-photos">
-                    <div className="icons-wrapper">
-                        <div className="top-icon-wrapper">
-                            <div className="share-icon" onClick={this.doShare}>
-                                <button className="far fa-share-square share"></button>
-                            </div>
-                            <div className="save-icon" onClick={this.doSave}>
-                                <button className="far fa-heart save"></button>
-                            </div>
-                            <div className="view-photos" onClick={this.doViewPhotos}>
-                                <div>
-                                    <button className="far fa-images view"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="small-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
-                    <div className="small-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
-                    <div className="small-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
-                    <div className="small-photo" style={{backgroundImage: `url(${this.state.url})`}}></div>
+                    {showAllSmallPhotos}
                 </div>
             </div>
         )
