@@ -102,3 +102,24 @@
         }
     }
 }
+.exps_filter{
+    margin-left: 90px;
+    button{
+        background-color: #008489;
+        color:white;
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        height: 20px;
+        margin-left: 5px;
+        cursor: pointer;
+        transition-duration: 0.5s;
+        &:active{
+            background-color: #026669;
+        }
+    }
+}
+.note{
+    color:grey;
+    margin-left: 90px;
+}

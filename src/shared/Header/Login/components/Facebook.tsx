@@ -87,7 +87,7 @@ export default class Facebook extends React.Component{
                 />)
         }
         return(
-            <div>{fbContent}</div>
+            <div className="FB">{fbContent}</div>
         )
     }
 }

@@ -4,31 +4,54 @@ import axios from "axios"
 import Map from "../../Map/Map"
 import Experience from "../Experience"
 import Header from "../../Header/Header"
+import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
 
 export default class ExperienceHeader extends React.Component{
     state = {
         data:[{
             PlansID:'',
             PlansName:'',
-        }]
+        }],
+        experience:[{
+            experience_title:'',
+            address:{location:{coordinates:[]}}
+        }],
+        isLoading:true
     };
     none = 0
     componentWillMount(){
         if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null) return;
-        axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
-        .then(res => {
-            if(res.data == null) return;
-            this.setState(
-                    {
-                        data: res.data
-                    }
-                )
-                if(res.data[0].PlansName == ''){
-                    this.none = 1;
-                }
-            // console.log(res);
-            }
+        axios.all([
+            axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID')),
+            axios.get('http://backendtpaweb.herokuapp.com/api/experience')    
+        ])
+        .then(axios.spread((plansRes, expRes) => {
+            this.setState({
+                data:plansRes.data,
+                experience:expRes.data,
+                isLoading:false
+            })
+            // console.log(plansRes);
+            // console.log(expRes);
+        }) 
+            // if(res.data == null) return;
+            // this.setState(
+            //         {
+            //             data: res.data
+            //         }
+            //     )
+            //     if(res.data[0].PlansName == ''){
+            //         this.none = 1;
+            //     }
+            // // console.log(res);
         )
+        // axios.get('http://backendtpaweb.herokuapp.com/api/experience')
+        // .then(res => {
+        //     this.setState({
+        //         experience:res.data
+        //     })
+        // })
+        // console.log(this.state.experience)
     }
     componentDidMount(){
         // if(this.state.data[0].PlansName == ''){
@@ -83,10 +106,10 @@ export default class ExperienceHeader extends React.Component{
     }
     love(Plansid : string){
         var a = (document.getElementsByClassName('exps_planHeart')) as HTMLCollectionOf<HTMLElement>;
-        for(let i = 0; i < a.length; i++){
-            if(a[i].style.color == "red")
-            return;
-        }
+        // for(let i = 0; i < a.length; i++){
+        //     if(a[i].style.color == "red")
+        //     return;
+        // }
         if((document.getElementById("love" + Plansid) as HTMLElement).style.color == "white"){
             //insert
             (document.getElementById("love" + Plansid) as HTMLElement).style.color = "red";
@@ -94,8 +117,8 @@ export default class ExperienceHeader extends React.Component{
                 url: 'http://backendtpaweb.herokuapp.com/api/experience-plans', 
                 method : "POST",
                 data : {
-                    "ExperienceID": localStorage.getItem('ExperienceChosen'),
-                    "PlansID": Plansid
+                    "ExperienceID": parseInt(localStorage.getItem('ExperienceChosen') + ""),
+                    "PlansID": parseInt(Plansid + "")
                 },
                 headers:{"Content-Type": "application/x-www-form-urlencoded"}
                 }
@@ -106,14 +129,33 @@ export default class ExperienceHeader extends React.Component{
         else{
             //delete
             (document.getElementById("love" + Plansid) as HTMLElement).style.color = "white";
+            axios({
+                url: 'http://backendtpaweb.herokuapp.com/api/delete-experience-plans', 
+                method : "POST",
+                data : {
+                    "ExperienceID": parseInt(localStorage.getItem('ExperienceChosen') + ""),
+                    "PlansID": parseInt(Plansid + "")
+                },
+                headers:{"Content-Type": "application/x-www-form-urlencoded"}
+                }
+            );
+            alert('Experience Removed');
+            window.location.reload();
         }
     }
     closeSaveModal(){
         (document.getElementsByClassName('exps_saveModal')[0] as HTMLElement).style.display = "none";
     }
     render(){
+        // console.log(this.state.experience)
+        if(this.state.isLoading){
+            return(
+                <div>Loading..</div> 
+            )
+        }
         return(
             <div className="expsH_Wrapper">
+                {console.log(this.state.data)}
                 <div className="exps_saveModal">
                     <div className="exps_saveModalContent">
                         <button className="exps_saveModalClose" onClick={this.closeSaveModal}>X</button>
@@ -164,7 +206,59 @@ export default class ExperienceHeader extends React.Component{
                 {/* </div> */}
                 <div className="exps_MapContent">
                     <div className="exps_MapWidget">
-                        <Map />
+                    {/* <LeafletMap
+                        center={[50, 10]}
+                        zoom={6}
+                        maxZoom={10}
+                        attributionControl={true}
+                        zoomControl={true}
+                        doubleClickZoom={true}
+                        scrollWheelZoom={true}
+                        dragging={true}
+                        animate={true}
+                        easeLinearity={0.35}
+                    >
+                        <TileLayer
+                        url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                        />
+                        {
+                            this.state.experience.map(loc => {
+                                return( 
+                                    <Marker position={[-6.208428,106.7824432]}>
+                                        {console.log(loc.address.location.coordinates[0])}
+                                        <Popup>
+                                            asd
+                                        </Popup>
+                                    </Marker>
+                                )
+                            })
+                        }
+                    </LeafletMap> */}
+                    <LeafletMap
+                            center={[50, 10]}
+                            zoom={15}
+                            attributionControl={true}
+                            zoomControl={true}
+                            doubleClickZoom={true}
+                            scrollWheelZoom={true}
+                            dragging={true}
+                            animate={true}
+                            easeLinearity={0.35}
+                        >
+                            <TileLayer
+                                url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                            />
+                            {this.state.experience.map((loc, index) => 
+                                <Marker key={index} position={[loc.address.location.coordinates[0], loc.address.location.coordinates[1]]}>
+                                    <Popup>
+                                        {loc.experience_title}
+                                        {/* • Name : {loc.name}
+                                        <br/>
+                                        • Price : ${point.price} / Night */}
+                                    </Popup>
+                                </Marker>
+                            )}
+                    </LeafletMap>
                     </div>
                     <Experience />
                 </div>

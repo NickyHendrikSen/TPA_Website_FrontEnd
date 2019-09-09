@@ -27,7 +27,21 @@ export default class Experience extends React.Component{
         plans:[{
             ExperienceID:'',
             PlansID:''
-        }]
+        }],
+        minimumPrice:0,
+        maximumPrice:0,
+        filter:[{
+            _id:'',
+            experience_category:'',
+            address:{suburb:''},
+            experience_title:'',
+            price:0,
+            estimated_total_hours:'',
+            amenities:[],
+            rating_star:0,
+            total_rating_count:0,
+            Images:[],
+        }],
     }
     showSaveModal(id :string){
         if(localStorage.getItem('UserID') == null || localStorage.getItem('UserID') == ""){
@@ -47,7 +61,7 @@ export default class Experience extends React.Component{
                 for(let j = 0; j < ids.length; j++){
                     if(ids[j] == id){
                         (document.getElementById("love" + this.state.plans[i].PlansID) as HTMLElement).style.color = "red";
-                        break;
+                        // break;z
                     }
                 }
             }
@@ -60,6 +74,7 @@ export default class Experience extends React.Component{
                 this.setState(
                     {
                         data: res.data,
+                        filter: res.data
                     }
                 )
             }
@@ -76,13 +91,47 @@ export default class Experience extends React.Component{
         //Set heart
         
     }
+    filter = () =>{
+        var min = parseInt((document.getElementById('min') as HTMLInputElement).value)
+        var max = parseInt((document.getElementById('max') as HTMLInputElement).value)
+        if(min > max || isNaN(min) || isNaN(max)){
+            alert('Invalid input');
+            return;
+        }
+        if(max == 0){
+            this.setState(
+                {
+                    filter : this.state.data
+                }
+            )
+            return;
+        }
+        let a =[];
+        for(let i = 0; i < this.state.data.length; i++){
+            if(this.state.data[i].price >= min && this.state.data[i].price <= max){
+                a.push(this.state.data[i])
+            }
+        }
+        this.setState(
+            {
+                filter : a
+            }
+        )
+    }
+
     // &#10084;
     render(){       
         return(
             <div className="exps_Wrapper">
                 {/* <Header/> */}
+                <div className="exps_filter">Price : &nbsp;
+                    <input type="number" name="" id="min" min={0}/> to&nbsp;
+                    <input type="number" name="" id="max" min={0}/>
+                    <button onClick={this.filter}>Filter</button>
+                </div>
+                <div className="note">Set maximum to 0 to show all</div>
                 <div className="exps_Content">
-                {this.state.data.map(data => {
+                {this.state.filter.map(data => {
                     return (
                         <div className="exps_CardWrapper">
                             <div className="exps_Card">
@@ -102,11 +151,12 @@ export default class Experience extends React.Component{
                                         <li className="exps_CardPrice">${data.price} per person</li>
                                         <li className="exps_CardTime">{data.estimated_total_hours}</li>
                                         <li className="exps_CardBenefit">{data.amenities[0]}
-                                        {data.amenities.slice(1,3).map(e=>{
+                                        {data.amenities.slice(1,1).map(e=>{
                                             return(
                                                 <span>, {e} </span>
                                             )
                                         })}
+                                        &nbsp;
                                         included</li>
                                     </div>
                                     <div className="exps_CardRating">

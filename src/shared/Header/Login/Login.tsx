@@ -134,7 +134,7 @@ export default class SignUp extends React.Component{
         if(success == false) return;
         //Login check here
         // console.log(state.length);
-        console.log(localStorage.getItem('UserID') + " <-");
+        // console.log(localStorage.getItem('UserID') + " <-");
         for(var i = 0; i < state.length; i++){
             if(state[i].Useremail == txtEmail.value && state[i].Password == txtPass.value){
                 alert('success login');
@@ -165,7 +165,7 @@ export default class SignUp extends React.Component{
             // }
         // })
         
-        alert('failed login');
+        alert('Username or Password is wrong');
     }
 
     render(){
@@ -189,18 +189,20 @@ export default class SignUp extends React.Component{
                                 Continue with Google
                             </span>
                         </div> */}
-                        <Google />
-                        <div className="login_or">
-                            <span>or</span>
+                        <div className="login_google">
+                            <Google />
                         </div>
+                        {/* <div className="login_or"> */}
+                            {/* <span>or</span> */}
+                        {/* </div> */}
                         <input type="email" name="" id="login_txtEmail" className="login_input" placeholder="Email address"/>
                         <div className="login_errMessage"></div>
                         <input type="password" name="" id="login_txtPass" className="login_input" placeholder="Password"/>
                         <div className="login_errMessage"></div>
                         <div className="login_rememShow">
-                            <div className="login_remem">
+                            {/* <div className="login_remem"> */}
                                 {/* <input type="checkbox" name="" id=""value=""/>Remember Me */}
-                            </div>
+                            {/* </div> */}
                             <div className="login_showPass" onClick={this.login_showPassword}>
                             Show Password
                             </div>

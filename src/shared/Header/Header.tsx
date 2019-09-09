@@ -26,7 +26,7 @@ export default class Header extends React.Component{
             "base": '',
             "date": '',
             "rates": {}
-        }
+        },
     }
 
     componentWillMount(){
@@ -59,15 +59,15 @@ export default class Header extends React.Component{
     lightBox_reg_show(){
         var lightBox = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
         lightBox[0].style.display = "flex";
-        console.log(lightBox[0]);   
+        // console.log(lightBox[0]);   
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
         // body.style.position="fixed";
         // lightBox[0].style.position = "absolute";
     }    
-    lightBox_login_show(){
+    lightBox_login_show = () => {
         var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
         lightBox[0].style.display = "flex";
-        console.log(lightBox[0]);   
+        // console.log(lightBox[0]);   
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
         // body.style.position="fixed";
     }
@@ -112,7 +112,6 @@ export default class Header extends React.Component{
             currency[0].style.display = "none"
 
     }
-
     render(){
         const {currency, language} = this.state
         const allLanguages = language.map((lang, index) => {
@@ -125,6 +124,22 @@ export default class Header extends React.Component{
                 <div key={index} className="popup-list" onClick={()=>this.changeCurrency(index, curr.code)}>{curr.symbol} • {curr.name}</div>
             )
         })
+        const log = document.getElementsByClassName('col-md-12');
+
+        document.addEventListener('keydown', logKey);
+        
+        function logKey(e : any) {
+            if(e.keyCode == 13){
+                if(localStorage.getItem('UserID') == null || localStorage.getItem('UserID') == "")
+                {
+                    var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
+                    lightBox[0].style.display = "flex";
+                    var body = document.getElementsByTagName("Body")[0] as HTMLElement;
+                    return;
+                }
+                    window.location.href = "/Experiences"
+            }
+        }
         return(
             <header className="col-md-12">
                 <div className="navBar">
