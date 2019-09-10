@@ -1,5 +1,6 @@
 .photo-container{
     position: relative;
+    padding: 0.1em;
     .photo{
         @media all and (max-width:768px){
             padding-bottom:80%;

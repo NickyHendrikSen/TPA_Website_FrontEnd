@@ -6,9 +6,9 @@ import {BrowserRouter as Router, Link} from "react-router-dom"
 export class FooterContents extends Component {
     render() {
         return (
-            <div className="footer-contents">
+            <div className="col-md-6 footer-contents">
                 <ol>
-                    <li className="footer-contents-titles">
+                    <li className="col-md-1 footer-contents-titles">
                         <h4>AirBnb</h4>
                         <li className="footer-contents-list"><a href="https://careers.airbnb.com/">Careers</a></li>
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/">Press</a></li>
@@ -17,7 +17,7 @@ export class FooterContents extends Component {
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/"> Diversity & Belonging</a></li>
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/"> Accessibility</a></li>
                     </li>
-                    <li className="footer-contents-titles">
+                    <li className="col-md-1 footer-contents-titles">
                         <h4>Discover</h4>
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/">Trust & Safety</a></li>
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/">Invite Friends</a></li>
@@ -27,7 +27,7 @@ export class FooterContents extends Component {
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/">Guidebooks</a></li>
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/">Airbnbmag</a></li>
                     </li>
-                    <li className="footer-contents-titles">
+                    <li className="col-md-1 footer-contents-titles">
                         <h4>Hosting</h4>
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/">Why Host</a></li>
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/">Hospitality</a></li>
@@ -36,7 +36,7 @@ export class FooterContents extends Component {
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/">Host an Experience</a></li>
                         <li className="footer-contents-list"><a href="https://press.airbnb.com/">Open Homes</a></li>
                     </li>
-                    <li className="footer-contents-titles">
+                    <li className="col-md-1 footer-contents-titles">
                         <span className="footer-contents-logo-facebook"></span>
                         <span className="footer-contents-logo-twitter"></span>
                         <span className="footer-contents-logo-instagram"></span>

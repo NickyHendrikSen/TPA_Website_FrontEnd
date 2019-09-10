@@ -1,0 +1,67 @@
+.plan-detail-wrapper{
+    display: flex;
+    width: 100%;
+    background-color: white;
+    .plan-detail-container{
+        width: 40%;
+        padding: 0em 1em;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+        overflow: auto;
+        .detail-container{
+            padding: 1em 0em;
+            width: 100%;
+            position: relative;
+            .plan-name{
+                font: 2em verdana, sans-serif;
+                font-weight: bold;
+                color: rgba(0, 0, 0, 0.75);
+            }
+            .plan-date-guest{
+                font: 0.9em verdana, sans-serif;
+                font-weight: normal;
+                color: rgba(0, 0, 0, 0.75);
+            }
+            .tabs-container{
+                display: flex;
+                width: 100%;
+                margin: 5em 0 0 0;
+                font: 1em verdana, sans-serif;
+                border-bottom: 0.5px solid rgba(0, 0, 0, 0.25);
+                .tab{
+                    cursor: pointer;
+                    padding: 1em 1em;
+                    font-weight: 750;
+                    margin: 0em 2em 0em 0em;
+                    color: rgba(0, 0, 0, 0.75);
+                    transition: all 250ms ease-in-out;
+                    border-radius: 10px 10px 0px 0px;
+                    &:hover{
+                        background-color: teal !important;
+                        color: white !important;
+                    }
+                }
+            }
+            .tab-contents{
+                display: flex;
+                flex-wrap: wrap;
+                .contents-count{
+                    width: 100%;
+                    font-weight: bold;
+                    color: rgba(0, 0, 0, 0.5);
+                    padding: 1em 0em;
+                }
+            }
+        }
+    }
+    .plan-detail-map{
+        width: 60%;
+        padding-bottom: 60%;
+        position: fixed;
+        right: 0px;
+        bottom: 0px;
+    }
+}

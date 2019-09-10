@@ -15,6 +15,7 @@ import BeHost_Bathroom from "./shared/BeHost_Room/BeHost_Bathroom";
 import PlanList from "./shared/PlanList/PlanList"
 import Tes from "./shared/GetDataTes/tes"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import { PlanDetail } from './shared/PlanDetail/PlanDetail';
 
 
 const App: React.FC = () => {
@@ -24,6 +25,7 @@ const App: React.FC = () => {
           <Switch>
               <Route path="/tes" component={Tes} />
               <Route path="/PlanList" component={PlanList} />
+              <Route path="/plan-detail" component={PlanDetail}/>
               <Route path="/become-a-host/bathroom" component={BeHost_Bathroom}/>
               <Route path="/become-a-host/bedroom" component={BeHost_Bedroom}/>
               <Route path="/become-a-host/room" component={BeHost_Room}/>

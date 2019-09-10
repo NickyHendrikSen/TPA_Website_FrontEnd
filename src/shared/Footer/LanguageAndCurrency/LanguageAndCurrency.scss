@@ -1,12 +1,15 @@
 .footer-contents-copyrights{
-    height: 30%;
     width: 100%;
     color: #484848;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0em 1em;
     .left{
         display: flex;
         align-items: center;
-        justify-content: center;
-        float: left;
+        text-align: left;
+        flex-wrap: wrap;
         .footer-icon{
             width: 20px;
             height: 25px;
@@ -18,8 +21,6 @@
         }
     }
     .right{
-        float: right;
-        display: table;
         .language-button{
             cursor: pointer;
             border-radius: 3px;

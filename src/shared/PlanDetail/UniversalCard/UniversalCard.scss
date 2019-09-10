@@ -1,0 +1,48 @@
+.list-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    position: relative;
+    >.heart{
+        cursor: pointer;
+        position: absolute;
+        display: flex;
+        justify-content: flex-end;
+        padding: 1em;
+        right: 0;
+        z-index: 2;
+    }
+    .fas{color: red}
+    .far{color: black}
+    .frame-photo{
+        position: relative;
+        width: 100%;
+    }
+    .desc-frame{
+        padding: 0.5em 0.5em;
+        .desc{
+            padding: 0.1em 0em;
+            color: rgba(0, 0, 0, 1);
+            font: normal 1em sans-serif;
+        }
+        .name{
+            padding: 0.1em 0em;
+            color: rgba(0, 0, 0, 0.75);
+            font: bold 1.5em sans-serif;    
+        }
+        .price{
+            padding: 0.1em 0em;
+            color: rgba(0, 0, 0, 0.75);
+            font: normal 1em sans-serif;    
+        }
+        .rating{
+            padding: 0.1em 0em;
+            color: rgba(0, 0, 0, 0.75);
+            font: normal 0.8em sans-serif;    
+        }
+    }
+    &:hover{
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    }
+}

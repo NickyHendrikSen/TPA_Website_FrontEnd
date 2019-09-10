@@ -5,7 +5,7 @@ import FooterContents from './FooterContents/FooterContents';
 export default class Footer extends Component {
     render() {
         return (
-            <div className="footer-wrapper">
+            <div className="col-md-12 footer-wrapper">
                 <FooterContents />
             </div>
         )
