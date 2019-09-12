@@ -16,6 +16,7 @@ import PlanList from "./shared/PlanList/PlanList"
 import Tes from "./shared/GetDataTes/tes"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import { PlanDetail } from './shared/PlanDetail/PlanDetail';
+import HostExperience from './shared/BecomeAHostExperience/HostExperience';
 
 
 const App: React.FC = () => {
@@ -29,6 +30,7 @@ const App: React.FC = () => {
               <Route path="/become-a-host/bathroom" component={BeHost_Bathroom}/>
               <Route path="/become-a-host/bedroom" component={BeHost_Bedroom}/>
               <Route path="/become-a-host/room" component={BeHost_Room}/>
+              <Route path="/become-a-host-experience" component={HostExperience}/>
               <Route path="/PlaceDetail/:id" component={PlaceDetail}/>
               <Route path="/Places/:country" component={Places}/>
               <Route path="/Experiences" component={Experiences}/>

@@ -1,0 +1,80 @@
+$basic-color: #008489;
+
+@keyframes slideDownSet{
+    0%{
+        height: 0px;
+        color: rgba(0, 0, 0, 0);
+    }
+    99%{
+        height: 7.5em;
+        color: rgba(0, 0, 0, 0.5);
+    }
+    100%{
+        height: none;
+    }
+}
+
+@keyframes slideBackSet{
+    0%{
+        height: 7.5em;
+        color: rgba(0, 0, 0, 0.5);
+    }
+    99%{
+        height: 0;
+        color: rgba(0, 0, 0, 0);
+    }
+    100%{
+        height: none;
+    }
+}
+
+.host-experience-wrapper{
+    background-color: white;
+    height: 100vh;
+    font: bold 1em "helvetika, arial", sans-serif;
+    .host-experience-container{
+        height: 100%;
+        .input-tab-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            height: 90%;
+            .tab-experience-wrapper{
+                width: 20%;
+                overflow: scroll;
+                .tab-container{
+                    padding: 1em;
+                    .text-wrapper{
+                        cursor: pointer;
+                        text-align: left;
+                        width: 100%;
+                        padding: 0.5em 0em;
+                        color: rgba(0, 0, 0, 0.5);
+                        .show-sub-text{
+
+                        }
+                        .sub-text{
+                            overflow: hidden;
+                            display: none;
+                            padding: 0.5em 1em;
+                            .text-inside{
+                                border-radius: 5px;
+                                padding: 0.5em 0.5em;
+                                &:hover{
+                                    background-color: rgba(200, 200, 200, 0.2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .input-experience-wrapper{
+                width: 55%;
+            }
+            .display-experience-tab{
+                justify-content: flex-end;
+                width: 25%;
+                background-color: $basic-color;
+            }
+        }
+    }
+}
