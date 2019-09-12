@@ -40,11 +40,15 @@ interface IProps{
         reviews:{_id:string, reviewer_name:string, date:string, comments:string}[],
     }
 }
-
 export class MidContents extends Component<IProps>{
     state = {
         data: this.props.data
     }
+    contactHost = () => {
+        localStorage.setItem('place_id', this.state.data._id);
+        window.location.href = "/ChatDetail"
+    }
+    
     showAllAmenities(){
         let amenities = document.getElementsByClassName("all-amenities-wrapper") as HTMLCollectionOf<HTMLElement>
 
@@ -77,7 +81,7 @@ export class MidContents extends Component<IProps>{
                         </div>
                     </div>
                     <div className="contact-btn">
-                        <button type="button" className="contact">Contact Host</button>
+                        <button type="button" className="contact"  onClick={this.contactHost}>Contact Host</button>
                     </div>
                 </div>
                 <div className="amenities-wrapper">

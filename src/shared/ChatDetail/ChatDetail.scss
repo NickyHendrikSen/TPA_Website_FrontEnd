@@ -1,0 +1,204 @@
+header{
+    
+    position: fixed;    
+    z-index: 5000;
+    background-color:white;
+}
+body{
+    background-color:white;
+}
+.chatD_ContentWrapper{
+    width: 100%;
+    // min-height: 100vh;
+    background-color: white;
+    padding: 20px;
+    .chatD_Content{
+        width: 100%;
+        // background-color: white;
+        display: flex;  
+        justify-content: row;
+        .chatD_chatContentWrapper{
+            width: 100%;
+            padding-left: 5%;
+            height: 100vh;
+            position: relative;
+            // background-color:black;
+            .chatD_chatContent{
+                // background-color:black;
+                // position: fixed;
+                position: relative;
+                height: calc(100%-150px);
+                margin-top: 100px;
+                margin-bottom: 200px;
+                // margin-left: 30%;
+                // background-color: black;
+                .chatD_chatC{
+                    margin-left: 40%;
+                    width: 60%;
+                    // float:right;
+                    // height: 100px;
+                    .chatD_right{
+                        // position: absolute;
+                        position: absolute;
+                        right: 0;
+                        max-width: 95%;
+                        width: auto;
+                        margin-top: 20px;
+                        position: relative;
+                        .chatD_right_image{
+                            // background-color: black;
+                            width: 100%;
+                            height: 50px;
+                            img{
+                                position: absolute;
+                                right: 0;
+                                height: 50px;
+                                width: 50px;
+                                border-radius: 50%;
+                            }
+                        }
+                        .chatD_right_message{
+                            margin-top: 10px;
+                            height: auto;
+                            float:right;
+                            border: 1px solid grey;
+                            // display: inline-block;
+                            border-radius: 4px;
+                            padding: 10px;
+                            width: auto;
+                            display: inline-block;
+                        }
+                    }
+                    .chatD_left{
+                        max-width: 95%;
+                        width: auto;
+                        // background-color: black;
+                        margin-top: 20px;
+                        .chatD_left_image{
+                            width: 100%;
+                            height: 50px;
+                            img{
+                                height: 50px;
+                                width: 50px;
+                                border-radius: 50%;
+                            }
+                        }
+                        .chatD_left_message{
+                            margin-top: 10px;
+                            border: 1px solid grey;
+                            // display: inline-block;
+                            border-radius: 4px;
+                            padding: 10px;
+                            width: auto;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+
+            .chatD_chatMessage{
+                position: absolute;
+                border-radius: 4px;
+                bottom: 0;  
+                height: 120px;
+                // margin-left: 200px;
+                background-color:grey;
+                width: 60%;
+                right: 0;
+                position: fixed;
+                // display: none;
+                textarea{
+                    width: 90%;
+                    height: 70%;
+                    padding: 20px;
+                    resize: none;
+                    margin: 0;
+                    outline: none;
+                    border-radius: 4px;
+                }
+                img{
+                    float:right;
+                    margin-right: 1%;
+                    margin-top: 2%;
+                    height: 65%;
+                    width: 7%;
+                    border-radius: 50%;
+                }
+                .chatD_chatMessageBottom{
+                    width: 100%;
+                    height: 30%;
+                    button{
+                        float:right;
+                        margin-right: 20px; 
+                        border: 1px solid black;
+                        outline: none;
+                        padding: 5px 10px;
+                        background-color: white;
+                        border-radius: 4px;
+                        transition-duration: 0.5s;
+                        cursor: pointer;
+                        // opacity: 0.2;
+                        display: none;
+                        &:active{
+                            background-color: rgba(255, 255, 255, 0.568);
+                        }
+                    }
+                }
+            }
+        }
+
+        .chatD_detailWrapper{
+            border: 1px solid #c9c9c9;
+            border-radius: 4px;
+            padding: 50px;
+            width: 30%;
+            height: calc(100vh - 100px);
+            bottom: 10px;
+            position: fixed;
+            .chatD_paymentDetail{
+                .chatD_paymentTitle{
+                    font-size: 24px;
+                    color:black;
+                    // font-weight: bold;
+                }
+                .chatD_payment{
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 10px;
+                }
+                hr{
+                    margin: 0;
+                    margin-top: 10px;
+                }
+            }
+
+            .chatD_hostDetail{
+                width: 100%;
+                .chatD_hostImg{
+                    width: 100%;   
+                    display: flex;
+                    justify-content: center;
+                    img{
+                        width: 40%;
+                        border-radius: 50%;
+                    }
+                }
+                div{
+                    text-align: center;
+                }
+                .chatD_hostName{
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+                .chatD_hostLocation{
+                    color:grey; 
+                }
+                .chatD_hostReviews{
+                    color:grey;
+                }
+            }
+
+        }
+    }
+
+}

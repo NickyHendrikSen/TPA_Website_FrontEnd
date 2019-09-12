@@ -34,6 +34,7 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             total_rating_count:0,
             should_bring:[],
             host:{
+                host_id:'',
                 host_language:'',
                 host_about:'',
                 host_thumbnail_url:'',
@@ -102,6 +103,12 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             reviewCount: Math.ceil(s.length/3)
         })
 
+    }
+    contactHost = () => {
+        // console.log(this.state.data.host.host_id);
+        // localStorage.setItem('host_id', this.state.data.host.host_id);
+        localStorage.setItem('exp_id', this.state.data._id);
+        window.location.href = "/ChatDetail"
     }
     starLoading(){
     //     var div = document.getElementsByClassName('expD_reviewRightStar')[0] as HTMLElement;
@@ -315,7 +322,7 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                             </div>
                                             {this.state.data.host.host_join_date}
                                             <div>{this.state.data.host.host_location}</div>
-                                            <div className="expD_about_contact" onClick={() => window.location.href = "/ChatDetail"}>
+                                            <div className="expD_about_contact" onClick={this.contactHost}>
                                             Contact Host
                                             </div>
                                         </div>
