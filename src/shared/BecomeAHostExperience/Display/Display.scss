@@ -21,9 +21,13 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
+                text-align: left;
                 align-items: center;
                 color: white;
+                font: italic normal 1em helvetica, sans-serif;
                 >i{
+                    display: flex;
+                    justify-content: flex-start;
                     padding: 0.5em 1em;
                 }
             }

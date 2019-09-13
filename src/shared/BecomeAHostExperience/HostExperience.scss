@@ -6,8 +6,8 @@ $basic-color: #008489;
         color: rgba(0, 0, 0, 0);
     }
     99%{
-        height: 7.5em;
-        color: rgba(0, 0, 0, 0.5);
+        height: 5.5em;
+        color: rgba(0, 0, 0, 0.75);
     }
     100%{
         height: none;
@@ -16,8 +16,8 @@ $basic-color: #008489;
 
 @keyframes slideBackSet{
     0%{
-        height: 7.5em;
-        color: rgba(0, 0, 0, 0.5);
+        height: 5.5em;
+        color: rgba(0, 0, 0, 0.75);
     }
     99%{
         height: 0;
@@ -31,16 +31,19 @@ $basic-color: #008489;
 .host-experience-wrapper{
     background-color: white;
     height: 100vh;
-    font: bold 1em "helvetika, arial", sans-serif;
+    font: bold 1em "helvetica, arial", sans-serif;
     .host-experience-container{
         height: 100%;
+        display: flex;
+        flex-wrap: wrap;
         .input-tab-wrapper{
             display: flex;
             flex-wrap: wrap;
             height: 90%;
+            position: relative;
             .tab-experience-wrapper{
                 width: 20%;
-                overflow: scroll;
+                border-right: 1px solid rgba(0, 0, 0, 0.5);
                 .tab-container{
                     padding: 1em;
                     .text-wrapper{
@@ -48,10 +51,7 @@ $basic-color: #008489;
                         text-align: left;
                         width: 100%;
                         padding: 0.5em 0em;
-                        color: rgba(0, 0, 0, 0.5);
-                        .show-sub-text{
-
-                        }
+                        color: rgba(0, 0, 0, 0.75);
                         .sub-text{
                             overflow: hidden;
                             display: none;
@@ -69,11 +69,14 @@ $basic-color: #008489;
             }
             .input-experience-wrapper{
                 width: 55%;
+                position: relative;
             }
             .display-experience-tab{
-                justify-content: flex-end;
                 width: 25%;
+                height: 90%;
                 background-color: $basic-color;
+                position: fixed;
+                right: 0;
             }
         }
     }

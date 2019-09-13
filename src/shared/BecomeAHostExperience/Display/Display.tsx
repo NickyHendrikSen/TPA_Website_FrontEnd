@@ -7,13 +7,10 @@ interface IProps{
 }
 
 export class Display extends Component<IProps> {
-    state={
-        hostCity:this.props.hostCity,
-        hostSpoken:this.props.hostSpoken,
-    }
+
     render() {
-        var city = this.state.hostCity
-        var lang = this.state.hostSpoken
+        var city = this.props.hostCity
+        var lang = this.props.hostSpoken
         
         if(city === '' || lang === '') {
             city = 'Not Set'

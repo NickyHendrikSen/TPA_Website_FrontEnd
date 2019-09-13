@@ -1,0 +1,102 @@
+$basic-color: #008489;
+
+.experience-wrapper{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    height: 100%;
+    .experience-container{
+        .btn-next{
+            padding: 1em;
+            margin: 1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .error{
+                display: flex;
+                color: red;
+                font: normal normal 1em helvetica, sans-serif;
+            }
+            .btn{
+                cursor: pointer;
+                color: rgba(0, 0, 0, 0.75);
+                width: 20%;
+                border-radius: 10px;
+                border: 2px solid $basic-color;
+                padding: 1em;
+                &:hover{
+                    color: white;
+                    background-color: $basic-color;
+                }
+            }
+        }
+        .title{
+            width: 100%;
+            margin: 0em 1em;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+            >h1{
+                color: rgba(0, 0, 0, 0.75);
+                font : normal bold 1.5em helvetica, sans-serif;
+            }
+        }
+        .input-wrapper{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 1em;
+            .desc{
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                >div{
+                    padding: 0.5em 0em;
+                    display: flex;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: flex-start;
+                    text-align: left;
+                    color: rgba(0, 0, 0, 0.75);
+                }
+                >input, >textarea{
+                    outline: none;
+                    width: 100%;
+                    border-radius: 5px;
+                    border: 1px solid $basic-color;
+                    padding: 0.5em;
+                    font : normal normal 1em helvetica, sans-serif;
+                }                
+            }
+        }
+        .description-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 1em;
+        }
+        .facility-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 1em;
+            textarea{
+                margin-bottom: 1em;
+                outline: none;
+                width: 100%;
+                border-radius: 5px;
+                border: 1px solid $basic-color;
+                padding: 0.5em;
+                font : normal normal 1em helvetica, sans-serif;
+            }
+            .note{
+                font: italic normal 0.8em helvetica, sans-serif; 
+            }
+        }
+         
+    }
+}

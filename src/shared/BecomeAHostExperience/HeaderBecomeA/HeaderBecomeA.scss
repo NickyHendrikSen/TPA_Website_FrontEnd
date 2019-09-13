@@ -7,6 +7,7 @@ $basic-color: #008489;
     justify-content: flex-start;
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5); 
+    top: 0;
     .left{
         padding: 1em; 
         display: flex;
@@ -21,7 +22,7 @@ $basic-color: #008489;
             text-align: justify;
             padding: 0em 0.5em;
             font-weight: bolder;
-            color: rgba(0, 0, 0, 0.5);
+            color: rgba(0, 0, 0, 0.75);
         }
     }
 }

@@ -3,6 +3,8 @@ import './HostExperience.scss'
 import 'react-fa-icon'
 import HeaderBecomeA from './HeaderBecomeA/HeaderBecomeA'
 import Display from './Display/Display'
+import BasicInfo from './BasicInfo/BasicInfo';
+import ExperiencePage from './ExperiencePage/ExperiencePage';
 
 export class HostExperience extends Component {
 
@@ -42,7 +44,7 @@ export class HostExperience extends Component {
             Images: [],
             reviews: []
         },
-        currClass:'',
+        spoken_language:''
     }
 
     expandBasic(){
@@ -93,7 +95,47 @@ export class HostExperience extends Component {
         console.log("Photos")
     }
 
+    basicInformation(){
+        console.log(this.props.children)
+    }
+
+    getBasicInfo = (location:string, hostLang:string, hostSpokenLang:string, category:string, nextClass:string) => {
+        console.log(location + ", " + hostLang + ", " + hostSpokenLang + ", " + category + "" + nextClass);
+        this.setState({
+            data: {
+                experience_category:category,
+                host:{
+                    host_language:hostLang
+                },
+                address:{
+                    suburb:location,
+                }
+            },
+            spoken_language:hostSpokenLang,
+        })
+        this.checkClass(nextClass);
+    }
+
+    checkClass(currClass:string){
+        let basic = document.getElementsByClassName('basic-info-wrapper') as HTMLCollectionOf<HTMLElement>
+        if(currClass === ''){
+            basic[0].style.display = 'flex'
+        }
+        else if(currClass === 'experience'){
+            console.log("experience")
+        }
+    }
+
     render() {
+
+        const {data, spoken_language} = this.state
+
+        var currCity = ''
+        var spokenLang = ''
+
+        if(data.address.suburb !== '') currCity = data.address.suburb
+        if(spoken_language !== '') spokenLang = spoken_language
+
         return (
             <div className="col-md-12 host-experience-wrapper">
                 <div className="col-md-12 host-experience-container">
@@ -111,25 +153,27 @@ export class HostExperience extends Component {
                                         Experience Page
                                     </div>
                                     <div className="sub-text experience">
-                                        <div className="text-inside about" onClick={this.showDesc}>Description</div>
-                                        <div className="text-inside language" onClick={this.showFacility}>Facility</div>
-                                        <div className="text-inside photos" onClick={this.showPhotos}>Photos</div>
+                                        <div className="text-inside about" onClick={this.showDesc}>• Description & Facility</div>
+                                        <div className="text-inside photos" onClick={this.showPhotos}>• Photos</div>
                                     </div>
                                 </div>
                                 <div className="text-wrapper experience-page">
                                     <div className="show-sub-text" onClick={() => this.expandSetting(1)}>
-                                        Settings
+                                       Settings
                                     </div>
                                     <div className="sub-text setting">
-                                        <div className="text-inside detail" onClick={this.showDetail}>Detail Informations</div>
-                                        <div className="text-inside meeting" onClick={this.meetLoc}>Meeting Location</div>
+                                        <div className="text-inside detail" onClick={this.showDetail}>• Detail Informations</div>
+                                        <div className="text-inside meeting" onClick={this.meetLoc}>• Meeting Location</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="input-experience-wrapper"></div>
+                        <div className="input-experience-wrapper">
+                            <ExperiencePage />
+                            <BasicInfo currClass={'basic'} location={''} primaryLang={''} spokenLang={''} category={''} setBasicInfo={this.getBasicInfo} />
+                        </div>
                         <div className="display-experience-tab">
-                            <Display hostCity={''} hostSpoken={''} />
+                            <Display hostCity={currCity} hostSpoken={spokenLang} />
                         </div>
                     </div>
                 </div>
