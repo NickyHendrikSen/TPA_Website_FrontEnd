@@ -1,9 +1,11 @@
-header{
+.chatD_header{
     
     position: fixed;    
     z-index: 5000;
     background-color:white;
+    width: 100%;
 }
+
 body{
     background-color:white;
 }

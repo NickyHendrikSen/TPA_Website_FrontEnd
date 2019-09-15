@@ -20,7 +20,7 @@ export default class ExperienceHeader extends React.Component{
     };
     none = 0
     componentWillMount(){
-        if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null) return;
+        if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null) window.location.href = "/";
         axios.all([
             axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID')),
             axios.get('http://backendtpaweb.herokuapp.com/api/experience')    
@@ -33,7 +33,7 @@ export default class ExperienceHeader extends React.Component{
             })
             // console.log(plansRes);
             // console.log(expRes);
-        }) 
+        })
             // if(res.data == null) return;
             // this.setState(
             //         {
@@ -82,15 +82,15 @@ export default class ExperienceHeader extends React.Component{
         else{
             //ADD NEW LIST HERE
             // console.log((document.getElementById('txtPlanPrivacy') as HTMLInputElement).value);
-            
+            // alert((document.getElementById('txtPlanName') as HTMLInputElement).value + " " + (document.getElementById('txtPlanPrivacy') as HTMLInputElement).value + "")
             axios({
                 url: 'http://backendtpaweb.herokuapp.com/api/plans', 
                 method : "POST",
                 data : {
                     // "PlansID" : 2,   
-                    "UserID" : 11,
-                    "PlansName" : "asd",
-                    "PrivacyType" : "Public"
+                    "UserID" : Number(localStorage.getItem('UserID')),
+                    "PlansName" : (document.getElementById('txtPlanName') as HTMLInputElement).value + "",
+                    "PrivacyType" : (document.getElementById('txtPlanPrivacy') as HTMLInputElement).value + "",
 
                 },
                 headers:{"Content-Type": "application/x-www-form-urlencoded"}
@@ -102,6 +102,7 @@ export default class ExperienceHeader extends React.Component{
             //CLOSE LIGHTBOX
             (document.getElementsByClassName('exps_saveModal')[0] as HTMLElement).style.display = "none";
             alert('Success Added New List');
+            window.location.reload();
         }
     }
     love(Plansid : string){
@@ -165,15 +166,15 @@ export default class ExperienceHeader extends React.Component{
                         Name<input type="text" id="txtPlanName"/>
                         Privacy
                         <select name="planPrivacy" id="txtPlanPrivacy">
-                            <option value="public">Public</option>
-                            <option value="private">Private</option>
+                            <option value="Public">Public</option>
+                            <option value="Private">Private</option>
                         </select>
                         <button className="exps_createNewListButton" onClick={this.modal_saveNewList}>Create New List</button>
                         <hr/>
                         <div className="exps_createPlanTitle">
                             Saved List
                         </div>
-                        {this.state.data.map(e => {
+                        {this.state.data == null ? "" : this.state.data.map(e => {
                             return(
                                 <div className="exps_planList">
                                     <div className="exps_planName">{e.PlansName}</div>

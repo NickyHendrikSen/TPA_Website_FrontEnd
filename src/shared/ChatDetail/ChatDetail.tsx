@@ -47,9 +47,9 @@ export default class ChatDetail extends React.Component{
         if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null){
             window.location.href = "/";
         }
-        if(localStorage.getItem('host_id') == "" || localStorage.getItem('host_id') == null){
-            window.location.href = "/";
-        }
+        // if(localStorage.getItem('host_id') == "" || localStorage.getItem('host_id') == null){
+        //     window.location.href = "/";
+        // }
         if((localStorage.getItem('exp_id') == "" || localStorage.getItem('exp_id') == null) && (localStorage.getItem('place_id') == "" || localStorage.getItem('place_id') == null)){
             window.location.href = "/";
         }
@@ -87,7 +87,9 @@ export default class ChatDetail extends React.Component{
     render(){
         return(
             <div>
+                <div className="chatD_header">
                 <Header />
+                </div>
                 <div className="chatD_ContentWrapper">
                     <div className="chatD_Content">
                         <div className="chatD_detailWrapper">

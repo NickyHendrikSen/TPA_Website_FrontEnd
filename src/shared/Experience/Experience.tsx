@@ -54,6 +54,8 @@ export default class Experience extends React.Component{
             localStorage.setItem('ExperienceChosen', id); 
             // console.log(this.state.plans.length);
             // console.log(id);
+            (document.getElementsByClassName('exps_saveModal')[0] as HTMLElement).style.display = "flex";
+            if(this.state.plans == null) return;
             for(let i = 0; i < this.state.plans.length; i++){
                 (document.getElementById("love" + this.state.plans[i].PlansID) as HTMLElement).style.color = "white";
                 let ids = (this.state.plans[i].ExperienceID.split('[')[1]).split(']')[0].split(',');
@@ -65,7 +67,6 @@ export default class Experience extends React.Component{
                     }
                 }
             }
-            (document.getElementsByClassName('exps_saveModal')[0] as HTMLElement).style.display = "flex";
         }
     }
     componentWillMount(){

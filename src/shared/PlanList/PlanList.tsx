@@ -6,12 +6,15 @@ import "./PlanList.scss"
 export default class PlanList extends React.Component{
     state={
         data:[{
+            PlansID:'',
             PlansName:'',
             ExperienceID:'',
             RoomID:'',
             PrivacyType:'',
         }],
+        image:[''],
         datas:[{
+            PlansID:'',
             PlansName:'',
             ExperienceID:'',
             RoomID:'',
@@ -19,6 +22,7 @@ export default class PlanList extends React.Component{
             UserID:'',
         }],
         recommend:[{
+            PlansID:'',
             PlansName:'',
             ExperienceID:'',
             RoomID:'',
@@ -26,40 +30,93 @@ export default class PlanList extends React.Component{
             UserID:'',
         }]
     }
+    componentDidMount(){
+        axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
+            .then(res => {    
+                if(res.data == null) return;
+                for(let i = 0; i < res.data.length; i++){
+                    // console.log(res.data[i]);
+                    //if both data empty
+                    if(res.data[i].RoomID == "[]" && res.data[i].ExperienceID == "[]"){
+                        (document.getElementsByClassName('savedPlan_images')[i] as HTMLImageElement).style.display = "none";
+                    }
+                    else if(res.data[i].RoomID != "[]"){
+                        var roomid = ((res.data[i].RoomID.split('[')[1]).split(']')[0]).split(',')[0];
+                        // temp.push(res.data[i]);
+                        axios.get('http://backendtpaweb.herokuapp.com/api/rooms/' + roomid)
+                        .then(ress => {    
+                            (document.getElementsByClassName('savedPlan_images')[i] as HTMLImageElement).src = ress.data.Images.picture_url;
+                            // temps.push(ress.data.Images.picture_url);
+                        }
+                        )
+                    }
+                    else{
+                        var expid = ((res.data[i].ExperienceID.split('[')[1]).split(']')[0]).split(',')[0];
+                        // temp.push(res.data[i]);
+                        axios.get('http://backendtpaweb.herokuapp.com/api/experience/' + expid)
+                        .then(ress => {    
+                            (document.getElementsByClassName('savedPlan_images')[i] as HTMLImageElement).src = ress.data.Images[0];
+                            // temps.push(ress.data.Images[0]);
+                        }
+                        )
+                    }
+                }   
+            }
+        )
+        
+    }
     componentWillMount(){
         if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null){
             window.location.href = "/";
             return;
         }
         axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
-            .then(res => {
-                this.setState(
-                    {
-                        data: res.data
-                    }
-                )
-                // console.log(res.data);
+            .then(res => {     
+                this.setState({
+                    data: res.data
+                })      
             }
         )
+
         axios.get('http://backendtpaweb.herokuapp.com/api/plans')
             .then(res => {
-                this.setState(
-                    {
-                        datas: res.data
-                    }
-                )
+                var recommendTemp = [{RoomID:'', ExperienceID:''}];
+                var recommendRandom = [{}];
+                var image = [''];
                 for(let i = 0; i < res.data.length; i++){
                     if(res.data[i].PrivacyType == "Public" && res.data[i].UserID != localStorage.getItem('UserID')){
-                        this.state.recommend.push(res.data[i]);
-                        console.log('asd')
+                        recommendTemp.push(res.data[i]);
+                        // console.log('asd')
                     }
                 }
-                // console.log(res.data);
+                if(recommendTemp.length <= 7){
+                    this.setState(
+                        {
+                            datas: recommendTemp,
+                        }
+                    )
+                }
+                else{
+                    // let len = recommendTemp.length;
+                    for(let i = 0; i < 6; i++){
+                        let rand = 0;
+                        rand = parseInt((Math.random() * (recommendTemp.length-1)) + 1 + "");
+                        recommendRandom.push(recommendTemp[rand]);
+                        recommendTemp.splice(rand, 1);
+                    }
+                    // console.log(image);
+                    // console.log(recommendRandom);
+                    this.setState({
+                        datas: recommendRandom,
+                    })
+                }
             }
         )
 
     }
     render(){
+        // console.log(document.getElementsByClassName('savedPlan_images'));
+        console.log(this.state.image)
         return(
             <div>
                 <Header/>
@@ -67,10 +124,11 @@ export default class PlanList extends React.Component{
                     Saved Plan
                 </div>
                 <div className="savedPlan_contentWrapper">
-                    {this.state.data.map(e => {
+                    {this.state.data== null ? "" : this.state.data.map(e => {
                         return(
                             <div className="savedPlan_content">
-                                <div className="savedPlan_planName">{e.PlansName}</div>
+                                <div className="savedPlan_image"><img src="" alt="" className="savedPlan_images"/></div>
+                                <div className="savedPlan_planName">{e.PlansName == undefined ? "" : e.PlansName}</div>
                                 <div className="savedPlan_exp">{((e.ExperienceID.split('[')[1] + "").split(']')[0] + "").split(',')[0] == "" ? 0 : ((e.ExperienceID.split('[')[1] + "").split(']')[0] + "").split(',').length} Experience(s)</div>
                                 <div className="savedPlan_room">{((e.RoomID.split('[')[1] + "").split(']')[0] + "").split(',')[0] == "" ? 0 : ((e.RoomID.split('[')[1] + "").split(']')[0] + "").split(',').length} Room(s)</div>
                             </div>
@@ -81,10 +139,11 @@ export default class PlanList extends React.Component{
                     Recommended Plan
                 </div>
                 <div className="savedPlan_contentWrapper">
-                    {this.state.recommend.slice(1,this.state.recommend.length).map(e =>{
+                    {this.state.datas.length == 1 ? "" : this.state.datas.slice(1, this.state.datas.length).map((e,index) =>{
                         return(
                             <div className="savedPlan_content">
-                                <div className="savedPlan_planName">{e.PlansName}</div>
+                            <div className="savedPlan_image"><img src="" alt="" className="savedPlan_imagesRec"/></div>
+                                <div className="savedPlan_planName">{e.PlansName == undefined ? "" : e.PlansName}</div>
                                 <div className="savedPlan_exp">{((e.ExperienceID.split('[')[1] + "").split(']')[0] + "").split(',')[0] == "" ? 0 : ((e.ExperienceID.split('[')[1] + "").split(']')[0] + "").split(',').length} Experience(s)</div>
                                 <div className="savedPlan_room">{((e.RoomID.split('[')[1] + "").split(']')[0] + "").split(',')[0] == "" ? 0 : ((e.RoomID.split('[')[1] + "").split(']')[0] + "").split(',').length} Room(s)</div>
                             </div>

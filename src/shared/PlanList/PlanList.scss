@@ -10,6 +10,13 @@
         padding-bottom: 20px;
         border: 1px solid black;
         margin-bottom: 20px;
+        .savedPlan_image{
+            height: 200px;
+            .savedPlan_images{
+                height: 100%;
+                width: 100%;
+            }
+        }
         .savedPlan_planName{
             background-color:rgb(179, 179, 179);
             color:black;
