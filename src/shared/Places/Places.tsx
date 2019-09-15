@@ -202,6 +202,7 @@ class Places extends React.Component<RouteComponentProps<any>>{
                                                     <StarRatings
                                                         rating={Number(room.review_scores.review_scores_rating)}
                                                         starRatedColor="#008489"
+                                                        
                                                         numberOfStars={5}
                                                         name='rating'
                                                         starDimension= '1em'

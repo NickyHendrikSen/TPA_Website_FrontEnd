@@ -2,15 +2,44 @@ import React, { Component } from 'react'
 import "./ExperiencePage.scss"
 
 interface IProps{
-    title:string,
-    about:string,
-    detail:string,
-    street:string,
-    amenities:string[],
-    should_bring:string[],
+    setExperiencePage:any
 }
 
-export class ExperiencePage extends Component {
+export class ExperiencePage extends Component<IProps> {
+    
+    test = () => {
+        let title = document.getElementById('title') as HTMLInputElement
+        let detail = document.getElementById('detail') as HTMLTextAreaElement
+        let street = document.getElementById('street') as HTMLTextAreaElement
+        let amenity = document.getElementById('amenities') as HTMLTextAreaElement
+        let sbring = document.getElementById('sbring') as HTMLTextAreaElement
+        let about = document.getElementById('about') as HTMLTextAreaElement
+        let error = document.getElementsByClassName('error') as HTMLCollectionOf<HTMLElement>
+
+        let amenities = amenity.value.split(',')
+        let sbrings = sbring.value.split(',')
+
+        for(let i = 0; i < amenities.length; i++){
+            amenities[i] = amenities[i].trim()
+        }
+        for(let i = 0; i < sbrings.length; i++){
+            sbrings[i] = sbrings[i].trim()
+        }
+
+        if(title.value === '' || 
+            detail.value === '' || 
+            street.value === '' || 
+            amenity.value === '' || 
+            sbring.value === '' || 
+            about.value === ''){
+            error[1].style.display = "flex"
+        } else {
+            error[1].style.display = 'none'
+            this.props.setExperiencePage(title.value, detail.value, street.value, about.value, amenities, sbrings, 'photo')
+        }
+
+    }
+
     render() {
         return (
             <div className="col-md-12 experience-wrapper">
@@ -53,7 +82,7 @@ export class ExperiencePage extends Component {
                         </div>
                     </div>
                     <div className="btn-next">
-                        <div className="btn">Next</div>
+                        <div className="btn" onClick={this.test}>Next</div>
                         <div className="error">Wrong input !</div>
                     </div>
                 </div>

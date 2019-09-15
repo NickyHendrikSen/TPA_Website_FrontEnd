@@ -1,11 +1,19 @@
 $basic-color: #008489;
 
 .experience-wrapper{
-    position: absolute;
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
-    height: 100%;
+    @media all and (min-width:1025px) {
+        position: absolute;
+        display: none;
+        flex-wrap: wrap;
+        overflow: auto;
+        height: 100%;     
+    }
+    @media all and (max-width:1024px) {
+        display: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
     .experience-container{
         .btn-next{
             padding: 1em;
@@ -14,7 +22,7 @@ $basic-color: #008489;
             justify-content: space-between;
             align-items: center;
             .error{
-                display: flex;
+                display: none;
                 color: red;
                 font: normal normal 1em helvetica, sans-serif;
             }

@@ -29,20 +29,46 @@ $basic-color: #008489;
 }
 
 .host-experience-wrapper{
-    background-color: white;
-    height: 100vh;
-    font: bold 1em "helvetica, arial", sans-serif;
-    .host-experience-container{
-        height: 100%;
+    @media all and (max-width:1024px) {
         display: flex;
         flex-wrap: wrap;
-        .input-tab-wrapper{
+        background-color: white;
+    }
+    @media all and (min-width:1025px) {
+        background-color: white;
+        height: 100vh;
+    }
+    font: bold 1em "helvetica, arial", sans-serif;
+    .host-experience-container{
+        @media all and (min-width:1025px) {
             display: flex;
+            height: 100%;
             flex-wrap: wrap;
-            height: 90%;
-            position: relative;
+        }
+        @media all and (max-width:1024px) {
+            display: block;
+            width: 100%;
+        }
+        .input-tab-wrapper{
+            @media all and (min-width:1025px) {
+                display: flex;
+                flex-wrap: wrap;
+                height: 90%;
+                width: 100%;
+                position: relative;
+            }
+            @media all and (max-width:1024px) {
+                display: block;
+                width: 100%;
+                position: relative;
+            }
             .tab-experience-wrapper{
-                width: 20%;
+                @media all and (min-width:1025px) {
+                    width: 20%;
+                }
+                @media all and (max-width:1024px) {
+                    width: 100%;
+                }
                 border-right: 1px solid rgba(0, 0, 0, 0.5);
                 .tab-container{
                     padding: 1em;
@@ -52,6 +78,11 @@ $basic-color: #008489;
                         width: 100%;
                         padding: 0.5em 0em;
                         color: rgba(0, 0, 0, 0.75);
+                        .text{
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                        }
                         .sub-text{
                             overflow: hidden;
                             display: none;
@@ -59,6 +90,8 @@ $basic-color: #008489;
                             .text-inside{
                                 border-radius: 5px;
                                 padding: 0.5em 0.5em;
+                                display: flex;
+                                justify-content: space-between;
                                 &:hover{
                                     background-color: rgba(200, 200, 200, 0.2);
                                 }
@@ -68,15 +101,49 @@ $basic-color: #008489;
                 }
             }
             .input-experience-wrapper{
-                width: 55%;
+                @media all and (min-width:1025px) {
+                    width: 55%;
+                }
+                @media all and (max-width:1024px) {
+                    width: 100%;
+                }
                 position: relative;
             }
             .display-experience-tab{
-                width: 25%;
-                height: 90%;
-                background-color: $basic-color;
-                position: fixed;
-                right: 0;
+                @media all and (min-width:1025px) {
+                    width: 25%;
+                    height: 90%;
+                    background-color: $basic-color;
+                    position: fixed;
+                    right: 0;
+                }
+                @media all and (max-width:1024px) and (min-width:769px) {
+                    display: block;
+                    margin: auto;
+                    width: 35%;
+                    padding-bottom: 20%;
+                    background-color: $basic-color;
+                }
+                @media all and (max-width:768px) and (min-width:426px){
+                    display: block;
+                    margin: auto;
+                    width: 40%;
+                    padding-bottom: 20%;
+                    background-color: $basic-color;
+                }
+                @media all and (max-width:425px) and (min-width:321px){
+                    display: block;
+                    margin: auto;
+                    width: 70%;
+                    padding-bottom: 20%;
+                    background-color: $basic-color;
+                }
+                @media all and (max-width:320px) {
+                    display: block;
+                    width: 100%;
+                    padding-bottom: 20%;
+                    background-color: $basic-color;
+                }
             }
         }
     }

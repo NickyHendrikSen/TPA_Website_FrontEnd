@@ -1,7 +1,9 @@
 $basic-color: #008489;
 
 .header-host-experience{
-    height: 10%;
+    @media all and (min-width:1025px) {
+        height: 10%;
+    }
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;

@@ -1,0 +1,22 @@
+$basic-color: #008489;
+
+.meeting-wrapper{
+    position: absolute;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: auto;
+    height: 100%;
+    .meeting-container{
+        padding: 1em;
+    }
+    #map-widget{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1em;
+        width: 100%;
+        height: 70%;
+    }        
+}

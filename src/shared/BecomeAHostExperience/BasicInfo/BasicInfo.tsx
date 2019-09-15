@@ -1,24 +1,12 @@
 import React, { Component } from 'react'
 import "./BasicInfo.scss"
+import '../utils.scss'
 
 interface IProps{
-    location:string,
-    primaryLang:string, 
-    spokenLang:string,
-    category:string,
-    currClass:string,
     setBasicInfo:any
 }
 
 export class BasicInfo extends Component <IProps> {
-
-    state={
-        location:this.props.location,
-        primaryLang:this.props.primaryLang,
-        spokenLang:this.props.spokenLang,
-        category:this.props.category,
-        currClass:this.props.currClass,
-    }
 
     test = () => {
         var location = document.getElementById("location") as HTMLInputElement

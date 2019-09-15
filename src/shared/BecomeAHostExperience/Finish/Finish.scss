@@ -1,0 +1,42 @@
+$basic-color: #008489;
+
+.finish-wrapper{
+    @media all and (min-width:1025px) {
+        position: absolute;
+        display: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(230, 254, 255);
+        height: 100%;     
+        position: relative;
+    }
+    @media all and (max-width:1024px) {
+        display: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(230, 254, 255);
+    }
+    .button-container{
+        height: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        .icon{
+            width: 100%;
+            color: rgba($color: #008489, $alpha: 0.5);
+        }
+        >div{
+            >.btn{
+                padding: 0.5em;
+                font: normal normal 1.5em helvetica, sans-serif;
+            }
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
