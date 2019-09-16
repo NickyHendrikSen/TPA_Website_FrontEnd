@@ -2,10 +2,11 @@ import React from "react"
 import {Link, RouteComponentProps} from "react-router-dom"
 import "./Places.scss"
 import "./PlacesGridSystem/PlacesGridSystems.scss";
-import axios from 'axios'
+import axios from "axios";
 import StarRatings from 'react-star-ratings';
 import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
 import "./pagination/pagination.scss"
+import Imagecarousel from "./Imagecarousel/Imagecarousel";
 
 class Places extends React.Component<RouteComponentProps<any>>{
 
@@ -32,26 +33,40 @@ class Places extends React.Component<RouteComponentProps<any>>{
             address:{suburb:'', location:{coordinates:[]}},
             images:{picture_url:''},
             reviews:[],
+            image_list:[],
         }],
         isLoading: true,
         currentPage: 1,
         placesPerPage: 5,
+        plans:[
+            {
+                PlansID:'',
+                UserID:'',
+                PlansName:'',
+                PrivacyType:'',
+                ExperienceID:'',
+                RoomID:'',
+            }
+        ]
     }
 
     componentWillMount(){
         // const { fromNotifications } = this.props.location.state
         let country: any = this.props.match.params.country
         console.log(country)
-        axios.get('http://backendtpaweb.herokuapp.com/api/rooms/place/'+country)
-            .then(res => {
-                this.setState(
+        axios.all([
+            axios.get('http://backendtpaweb.herokuapp.com/api/rooms/place/'+country),
+            axios.get('http://backendtpaweb.herokuapp.com/api/plans/11')
+        ])
+        .then(axios.spread((roomRes:any, planRes:any) => {
+            this.setState(
                     {
-                        data: res.data,
-                        isLoading: false
+                        data:roomRes.data,
+                        plans:planRes.data,
+                        isLoading:false
                     }
                 )
-            }
-        )
+        }))
     }
 
     clickState = {
@@ -81,71 +96,176 @@ class Places extends React.Component<RouteComponentProps<any>>{
         }
     }
 
+    insertRoomPlan(idx : number){
+        console.log("asd");
+        let id = Number(this.state.data[idx]._id)
+        let plansid = Number(this.state.plans[idx].PlansID)
+        axios({
+            method: 'post',
+            url: 'http://backendtpaweb.herokuapp.com/api/room-plans',
+            data: {
+                RoomID:id,
+                PlansID:plansid
+            },
+                headers:{"Content-Type": "application/x-www-form-urlencoded"}
+            }
+        );
+    }
+
+    deleteRoomPlan(roomID : string, plansID : string){
+        let id = Number(roomID)
+        let plansid = Number(plansID)
+        console.log(""+id+", "+plansID);
+        axios({
+            method: 'post',
+            url: 'http://backendtpaweb.herokuapp.com/api/delete-room-plans',
+            data: {
+                RoomID:id,
+                PlansID:plansid
+            },
+                headers:{"Content-Type": "application/x-www-form-urlencoded"}
+            }
+        );
+    }
+
     toggleLove = (idx : number) => {
         var fari = document.getElementsByClassName("fa-heart") as HTMLCollectionOf<HTMLElement>;
-
+        let modal = document.getElementsByClassName("plan-list-wrapper") as HTMLCollectionOf<HTMLElement>
+        
         if(fari[idx].className === "fas fa-heart"){
             fari[idx].className = "far fa-heart";
-            //do save to love list
+            
         }
         else{
             fari[idx].className = "fas fa-heart";
-            //remove love from lova list
+            modal[0].style.display = "flex";
+            modal[0].style.zIndex = "1";
+            
         }
+    }
+
+    insertPlan(idx : number){
+        var fari = document.getElementsByClassName("fa-heart") as HTMLCollectionOf<HTMLElement>;
+        let modal = document.getElementsByClassName("plan-list-wrapper") as HTMLCollectionOf<HTMLElement>
+        
+        if(fari[idx].className === "fas fa-heart"){
+            fari[idx].className = "far fa-heart";
+            this.insertRoomPlan(idx)
+        }
+        else{
+            fari[idx].className = "fas fa-heart";
+            modal[0].style.display = "flex";
+            modal[0].style.zIndex = "1";
+            this.deleteRoomPlan(this.state.data[idx]._id, this.state.plans[idx].PlansID)
+        }
+    }
+
+    closeModal(){
+        let modal = document.getElementsByClassName("plan-list-wrapper") as HTMLCollectionOf<HTMLElement>
+
+        modal[0].style.display = "none";
+        modal[0].style.zIndex = "-1";        
     }
 
     render(){
         this.handleClick.bind(this.state);
-        const {data, currentPage, placesPerPage} = this.state;
+        const {data, currentPage, placesPerPage, plans} = this.state;
 
         const indexOfLastData = currentPage * placesPerPage;
         const indexOfFirstData = indexOfLastData - placesPerPage;
         const currentData = data.slice(indexOfFirstData, indexOfLastData);
 
         const renderData = currentData.map((room, index) => {
-            return (
-                <div className="row-md-3 col-md-12 frame-container" key={index}>
-                    <div className="frame-photo" style={{backgroundImage: `url(${room.images.picture_url})`}}>
-                    </div>
-                    <div className="frame-desc">
-                        <div className="desc-wrapper">
-                            <div className="top-wrapper">
-                                <div className="room-type">{room.room_type} • {room.address.suburb}</div>
-                                <i className="far fa-heart" onClick={() => {this.toggleLove(index)}}></i>
-                            </div>
-                            <Link to={"/PlaceDetail/" + room._id} className="room-info-wrapper">
-                                <div className="room-name">{room.name}</div>
-                                <div className="room-informations">
-                                    {room.guest_included} guests • {room.bedrooms} bedroom • {room.beds} bed • {room.bathrooms} bath
+            if(room.image_list.length < 1){
+                return (
+                    <div className="col-md-12 frame-container" key={index}>
+                        <div className="frame-photo" style={{backgroundImage: `url(${room.images.picture_url})`}}>
+                        </div>
+                        <div className="frame-desc">
+                            <div className="desc-wrapper">
+                                <div className="top-wrapper">
+                                    <div className="room-type">{room.room_type} • {room.address.suburb}</div>
+                                    <i className="far fa-heart" onClick={() => {this.toggleLove(index)}}></i>
                                 </div>
-                                <div className="room-amenities">
-                                    {room.amenities[0]} • {room.amenities[1]} • {room.amenities[2]} 
-                                </div>
-                                <div className="room-rate-count">
-                                    <div className="rate-price-wrapper">
-                                        <div className="room-star">
-                                            <div className="room-rate">
-                                                <StarRatings
-                                                    rating={Number(room.review_scores.review_scores_rating)}
-                                                    starRatedColor="#008489"
-                                                    numberOfStars={5}
-                                                    name='rating'
-                                                    starDimension= '1vw'
-                                                    starSpacing = '0.1vw'
-                                                    />
-                                            </div>
-                                            <div className="count-rate">
-                                                    • ({room.reviews.length})
-                                            </div>
-                                        </div>
-                                        <div className="room-price">${room.price} / night</div>
+                                <Link to={"/PlaceDetail/" + room._id} className="room-info-wrapper">
+                                    <div className="room-name">{room.name}</div>
+                                    <div className="room-informations">
+                                        {room.guest_included} guests • {room.bedrooms} bedroom • {room.beds} bed • {room.bathrooms} bath
                                     </div>
-                                </div>
-                            </Link>
+                                    <div className="room-amenities">
+                                        {room.amenities[0]} • {room.amenities[1]} • {room.amenities[2]} 
+                                    </div>
+                                    <div className="room-rate-count">
+                                        <div className="rate-price-wrapper">
+                                            <div className="room-star">
+                                                <div className="room-rate">
+                                                    <StarRatings
+                                                        rating={Number(room.review_scores.review_scores_rating)}
+                                                        starRatedColor="#008489"
+                                                        
+                                                        numberOfStars={5}
+                                                        name='rating'
+                                                        starDimension= '1em'
+                                                        starSpacing = '0.1em'
+                                                        />
+                                                </div>
+                                                <div className="count-rate">
+                                                        • ({room.reviews.length})
+                                                </div>
+                                            </div>
+                                            <div className="room-price">${room.price} / night</div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )
+                )
+            }
+            else {
+                return (
+                    <div className="col-md-12 frame-container" key={index}>
+                        <Imagecarousel index={index} image_list={room.image_list}/>
+                        <div className="frame-desc">
+                            <div className="desc-wrapper">
+                                <div className="top-wrapper">
+                                    <div className="room-type">{room.room_type} • {room.address.suburb}</div>
+                                    <i className="far fa-heart" onClick={() => {this.toggleLove(index)}}></i>
+                                </div>
+                                <Link to={"/PlaceDetail/" + room._id} className="room-info-wrapper">
+                                    <div className="room-name">{room.name}</div>
+                                    <div className="room-informations">
+                                        {room.guest_included} guests • {room.bedrooms} bedroom • {room.beds} bed • {room.bathrooms} bath
+                                    </div>
+                                    <div className="room-amenities">
+                                        {room.amenities[0]} • {room.amenities[1]} • {room.amenities[2]} 
+                                    </div>
+                                    <div className="room-rate-count">
+                                        <div className="rate-price-wrapper">
+                                            <div className="room-star">
+                                                <div className="room-rate">
+                                                    <StarRatings
+                                                        rating={Number(room.review_scores.review_scores_rating)}
+                                                        starRatedColor="#008489"
+                                                        numberOfStars={5}
+                                                        name='rating'
+                                                        starDimension= '1em'
+                                                        starSpacing = '0.1em'
+                                                        />
+                                                </div>
+                                                <div className="count-rate">
+                                                        • ({room.reviews.length})
+                                                </div>
+                                            </div>
+                                            <div className="room-price">${room.price} / night</div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
         });
 
         const pageNumber = [];
@@ -161,12 +281,32 @@ class Places extends React.Component<RouteComponentProps<any>>{
             )
         });
 
+        const allPlans = plans.map((plans, index) => {
+            return (
+                <div className="plans-container" key={index}>
+                    <div className="plans">
+                        {plans.PlansName}
+                    </div>
+                    <i className="far fa-heart icon" onClick={() =>this.insertPlan(index)}></i>
+                </div>
+            )
+        })
+
         if (this.state.isLoading) {
             return ( <div>Loading...</div> )
         }
         
         return(
             <div className="col-md-12 places_Wrapper">
+                <div className="plan-list-wrapper">
+                    <div className="plan-list-container">
+                        <div className="close-btn-wrapper">
+                            <button type="button" className="close-btn" onClick={this.closeModal}>X</button>
+                        </div>
+                        <h1>Save Plan</h1>
+                        {allPlans}
+                    </div>
+                </div>
                 <div className="col-md-6 contents_wrapper">
                     <div className="list-wrapper">
                         <div className="list-container">

@@ -303,3 +303,13 @@
     }
 
 }
+@media only screen and(max-width:425px){
+    .homeSearchWrapper{
+        margin-left:0 !important;
+    }
+}
+@media only screen and(max-width:768px){
+    .homeSearchWrapper{
+        width: 100%;
+    }
+}

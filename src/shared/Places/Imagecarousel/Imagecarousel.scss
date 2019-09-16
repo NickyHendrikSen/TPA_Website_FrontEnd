@@ -1,0 +1,78 @@
+.photo-container{
+    position: relative;
+    padding: 0.1em;
+    .photo{
+        @media all and (max-width:768px){
+            padding-bottom:80%;
+        }
+        @media all and (min-width:769px) and (max-width:1024px){
+            padding-bottom:70%;
+        }
+        @media all and (min-width:1025px){
+            padding-bottom:60%;
+        }
+        border-radius: 3px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: all 500ms;
+    }
+}
+.arrows{
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    padding: 0.5em;
+    width: 100%;
+    height: 100%;
+    .left{
+        cursor: pointer;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        >i{
+            padding: 1em;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0);
+            transition: all 500ms ease-in-out;
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.5);
+            }
+        }
+        >.fas{
+            color: rgba(0, 0, 0, 0.25);
+        }
+        &:hover{
+            >.fas{
+                color: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+    .right{
+        cursor: pointer;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        >i{
+            padding: 1em;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0);
+            transition: all 500ms ease-in-out;
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.5);
+            }
+        }
+        >.fas{
+            color: rgba(0, 0, 0, 0.25);
+        }
+        &:hover{
+            >.fas{
+                color: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+}

@@ -238,7 +238,15 @@ export default class Home extends React.Component{
         adultValue.innerText = b + "";
         this.homeSearch_editGuest();
     }
-
+    search(){
+        if((document.getElementById('search_txtCheckIn') as HTMLInputElement).value == "" && (document.getElementById('search_txtCheckOut') as HTMLInputElement).value == ""){
+            alert('Please input check in and check out date');
+        }
+        else
+            window.location.href="/Places/Australia";
+        // 
+        // if()
+    }
     render()
     {
         return(
@@ -281,7 +289,7 @@ export default class Home extends React.Component{
                                 <div className="homeSearchCheckOutWrapper">
                                     <input className="homeSearchCheckOut_Input" 
                                     type="date" name="search_checkInInput" 
-                                    id="search_txtCheckIn" placeholder="mm/dd/yyyy"/>
+                                    id="search_txtCheckOut" placeholder="mm/dd/yyyy"/>
                                 </div>
                             </div>
                         </div>
@@ -378,11 +386,11 @@ export default class Home extends React.Component{
                         </div>
                         <div className="homeSearch_SearchButtonWrapper">
                             {/* <Router> */}
-                                <Link to="/Places/Australia">
-                                    <button className="homeSearch_SearchButton">
+                                {/* <Link to="/Places/Australia"> */}
+                                    <button className="homeSearch_SearchButton" onClick={this.search}>
                                         Search
                                     </button>
-                                </Link>
+                                {/* </Link> */}
                             {/* </Router> */}
                         </div>
                         {/* Search Button */}

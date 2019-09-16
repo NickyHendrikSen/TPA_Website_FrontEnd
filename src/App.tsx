@@ -17,6 +17,7 @@ import Profile from "./shared/Profile/Profile"
 import ChatDetail from "./shared/ChatDetail/ChatDetail"
 import Tes from "./shared/GetDataTes/tes"
 import Chat from "./shared/Chat/Chat"
+import PlanDetail from "./shared/PlanDetail/PlanDetail"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 
 
@@ -26,7 +27,8 @@ const App: React.FC = () => {
         <Router>
           <Switch>
               <Route path="/Chat" component={Chat}/>
-              <Route path="/tes" component={Tes} />
+              <Route path="/plan-detail/:id" component={PlanDetail}/>
+              {/* <Route path="/tes" component={Tes} /> */}
               <Route path="/ChatDetail" component={ChatDetail} />
               <Route path="/Profile" component={Profile} />
               <Route path="/PlanList" component={PlanList} />
