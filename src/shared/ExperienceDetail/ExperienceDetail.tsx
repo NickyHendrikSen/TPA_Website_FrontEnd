@@ -21,6 +21,7 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
         total_rating:0,
         reviewCount:0,
         pageNow:0,
+        star:0,
         data:{
             _id:'',
             experience_category:'asd',
@@ -136,6 +137,16 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
         // const { fromNotifications } = this.props.location.state
         axios.get('http://backendtpaweb.herokuapp.com/api/experience/' + id)
             .then(res => {
+                let total = 0;
+                    for(let j = 0; j < res.data.reviews.length; j++){
+                        total += res.data.reviews[j].reviewer_score;
+                        // console.log(total);
+                    }
+                this.setState(
+                    {
+                        star: total,
+                    }
+                )
                 this.setState(
                     {
                         data: res.data,
@@ -372,11 +383,11 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                         <div className="expD_reviewLeftTitle">Guest Reviews</div>
                         <div className="expD_reviewLeftRating">
                             <div className="expD_reviewLeftNum">
-                                {(Math.round(this.state.data.rating_star/this.state.data.total_rating_count*100)/100).toFixed(2)}
+                                {(Math.round(this.state.star/this.state.data.reviews.length/2*100)/100).toFixed(2)}
                             </div>
                             <div className="expD_reviewLeftStar">
                                 <StarRatings
-                                    rating={this.state.total_rating}
+                                    rating={this.state.star/this.state.data.reviews.length/2}
                                     starRatedColor="#008489"
                                     // changeRating={this.changeRating}
                                     numberOfStars={5}

@@ -10,6 +10,19 @@
     display:inline-block;
     background-color:white;
 }
+.btnProfile{
+    padding: 10px 20px;
+    background-color: #008489;
+    border: none;
+    outline:none;
+    transition-duration: 0.5s;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 50px;
+    &:active{
+        background-color: #005a5e;
+    }
+}
 .UserHeader{
     margin-top: 20px;
     margin-left: 50px;

@@ -21,15 +21,16 @@ export default class PlanList extends React.Component{
             PrivacyType:'',
             UserID:'',
         }],
-        recommend:[{
-            PlansID:'',
-            PlansName:'',
-            ExperienceID:'',
-            RoomID:'',
-            PrivacyType:'',
-            UserID:'',
-        }]
+        
     }
+    recommend=[{
+        PlansID:'',
+        PlansName:'',
+        ExperienceID:'',
+        RoomID:'',
+        PrivacyType:'',
+        UserID:'',
+    }]
     componentDidMount(){
         axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
             .then(res => {    
@@ -80,8 +81,19 @@ export default class PlanList extends React.Component{
 
         axios.get('http://backendtpaweb.herokuapp.com/api/plans')
             .then(res => {
-                var recommendTemp = [{RoomID:'', ExperienceID:''}];
-                var recommendRandom = [{}];
+                var recommendTemp = [{
+                    RoomID:'', 
+                    ExperienceID:'', 
+                    PlansID:'',
+                    PlansName:'',
+                    PrivacyType:'',
+                    UserID:'',}];
+                var recommendRandom = [{ PlansID:'',
+                    PlansName:'',
+                    ExperienceID:'',
+                    RoomID:'',
+                    PrivacyType:'',
+                    UserID:'',}];
                 var image = [''];
                 for(let i = 0; i < res.data.length; i++){
                     if(res.data[i].PrivacyType == "Public" && res.data[i].UserID != localStorage.getItem('UserID')){

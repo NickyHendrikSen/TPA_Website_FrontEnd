@@ -23,6 +23,8 @@ export default class Experience extends React.Component{
             rating_star:0,
             total_rating_count:0,
             Images:[],
+            reviews:[],
+            reviewAvg:0,
         }],
         plans:[{
             ExperienceID:'',
@@ -41,7 +43,10 @@ export default class Experience extends React.Component{
             rating_star:0,
             total_rating_count:0,
             Images:[],
+            reviews:[],
+            reviewAvg:0,
         }],
+        isLoading: true,
     }
     showSaveModal(id :string){
         if(localStorage.getItem('UserID') == null || localStorage.getItem('UserID') == ""){
@@ -72,10 +77,37 @@ export default class Experience extends React.Component{
     componentWillMount(){
         axios.get('http://backendtpaweb.herokuapp.com/api/experience')
             .then(res => {
+                var dataList = [{}];
+                for(let i = 0; i < res.data.length; i++){
+                    var dataTemp = {
+                        _id:res.data[i]._id,
+                        experience_category:res.data[i].experience_category,
+                        address:{suburb:res.data[i].address.suburb},
+                        experience_title: res.data[i].experience_title,
+                        price: res.data[i].price,
+                        estimated_total_hours: res.data[i].estimated_total_hours,
+                        amenities: res.data[i].amenities,
+                        rating_star: res.data[i].rating_star,
+                        total_rating_count: res.data[i].total_rating_count,
+                        Images: res.data[i].Images,
+                        reviews:res.data[i].reviews,
+                        reviewAvg:0,
+                    };
+                    let total = 0;
+                    for(let j = 0; j < res.data[i].reviews.length; j++){
+                        total += res.data[i].reviews[j].reviewer_score;
+                        console.log(total);
+                    }
+                    dataTemp.reviewAvg = total;
+                    dataList.push(dataTemp);
+                }
+                // console.log(dataList);
+                dataList.splice(0,1);
                 this.setState(
                     {
-                        data: res.data,
-                        filter: res.data
+                        data: dataList,
+                        filter: dataList,
+                        isLoading: false,
                     }
                 )
             }
@@ -122,6 +154,10 @@ export default class Experience extends React.Component{
 
     // &#10084;
     render(){       
+        if(this.state.isLoading){
+            return(<div>Loading...</div>)
+        }
+        console.log(this.state.filter);
         return(
             <div className="exps_Wrapper">
                 {/* <Header/> */}
@@ -161,10 +197,10 @@ export default class Experience extends React.Component{
                                         included</li>
                                     </div>
                                     <div className="exps_CardRating">
-                                        {(Math.round(data.rating_star/data.total_rating_count*100)/100).toFixed(2)}
+                                        {(Math.round(data.reviewAvg/data.reviews.length/2*100)/100).toFixed(2)}
                                         {/* <img src={stars} alt=""/> */}
                                         <StarRatings
-                                        rating={data.total_rating_count == 0 ? 0 : data.rating_star/data.total_rating_count}
+                                        rating={data.total_rating_count == 0 ? 0 : data.reviewAvg/data.reviews.length/2}
                                         starRatedColor="#008489"
                                         // changeRating={this.changeRating}
                                         numberOfStars={5}
@@ -172,7 +208,7 @@ export default class Experience extends React.Component{
                                         starDimension= '20px'
                                         starSpacing = '1px'
                                         />
-                                        <span className="exps_CardRatingResponds">({data.total_rating_count})</span>
+                                        <span className="exps_CardRatingResponds">({data.reviews.length})</span>
                                     </div>
                                 </div>
                             </div>

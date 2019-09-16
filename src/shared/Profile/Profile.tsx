@@ -115,6 +115,7 @@ export default class Profile extends React.Component{
                     <div className="User_Google">
                         <Google />
                     </div>
+                    <button className="btnProfile" onClick={() => window.location.href="/UserProfile"}>Go to Profile</button>
                     {/* <button className="User_Google">
                         Continue with Google
                     </button> */}
