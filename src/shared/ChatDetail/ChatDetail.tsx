@@ -134,54 +134,63 @@ export default class ChatDetail extends React.Component{
                                             <img src={this.state.place.host.host_thumbnail_url} alt=""/>
                                         </div>
                                         <div className="chatD_left_message">asdasdasdadpadadask</div>
+                                        <div className="chatD_left_time">16/09/2019 13:13 P.M.</div>
                                     </div>
                                     <div className="chatD_left">
                                         <div className="chatD_left_image">
                                             <img src={this.state.place.host.host_thumbnail_url} alt=""/>
                                         </div>
                                         <div className="chatD_left_message">asdasdasdadpadadask</div>
+                                        <div className="chatD_left_time">16/09/2019 13:13 P.M.</div>
                                     </div>
                                     <div className="chatD_left">
                                         <div className="chatD_left_image">
                                             <img src={this.state.place.host.host_thumbnail_url} alt=""/>
                                         </div>
                                         <div className="chatD_left_message">asdasdasdadpadadask</div>
+                                        <div className="chatD_left_time">16/09/2019 13:13 P.M.</div>
                                     </div>
                                     <div className="chatD_left">
                                         <div className="chatD_left_image">
                                             <img src={this.state.place.host.host_thumbnail_url} alt=""/>
                                         </div>
                                         <div className="chatD_left_message">asdasdasdadpadadask</div>
+                                        <div className="chatD_left_time">16/09/2019 13:13 P.M.</div>
                                     </div>
                                     <div className="chatD_left">
                                         <div className="chatD_left_image">
                                             <img src={this.state.place.host.host_thumbnail_url} alt=""/>
                                         </div>
                                         <div className="chatD_left_message">asdasdasdadpadadask</div>
+                                        <div className="chatD_left_time">16/09/2019 13:13 P.M.</div>
                                     </div>
                                     <div className="chatD_left">
                                         <div className="chatD_left_image">
                                             <img src={this.state.place.host.host_thumbnail_url} alt=""/>
                                         </div>
                                         <div className="chatD_left_message">asdasdasdadpadadask</div>
+                                        <div className="chatD_left_time">16/09/2019 13:13 P.M.</div>
                                     </div>
                                     <div className="chatD_right">
                                         <div className="chatD_right_image">
                                             <img src={this.state.place.host.host_thumbnail_url} alt=""/>
                                         </div>
                                         <div className="chatD_right_message">asdasdasdadpadadask</div>
+                                        <div className="chatD_right_time">16/09/2019 13:13 P.M.</div>
                                     </div>
                                     <div className="chatD_left">
                                         <div className="chatD_left_image">
                                             <img src={this.state.place.host.host_thumbnail_url} alt=""/>
                                         </div>
                                         <div className="chatD_left_message">asdasdasdadpadadask</div>
+                                        <div className="chatD_left_time">16/09/2019 13:13 P.M.</div>
                                     </div>
                                     <div className="chatD_right">
                                         <div className="chatD_right_image">
                                             <img src={this.state.place.host.host_thumbnail_url} alt=""/>
                                         </div>
                                         <div className="chatD_right_message">asdasdasdadpadadask</div>
+                                        <div className="chatD_right_time">16/09/2019 13:13 P.M.</div>
                                     </div>
                                 </div>
                             </div>
@@ -192,6 +201,9 @@ export default class ChatDetail extends React.Component{
                                 <div className="chatD_chatMessageBottom">
                                     <button id="btnMessage">
                                         Send
+                                    </button>
+                                    <button id="btnUploadImage">
+                                        Upload Image
                                     </button>
                                 </div>
                             </div>                            

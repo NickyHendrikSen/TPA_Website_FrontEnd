@@ -135,6 +135,7 @@ export default class SignUp extends React.Component{
         //Login check here
         // console.log(state.length);
         // console.log(localStorage.getItem('UserID') + " <-");
+
         for(var i = 0; i < state.length; i++){
             if(state[i].Useremail == txtEmail.value && state[i].Password == txtPass.value){
                 alert('success login');
@@ -153,8 +154,16 @@ export default class SignUp extends React.Component{
                 }
                 else
                     (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://" + state[i].UserThumbnailURL;
-            
+                axios({
+                    url: 'http://backendtpaweb.herokuapp.com/api/history-insert/' + (state[i].UserID), 
+                    method : "POST",
+                    data : {
+                },
+                headers:{"Content-Type": "application/x-www-form-urlencoded"}
+                }  
+                )
                 window.location.reload();
+
                 return;
             }
         }
