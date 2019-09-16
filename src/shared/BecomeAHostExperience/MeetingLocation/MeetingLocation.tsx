@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {Map as LeafletMap, TileLayer, Marker, Popup, CircleMarker, Circle} from 'react-leaflet'
-import L, { Layer } from 'leaflet'
 import './MeetingLocation.scss'
 import '../utils.scss'
 import Axios from 'axios'

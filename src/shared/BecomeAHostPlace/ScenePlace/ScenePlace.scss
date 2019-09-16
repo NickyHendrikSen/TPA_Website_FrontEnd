@@ -1,0 +1,45 @@
+$basic-color: #008489;
+
+.scene-wrapper{
+    display: none;
+    .title{
+        border: none;
+        margin: 0;
+        h1{
+            margin: 0.5em 0em;
+            font: normal bolder 2em helvetica, sans-serif;
+            padding: 0.5em 0em;
+            border-bottom: 1px solid rgba($color: #000000, $alpha: 0.5)
+        }
+    }
+    .sub-title{
+        padding: 0.5em;
+        width: 20%;
+        margin: auto;
+        color: rgba(0, 0, 0, 0.75);
+        font: normal bolder 1.5em helvetica, sans-serif;
+        border-bottom: 1px solid rgba($color: #000000, $alpha: 0.5)
+    }
+    .inputs{
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        .input{
+            textarea{
+                margin: 1em 1em;
+                outline: none;
+                width: 100%;
+                border-radius: 5px;
+                border: 1px solid $basic-color;
+                padding: 0.5em;
+                font : normal normal 1em helvetica, sans-serif;
+            }
+            .note{
+                font: italic normal 0.8em helvetica, sans-serif; 
+            }
+        }
+    }
+}

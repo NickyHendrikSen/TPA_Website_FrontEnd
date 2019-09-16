@@ -1,0 +1,25 @@
+$basic-color: #008489;
+
+.place-wrapper{
+    background-color: white;
+    .place-tabs{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        .tab{
+            cursor: pointer;
+            padding: 1em;
+            border-radius: 3px;
+            width: 30%;
+            &:hover{
+                border-bottom: 4px solid $basic-color;
+                margin-bottom: -4px;
+            }
+        }
+        box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    .place-container{
+        
+    }
+}
