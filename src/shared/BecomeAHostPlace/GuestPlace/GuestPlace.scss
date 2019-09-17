@@ -27,6 +27,7 @@ $basic-color: #008489;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        position: relative;
         .input{
             textarea{
                 margin: 1em 1em;
@@ -39,6 +40,29 @@ $basic-color: #008489;
             }
             .note{
                 font: italic normal 0.8em helvetica, sans-serif; 
+            }
+            .popup-list-container{
+                display: none;
+                .list-wrapper{
+                    position: absolute;
+                    height: 300px;
+                    overflow: auto;
+                    margin: -1em 0em;
+                    border: 1px solid rgba(0, 0, 0, 0.5);
+                    .popup-list{
+                        width: 100%;
+                        cursor: pointer;
+                        padding: 0.5em 0.5em;
+                        background-color: white;
+                        color: rgba(0, 0, 0, 0.75);
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+                        &:hover{
+                            color: rgba(0, 0, 0, 0.75);
+                            border-bottom: 1px solid rgba(0, 0, 0, 1);
+                            background-color:rgba(200, 200, 200, 1);
+                        }
+                    }
+                }
             }
         }
     }

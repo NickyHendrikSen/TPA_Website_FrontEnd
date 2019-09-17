@@ -14,18 +14,18 @@ export default class Header extends React.Component{
             code:'',
         }],
         currency:[{
-            "symbol": '',
-            "name": '',
-            "symbol_native": '',
-            "decimal_digits": '',
-            "rounding": '',
-            "code": '',
-            "name_plural": ''
+            symbol: '',
+            name: '',
+            symbol_native: '',
+            decimal_digits: '',
+            rounding: '',
+            code: '',
+            name_plural: ''
         }],
         exchange_rate:{
-            "base": '',
-            "date": '',
-            "rates": {}
+            base: '',
+            date: '',
+            rates: [{CAD:0},{HKD:0},{ISK:0},{PHP:0},{DKK:0},{HUF:0},{CZK:0},{GBP:0},{RON:0},{SEK:0},{IDR:0},{INR:0},{BRL:0},{RUB:0},{HRK:0},{JPY:0},{THB:0},{CHF:0},{EUR:0},{MYR:0},{BGN:0},{TRY:0},{CNY:0},{NOK:0},{NZD:0},{ZAR:0},{USD:0},{MXN:0},{SGD:0},{AUD:0},{ILS:0},{KRW:0},{PLN:0}]
         }
     }
 
@@ -40,7 +40,7 @@ export default class Header extends React.Component{
                 this.setState({
                     currency:currencyRes.data,
                     language:langRes.data,
-                    exchange_rate:exchangeRes
+                    exchange_rate:exchangeRes.data
                 })   
             }))
     }

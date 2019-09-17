@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import './ScenePlace.scss'
 
 export class ScenePlace extends Component {
+
+    view = () => {
+
+    }
+
+    doUpload(){
+
+    }
+
     render() {
         return (
             <div className="scene-wrapper">
@@ -24,6 +33,13 @@ export class ScenePlace extends Component {
                         </div>
                     </div>
                     <div className="sub-title">Photo</div>
+                    <div className="input">
+                        <div className="file-container">
+                            <i className="far fa-save fa-8x"></i>
+                            <input type="file" name="" id="image" onChange={this.view}/>
+                            <label htmlFor="image" onChange={this.doUpload}>Choose an Image</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

@@ -40,6 +40,45 @@ $basic-color: #008489;
             .note{
                 font: italic normal 0.8em helvetica, sans-serif; 
             }
+            .file-container{
+                padding: 2em;
+                margin: 2em auto;
+                width: 30%;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                outline: 5px dashed rgba(0, 0, 0, 0.25);
+                outline-offset: -15px;
+                border-radius: 5px;
+                background-color: rgba(230, 254, 255, 1);
+                position: relative;
+                >i{
+                    width: 100%;
+                    color: rgba(0, 125, 127, 0.5);
+                }
+                #image{
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    position: absolute;
+                }
+                label{
+                    z-index: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 5px;
+                    padding: 1em;
+                    color: white;
+                    font: normal normal 1em helvetica, sans-serif;
+                    background-color: rgba(0, 125, 127, 1);
+                    cursor: pointer;
+                    &:hover{
+                        background-color: rgba(0, 125, 127, 0.75);
+                    }
+                }
+            }
         }
     }
 }
