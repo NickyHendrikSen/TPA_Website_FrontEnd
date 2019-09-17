@@ -96,7 +96,7 @@ export default class Profile extends React.Component{
                 <Header />
                 <div className="User_Wrapper">
                     <div className="UserHeader">
-                        <img src={"http://" +    this.state.profile.UserThumbnailURL} alt=""/>
+                        <img src={this.state.profile.UserThumbnailURL} alt=""/>
                         <div className = "UserName">
                             {this.state.profile.Username}
                         </div>

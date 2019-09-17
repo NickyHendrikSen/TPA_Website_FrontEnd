@@ -1,13 +1,84 @@
 .ReviewWrapper{
+    .Review_Page{
+        margin: 20px;
+    }
+    .expD_reviewRightContent{
+        text-align: left;
+        color:#484848;
+        margin: 20px;
+        border-bottom: 1px solid #484848;
+        hr{
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .expD_reviewRightInfo{
+            .expD_reviewRightNameStar{
+                margin-left: 20px;
+                display:inline-block;
+                font-size: 16px;
+                font-weight: 600;
+                .expD_reviewRightNameDate{
+                    .expD_reviewRightName{
+                        display:inline-block;
+                    }
+                    .expD_reviewRightDate{
+                        font-size: 14px;
+                        font-weight: 400;
+                        display:inline-block;
+                    }
+                }
+                .expD_reviewRightStar{
+                    font-size: 20px;
+                    // .expD_reviewRightStarColor{
+                    //     position: relative;
+                    //     display:inline-block;
+                    //     color:gray;
+                    //     .expD_reviewRightStarGray{
+                    //         position: absolute;
+                    //         top:0;
+                    //         left: 0;
+                    //         color:gold;
+                    //         // width: 100%;
+                    //         overflow:hidden;
+                    //     }
+                    //     .expD_reviewRightStarGrayHalf{
+                    //         position: absolute;
+                    //         top:0;
+                    //         left: 0;
+                    //         color:gold;
+                    //         width: 50%;
+                    //         overflow:hidden;
+                    //     }
+                    // }
+                }
+            }
+            .expD_reviewRightImage{
+                display:inline-block;
+                vertical-align: top;
+                width: 48px;
+                height: 48px;
+                img{
+                    border-radius: 50%;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .expD_reviewRightContent_Content{
+            font-size: 18px;
+        }
+    }
     .Review_AverageRating{
         color: #008489;
         font-weight: bold;
         font-size: 20px;
+        margin-left: 2%;
         span{
             margin-right: 20px;
         }
     }
     .Review_Search{
+        margin-left: 2%;
         .Review_BtnSearch{
             padding: 10px 20px;
             background-color: #008489;

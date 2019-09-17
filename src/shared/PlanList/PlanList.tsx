@@ -1,6 +1,7 @@
 import React from "react"
 import axios from "axios"
 import Header from "../Header/Header"
+import {Link} from "react-router-dom"
 import "./PlanList.scss"
 
 export default class PlanList extends React.Component{
@@ -98,7 +99,6 @@ export default class PlanList extends React.Component{
                 for(let i = 0; i < res.data.length; i++){
                     if(res.data[i].PrivacyType == "Public" && res.data[i].UserID != localStorage.getItem('UserID')){
                         recommendTemp.push(res.data[i]);
-                        // console.log('asd')
                     }
                 }
                 if(recommendTemp.length <= 7){
@@ -138,12 +138,14 @@ export default class PlanList extends React.Component{
                 <div className="savedPlan_contentWrapper">
                     {this.state.data== null ? "" : this.state.data.map(e => {
                         return(
+                            <Link to={"/plan-detail/" + e.PlansID}>
                             <div className="savedPlan_content">
                                 <div className="savedPlan_image"><img src="" alt="" className="savedPlan_images"/></div>
                                 <div className="savedPlan_planName">{e.PlansName == undefined ? "" : e.PlansName}</div>
                                 <div className="savedPlan_exp">{((e.ExperienceID.split('[')[1] + "").split(']')[0] + "").split(',')[0] == "" ? 0 : ((e.ExperienceID.split('[')[1] + "").split(']')[0] + "").split(',').length} Experience(s)</div>
                                 <div className="savedPlan_room">{((e.RoomID.split('[')[1] + "").split(']')[0] + "").split(',')[0] == "" ? 0 : ((e.RoomID.split('[')[1] + "").split(']')[0] + "").split(',').length} Room(s)</div>
                             </div>
+                            </Link>
                         )
                     })}
                 </div>

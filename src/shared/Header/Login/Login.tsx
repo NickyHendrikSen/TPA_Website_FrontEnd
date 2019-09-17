@@ -65,7 +65,7 @@ export default class SignUp extends React.Component{
                 (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsZ2jUO2WVf_TyxRvqQR36RTVn6EvaZRTvWdn6naMTn7HD8-guLw";
             }
             else
-                (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://" + localStorage.getItem("UserURL");
+                (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = localStorage.getItem("UserURL") + "";
             
         }
     }

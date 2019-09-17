@@ -212,7 +212,7 @@
 
 @media only screen and (max-width: 768px){
     .exps_MapWidget{
-        top:0;
+        top:0 !important;
         height: 40vh !important;
         width: 100vw;
         z-index: 2;
@@ -224,6 +224,6 @@
     .exps_Wrapper{
         width: 100% !important;
         z-index: 1;
-        margin-top: 30vh;
+        margin-top: 35vh;
     }
 }

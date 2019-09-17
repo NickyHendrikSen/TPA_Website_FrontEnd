@@ -235,7 +235,7 @@ header{
 }
 
 @media all and (max-width: 850px){
-    .header-search-wrapper{
+    .header-search-wrapper, .Header_SearchInput{
         display:none !important;
         button{
             width: 100% !important;

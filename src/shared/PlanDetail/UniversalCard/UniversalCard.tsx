@@ -47,8 +47,9 @@ export class UniversalCard extends Component<IProps> {
                 <div className="col-md-12 desc-frame">
                     <div className="desc">{data.desc}</div>
                     <div className="name">{data.name}</div>
-                    <div className="price">${data.price} per nigh</div>
+                    <div className="price">${data.price} per night</div>
                     <div className="rating">
+                        {data.rating.toFixed(2)}
                         <StarRatings
                             rating={data.rating}
                             starRatedColor="#008489"
