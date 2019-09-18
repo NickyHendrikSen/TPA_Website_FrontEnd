@@ -29,6 +29,9 @@ $basic-color: #008489;
         flex-wrap: wrap;
         position: relative;
         .input{
+            .calendar-container{
+                width: 50%;
+            }
             textarea{
                 margin: 1em 1em;
                 outline: none;

@@ -86,29 +86,8 @@ export class GuestPlace extends Component {
             )
         })
 
-        // const test = Object.keys(this.state.exchange_rate.rates).map((key:any)=>
-        //     {
-        //         var currRate
-        //         if(key === this.state.currCode)
-        //             currRate = this.state.exchange_rate.rates[key]
-        //         return(
-        //             <div>
-        //                 {currRate}
-        //             </div>
-        //         )
-        //     }
-        // )
-        // const a = Object.values(this.state.exchange_rate.rates[this.state.currIndex])
-        // const test = Object.keys(this.state.exchange_rate.rates).map((key:any) => {
-        //     if(key === 'IDR')
-        //         console.log(key + ', ' + this.state.exchange_rate.rates[key])
-        // }) 
         return (
             <div className="guests-wrapper">
-                {/* {console.log(this.state.exchange_rate.rates['IDR'])} */}
-                {/* {console.log(Object.keys(this.state.exchange_rate.rates).indexOf('IDR').valueOf())} */}
-                {/* {Object.keys(this.state.exchange_rate.rates).map((key:any) => {console.log(this.state.exchange_rate.rates[key])})} */}
-                {/* {test} */}
                 <div className="inputs">
                     <div className="title">
                         <h1>Guests</h1>
@@ -135,6 +114,14 @@ export class GuestPlace extends Component {
                             <div className="list-wrapper">
                                 {allCurrencies}
                             </div>
+                        </div>
+                    </div>
+                    <div className="input">
+                        <div className="calendar-container">
+                            <Calendar
+                            // onChange={this.onChange}
+                            value={new Date()}
+                            />
                         </div>
                     </div>
                 </div>
