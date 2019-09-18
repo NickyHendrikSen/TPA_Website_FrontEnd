@@ -91,10 +91,16 @@ export default class BookingExperience extends React.Component{
             }
         )
     }
-    guestChange = () => {
-        var count = (document.getElementById('guestCount') as HTMLSelectElement).value;
+    reduceGuest = () => {
+        // var count = (document.getElementById('guestCount') as HTMLSelectElement).value;
         this.setState({
-            guestCount: count,
+            guestCount: this.state.guestCount-1,
+        })
+    }
+    addGuest = () => {
+        // var count = (document.getElementById('guestCount') as HTMLSelectElement).value;
+        this.setState({
+            guestCount: this.state.guestCount+1,
         })
     }
 
@@ -124,7 +130,32 @@ export default class BookingExperience extends React.Component{
         // console.log(x)
         return x;
     }
-
+    reduceAdult = () => {
+        var div = document.getElementById('adultValue') as HTMLElement;
+        if(div.innerText != "1"){
+            var i = parseInt(div.innerText);
+            div.innerText = (i-1) + "";
+            if(i == 2){
+                (document.getElementsByClassName('BExp_guestDropMinus')[0] as HTMLElement).style.color = "#00848944";
+                (document.getElementsByClassName('BExp_guestDropPlus')[0] as HTMLElement).style.color = "#008489";
+                
+            }
+            (document.getElementById('guestValue') as HTMLElement).innerText = (parseInt((document.getElementById('guestValue') as HTMLElement).innerText + "") - 1) + " guests";
+                this.reduceGuest();
+        }
+    }
+    addAdult(){
+        // if(this.state.guestCount)
+    }
+    toggleGuest(){
+        var div = (document.getElementsByClassName('BExp_guestDropContent')[0] as HTMLElement);
+        if(div.style.display == "none"){
+            div.style.display = "block";
+        }
+        else{
+            div.style.display = "none";
+        }
+    }
     render(){
         console.log(this.state.data);
         if(this.state.isLoading){
@@ -144,18 +175,41 @@ export default class BookingExperience extends React.Component{
                             <div className="BExp_guest">
                                 Number of guests
                                 <br/>
-                                <select name="" id="guestCount" onChange={this.guestChange}>
-                                    <option value="1">1 guest</option>
-                                    <option value="2">2 guests</option>
-                                    <option value="3">3 guests</option>
-                                    <option value="4">4 guests</option>
-                                    <option value="5">5 guests</option>
-                                    <option value="6">6 guests</option>
-                                    <option value="7">7 guests</option>
-                                    <option value="8">8 guests</option>
-                                    <option value="9">9 guests</option>
-                                    <option value="10">10 guests</option>
-                                </select>
+                                <div className="BExp_guestContent">
+                                    <button id="guestValue" onClick={this.toggleGuest}>1 guests</button>
+                                    <div className="BExp_guestDropContent">
+                                        <div className="BExp_guestDrop">
+                                            <div>
+                                                Adults
+                                            </div>
+                                            <div className="BExp_guestDropRight">
+                                                <div className="BExp_guestDropMinus" onClick={this.reduceAdult}>-</div>
+                                                <div id="adultValue">1</div>
+                                                <div className="BExp_guestDropPlus" onClick={this.addAdult}>+</div>
+                                            </div>
+                                        </div>
+                                        <div className="BExp_guestDrop">
+                                            <div>
+                                                Children
+                                            </div>
+                                            <div className="BExp_guestDropRight">
+                                                <div className="BExp_guestDropMinus">-</div>
+                                                <div id="childrenValue">0</div>
+                                                <div className="BExp_guestDropPlus">+</div>
+                                            </div>
+                                        </div>
+                                        <div className="BExp_guestDrop">
+                                            <div>
+                                                Infant
+                                            </div>
+                                            <div className="BExp_guestDropRight">
+                                                <div className="BExp_guestDropMinus">-</div>
+                                                <div id="infantValue">0</div>
+                                                <div className="BExp_guestDropPlus">+</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="BExp_GuestList">
                                 <div className="BExp_guestDetail">

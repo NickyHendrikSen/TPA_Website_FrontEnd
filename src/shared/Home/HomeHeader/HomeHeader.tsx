@@ -239,7 +239,7 @@ export default class Home extends React.Component{
         this.homeSearch_editGuest();
     }
     search(){
-        if((document.getElementById('search_txtCheckIn') as HTMLInputElement).value == "" && (document.getElementById('search_txtCheckOut') as HTMLInputElement).value == ""){
+        if((document.getElementById('search_txtCheckIn') as HTMLInputElement).value == "" || (document.getElementById('search_txtCheckOut') as HTMLInputElement).value == ""){
             alert('Please input check in and check out date');
         }
         else
