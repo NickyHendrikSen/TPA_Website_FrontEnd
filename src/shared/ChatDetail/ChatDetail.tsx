@@ -5,6 +5,10 @@ import "./ChatDetail.scss"
 
 export default class ChatDetail extends React.Component{
     state = {
+        user:{
+            UserID:'',
+            UserThumbnailURL:'',
+        },
         data:{
             _id:'',
             experience_category:'asd',
@@ -63,6 +67,15 @@ export default class ChatDetail extends React.Component{
                 )
             }
         )
+        axios.get('http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'))
+        .then(res => {
+            this.setState(
+                    {
+                        user: res.data
+                    }
+                )
+            }
+        )
         
         // axios.get('http://backendtpaweb.herokuapp.com/api/experience/' + localStorage.getItem('exp_id'))
         // .then(res => {
@@ -84,9 +97,20 @@ export default class ChatDetail extends React.Component{
         (document.getElementById('btnMessage') as HTMLElement).style.display = "block";
 
     }
+    showFullImage(src : string){
+        (document.getElementsByClassName('chatD_fullImg')[0] as HTMLImageElement).src = src + "";
+        (document.getElementsByClassName('chatD_fullImage')[0] as HTMLElement).style.display = "block";
+    }
+    close(){
+        (document.getElementsByClassName('chatD_fullImage')[0] as HTMLElement).style.display = "none";
+    }
     render(){
         return(
             <div>
+                <div className="chatD_fullImage">
+                    <div onClick={this.close}>X</div>
+                    <img className="chatD_fullImg" src="https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768" alt=""/>
+                </div>
                 <div className="chatD_header">
                 <Header />
                 </div>
@@ -173,7 +197,7 @@ export default class ChatDetail extends React.Component{
                                     </div>
                                     <div className="chatD_right">
                                         <div className="chatD_right_image">
-                                            <img src={this.state.place.host.host_thumbnail_url} alt=""/>
+                                            <img src={"http://" + this.state.user.UserThumbnailURL} alt=""/>
                                         </div>
                                         <div className="chatD_right_message">asdasdasdadpadadask</div>
                                         <div className="chatD_right_time">16/09/2019 13:13 P.M.</div>
@@ -182,12 +206,15 @@ export default class ChatDetail extends React.Component{
                                         <div className="chatD_left_image">
                                             <img src={this.state.place.host.host_thumbnail_url} alt=""/>
                                         </div>
-                                        <div className="chatD_left_message">asdasdasdadpadadask</div>
+                                        <div className="chatD_left_message">
+                                            <img src={"https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768"} alt="" onClick={() => this.showFullImage("https://pix10.agoda.net/hotelImages/124/1246280/1246280_16061017110043391702.jpg?s=1024x768")}/>
+                                            <div className="DownloadImage">Download Image</div>
+                                        </div>
                                         <div className="chatD_left_time">16/09/2019 13:13 P.M.</div>
                                     </div>
                                     <div className="chatD_right">
                                         <div className="chatD_right_image">
-                                            <img src={this.state.place.host.host_thumbnail_url} alt=""/>
+                                            <img src={"http://" + this.state.user.UserThumbnailURL} alt=""/>
                                         </div>
                                         <div className="chatD_right_message">asdasdasdadpadadask</div>
                                         <div className="chatD_right_time">16/09/2019 13:13 P.M.</div>
@@ -197,7 +224,7 @@ export default class ChatDetail extends React.Component{
 
                             <div className="chatD_chatMessage">
                                 <textarea name="" id="txtMessage" cols={30} rows={3} onInput={this.toggleBtn}></textarea>
-                                <img src={this.state.place.host.host_thumbnail_url} alt=""/>
+                                <img src={"http://" + this.state.user.UserThumbnailURL} alt=""/>
                                 <div className="chatD_chatMessageBottom">
                                     <button id="btnMessage">
                                         Send

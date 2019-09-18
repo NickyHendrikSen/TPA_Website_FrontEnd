@@ -11,6 +11,7 @@ import ImageGallery from "react-image-gallery"
 import "react-image-gallery/styles/scss/image-gallery.scss";
 import CopyToClipboard from "react-copy-to-clipboard"
 import {RouteComponentProps, withRouter} from "react-router";
+import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
 
 export default class ExperienceDetail extends React.Component<RouteComponentProps<any>>{
     refVal:any
@@ -18,6 +19,7 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
         original:'',
     }];
     state = {
+        isLoading:true,
         total_rating:0,
         reviewCount:0,
         pageNow:0,
@@ -25,7 +27,13 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
         data:{
             _id:'',
             experience_category:'asd',
-            address:{suburb:''},
+            address:{
+                suburb:'',
+                location:{
+                    type:'',
+                    coordinates:[],
+                }
+            },
             experience_title:'',
             experience_detail:'',
             price:0,
@@ -152,7 +160,8 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                         data: res.data,
                         total_rating: res.data.rating_star/res.data.total_rating_count,
                         reviewCount: Math.ceil(res.data.reviews.length/3),
-                        reviews:res.data.reviews
+                        reviews:res.data.reviews,
+                        isLoading:false
                     }
                 )
                 
@@ -178,6 +187,18 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             pageNow:i
         })
     }
+    bookExperience = () => {
+        var dateBook = (document.getElementById('dateBook') as HTMLDataElement).value;
+        var date = new Date();
+        var dateInput = Date.parse(dateBook);
+        if(!(date.getTime() < dateInput)){
+            alert('Input valid date');
+            return;
+        }
+        window.location.href="/BookingExperience"
+        localStorage.setItem('ExperienceDate', dateBook + "");
+        localStorage.setItem('ExperienceID', this.state.data._id);
+    }
     closeGallery(){
         (document.getElementsByClassName('expD_ShowAllGalery')[0] as HTMLElement).style.display="none";
     }
@@ -185,6 +206,10 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
         (document.getElementsByClassName('expD_ShareModalWrapper')[0] as HTMLElement).style.display = "flex"
     }
     render(){
+        console.log(this.state.data);
+        if(this.state.isLoading){
+            return(<div>Loading</div>);
+        }
         document.addEventListener('keydown', function(e){
             if(e.keyCode == 27){
                 (document.getElementsByClassName('expD_ShareModalWrapper')[0] as HTMLElement).style.display = "none"
@@ -418,6 +443,38 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                 
                             </div>
                     </div>
+               </div>
+               <div className="exp_map">
+                <LeafletMap
+                        center={[this.state.data.address.location.coordinates[0], this.state.data.address.location.coordinates[1]]}
+                        zoom={15}
+                        attributionControl={true}
+                        zoomControl={true}
+                        doubleClickZoom={true}
+                        scrollWheelZoom={true}
+                        dragging={true}
+                        animate={true}
+                        easeLinearity={0.35}
+                    >
+                        <TileLayer
+                            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                        />
+                        <Marker position={[this.state.data.address.location.coordinates[0], this.state.data.address.location.coordinates[1]]}>
+                            <Popup>
+                                {this.state.data.experience_title}
+                            </Popup>
+                        </Marker>
+                </LeafletMap>
+                </div>
+               <div className="exp_dateBookingWrapper">
+                   <div className="exp_bookingTitle">
+                       Booking
+                   </div>
+                    <div className="exp_dateBooking">
+                        Pick Date : 
+                        <input type="date" name="" id="dateBook"/>
+                    </div>
+                    <button className="exp_dateBookingBtn" onClick={this.bookExperience}>Book Experience</button>
                </div>
             </div>
         )

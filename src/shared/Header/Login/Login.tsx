@@ -61,7 +61,7 @@ export default class SignUp extends React.Component{
             (document.getElementsByClassName('menu_picture')[0] as HTMLElement).style.display = "block";
             (document.getElementsByClassName('menu_logged')[0] as HTMLElement).style.display = "block";
             (document.getElementById('plan_header') as HTMLElement).style.display = "block";
-            if(localStorage.getItem("UserURL") == "" || localStorage.getItem("UserURL") == null){
+            if(localStorage.getItem("UserURL") == "" || localStorage.getItem("UserURL") == null || localStorage.getItem("UserURL") == "0"){
                 (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsZ2jUO2WVf_TyxRvqQR36RTVn6EvaZRTvWdn6naMTn7HD8-guLw";
             }
             else

@@ -194,8 +194,8 @@ export default class Header extends React.Component{
                         <button className="buttonRight">Help</button>
                         <Link to="become-a-host/room"><button className="menu_logged">Become a host</button></Link>
                         <Link to="PlanList"><button id="plan_header">Plan List</button></Link>
-                        <div className="menu_picture">
-                            <img src="" alt="" className="menu_pictureImg" onClick={() => window.location.href="/Profile"}/>
+                        <div className="menu_picture"onClick={() => window.location.href="/Profile"}>
+                            <img src="" alt="" className="menu_pictureImg"/>
                         </div>
                     </div>
                 </div>

@@ -45,3 +45,46 @@
         }
     }
 }
+
+@media only screen and(max-width:768px){
+    .up_menu{
+        width: 100% !important;
+        height: 10% !important;
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        padding: 0 !important;
+        top: 60px;
+        div{
+            margin: 0 !important;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+    .upContent{
+        margin: 0 !important;
+        margin-top: 20% !important;
+    }
+}
+@media only screen and(max-width:425px){
+    .up_menu{
+        width: 100% !important;
+        height: 10% !important;
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        padding: 0 !important;
+        top: 106px;
+        div{
+            margin: 0 !important;
+            padding-left: 20px;
+            padding-right: 20px;
+            // position: absolute;
+            bottom: 0;
+        }
+    }
+    .upContent{
+        margin: 0 !important;
+        margin-top: 20% !important;
+    }
+}

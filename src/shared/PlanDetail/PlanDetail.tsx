@@ -12,11 +12,13 @@ export class PlanDetail extends React.Component<RouteComponentProps<any>>{
             url:['https://cdns.klimg.com/kapanlagi.com/p/jennie_elle.jpg',
             'https://cdns.klimg.com/resized/670x335/p/headline/mobil-mewah-biaya-sekolah-ratusan-juta--eb1213.jpg',
             'https://cdns.klimg.com/kapanlagi.com/p/jennie_horse.jpg'],
-            desc:'Ini Dummy',
-            name:'Mantul',
-            price:395,
+            desc:'Loading',
+            name:'Loading',
+            price:999,
             rating:5,
             number_of_reviews:212, 
+            type:'',
+            beds:0,
         }],
         experience:[{
             Images:[],
@@ -121,6 +123,7 @@ export class PlanDetail extends React.Component<RouteComponentProps<any>>{
                 price:this.state.experience[i].price,
                 rating:total/this.state.experience[i].reviews.length/2,
                 number_of_reviews:this.state.experience[i].reviews.length, 
+                type:'Experience'
             };
             dataList.push(dataTemp);
         }
@@ -149,6 +152,7 @@ export class PlanDetail extends React.Component<RouteComponentProps<any>>{
                 price:this.state.room[i].price,
                 rating:this.state.room[i].review_scores.review_scores_rating/20,
                 number_of_reviews:this.state.room[i].reviews.length, 
+                type:'Place'
             };
             dataList.push(dataTemp);
         }
@@ -186,6 +190,8 @@ export class PlanDetail extends React.Component<RouteComponentProps<any>>{
                                 price = {e.price}
                                 rating = {e.rating}
                                 number_of_reviews = {e.number_of_reviews}
+                                type={e.type}
+                                beds = {e.beds}
                             />
                             )
                         })}

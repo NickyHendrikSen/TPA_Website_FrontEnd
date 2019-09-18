@@ -5,7 +5,33 @@
     background-color:white;
     width: 100%;
 }
-
+.chatD_fullImage{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(31, 31, 31, 0.486);
+    position: fixed;
+    z-index: 20000;
+    padding: 0 10%;
+    display: none;
+    div{
+        position: absolute;
+        padding: 10px 20px;
+        // background-color: #c9c9c9;
+        color: white;
+        cursor: pointer;
+        border-radius: 50%;
+        border: 1px solid white;
+        transition-duration: 0.5s;
+        &:active{
+            border: 1px solid #484848;
+            color: #484848;
+        }
+    }
+    img{
+        height: 100%;
+        width: 100%;
+    }
+}
 body{
     background-color:white;
 }
@@ -74,6 +100,11 @@ body{
                             padding: 10px;
                             margin-left: 100%;
                             display: inline-block;
+                            img{
+                                height: 200px;
+                                width: 200px;
+                                cursor: pointer;
+                            }
                         }
                     }
                     .chatD_left{
@@ -81,6 +112,19 @@ body{
                         width: auto;
                         // background-color: black;
                         margin-top: 20px;
+                        .DownloadImage{
+                            background-color: #008489;
+                            color: white;
+                            padding: 10px 20px;
+                            border-radius: 4px;
+                            border: 1px solid #484848;
+                            transition-duration: 0.5s;
+                            cursor: pointer;
+                            text-align: center;
+                            &:active{
+                                background-color: #004042;
+                            }
+                        }
                         .chatD_left_time{
                             color: grey;
                         }
@@ -101,6 +145,11 @@ body{
                             padding: 10px;
                             width: auto;
                             display: inline-block;
+                            img{
+                                height: 200px;
+                                width: 200px;
+                                cursor: pointer;
+                            }
                         }
                     }
                 }

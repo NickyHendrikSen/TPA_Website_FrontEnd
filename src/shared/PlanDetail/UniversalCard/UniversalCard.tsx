@@ -11,6 +11,8 @@ interface IProps{
     price:number,
     rating:number,
     number_of_reviews:number,
+    type:string,
+    beds:number,
 }
 
 export class UniversalCard extends Component<IProps> {
@@ -22,6 +24,8 @@ export class UniversalCard extends Component<IProps> {
         price:this.props.price,
         rating:this.props.rating,
         number_of_reviews:this.props.number_of_reviews,    
+        type:this.props.type,
+        beds:this.props.beds,
     }
 
     toggleLove(){
@@ -47,7 +51,8 @@ export class UniversalCard extends Component<IProps> {
                 <div className="col-md-12 desc-frame">
                     <div className="desc">{data.desc}</div>
                     <div className="name">{data.name}</div>
-                    <div className="price">${data.price} per night</div>
+                    <div>{data.type != "Experience" ? data.beds + " beds" : ""}</div>
+                    <div className="price">${data.price} per {data.type == "Experience" ? "Person" : "Night"}</div>
                     <div className="rating">
                         {data.rating.toFixed(2)}
                         <StarRatings
