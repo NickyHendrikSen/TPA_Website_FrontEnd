@@ -130,7 +130,7 @@ export class HostExperience extends Component {
     }
 
     doPush = () =>{
-        console.log(this.state.data)
+        window.history.back()
     }
 
     checkClass(currClass:string){
@@ -176,7 +176,7 @@ export class HostExperience extends Component {
 
     componentDidMount(){
         Axios.get('https://backendtpaweb.herokuapp.com/api/users/512')
-            .then(res => (
+            .then((res:any) => (
                 this.setState({
                     data:{
                         host:res.data
