@@ -4,11 +4,15 @@ import "./ChatContent.scss"
 
 interface IProps{
     index : number,
+    name : string,
+    date : string,
 }
 export default class ChatContent extends Component<IProps> {
     
     state = {
         index: this.props.index,
+        name : this.props.name,
+        date : this.props.date,
     }
     star(index : number){
         (document.getElementsByClassName('chat_status')[index] as HTMLElement).innerText = "Starred";
@@ -31,7 +35,7 @@ export default class ChatContent extends Component<IProps> {
         <div className="chat_wrapper" onMouseOver={() => this.showButton(this.state.index)} onMouseLeave={()=>this.hideButton(this.state.index)}>
             <div className="chat_content">
                 <img src={dummyPic} alt="" className="chat_image"/>
-                <div className="chat_chatInfo">Jojo <br/> Jun 06</div>
+                <div className="chat_chatInfo">{this.state.name} <br/> {this.state.date}</div>
                 <div className="chat_chatContent">asdasdasdasdasd
                     <br/>
                     Jakarta, Indonesia(April 3 - May 5,2019)
