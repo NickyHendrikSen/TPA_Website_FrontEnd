@@ -75,14 +75,16 @@ export default class Header extends React.Component{
         var pickBlock = document.getElementsByClassName("Header_Search_PickWrapper")[0] as HTMLElement;
         // pickBlock.style.display = "block";
         pickBlock.style.width = "534px";
-        pickBlock.style.opacity = "1";
+        pickBlock.style.display = "block";
+        setTimeout(function(){ 
+            pickBlock.style.opacity = "1"; }, 100);
         // pickBlock.style.visibility = "visible";
     }
     Header_hidePick(){
         var pickBlock = document.getElementsByClassName("Header_Search_PickWrapper")[0] as HTMLElement;
-        // pickBlock.style.display = "none";
         pickBlock.style.width = "0px";
         pickBlock.style.opacity = "0";
+        setTimeout(function(){ pickBlock.style.display = "none"; }, 500);
         // pickBlock.style.visibility = "hidden";
     }
 
@@ -140,8 +142,10 @@ export default class Header extends React.Component{
                     window.location.href = "/Experiences"
             }
         }
+        // var urlPhoto = "http://" + require(localStorage.getItem("UserURL") + "");
         return(
             <header className="col-md-12">
+                {/* {console.log(urlPhoto)} */}
                 <div className="navBar">
                     <div className="logo">
                         <Link to="/">
@@ -195,7 +199,7 @@ export default class Header extends React.Component{
                         <Link to="become-a-host/room"><button className="menu_logged">Become a host</button></Link>
                         <Link to="PlanList"><button id="plan_header">Plan List</button></Link>
                         <div className="menu_picture"onClick={() => window.location.href="/Profile"}>
-                            <img src="" alt="" className="menu_pictureImg"/>
+                            <img src={"http://" + localStorage.getItem('UserURL')} className="menu_pictureImg"/>
                         </div>
                     </div>
                 </div>

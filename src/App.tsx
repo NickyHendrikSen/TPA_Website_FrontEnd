@@ -21,6 +21,7 @@ import PlanDetail from "./shared/PlanDetail/PlanDetail"
 import UserProfile from "./shared/UserProfile/UserProfile"
 import BookingPlace from "./shared/BookingPlace/BookingPlaceLoader"
 import BookingExperience from "./shared/BookingExperience/BookingExperience"
+import BookingHistory from "./shared/BookingHistory/BookingHistory"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 
 
@@ -29,6 +30,7 @@ const App: React.FC = () => {
     <div className="App">
         <Router>
           <Switch>
+              <Route path="/BookingHistory" component={BookingHistory} />
               <Route path="/BookingPlace" component={BookingPlace}/>
               <Route path="/BookingExperience" component={BookingExperience}/>
               <Route path="/UserProfile" component={UserProfile}/>

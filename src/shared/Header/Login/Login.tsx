@@ -65,7 +65,7 @@ export default class SignUp extends React.Component{
                 (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsZ2jUO2WVf_TyxRvqQR36RTVn6EvaZRTvWdn6naMTn7HD8-guLw";
             }
             else
-                (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = localStorage.getItem("UserURL") + "";
+                (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "http://" + localStorage.getItem("UserURL") + "";
             
         }
     }
@@ -143,7 +143,7 @@ export default class SignUp extends React.Component{
                 var body = document.getElementsByTagName("Body")[0] as HTMLElement;
                 body.style.position="relative";
                 localStorage.setItem('UserID', state[i].UserID);
-                localStorage.setItem('UserURL', state[i].UserThumbnailURL);
+                localStorage.setItem('UserURL', state[i].UserThumbnailURL + "");
                 (document.getElementById('login_header') as HTMLElement).style.display = "none";
                 (document.getElementById('signup_header') as HTMLElement).style.display = "none";
                 (document.getElementById('logout_header') as HTMLElement).style.display = "block";
@@ -162,7 +162,7 @@ export default class SignUp extends React.Component{
                 headers:{"Content-Type": "application/x-www-form-urlencoded"}
                 }  
                 )
-                window.location.reload();
+                // window.location.reload();
 
                 return;
             }

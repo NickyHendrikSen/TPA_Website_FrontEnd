@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from "../Header/Header"
+import axios from "axios"
 import StarRatings from "react-star-ratings"
 import "./BookingPlace.scss"
 
@@ -119,7 +120,7 @@ export default class BookingPlace extends Component<IProps>{
     }
     reduceAdult = () => {
         var div = document.getElementById('adultValue') as HTMLElement;
-        if(div.innerText != "1"){
+        if(div.innerText != "0"){
             var i = parseInt(div.innerText);
             div.innerText = (i-1) + "";
             (document.getElementById('guestValue') as HTMLElement).innerText = (parseInt((document.getElementById('guestValue') as HTMLElement).innerText + "") - 1) + " guests";
@@ -143,6 +144,25 @@ export default class BookingPlace extends Component<IProps>{
         else{
             div.style.display = "none";
         }
+    }
+    insertBooking = (status:string) => {
+        console.log((this.state.data.price*this.state.data.dayCount) + (this.state.data.cleaning_fee) + (this.state.data.service_fee));
+        axios({
+            url: 'http://backendtpaweb.herokuapp.com/api/insert-booking', 
+            method : "POST",
+            data : {
+                "UserID" : Number(localStorage.getItem('UserID') + ""),
+                "Status" : status,
+                "TotalFee" : Number(parseInt((this.state.data.price*this.state.data.dayCount) + (this.state.data.cleaning_fee) + (this.state.data.service_fee)+ "")),
+                "type"  : 'Place',
+                "BookingName" : this.state.data.place_name + "", 
+        },
+        headers:{"Content-Type": "application/x-www-form-urlencoded"}
+        }
+        );
+        alert('Place Booked');
+        window.history.back();
+
     }
     render(){
         return(
@@ -211,8 +231,8 @@ export default class BookingPlace extends Component<IProps>{
                                     this.guests()
                                 }
                             </div>
-                            <button className="btnPay">Pay</button>
-                            <button className="btnPostpone">Postpone</button>
+                            <button className="btnPay" onClick={() => this.insertBooking("Paid")}>Pay</button>
+                            <button className="btnPostpone" onClick={() => this.insertBooking("Postponed")}>Postpone</button>
                         </div>
 
 
@@ -228,7 +248,7 @@ export default class BookingPlace extends Component<IProps>{
                                         Hosted by {this.state.data.host_name}
                                     </div>
                                     <div>
-                                        {this.state.data.average_star}
+                                        {this.state.data.average_star.toFixed(2)}
                                     <StarRatings
                                         rating={this.state.data.average_star}
                                         starRatedColor="#008489"
@@ -261,7 +281,7 @@ export default class BookingPlace extends Component<IProps>{
                                         Cleaning fee
                                     </div>
                                     <div>
-                                        {this.state.data.cleaning_fee}
+                                        ${this.state.data.cleaning_fee}
                                     </div>
                                 </div>
                                 <div className="BExp_price">
@@ -269,7 +289,7 @@ export default class BookingPlace extends Component<IProps>{
                                         Service fee
                                     </div>
                                     <div>
-                                        {this.state.data.service_fee}
+                                        ${this.state.data.service_fee}
                                     </div>
                                 </div>
                                 <hr/>

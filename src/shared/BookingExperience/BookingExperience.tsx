@@ -205,6 +205,24 @@ export default class BookingExperience extends React.Component{
             div.style.display = "none";
         }
     }
+    insertBooking = (status:string) => {
+        axios({
+            url: 'http://backendtpaweb.herokuapp.com/api/insert-booking', 
+            method : "POST",
+            data : {
+                "UserID" : Number(localStorage.getItem('UserID') + ""),
+                "Status" : status,
+                "TotalFee" : Number(this.state.data.price*this.state.guestCount),
+                "type"  : 'Experience',
+                "BookingName" : this.state.data.experience_title + "",
+        },
+        headers:{"Content-Type": "application/x-www-form-urlencoded"}
+        }
+        );
+        alert('Experience Booked');
+        window.history.back();
+
+    }
     render(){
         console.log(this.state.data);
         if(this.state.isLoading){
@@ -276,8 +294,8 @@ export default class BookingExperience extends React.Component{
                                     this.guests()
                                 }
                             </div>
-                            <button className="btnPay">Pay</button>
-                            <button className="btnPostpone">Postpone</button>
+                            <button className="btnPay" onClick={() => this.insertBooking("Paid")}>Pay</button>
+                            <button className="btnPostpone" onClick={() => this.insertBooking("Postponed")}>Postpone</button>
                         </div>
 
 
