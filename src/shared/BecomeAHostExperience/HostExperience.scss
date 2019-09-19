@@ -116,6 +116,9 @@ $basic-color: #008489;
                     background-color: $basic-color;
                     position: fixed;
                     right: 0;
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
                 }
                 @media all and (max-width:1024px) and (min-width:769px) {
                     display: block;
@@ -123,6 +126,9 @@ $basic-color: #008489;
                     width: 35%;
                     padding-bottom: 20%;
                     background-color: $basic-color;
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
                 }
                 @media all and (max-width:768px) and (min-width:426px){
                     display: block;
@@ -130,6 +136,9 @@ $basic-color: #008489;
                     width: 40%;
                     padding-bottom: 20%;
                     background-color: $basic-color;
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
                 }
                 @media all and (max-width:425px) and (min-width:321px){
                     display: block;
@@ -137,12 +146,18 @@ $basic-color: #008489;
                     width: 70%;
                     padding-bottom: 20%;
                     background-color: $basic-color;
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
                 }
                 @media all and (max-width:320px) {
                     display: block;
                     width: 100%;
                     padding-bottom: 20%;
                     background-color: $basic-color;
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
                 }
             }
         }

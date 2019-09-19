@@ -67,6 +67,21 @@ $basic-color: #008489;
                     }
                 }
             }
+            .btn-next{
+                .finish{
+                    cursor: pointer;
+                    color: black;
+                    border-radius: 5px;
+                    border: 1px solid #008489;
+                    width: 10%;
+                    padding: 0.5em;
+                    transition: all 0.1s linear;
+                    &:hover{
+                        color: white;                    
+                        background-color: #008489;
+                    }
+                }
+            }
         }
     }
 }

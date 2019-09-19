@@ -1,16 +1,29 @@
 import React, { Component } from 'react'
 import AvatarEditor from 'react-avatar-editor'
+import FileBase64 from 'react-filebase64'
 import './ExperiencePhoto.scss'
 
 interface IProps{
     image_list:string[],
     setImageList:any,
+    setImagePreview:any,
 }
 
 export class ExperiencePhoto extends Component<IProps> {
 
     state = {
-        image_list:this.props.image_list
+        image_list:this.props.image_list,
+        currImage:'',
+        files:[{
+            base64:'',
+            name:'',
+            size:'',
+            type:'',
+        }],
+        brightness:0,
+        contrast:0,
+        zoom:0,
+        deg:0
     }
 
     test = () => {
@@ -18,7 +31,7 @@ export class ExperiencePhoto extends Component<IProps> {
 
         if(this.state.image_list.length > 0) images = this.state.image_list
 
-        var file = document.getElementById('image') as HTMLInputElement
+        var file = document.getElementById('image') as any
         var photoContainer = document.getElementsByClassName('photo-container') as HTMLCollectionOf<HTMLElement>
         var editorContainer = document.getElementsByClassName('editor-wrapper') as HTMLCollectionOf<HTMLElement>
 
@@ -34,14 +47,39 @@ export class ExperiencePhoto extends Component<IProps> {
         else
             images.push(path)
 
-        console.log(images)
-
         this.setState({
-            image_list:images
+            image_list:images,
+            currImage:file.value
         })
+    }
 
+    getFiles(files:File){
+        this.setState({ files: files })
+    }
 
+    updateBrightness(){
 
+    }
+
+    updateContrast(){
+
+    }
+
+    zoom(){
+
+    }
+
+    rotate(dir:string){
+        if(dir === 'right'){
+            this.setState({
+                deg:this.state.deg + 90
+            })
+        }
+        else if(dir === 'left'){
+            this.setState({
+                deg:this.state.deg - 90
+            })
+        }
     }
 
     render() {
@@ -68,19 +106,23 @@ export class ExperiencePhoto extends Component<IProps> {
                 <div className="col-md-12 experience-photo-wrapper">
                     <div className="file-container">
                         <i className="far fa-save fa-8x"></i>
-                        <input type="file" name="" id="image" onChange={this.test}/>
+                        {/* <input type="file" name="" id="image" onChange={this.test}/> */}
+                        <FileBase64 multiple={ true }
+                            onDone={ this.getFiles.bind(this) } 
+                            />
                         <label htmlFor="image">Choose an Image</label>
                     </div>
                     <div className="url-wrapper">
                         <div className="photo-container">
                             <AvatarEditor
-                                image="https://miro.medium.com/max/832/1*7KXFjTVRNDFsKeJkK2BOFA.png"
+                                // ref={this.setEditorRef}
+                                image={this.state.files[0].base64}
                                 width={160}
                                 height={240}
                                 border={30}
                                 color={[180, 180, 180, 0.5]}
                                 scale={1.2}
-                                rotate={0}
+                                rotate={this.state.deg}
                             />
                         </div>
                         <div className="url-container">
@@ -90,26 +132,26 @@ export class ExperiencePhoto extends Component<IProps> {
                     <div className="editor-wrapper">
                         <div className="col-md-2 brightness">
                             Brightness
-                            <input type="range" min={0} max={100} name="" id="editor brightness"/>
+                            <input type="range" min={0} max={100} name="" id="editor brightness" onChange={this.updateBrightness}/>
                         </div>
                         <div className="col-md-2 contrast">
                             Contrast
-                            <input type="range" min={0} max={100} name="" id="editor contrast"/>
+                            <input type="range" min={0} max={100} name="" id="editor contrast" onChange={this.updateBrightness}/>
                         </div>
                         <div className="col-md-2 zoom">
                             Zoom
-                            <input type="range" min={0} max={100} name="" id="editor zoom"/>
+                            <input type="range" min={0} max={100} name="" id="editor zoom" onChange={this.zoom}/>
                         </div>
                         <div className="col-md-2 rotation">
                             Rotate
                             <div className="button-container">
-                                <button>Left</button>
-                                <button>Right</button>
+                                <button onClick={()=>this.rotate('left')}>Left</button>
+                                <button onClick={()=>this.rotate('right')}>Right</button>
                             </div>
                         </div>
                         <div className="col-md-2 btn">
                             <div className="btn-implement">
-                                <div className="btn">View</div>
+                                <div className="btn" onClick={() => this.props.setImagePreview(this.state.files[0].base64)}>Preview</div>
                             </div>
                         </div>
                     </div>

@@ -193,6 +193,15 @@ export class HostExperience extends Component {
         }
     }
 
+    getImage = (images:string) => {
+        let expWrapperBack = document.getElementsByClassName('display-experience-tab') as HTMLCollectionOf<HTMLElement>
+        let faImages = document.getElementsByClassName('far fa-images fa-5x') as HTMLCollectionOf<HTMLElement>
+
+        expWrapperBack[0].style.backgroundImage = `url(${images})`
+        faImages[0].style.visibility = 'hidden'
+
+    }
+
     render() {
 
         const {data, spoken_language} = this.state
@@ -241,7 +250,7 @@ export class HostExperience extends Component {
                         <div className="input-experience-wrapper">
                             <BasicInfo setBasicInfo={this.getBasicInfo} />
                             <ExperiencePage setExperiencePage={this.getExperiencePage}/>
-                            <ExperiencePhoto image_list={data.Images} setImageList={this.getImageList} />
+                            <ExperiencePhoto image_list={data.Images} setImageList={this.getImageList} setImagePreview={this.getImage}/>
                             <DetailInformation setDetailInfo={this.getDetailInfo}/>
                             <MeetingLocation setMeetingLocation={this.getMeetingLocation}/>
                             <Finish doPush={this.doPush}/>

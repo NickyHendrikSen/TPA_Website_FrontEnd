@@ -3,7 +3,11 @@ import {Map as LeafletMap, TileLayer, Marker, Popup, CircleMarker, Circle} from 
 import './basicInfoPlace.scss'
 import Axios from 'axios'
 
-export class BasicInfoPlace extends Component {
+interface IProps{
+    setCurrClass: any
+}
+
+export class BasicInfoPlace extends Component<IProps> {
 
     state={
         street:'',
@@ -19,7 +23,41 @@ export class BasicInfoPlace extends Component {
     }
 
     test = () => {
+        let mapCountry = document.getElementById('map-country') as HTMLInputElement
+        let mapAddress = document.getElementById('map-address') as HTMLInputElement
+        let mapCity = document.getElementById('map-city') as HTMLInputElement
+        let mapZip = document.getElementById('map-zip') as HTMLInputElement
+        let roomCount = document.getElementById('room') as HTMLInputElement
+        let propType = document.getElementById('prop-type') as HTMLInputElement
+        let country = document.getElementById('country') as HTMLInputElement
+        let guestHave = document.getElementById('guest-have') as HTMLInputElement
+        let placeType = document.getElementById('place-type') as HTMLInputElement
+        let bedCount = document.getElementById('bedcount') as HTMLInputElement
+        let bathroom = document.getElementById('bathroom') as HTMLInputElement
+        let amenities = document.getElementById('amenities') as HTMLInputElement
+        let city = document.getElementById('city') as HTMLInputElement
+        let error = document.getElementsByClassName('error') as HTMLCollectionOf<HTMLElement>
 
+        if( 
+            city.value !== '' &&
+            mapCountry.value !== '' && 
+            mapAddress.value !== '' &&
+            mapCity.value !== '' &&
+            mapZip.value !== '' &&
+            roomCount.value !== '' &&
+            propType.value !== '' &&
+            country.value !== '' &&
+            guestHave.value !== '' &&
+            bedCount.value !== '' &&
+            bathroom.value !== '' &&
+            placeType.value !== '' &&
+            amenities.value !== ''){
+            error[0].style.display = 'none'
+            this.props.setCurrClass('scene')
+        }
+        else{
+            error[0].style.display = 'block'
+        }
     }
 
     getData(){
@@ -78,6 +116,12 @@ export class BasicInfoPlace extends Component {
                         <div>Property Type</div>
                         <div>
                             <input type="text" name="prop-type" id="prop-type"/>
+                        </div>
+                    </div>
+                    <div className="input">
+                        <div>What Guest Will Have</div>
+                        <div>
+                            <input type="number" name="guest-have" id="guest-have"/>
                         </div>
                     </div>
                     <div className="sub-title">Bedrooms</div>
@@ -150,14 +194,20 @@ export class BasicInfoPlace extends Component {
                                 <TileLayer
                                     url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
                                 />
-                                <CircleMarker
-                                    center={[Number(data[0].lat), Number(data[0].lon)]}
-                                    fillColor="blue" 
-                                    radius={50}/>
+                                <Marker position={[data[0].lat, data[0].lon]}>
+                                    <Popup>
+                                        asd
+                                    </Popup>
+                                </Marker>
                             </LeafletMap>
                         </div>
                     </div>
-
+                    <div className="input">
+                        <div className="btn-next">
+                            <div className="btn" onClick={this.test}>Next</div>
+                            <div className="error">Wrong input !</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

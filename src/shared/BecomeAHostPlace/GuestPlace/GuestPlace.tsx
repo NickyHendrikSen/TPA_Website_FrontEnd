@@ -3,7 +3,11 @@ import './GuestPlace.scss'
 import Axios from 'axios'
 import Calendar from 'react-calendar';
 
-export class GuestPlace extends Component {
+interface IProps{
+    setCurrClass:any
+}
+
+export class GuestPlace extends Component<IProps> {
     
     state = {
         currency:[{
@@ -23,7 +27,9 @@ export class GuestPlace extends Component {
         },
         currSymbol:'$',
         currCode:'USD',
-        currIndex:0
+        currIndex:0,
+        currPrice:0,
+        currRate:1,
     }
 
     componentWillMount(){
@@ -46,14 +52,20 @@ export class GuestPlace extends Component {
         if(currency[0].style.display === "none")
             currency[0].style.display = "block"
         else
-            currency[0].style.display = "none"
-
+            currency[0].style.display = "none"        
     }
-
-    changeCurrency(index:number){
+        
+    reset = () => {
+        this.setState({
+            currPrice:this.state.currPrice / this.state.currRate 
+        })
+    }
+    
+    changeCurrency = (index:number) => {
         let currency = document.getElementsByClassName('popup-list-container') as HTMLCollectionOf<HTMLElement>
         let currencyField = document.getElementById('currency') as HTMLInputElement
-        
+        var price = document.getElementById('price') as HTMLInputElement
+            
         this.setState({
             currSymbol: this.state.currency[index].symbol,
             currCode: this.state.currency[index].code,
@@ -66,6 +78,7 @@ export class GuestPlace extends Component {
         }) 
         currRate = currRate.sort().slice(0, 1)
         currencyField.value = this.state.currency[index].symbol + ' • ' + this.state.currency[index].code + ' : ' + currRate + ' (Base Currency : '+this.state.exchange_rate.base+')'
+        price.value = '' + (this.state.currPrice * Number(currRate)) 
         currency[0].style.display = "none"
     }
 
@@ -73,8 +86,33 @@ export class GuestPlace extends Component {
 
     }
 
-    convertToUSD(){
+    convertToUSD = () => {
+        var price = document.getElementById('price') as HTMLInputElement
+      
+        this.setState({
+            currPrice:price.value
+        })
+    }
 
+    finish(){
+        window.history.back();
+    }
+
+    test = () => {
+        let maxGuest = document.getElementById('max-guest') as HTMLInputElement
+        let currency = document.getElementById('currency') as HTMLInputElement
+        let price = document.getElementById('price') as HTMLInputElement
+        let error = document.getElementsByClassName('error') as HTMLCollectionOf<HTMLElement>
+
+        if( 
+            maxGuest.value !== '' &&
+            currency.value !== '' &&
+            price.value !== ''){
+            error[2].style.display = 'none'
+        }
+        else{
+            error[2].style.display = 'block'
+        }
     }
 
     render() {
@@ -96,7 +134,7 @@ export class GuestPlace extends Component {
                     <div className="input">
                         <div>Max. Guest Allowed</div>
                         <div>
-                            <input type="text" name="desc" id="desc"/>
+                            <input type="Number" name="max-guest" id="max-guest"/>
                         </div>
                     </div>
                     <div className="input">
@@ -119,9 +157,15 @@ export class GuestPlace extends Component {
                     <div className="input">
                         <div className="calendar-container">
                             <Calendar
-                            // onChange={this.onChange}
-                            value={new Date()}
+                                value={new Date()}
                             />
+                        </div>
+                    </div>
+                    <div className="input">
+                        <div className="btn-next">
+                            <div className="btn" onClick={this.test}>Next</div>
+                            <div className="finish" onClick={this.finish}>Finish</div>
+                            <div className="error">Wrong input !</div>
                         </div>
                     </div>
                 </div>
