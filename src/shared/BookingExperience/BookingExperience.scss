@@ -230,3 +230,20 @@
         }
     }
 }
+
+@media only screen and(max-width:768px){
+    .BExp_contents{
+        width: unset !important;
+        button{
+            width: 50% !important;
+        }
+    }
+}
+@media only screen and(max-width:425px){
+    .BExp_contents{
+        width: unset !important;
+        button{
+            width: 50% !important;
+        }
+    }
+}

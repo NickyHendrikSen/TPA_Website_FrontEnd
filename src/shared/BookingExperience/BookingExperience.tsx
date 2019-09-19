@@ -2,6 +2,7 @@ import React from "react"
 import Header from "../Header/Header"
 import "./BookingExperience.scss"
 import axios from "axios"
+import StarRatings from "react-star-ratings"
 import { thisExpression } from "@babel/types";
 
 export default class BookingExperience extends React.Component{
@@ -9,6 +10,7 @@ export default class BookingExperience extends React.Component{
         date:'',
         guestCount:1,
         isLoading:true,
+        star:0,
         data:{
             experience_category:'asd',
             address:{
@@ -71,6 +73,16 @@ export default class BookingExperience extends React.Component{
 
         axios.get('http://backendtpaweb.herokuapp.com/api/experience/' + localStorage.getItem('ExperienceID'))
             .then(res => {
+                let total = 0;
+                    for(let j = 0; j < res.data.reviews.length; j++){
+                        total += res.data.reviews[j].reviewer_score;
+                        // console.log(total);
+                    }
+                this.setState(
+                    {
+                        star: total,
+                    }
+                )
                 this.setState(
                     {
                         data: res.data,
@@ -106,7 +118,7 @@ export default class BookingExperience extends React.Component{
 
     guests = () => {
         var x: any = []
-        for(let i = 0; i < this.state.guestCount; i++){
+        for(let i = 1; i < this.state.guestCount; i++){
             x.push(<div className="BExp_GuestInfoContent">
                 <div className="BExp_GuestInfoTitle">
                     {"Guest " + (i+1)}
@@ -130,22 +142,59 @@ export default class BookingExperience extends React.Component{
         // console.log(x)
         return x;
     }
+    reduceChildren = () =>{
+        var div = document.getElementById('childrenValue') as HTMLElement;
+        if(div.innerText != "0"){
+            var i = parseInt(div.innerText);
+            div.innerText = (i-1) + "";
+            (document.getElementById('guestValue') as HTMLElement).innerText = (parseInt((document.getElementById('guestValue') as HTMLElement).innerText + "") - 1) + " guests";
+                this.reduceGuest();
+        }
+    }
+    addInfant = () => {
+        var div = document.getElementById('infantValue') as HTMLElement;
+            if(this.state.guestCount != 10){
+                var i = parseInt(div.innerText);
+                div.innerText = (i+1) + "";
+                (document.getElementById('guestValue') as HTMLElement).innerText = (parseInt((document.getElementById('guestValue') as HTMLElement).innerText + "") + 1) + " guests";
+                    this.addGuest();
+            }
+    }
+    reduceInfant = () => {
+        var div = document.getElementById('infantValue') as HTMLElement;
+        if(div.innerText != "0"){
+            var i = parseInt(div.innerText);
+            div.innerText = (i-1) + "";
+            (document.getElementById('guestValue') as HTMLElement).innerText = (parseInt((document.getElementById('guestValue') as HTMLElement).innerText + "") - 1) + " guests";
+                this.reduceGuest();
+        }
+    }
+    addChildren = () => {
+        var div = document.getElementById('childrenValue') as HTMLElement;
+            if(this.state.guestCount != 10){
+                var i = parseInt(div.innerText);
+                div.innerText = (i+1) + "";
+                (document.getElementById('guestValue') as HTMLElement).innerText = (parseInt((document.getElementById('guestValue') as HTMLElement).innerText + "") + 1) + " guests";
+                    this.addGuest();
+            }
+    }
     reduceAdult = () => {
         var div = document.getElementById('adultValue') as HTMLElement;
         if(div.innerText != "1"){
             var i = parseInt(div.innerText);
             div.innerText = (i-1) + "";
-            if(i == 2){
-                (document.getElementsByClassName('BExp_guestDropMinus')[0] as HTMLElement).style.color = "#00848944";
-                (document.getElementsByClassName('BExp_guestDropPlus')[0] as HTMLElement).style.color = "#008489";
-                
-            }
             (document.getElementById('guestValue') as HTMLElement).innerText = (parseInt((document.getElementById('guestValue') as HTMLElement).innerText + "") - 1) + " guests";
                 this.reduceGuest();
         }
     }
-    addAdult(){
-        // if(this.state.guestCount)
+    addAdult = () => {
+    var div = document.getElementById('adultValue') as HTMLElement;
+        if(this.state.guestCount != 10){
+            var i = parseInt(div.innerText);
+            div.innerText = (i+1) + "";
+            (document.getElementById('guestValue') as HTMLElement).innerText = (parseInt((document.getElementById('guestValue') as HTMLElement).innerText + "") + 1) + " guests";
+                this.addGuest();
+        }
     }
     toggleGuest(){
         var div = (document.getElementsByClassName('BExp_guestDropContent')[0] as HTMLElement);
@@ -193,9 +242,9 @@ export default class BookingExperience extends React.Component{
                                                 Children
                                             </div>
                                             <div className="BExp_guestDropRight">
-                                                <div className="BExp_guestDropMinus">-</div>
+                                                <div className="BExp_guestDropMinus" onClick={this.reduceChildren}>-</div>
                                                 <div id="childrenValue">0</div>
-                                                <div className="BExp_guestDropPlus">+</div>
+                                                <div className="BExp_guestDropPlus" onClick={this.addChildren}>+</div>
                                             </div>
                                         </div>
                                         <div className="BExp_guestDrop">
@@ -203,9 +252,9 @@ export default class BookingExperience extends React.Component{
                                                 Infant
                                             </div>
                                             <div className="BExp_guestDropRight">
-                                                <div className="BExp_guestDropMinus">-</div>
+                                                <div className="BExp_guestDropMinus" onClick={this.reduceInfant}>-</div>
                                                 <div id="infantValue">0</div>
-                                                <div className="BExp_guestDropPlus">+</div>
+                                                <div className="BExp_guestDropPlus" onClick={this.addInfant}>+</div>
                                             </div>
                                         </div>
                                     </div>
@@ -243,6 +292,18 @@ export default class BookingExperience extends React.Component{
                                         {this.state.data.estimated_total_hours}
                                         <br/>
                                         Hosted by {this.state.data.host.host_name}
+                                    </div>
+                                    <div>
+                                    {(Math.round(this.state.star/this.state.data.reviews.length/2*100)/100).toFixed(2)}
+                                    <StarRatings
+                                    rating={this.state.star/this.state.data.reviews.length/2}
+                                    starRatedColor="#008489"
+                                    // changeRating={this.changeRating}
+                                    numberOfStars={5}
+                                    name='rating'
+                                    starDimension= '28px'
+                                    starSpacing = '1px'
+                                    />
                                     </div>
                                     <img src={this.state.data.Images[0]} alt=""/>
                                 </div>    
