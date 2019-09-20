@@ -12,6 +12,7 @@ import "react-image-gallery/styles/scss/image-gallery.scss";
 import CopyToClipboard from "react-copy-to-clipboard"
 import {RouteComponentProps, withRouter} from "react-router";
 import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
+import {FacebookShareButton , EmailShareButton} from "react-share"
 
 export default class ExperienceDetail extends React.Component<RouteComponentProps<any>>{
     refVal:any
@@ -276,8 +277,12 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             </div>
             <div className="expD_ShareModalWrapper">
                 <div className="expD_ShareModal">
-                    <div className="expD_ShareFb">Share to facebook</div>
-                    <div className="expD_ShareGoogle">Share to google</div>
+                    <div className="expD_ShareFb">Share to Facebook
+                    <FacebookShareButton url = {window.location.href}/>
+                    </div>
+                    <div className="expD_ShareGoogle">Share to Mail
+                    <EmailShareButton url = {window.location.href}/>
+                    </div>
                     <CopyToClipboard text={window.location.href}>
                         <div className="expD_ShareCopy" onClick={() => alert('Copied to clipboard')}>
                             Copy link to clipboard

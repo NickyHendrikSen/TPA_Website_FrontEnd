@@ -12,6 +12,10 @@ import PlanList from "../PlanList/PlanList";
 
 export default class Experience extends React.Component{
     state = {
+        language:[{
+            languageName:'',
+            code:'',
+        }],
         data:[{
             _id:'',
             experience_category:'',
@@ -25,6 +29,9 @@ export default class Experience extends React.Component{
             Images:[],
             reviews:[],
             reviewAvg:0,
+            host:{
+                host_language:'',
+            }
         }],
         plans:[{
             ExperienceID:'',
@@ -45,6 +52,9 @@ export default class Experience extends React.Component{
             Images:[],
             reviews:[],
             reviewAvg:0,
+            host:{
+                host_language:'',
+            }
         }],
         isLoading: true,
     }
@@ -75,6 +85,14 @@ export default class Experience extends React.Component{
         }
     }
     componentWillMount(){
+        
+        axios.get('https://api.myjson.com/bins/ns7n7').then( e => {
+            console.log(e);
+            this.setState({
+                language: e.data,
+            })
+        })
+    
         axios.get('http://backendtpaweb.herokuapp.com/api/experience')
             .then(res => {
                 var dataList = [{}];
@@ -92,11 +110,12 @@ export default class Experience extends React.Component{
                         Images: res.data[i].Images,
                         reviews:res.data[i].reviews,
                         reviewAvg:0,
+                        host: res.data[i].host,
                     };
                     let total = 0;
                     for(let j = 0; j < res.data[i].reviews.length; j++){
                         total += res.data[i].reviews[j].reviewer_score;
-                        console.log(total);
+                        // console.log(total);
                     }
                     dataTemp.reviewAvg = total;
                     dataList.push(dataTemp);
@@ -151,7 +170,26 @@ export default class Experience extends React.Component{
             }
         )
     }
-
+    filterLang = () => {
+        var min = (document.getElementById('Slanguage') as HTMLSelectElement).value
+        if(min == "all"){
+            this.setState({
+                filter : this.state.data
+            })
+            return;
+        }
+        let a =[];
+        for(let i = 0; i < this.state.data.length; i++){
+            if(this.state.data[i].host.host_language.includes(min)){
+                a.push(this.state.data[i])
+            }
+        }
+        this.setState(
+            {
+                filter : a
+            }
+        )
+    }
     // &#10084;
     render(){       
         if(this.state.isLoading){
@@ -165,6 +203,16 @@ export default class Experience extends React.Component{
                     <input type="number" name="" id="min" min={0}/> to&nbsp;
                     <input type="number" name="" id="max" min={0}/>
                     <button onClick={this.filter}>Filter</button>
+                </div>
+                <div className="exps_filter">Language : &nbsp;
+                    <select name="" id="Slanguage">
+                        {this.state.language.map(e => {
+                            return(
+                                <option value={e.languageName}>{e.languageName}</option>
+                            )
+                        })}
+                    </select>
+                    <button onClick={this.filterLang}>Filter</button>
                 </div>
                 <div className="note">Set maximum to 0 to show all</div>
                 <div className="exps_Content">

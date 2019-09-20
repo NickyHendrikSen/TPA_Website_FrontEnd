@@ -492,11 +492,23 @@
             background-color: #3b5998;
             line-height: 40px;
             vertical-align: middle;
+            position: relative;
+            .SocialMediaShareButton{
+                position: absolute;
+                top: 0;
+                height: 100%;
+            }
         }
         .expD_ShareGoogle{
             background-color:  #008744;
             line-height: 40px;
             vertical-align: middle;
+            position: relative;
+            .SocialMediaShareButton{
+                position: absolute;
+                top: 0;
+                height: 100%;
+            }
         }
         .expD_ShareCopy{
             background-color: white;
