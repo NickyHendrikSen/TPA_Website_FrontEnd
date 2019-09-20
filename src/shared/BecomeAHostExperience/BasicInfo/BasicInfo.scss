@@ -3,7 +3,7 @@ $basic-color: #008489;
 .basic-info-wrapper{
     @media all and (min-width:1025px) {
         position: absolute;
-        display: flex;
+        display: block;
         flex-wrap: wrap;
         justify-content: flex-start;
         align-items: center;

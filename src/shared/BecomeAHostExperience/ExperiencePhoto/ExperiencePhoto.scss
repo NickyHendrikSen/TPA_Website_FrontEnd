@@ -3,7 +3,7 @@ $basic-color: #008489;
 .experience-photo-wrapper{
     @media all and (min-width:1025px) {
         position: absolute;
-        display: block;
+        display: none;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
@@ -56,62 +56,6 @@ $basic-color: #008489;
             }
         }
     }
-    .editor-wrapper{
-        width: 80%;
-        display: block;
-        margin: auto;
-        >div{
-            margin: 1em;
-            display: flex;
-            float: left;
-            justify-content: space-between;
-            align-items: center;
-            color: rgba(0, 0, 0, 0.75);
-            >input{
-                width: 40%;
-                padding: 0.5em;
-            }
-            >div{
-                width: 40%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                >button{
-                    cursor: pointer;
-                    color: rgba(0, 0, 0, 0.75);
-                    background-color: transparent;
-                    outline: none;
-                    width: 100%;
-                    border-radius: 5px;
-                    border: 2px solid $basic-color;
-                    padding: 0.5em;
-                    &:hover{
-                        color: white;
-                        background-color: $basic-color;
-                    }
-                }
-            }
-        }
-        .btn-implement{
-            margin: auto;
-            width: 80%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            .btn{
-                cursor: pointer;
-                color: rgba(0, 0, 0, 0.75);
-                width: 100%;
-                border-radius: 10px;
-                border: 2px solid $basic-color;
-                padding: 0.5em;
-                &:hover{
-                    color: white;
-                    background-color: $basic-color;
-                }
-            }
-        }
-    }
     .url-wrapper{
         width: 80%;
         margin: auto;
@@ -127,27 +71,88 @@ $basic-color: #008489;
             background-repeat: no-repeat;
             background-position: center center;
         }
-        .url-container{
-            width: 50%; 
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            flex-wrap: wrap;
-            >.url{
+        .editor-wrapper{
+            width: 50%;
+            display: block;
+            margin: auto;
+            >div{
                 width: 100%;
-                padding: 0.2em 0em;
-                color: rgba(0, 0, 0, 1);
-                font: normal normal 1em helvetica, sans-serif;
-                >i{
-                    margin-right: 1em;
-                    color: $basic-color;
+                margin: 1em;
+                display: flex;
+                float: left;
+                justify-content: space-between;
+                align-items: center;
+                color: rgba(0, 0, 0, 0.75);
+                >input{
+                    width: 40%;
+                    padding: 0.5em;
                 }
+                >div{
+                    width: 40%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    >button{
+                        cursor: pointer;
+                        color: rgba(0, 0, 0, 0.75);
+                        background-color: transparent;
+                        outline: none;
+                        width: 100%;
+                        border-radius: 5px;
+                        border: 2px solid $basic-color;
+                        padding: 0.5em;
+                        &:hover{
+                            color: white;
+                            background-color: $basic-color;
+                        }
+                    }
+                }
+                .btn-implement{
+                    margin: auto;
+                    width: 50%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    text-align: center; 
+                    .btn{
+                        cursor: pointer;
+                        color: rgba(0, 0, 0, 0.75);
+                        width: 100%;
+                        border-radius: 10px;
+                        border: 2px solid $basic-color;
+                        padding: 0.5em;
+                        &:hover{
+                            color: white;
+                            background-color: $basic-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .url-container{
+        width: 80%;
+        padding: 1em;
+        margin: 0em auto; 
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        border: 0.5px solid rgba(0, 0, 0, 0.25);
+        >.url{
+            width: 100%;
+            padding: 0.2em 0em;
+            color: rgba(0, 0, 0, 1);
+            font: normal normal 1em helvetica, sans-serif;
+            >i{
+                margin-right: 1em;
+                color: $basic-color;
             }
         }
     }
     .btn-next{
         width: 80%;
-        margin: 1em;
+        margin: 0px auto;
         display: flex;
         justify-content: space-between;
         align-items: center;

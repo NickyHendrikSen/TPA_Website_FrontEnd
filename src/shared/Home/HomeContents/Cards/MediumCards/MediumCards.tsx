@@ -48,21 +48,23 @@ export class MediumCards extends Component{
     }
 
     componentWillMount(){
-        Axios.all([
-            Axios.get('https://backendtpaweb.herokuapp.com/api/toptenrooms'),
-            Axios.get('https://geoip-db.com/json')
-        ])
-        .then(Axios.spread((roomRes:any, ipRes:any) => {
-            this.setState(
+        Axios.get('https://geoip-db.com/json')
+            .then(res => {
+                this.setState(
                     {
-                        data:roomRes.data,
-                        callback:ipRes.data,
-                        isLoading:false
+                        callback: res.data
                     }
                 )
-        }))
+                Axios.get('http://backendtpaweb.herokuapp.com/api/rooms/place/'+this.state.callback.country_name)
+                .then((res:any) => {
+                    this.setState({
+                        data:res.data,
+                        isLoading:false
+                    })
+                })
+            }
+        )
     }
-
 
     render() {
 

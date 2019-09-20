@@ -54,6 +54,7 @@ export class BotContents extends Component<IProps> {
         totalguest:this.props.totalguest,
         currentPage:this.props.currentPage,
         reviewPerPage:this.props.reviewPerPage,
+        getData: this.props.data
     }
 
     reset(){
@@ -84,30 +85,38 @@ export class BotContents extends Component<IProps> {
         }
     }
 
+    doSearch = () => {
+        let search = document.getElementById('search') as HTMLInputElement
+        let dataTemp = {}
+        dataTemp = this.props.data.reviews
+
+        for(let i = 0; i < this.props.data.reviews.length; i++){
+            if(this.props.data.reviews[i].comments.includes(search.value)){
+                dataTemp = this.props.data.reviews[i]
+            }
+        }
+
+        this.setState({
+            getData:{
+                reviews:dataTemp
+            }
+        })
+    }
+
     doTranslate(text:IProps){
-        // console.log("asd")
-        // translate(text.data.reviews[0].comments, {to:'en'})
-        //     .then((res:any) => {console.log(res)})
-        // console.log(text.data.reviews[0].comments)
-        // var googleTranslate = require('google-translate')(apikey);
-        // for(let i = 0; i < text.data.reviews.length; i++){
-            
-        //     googleTranslate.translate(this.state.data.reviews[i].comments, 'es', (err:any, translation:any) => {
-        //         console.log(translation);
-        //     })
-        // }
+
     }
     
     render() {
         this.handleClick.bind(this.state);
-        const{data, currentPage, reviewPerPage} = this.state
+        const{getData, currentPage, reviewPerPage} = this.state
 
         const indexOfLastData = currentPage * reviewPerPage;
         const indexOfFirstData = indexOfLastData - reviewPerPage;
-        const currentData = data.reviews.slice(indexOfFirstData, indexOfLastData);
+        const currentData = getData.reviews.slice(indexOfFirstData, indexOfLastData);
 
         const pageNumber = [];
-        for(let i = 1; i <= Math.ceil(data.reviews.length/reviewPerPage); i++){
+        for(let i = 1; i <= Math.ceil(getData.reviews.length/reviewPerPage); i++){
             pageNumber.push(i);
         }
 
@@ -116,7 +125,7 @@ export class BotContents extends Component<IProps> {
             return (
                 <div className="review-container" key={index}>
                     <div className="reviewer-heading-wrapper">
-                        <div className="reviewer-photo" style={{backgroundImage: `url(${data.host.host_thumbnail_url})`}}>
+                        <div className="reviewer-photo" style={{backgroundImage: `url(${getData.host.host_thumbnail_url})`}}>
                         </div>
                         <div className="reviewer-identity">
                             <div className="reviewer-name">{reviewer.reviewer_name}</div>
@@ -141,45 +150,50 @@ export class BotContents extends Component<IProps> {
                 <div className="review-wrapper">
                     <div className="review-heading-wrapper">
                         <div className="review-heading">
-                            {data.reviews.length} Reviews
-                            <div className="overall-rating">    
-                                <StarRatings
-                                    rating={Number(data.review_scores.review_scores_rating)}
-                                    starRatedColor="#008489"
-                                    numberOfStars={5}
-                                    name='rating'
-                                    starDimension= '2vw'
-                                    starSpacing = '0.1vw'
-                                    />
+                            <div className="rating-container">
+                                {getData.reviews.length} Reviews
+                                <div className="overall-rating">    
+                                    <StarRatings
+                                        rating={Number(getData.review_scores.review_scores_rating)}
+                                        starRatedColor="#008489"
+                                        numberOfStars={5}
+                                        name='rating'
+                                        starDimension= '1em'
+                                        starSpacing = '0.1em'
+                                        />
+                                </div>
+                            </div>
+                            <div className="search-container">
+                                <input type="text" name="search" id="search" placeholder="search" onChange={this.doSearch}/>
                             </div>
                         </div>
                         <div className="review-ratings">
                             <div className="left-ratings-category">
                                 <div className="review-cat accuracy">
                                     <div className="text-ratings-cat">Accuracy</div>
-                                    <StarRatings rating={Number(data.review_scores.review_scores_accuracy)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1.5vw' starSpacing = '0.1vw' />
+                                    <StarRatings rating={Number(getData.review_scores.review_scores_accuracy)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1em' starSpacing = '0.1em' />
                                 </div>
                                 <div className="review-cat communication">
                                     <div className="text-ratings-cat">Communication</div>
-                                    <StarRatings rating={Number(data.review_scores.review_scores_communication)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1.5vw' starSpacing = '0.1vw' />
+                                    <StarRatings rating={Number(getData.review_scores.review_scores_communication)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1em' starSpacing = '0.1em' />
                                 </div>
                                 <div className="review-cat cleanliness">
                                     <div className="text-ratings-cat">Cleanliness</div>
-                                    <StarRatings rating={Number(data.review_scores.review_scores_cleanliness)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1.5vw' starSpacing = '0.1vw' />
+                                    <StarRatings rating={Number(getData.review_scores.review_scores_cleanliness)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1em' starSpacing = '0.1em' />
                                 </div>
                             </div>
                             <div className="right-ratings-category">
                                 <div className="review-cat location">
                                     <div className="text-ratings-cat">Location</div>
-                                    <StarRatings rating={Number(data.review_scores.review_scores_location)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1.5vw' starSpacing = '0.1vw' />
+                                    <StarRatings rating={Number(getData.review_scores.review_scores_location)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1em' starSpacing = '0.1em' />
                                 </div>
                                 <div className="review-cat checkin">
                                     <div className="text-ratings-cat">Check-in</div>
-                                    <StarRatings rating={Number(data.review_scores.review_scores_checkin)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1.5vw' starSpacing = '0.1vw' />
+                                    <StarRatings rating={Number(getData.review_scores.review_scores_checkin)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1em' starSpacing = '0.1em' />
                                 </div>
                                 <div className="review-cat score">
                                     <div className="text-ratings-cat">Score</div>
-                                    <StarRatings rating={Number(data.review_scores.review_scores_value)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1.5vw' starSpacing = '0.1vw' />
+                                    <StarRatings rating={Number(getData.review_scores.review_scores_value)} starRatedColor="#008489" numberOfStars={5} name='rating' starDimension= '1em' starSpacing = '0.1em' />
                                 </div>
                             </div>
                         </div>
@@ -199,10 +213,10 @@ export class BotContents extends Component<IProps> {
                     </div>
                     <div className="map-widget-wrapper">
                         <DetailPageMap
-                            lat = {data.address.location.coordinates[1]}
-                            lng = {data.address.location.coordinates[0]}
-                            name = {data.name}
-                            price = {Number(data.price)}
+                            lat = {getData.address.location.coordinates[1]}
+                            lng = {getData.address.location.coordinates[0]}
+                            name = {getData.name}
+                            price = {Number(getData.price)}
                         />
                     </div>
                 </div>

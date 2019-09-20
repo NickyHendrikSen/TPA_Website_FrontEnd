@@ -225,7 +225,7 @@ class Places extends React.Component<RouteComponentProps<any>>{
             else {
                 return (
                     <div className="col-md-12 frame-container" key={index}>
-                        <Imagecarousel index={index} image_list={room.image_list}/>
+                        <Imagecarousel index={index+1} image_list={room.image_list}/>
                         <div className="frame-desc">
                             <div className="desc-wrapper">
                                 <div className="top-wrapper">

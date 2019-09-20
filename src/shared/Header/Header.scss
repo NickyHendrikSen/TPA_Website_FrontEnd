@@ -60,7 +60,7 @@ header{
             width: 5%;
             padding: 1em;
             .aiv-logo{
-                outline: none;
+                outline: none !important;
                 padding: 60%;
                 background-image: url("./img/logo.png");
                 background-position: center center;

@@ -2,10 +2,10 @@
 @import"./ScreenResManager/small-screen";
 
 .places_Wrapper{
-    border-top: 1px solid rgba(0, 0, 0, 0.25);
     background-color: white;
     min-height: 1px;
-    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
     overflow: auto;
     position: relative;
     .plan-list-wrapper{
@@ -80,6 +80,7 @@
             .list-container{
                 padding: 5px 10px;
                 height: 100%;
+                width: 100%;
                 .frame-title{
                     display: flex;
                     justify-content: left;
@@ -130,6 +131,7 @@
             .paginate-wrapper{
                 height: 100%;
                 width: 100%;
+                padding: 2em;
                 .total-data{
                     width: 100%;
                     height: 40%;

@@ -3,6 +3,7 @@ import '../../Places/PlacesGridSystem/PlacesGridSystems.scss';
 import './ListPhotos.scss'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import Axios from 'axios';
+import { FacebookShareButton, EmailShareButton } from 'react-share';
 
 interface IPhotos{
     url:any,
@@ -58,7 +59,6 @@ export class ListPhotos extends Component<IPhotos> {
     render() {
 
         const {image_list, url} = this.state
-        // const showAllSmallPhotos = '' 
         var showAllSmallPhotos;
         var showAllBigPhotos;
 
@@ -120,11 +120,15 @@ export class ListPhotos extends Component<IPhotos> {
                         <h1>Share</h1>
                         <div className="share">
                             <i className="fab facebook"></i>
-                            <div className="text">Facebook</div>
+                            <FacebookShareButton url={window.location.href} >
+                                <div className="text">Facebook</div>
+                            </FacebookShareButton>
                         </div>
                         <div className="share">
                             <i className="far fa-envelope"></i>
-                            <div className="text">Email</div>
+                            <EmailShareButton url={window.location.href} >
+                                <div className="text">Email</div>
+                            </EmailShareButton>
                         </div>
                         <CopyToClipboard text={window.location.href}>
                             <div className="share">

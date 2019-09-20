@@ -4,7 +4,7 @@ $button-color: #ff5A5F;
 
 .top-contents{
     width: 100%;
-    padding: 1vw 0vw;
+    padding: 1em 0em;
     text-align: start;
     .place-header-wrapper{
         width: 100%;
@@ -17,12 +17,12 @@ $button-color: #ff5A5F;
             flex-wrap: wrap;
             .place-name{
                 width: 100%;
-                font-size: 2.5vw;
+                font-size: 2em;
                 font-weight: bold;
                 color: rgba(0, 0, 0, 0.75);
                 .place-suburb{
                     width: 100%;
-                    font-size: 1vw;
+                    font-size: 0.5em;
                     font-weight: normal;
                 }
             }
@@ -34,30 +34,30 @@ $button-color: #ff5A5F;
             justify-content: center;
             .place-host-name{
                 text-align: center;
-                font-size: 1vw;
+                font-size: 1em;
                 color: rgba(0, 0, 0, 0.75);
             }
             .place-host-photo{
-                margin: 0.2vw 0vw;
+                margin: 0.2em 0em;
                 @include photo-setting;
-                height: 5vw;
-                width: 5vw;
+                height: 3.5em;
+                width: 3.5em;
                 border-radius: 50%;
             }
         }
     }
     .place-detail{
-        margin-top: 2vw;
+        margin-top: 2em;
         width: 100%;
         color: rgba(0, 0, 0, 0.75);
-        font-size: 1vw;
+        font-size: 1em;
         .room-type{
             font-weight: bold;
-            padding: 0.5vw 0vw;
+            padding: 0.5em 0em;
         }
         .room-info{
             border-bottom: 1px solid $strip-color;
-            padding: 0.5vw 4vw;
+            padding: 0.5em 4em;
             font-weight: normal;
             display: flex;
             align-items: center;
