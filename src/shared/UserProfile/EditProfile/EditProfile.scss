@@ -1,0 +1,81 @@
+.EditProfile_wrapper{
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    .EditProfile_content{
+        font-size: 20px;
+        color: #484848;
+        .EditProfile_Image{
+            border-radius: 50%;
+        }
+        .EditProfile_Language{
+            // background-color: black;
+            padding: 0;
+            div{
+                overflow: hidden;
+                input{
+                    display: inline-block;
+                    width: 20px;
+                }
+            }
+        }
+        select{
+            width: 100%;
+            padding: 5px;
+            font-size: 20px;
+            border-radius: 4px;
+            border: 1px solid #484848;
+            transition-duration: 0.5s;
+            outline: none;
+            &:focus{
+                border: 1px solid #008489;
+            }
+        }
+        input{
+            border-radius: 4px;
+            outline: none;
+            font-size: 20px;
+            padding: 5px;
+            width: 100%;
+            border: 1px solid #484848;
+            transition-duration: 0.5s;
+            &:focus{
+                border: 1px solid #008489;
+            }
+        }
+        textarea{
+            border-radius: 4px;
+            outline: none;
+            font-size: 20px;
+            padding: 5px;
+            width: 100%;
+            border: 1px solid #484848;
+            transition-duration: 0.5s;
+            &:focus{
+                border: 1px solid #008489;
+            }
+        }
+        .EditProfile_contentInput{
+            margin-top: 20px;
+            border-bottom: 1px solid #484848;
+            padding-bottom: 20px;
+        }
+    }
+}
+.EditProfile_btnSave{
+    display: none;
+    padding: 10px 30px;
+    border-radius: 4px;
+    border: 1px solid #484848;
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    outline: none;
+    cursor: pointer;
+    background-color: #008489;
+    transition-duration: 0.5s;
+    &:active{
+        background-color: #004042;
+    }
+}

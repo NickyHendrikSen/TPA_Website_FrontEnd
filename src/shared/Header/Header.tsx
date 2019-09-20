@@ -59,15 +59,15 @@ export default class Header extends React.Component{
     lightBox_reg_show(){
         var lightBox = document.getElementsByClassName("regE_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
         lightBox[0].style.display = "flex";
-        console.log(lightBox[0]);   
+        // console.log(lightBox[0]);   
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
         // body.style.position="fixed";
         // lightBox[0].style.position = "absolute";
     }    
-    lightBox_login_show(){
+    lightBox_login_show = () => {
         var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
         lightBox[0].style.display = "flex";
-        console.log(lightBox[0]);   
+        // console.log(lightBox[0]);   
         var body = document.getElementsByTagName("Body")[0] as HTMLElement;
         // body.style.position="fixed";
     }
@@ -75,14 +75,16 @@ export default class Header extends React.Component{
         var pickBlock = document.getElementsByClassName("Header_Search_PickWrapper")[0] as HTMLElement;
         // pickBlock.style.display = "block";
         pickBlock.style.width = "534px";
-        pickBlock.style.opacity = "1";
+        pickBlock.style.display = "block";
+        setTimeout(function(){ 
+            pickBlock.style.opacity = "1"; }, 100);
         // pickBlock.style.visibility = "visible";
     }
     Header_hidePick(){
         var pickBlock = document.getElementsByClassName("Header_Search_PickWrapper")[0] as HTMLElement;
-        // pickBlock.style.display = "none";
         pickBlock.style.width = "0px";
         pickBlock.style.opacity = "0";
+        setTimeout(function(){ pickBlock.style.display = "none"; }, 500);
         // pickBlock.style.visibility = "hidden";
     }
 
@@ -112,7 +114,6 @@ export default class Header extends React.Component{
             currency[0].style.display = "none"
 
     }
-
     render(){
         const {currency, language} = this.state
         const allLanguages = language.map((lang, index) => {
@@ -125,8 +126,26 @@ export default class Header extends React.Component{
                 <div key={index} className="popup-list" onClick={()=>this.changeCurrency(index, curr.code)}>{curr.symbol} • {curr.name}</div>
             )
         })
+        const log = document.getElementsByClassName('col-md-12');
+
+        document.addEventListener('keydown', logKey);
+        
+        function logKey(e : any) {
+            if(e.keyCode == 13){
+                if(localStorage.getItem('UserID') == null || localStorage.getItem('UserID') == "")
+                {
+                    var lightBox = document.getElementsByClassName("login_lightBoxWrapper") as HTMLCollectionOf<HTMLElement>;
+                    lightBox[0].style.display = "flex";
+                    var body = document.getElementsByTagName("Body")[0] as HTMLElement;
+                    return;
+                }
+                    window.location.href = "/Experiences"
+            }
+        }
+        // var urlPhoto = "http://" + require(localStorage.getItem("UserURL") + "");
         return(
             <header className="col-md-12">
+                {/* {console.log(urlPhoto)} */}
                 <div className="navBar">
                     <div className="logo">
                         <Link to="/">
@@ -173,14 +192,14 @@ export default class Header extends React.Component{
                                 </div>
                             </div>
                         </div>
-                        <button id="login_header" onClick={this.lightBox_login_show}>Log in</button>
-                        <button id="signup_header" onClick={this.lightBox_reg_show}>Sign up</button>
-                        <button id="logout_header" onClick={this.logout}>Log out</button>
-                        <button>Help</button>
+                        <button className="buttonRight" id="login_header" onClick={this.lightBox_login_show}>Log in</button>
+                        <button className="buttonRight" id="signup_header" onClick={this.lightBox_reg_show}>Sign up</button>
+                        <button className="buttonRight" id="logout_header" onClick={this.logout}>Log out</button>
+                        <button className="buttonRight">Help</button>
                         <Link to="become-a-host/room"><button className="menu_logged">Become a host</button></Link>
                         <Link to="PlanList"><button id="plan_header">Plan List</button></Link>
-                        <div className="menu_picture">
-                            <img src="" alt="" className="menu_pictureImg"/>
+                        <div className="menu_picture"onClick={() => window.location.href="/Profile"}>
+                            <img src={"http://" + localStorage.getItem('UserURL')} className="menu_pictureImg"/>
                         </div>
                     </div>
                 </div>

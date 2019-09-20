@@ -50,6 +50,7 @@ export default class Facebook extends React.Component{
                 var body = document.getElementsByTagName("Body")[0] as HTMLElement;
                 body.style.position="relative";
                 found = true;
+                window.location.reload();
             }
         })
         if(found) return;
@@ -71,7 +72,7 @@ export default class Facebook extends React.Component{
     render(){
         let fbContent;
         if(this.state.isLoggedIn){
-            fbContent = null;
+            // fbContent = null;
         }
         else{
             fbContent=(<FacebookLogin 
@@ -86,7 +87,7 @@ export default class Facebook extends React.Component{
                 />)
         }
         return(
-            <div>{fbContent}</div>
+            <div className="FB">{fbContent}</div>
         )
     }
 }

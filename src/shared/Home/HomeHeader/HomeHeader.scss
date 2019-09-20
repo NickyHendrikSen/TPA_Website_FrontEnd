@@ -13,6 +13,11 @@
             z-index: -2000;
             height: 100%;
             width: 100%;
+            background-image: url('./img/Imagess/photo4.jpg');
+            background-position: center center;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            transition: all 1000ms ease-in-out;
         }
         .description{
             padding: 24px;
@@ -302,4 +307,14 @@
         }
     }
 
+}
+@media only screen and(max-width:425px){
+    .homeSearchWrapper{
+        margin-left:0 !important;
+    }
+}
+@media only screen and(max-width:768px){
+    .homeSearchWrapper{
+        width: 100%;
+    }
 }

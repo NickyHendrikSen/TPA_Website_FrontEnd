@@ -1,0 +1,49 @@
+hr{
+    border-color: rgba(128, 128, 128, 0.233);
+}
+.chat_filter{
+    color: #008489;
+    margin-left: 50px;
+    select{
+        border: 1px solid #008489;
+        border-radius: 4px;
+        padding: 2px 4px;
+        display: inline-block;
+    }
+    button{
+        display: inline-block;
+        margin-left: 20px;
+        padding: 5px 10px;
+        color: white;
+        cursor: pointer;
+        background-color: #008489;
+        transition-duration: 0.5s;
+        outline: none;
+        border: 1px solid #484848;
+        border-radius: 4px;
+        &:active{
+            background-color: #004042;
+        }
+    }
+}
+@media only screen and(max-width: 768px){
+    .chat_content{
+        width: 70% !important;
+    }
+}
+@media only screen and(max-width: 425px){
+    .chat_content{
+        width: 100% !important;
+    }
+    .chat_wrapper{
+        justify-content: unset !important;
+        display: block;
+    }
+    .chat_star, .chat_archive{
+        display: none;
+    }
+    .chat_starR, .chat_archiveR{
+        display: block;
+        width: 100% !important;
+    }
+}

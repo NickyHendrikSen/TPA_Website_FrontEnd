@@ -7,6 +7,7 @@ import facebook_icon from "../img/facebook_img.png"
 import google_icon from "../img/google_icon.png"
 import email_icon from "../img/email_png.png"
 import Facebook from "./components/Facebook"
+import Google from "./components/Google"
 import { isUserWhitespacable } from "@babel/types";
 
 export default class SignUp extends React.Component{
@@ -60,11 +61,11 @@ export default class SignUp extends React.Component{
             (document.getElementsByClassName('menu_picture')[0] as HTMLElement).style.display = "block";
             (document.getElementsByClassName('menu_logged')[0] as HTMLElement).style.display = "block";
             (document.getElementById('plan_header') as HTMLElement).style.display = "block";
-            if(localStorage.getItem("UserURL") == "" || localStorage.getItem("UserURL") == null){
+            if(localStorage.getItem("UserURL") == "" || localStorage.getItem("UserURL") == null || localStorage.getItem("UserURL") == "0"){
                 (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsZ2jUO2WVf_TyxRvqQR36RTVn6EvaZRTvWdn6naMTn7HD8-guLw";
             }
             else
-                (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://" + localStorage.getItem("UserURL");
+                (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "http://" + localStorage.getItem("UserURL") + "";
             
         }
     }
@@ -133,7 +134,8 @@ export default class SignUp extends React.Component{
         if(success == false) return;
         //Login check here
         // console.log(state.length);
-        console.log(localStorage.getItem('UserID') + " <-");
+        // console.log(localStorage.getItem('UserID') + " <-");
+
         for(var i = 0; i < state.length; i++){
             if(state[i].Useremail == txtEmail.value && state[i].Password == txtPass.value){
                 alert('success login');
@@ -141,7 +143,7 @@ export default class SignUp extends React.Component{
                 var body = document.getElementsByTagName("Body")[0] as HTMLElement;
                 body.style.position="relative";
                 localStorage.setItem('UserID', state[i].UserID);
-                localStorage.setItem('UserURL', state[i].UserThumbnailURL);
+                localStorage.setItem('UserURL', state[i].UserThumbnailURL + "");
                 (document.getElementById('login_header') as HTMLElement).style.display = "none";
                 (document.getElementById('signup_header') as HTMLElement).style.display = "none";
                 (document.getElementById('logout_header') as HTMLElement).style.display = "block";
@@ -152,8 +154,16 @@ export default class SignUp extends React.Component{
                 }
                 else
                     (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://" + state[i].UserThumbnailURL;
-            
-                    window.location.reload();
+                axios({
+                    url: 'http://backendtpaweb.herokuapp.com/api/history-insert/' + (state[i].UserID), 
+                    method : "POST",
+                    data : {
+                },
+                headers:{"Content-Type": "application/x-www-form-urlencoded"}
+                }  
+                )
+                // window.location.reload();
+
                 return;
             }
         }
@@ -164,7 +174,7 @@ export default class SignUp extends React.Component{
             // }
         // })
         
-        alert('failed login');
+        alert('Username or Password is wrong');
     }
 
     render(){
@@ -182,23 +192,26 @@ export default class SignUp extends React.Component{
                                 Continue with Facebook
                             </span> */}
                         {/* </div> */}
-                        <div className="login_google">
+                        {/* <div className="login_google">
                             <img src={google_icon} alt=""/>
                             <span>
                                 Continue with Google
                             </span>
+                        </div> */}
+                        <div className="login_google">
+                            <Google />
                         </div>
-                        <div className="login_or">
-                            <span>or</span>
-                        </div>
+                        {/* <div className="login_or"> */}
+                            {/* <span>or</span> */}
+                        {/* </div> */}
                         <input type="email" name="" id="login_txtEmail" className="login_input" placeholder="Email address"/>
                         <div className="login_errMessage"></div>
                         <input type="password" name="" id="login_txtPass" className="login_input" placeholder="Password"/>
                         <div className="login_errMessage"></div>
                         <div className="login_rememShow">
-                            <div className="login_remem">
+                            {/* <div className="login_remem"> */}
                                 {/* <input type="checkbox" name="" id=""value=""/>Remember Me */}
-                            </div>
+                            {/* </div> */}
                             <div className="login_showPass" onClick={this.login_showPassword}>
                             Show Password
                             </div>

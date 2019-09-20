@@ -1,0 +1,90 @@
+#ReviewDiv{
+    display: none;
+}
+.up_firstWrapper{
+    height: 100vh;
+    .upHeader{
+        background-color: white;
+        position: fixed;
+        // height: 80px;
+        width: 100%;
+        z-index: 5000;
+    }
+    .up_wrapper{
+        height: calc(100% - 80px);
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        .upContent{
+            margin-left: 20%;
+
+        }
+        .up_menu{
+            // background-color: red;
+            height: 100%;
+            color:white;
+            width: 20%;
+            padding-right: 20px;
+            padding-top: 20px;
+            border-right: 1px solid #c5c6c7;
+            position: fixed;
+            // bottom: 0;
+            div{
+                margin-top: 20px;
+                margin-right: 20%;
+                color: #c5c6c7;
+                font-size: 20px;
+                font-weight: 400;
+                text-align: right;
+                cursor: pointer;
+                transition-duration: 0.3s;
+                &:hover{
+                    color: #5e5e5e;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and(max-width:768px){
+    .up_menu{
+        width: 100% !important;
+        height: 10% !important;
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        padding: 0 !important;
+        top: 60px;
+        div{
+            margin: 0 !important;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+    .upContent{
+        margin: 0 !important;
+        margin-top: 20% !important;
+    }
+}
+@media only screen and(max-width:425px){
+    .up_menu{
+        width: 100% !important;
+        height: 10% !important;
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        padding: 0 !important;
+        top: 106px;
+        div{
+            margin: 0 !important;
+            padding-left: 20px;
+            padding-right: 20px;
+            // position: absolute;
+            bottom: 0;
+        }
+    }
+    .upContent{
+        margin: 0 !important;
+        margin-top: 20% !important;
+    }
+}

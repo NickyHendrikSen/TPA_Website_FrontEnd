@@ -27,6 +27,14 @@
                 .exps_planHeart{
                     font-size: 50px;
                     color:white;
+                    cursor:pointer;
+                    transition-duration: 0.5s;
+                    &:hover{
+                        color:pink;
+                    }
+                    &:active{
+                        color:red;
+                    }
                 }
             }
             .exps_createPlanTitle{
@@ -98,7 +106,7 @@
             position: fixed;
             display: block;
             right:0;
-            top:0;
+            top: 75px;
             // width: 100%;
             // width: 400px;
             height: 100%;
@@ -204,7 +212,7 @@
 
 @media only screen and (max-width: 768px){
     .exps_MapWidget{
-        top:0;
+        top:0 !important;
         height: 40vh !important;
         width: 100vw;
         z-index: 2;
@@ -216,6 +224,6 @@
     .exps_Wrapper{
         width: 100% !important;
         z-index: 1;
-        margin-top: 30vh;
+        margin-top: 35vh;
     }
 }

@@ -54,6 +54,22 @@ export class BookModal extends Component<IProps> {
         reviewPerPage: this.props.reviewPerPage,
     }
 
+    bookPlace = () => {
+        var check_in = (document.getElementsByClassName('check-in')[0] as HTMLInputElement);
+        var check_out  = (document.getElementsByClassName('check-out')[0] as HTMLInputElement);
+        if(check_in.value == "" || check_out.value == "" || Date.parse(check_in.value) > Date.parse(check_out.value)){
+            alert('Input valid check in and check out date');
+            return;
+        }
+        localStorage.setItem('PlaceID', this.state.data._id);
+        localStorage.setItem('CheckIn', check_in.value);
+        localStorage.setItem('CheckOut', check_out.value);
+        localStorage.setItem('adultValue', (document.getElementsByClassName('adult-guest')[0] as HTMLElement).innerText);
+        localStorage.setItem('childrenValue', (document.getElementsByClassName('child-guest')[0] as HTMLElement).innerText);
+        localStorage.setItem('infantValue', (document.getElementsByClassName('infant-guest')[0] as HTMLElement).innerText);
+        window.location.href="/BookingPlace";
+    }
+
     changeTypetoDate(e:any){
         e.currentTarget.style.backgroundColor = "#82EEE6";
         e.currentTarget.type="date";
@@ -282,7 +298,7 @@ export class BookModal extends Component<IProps> {
                             </div>
                         </div>
                         <div className="book-wrapper">
-                            <input className="btn-book" type="button" value="Book"/>
+                            <input className="btn-book" type="button" value="Book" onClick={this.bookPlace}/>
                             <div className="info-text">Anda belum dikenakan biaya</div>
                         </div>
                     </form>

@@ -13,9 +13,16 @@ import BeHost_Room from "./shared/BeHost_Room/BeHost_Room"
 import BeHost_Bedroom from "./shared/BeHost_Room/BeHost_Bedroom"
 import BeHost_Bathroom from "./shared/BeHost_Room/BeHost_Bathroom";
 import PlanList from "./shared/PlanList/PlanList"
+import Profile from "./shared/Profile/Profile"
+import ChatDetail from "./shared/ChatDetail/ChatDetail"
 import Tes from "./shared/GetDataTes/tes"
+import Chat from "./shared/Chat/Chat"
+import PlanDetail from "./shared/PlanDetail/PlanDetail"
+import UserProfile from "./shared/UserProfile/UserProfile"
+import BookingPlace from "./shared/BookingPlace/BookingPlaceLoader"
+import BookingExperience from "./shared/BookingExperience/BookingExperience"
+import BookingHistory from "./shared/BookingHistory/BookingHistory"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
-import { PlanDetail } from './shared/PlanDetail/PlanDetail';
 import HostExperience from './shared/BecomeAHostExperience/HostExperience';
 import BecomeAHostPlace from './shared/BecomeAHostPlace/BecomeAHostPlace';
 
@@ -25,7 +32,15 @@ const App: React.FC = () => {
     <div className="App">
         <Router>
           <Switch>
-              <Route path="/tes" component={Tes} />
+              <Route path="/BookingHistory" component={BookingHistory} />
+              <Route path="/BookingPlace" component={BookingPlace}/>
+              <Route path="/BookingExperience" component={BookingExperience}/>
+              <Route path="/UserProfile" component={UserProfile}/>
+              <Route path="/Chat" component={Chat}/>
+              <Route path="/plan-detail/:id" component={PlanDetail}/>
+              {/* <Route path="/tes" component={Tes} /> */}
+              <Route path="/ChatDetail" component={ChatDetail} />
+              <Route path="/Profile" component={Profile} />
               <Route path="/PlanList" component={PlanList} />
               <Route path="/plan-detail" component={PlanDetail}/>
               <Route path="/become-a-host/bathroom" component={BeHost_Bathroom}/>

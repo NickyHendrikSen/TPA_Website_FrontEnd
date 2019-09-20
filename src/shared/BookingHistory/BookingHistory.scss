@@ -1,0 +1,131 @@
+.BHistory_contentWrapper{
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    .BHistory_content{
+        // border: 1px solid #484848;
+        border-radius: 4px;
+        min-height: 100vh;
+        .BHistory_desc{
+            .BHistory_card{
+                width: 100%;
+                border: 1px solid #484848;
+                border-radius: 4px;
+                padding: 10px;
+                position: relative;
+                // display: flex;
+                // justify-content: space-between;
+                .BHistory_rightCard{
+                    .btnCancelPaid{
+                        display: none;
+                    }
+                    .btnCancelPostponed{
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        background-color: red;
+                        color: white;
+                        font-weight: 600;
+                        border-radius: 10px;
+                        border: none;
+                        outline: none;
+                        padding: 10px 20px;
+                        transition-duration: 0.5s;
+                        cursor: pointer;
+                        &:active{
+                            background-color: rgba(255, 0, 0, 0.541);
+                        }
+                    }
+                }
+                .BHistory_leftCard{
+                    .BHistory_rateReviewPostponed{
+                        display: none;
+                    }
+                    .BHistory_rateReviewPaid{
+                        color: grey;
+                        font-size: 40px;
+                        .BHistory_SubmitReview{
+                            padding: 10px 20px;
+                            background-color: #008489;
+                            border-radius: 4px;
+                            border: none;
+                            outline: none;
+                            transition-duration: 0.5s;
+                            cursor: pointer;
+                            color: white;
+                            &:active{
+                                background-color: #004042;
+                            }
+                        }
+                        .BHistory_review{
+                            font-size: 20px;
+                            color: #008489;
+                            textarea{
+                                outline: none;
+                                width: 50%;
+                                resize: none;
+                                border-radius: 4px;
+                            }
+                        }
+                        .BHistory_rate{
+                            div{
+                                cursor: pointer;
+                                display: inline-block;
+                            }
+                        }
+                    }
+                    .Postponed{
+                        color: red;
+                        font-weight: bold;
+                    }
+                    .Paid{
+                        color: green;
+                        font-weight: bold;
+                    }
+                    .BHistory_name{
+                        color: #484848;
+                        font-size: 20px;
+                        font-weight: 600;
+                    }
+                    .BHistory_date{
+                        margin-top: 10px;
+                        font-size: 13px;
+                        color: grey;
+                    }
+                }
+            }
+        }
+        .BHistory_header{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            div{
+                padding: 10px;
+                font-size: 20px;
+                color: white;
+                background-color: #008489;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+                text-align: center;
+                border: 1px solid #484848;
+                display: inline-block;
+                transition-duration: 0.5s;
+                &:active{
+                    background-color: #004042;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and(max-width:768px){
+    textarea{
+        width: 100% !important;
+    }
+}
+@media only screen and(max-width:425px){
+    textarea{
+        width: 100% !important;
+    }
+}

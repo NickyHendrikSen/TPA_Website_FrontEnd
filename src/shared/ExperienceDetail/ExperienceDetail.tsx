@@ -9,7 +9,10 @@ import Stories from 'react-insta-stories'
 import StarRatings from 'react-star-ratings';
 import ImageGallery from "react-image-gallery"
 import "react-image-gallery/styles/scss/image-gallery.scss";
+import CopyToClipboard from "react-copy-to-clipboard"
 import {RouteComponentProps, withRouter} from "react-router";
+import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
+import {FacebookShareButton , EmailShareButton} from "react-share"
 
 export default class ExperienceDetail extends React.Component<RouteComponentProps<any>>{
     refVal:any
@@ -17,11 +20,21 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
         original:'',
     }];
     state = {
+        isLoading:true,
         total_rating:0,
+        reviewCount:0,
+        pageNow:0,
+        star:0,
         data:{
             _id:'',
             experience_category:'asd',
-            address:{suburb:''},
+            address:{
+                suburb:'',
+                location:{
+                    type:'',
+                    coordinates:[],
+                }
+            },
             experience_title:'',
             experience_detail:'',
             price:0,
@@ -31,11 +44,16 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             total_rating_count:0,
             should_bring:[],
             host:{
-                host_language:[],
+                host_id:'',
+                host_language:'',
                 host_about:'',
                 host_thumbnail_url:'',
                 host_name:'',
                 host_location:'',
+                host_response_rate:'',
+                host_response_time:'',
+                total_host_review:'',
+                host_join_date:''
             },
             reviews:[{
                 _id:'',
@@ -48,7 +66,17 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                 reviewer_thumbnail_url:'',
             }],
             Images:[{url:'',}]
-        }
+        },
+        reviews:[{
+            _id:'',
+            date:'',
+            listing_id:'',
+            reviewer_id:'',
+            reviewer_name:'',
+            comments:'',
+            reviewer_score:0,
+            reviewer_thumbnail_url:'',
+        }],
     }
 
 
@@ -67,6 +95,30 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             btn.innerHTML = "Pause"   
             this.refVal.play();
         }
+    }
+    search=()=>{
+        var txt = (document.getElementById('txtSearch') as HTMLInputElement).value;
+        this.setState({
+            pageNow:0,
+        })
+        let s = [];
+        for(let i = 0; i < this.state.data.reviews.length; i++){
+            if(this.state.data.reviews[i].comments.includes(txt)){
+                s.push(this.state.data.reviews[i])
+            }
+        }
+        // console.log(s)
+        this.setState({
+            reviews: s,
+            reviewCount: Math.ceil(s.length/3)
+        })
+
+    }
+    contactHost = () => {
+        // console.log(this.state.data.host.host_id);
+        // localStorage.setItem('host_id', this.state.data.host.host_id);
+        localStorage.setItem('exp_id', this.state.data._id);
+        window.location.href = "/ChatDetail"
     }
     starLoading(){
     //     var div = document.getElementsByClassName('expD_reviewRightStar')[0] as HTMLElement;
@@ -94,12 +146,27 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
         // const { fromNotifications } = this.props.location.state
         axios.get('http://backendtpaweb.herokuapp.com/api/experience/' + id)
             .then(res => {
+                let total = 0;
+                    for(let j = 0; j < res.data.reviews.length; j++){
+                        total += res.data.reviews[j].reviewer_score;
+                        // console.log(total);
+                    }
+                this.setState(
+                    {
+                        star: total,
+                    }
+                )
                 this.setState(
                     {
                         data: res.data,
-                        total_rating: res.data.rating_star/res.data.total_rating_count
+                        total_rating: res.data.rating_star/res.data.total_rating_count,
+                        reviewCount: Math.ceil(res.data.reviews.length/3),
+                        reviews:res.data.reviews,
+                        isLoading:false
                     }
                 )
+                
+                
                 for(var i = 0; i < res.data.Images.length; i++){
                     if(i == 0){
                         this.images[0].thumbnail = res.data.Images[i];
@@ -116,11 +183,77 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
             }
         )
     }
+    changePage(i : number){ 
+        this.setState({
+            pageNow:i
+        })
+    }
+    bookExperience = () => {
+        var dateBook = (document.getElementById('dateBook') as HTMLDataElement).value;
+        var date = new Date();
+        var dateInput = Date.parse(dateBook);
+        if(!(date.getTime() < dateInput)){
+            alert('Input valid date');
+            return;
+        }
+        window.location.href="/BookingExperience"
+        localStorage.setItem('ExperienceDate', dateBook + "");
+        localStorage.setItem('ExperienceID', this.state.data._id);
+    }
     closeGallery(){
         (document.getElementsByClassName('expD_ShowAllGalery')[0] as HTMLElement).style.display="none";
     }
+    showShare(){
+        (document.getElementsByClassName('expD_ShareModalWrapper')[0] as HTMLElement).style.display = "flex"
+    }
     render(){
-        console.log(this.images)
+        console.log(this.state.data);
+        if(this.state.isLoading){
+            return(<div>Loading</div>);
+        }
+        document.addEventListener('keydown', function(e){
+            if(e.keyCode == 27){
+                (document.getElementsByClassName('expD_ShareModalWrapper')[0] as HTMLElement).style.display = "none"
+            }
+        })
+        const currData = this.state.reviews.slice(this.state.pageNow*3, (this.state.pageNow*3) + 3);
+        const showAllData = currData.map(rev =>{
+            return(
+                <div className="expD_reviewRightContent">
+                    <div className="expD_reviewRightInfo">
+                        <div className="expD_reviewRightImage">
+                            <img src={rev.reviewer_thumbnail_url} alt=""/>
+                        </div>
+                        <div className="expD_reviewRightNameStar">
+                            <div className="expD_reviewRightNameDate">
+                                <div className="expD_reviewRightName">
+                                    {rev.reviewer_name} · &nbsp;
+                                </div>
+                                <div className="expD_reviewRightDate">
+                                    {(rev.date.split("T")[0]).split('-')[1] == "01" ? "January" : (rev.date.split("T")[0]).split('-')[1] == "02" ? "February" : (rev.date.split("T")[0]).split('-')[1] == "03" ? "March" : (rev.date.split("T")[0]).split('-')[1] == "04" ? "April" : (rev.date.split("T")[0]).split('-')[1] == "05" ? "May" : (rev.date.split("T")[0]).split('-')[1] == "06" ? "June" : (rev.date.split("T")[0]).split('-')[1] == "07" ? "July" : (rev.date.split("T")[0]).split('-')[1] == "08" ? "August" : (rev.date.split("T")[0]).split('-')[1] == "09" ? "September" : (rev.date.split("T")[0]).split('-')[1] == "10" ? "October" : (rev.date.split("T")[0]).split('-')[1] == "11" ? "November" : (rev.date.split("T")[0]).split('-')[1] == "12" ? "December" : "Loading"}
+                                    &nbsp;{((rev.date.split("T")[0]).split('-')[0])}
+                                </div> 
+                            </div>
+                            <div className="expD_reviewRightStar">
+                            <StarRatings
+                                rating={rev.reviewer_score/2}
+                                starRatedColor="#008489"
+                                // changeRating={this.changeRating}
+                                numberOfStars={5}
+                                name='rating'
+                                starDimension= '20px'
+                                starSpacing = '1px'
+                            />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="expD_reviewRightContent_Content">
+                        {rev.comments}
+                    </div>
+                    <hr/>
+                </div>
+            )
+        });
         return(
             <div className="expD_Wrapper">
             <div className="expD_ShowAllGalery" onClick={this.closeShowAll}>
@@ -140,6 +273,21 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                         <div className="amenitiesShowAllAmenities">{e}</div>
                     )
                 })}
+                </div>
+            </div>
+            <div className="expD_ShareModalWrapper">
+                <div className="expD_ShareModal">
+                    <div className="expD_ShareFb">Share to Facebook
+                    <FacebookShareButton url = {window.location.href}/>
+                    </div>
+                    <div className="expD_ShareGoogle">Share to Mail
+                    <EmailShareButton url = {window.location.href}/>
+                    </div>
+                    <CopyToClipboard text={window.location.href}>
+                        <div className="expD_ShareCopy" onClick={() => alert('Copied to clipboard')}>
+                            Copy link to clipboard
+                        </div>
+                    </CopyToClipboard>
                 </div>
             </div>
             <Header />
@@ -164,6 +312,10 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                     <div className="expD_header">
                                         <div className="expD_theme">
                                             {this.state.data.experience_category}
+                                        </div>
+                                        <div className="expD_ShareSave">
+                                            <div className = "expD_Share" onClick={this.showShare}>Share</div>
+                                            <div className= "expD_Save">Save</div>
                                         </div>
                                         <div className="expD_title">
                                             {this.state.data.experience_title} 
@@ -190,14 +342,28 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                         <div className="expD_about">
                                             <div className="expD_aboutTitle">About your host</div>
                                             <div className="expD_aboutDescription">{this.state.data.host.host_about}</div>
+                                            <div className="expD_aboutDescription">Total Review : {this.state.data.host.total_host_review}</div>
+                                            <div className="expD_aboutDescription">Response Time : {this.state.data.host.host_response_time}</div>
+                                            <div className="expD_aboutDescription">Response Rate : {this.state.data.host.host_response_rate}/100</div>
+                                            <div className="expD_aboutDescription">Host Primary Language : {this.state.data.host.host_language.split(',')[0]}</div>
+                                            <div className="expD_aboutDescription">Host Spoken Language : {this.state.data.host.host_language.split(',')[1]}
+                                                {this.state.data.host.host_language.split(',').slice(2,this.state.data.host.host_language.split(',').length).map(e  => {
+                                                    return(
+                                                        <span>
+                                                            , {e}
+                                                        </span>
+                                                    )
+                                                })}
+                                            </div>
                                         </div>
                                         <div className="expD_about_img">
                                             <img src={this.state.data.host.host_thumbnail_url} alt=""/>
                                             <div className="expD_about_name">
                                             {this.state.data.host.host_name}
                                             </div>
+                                            {this.state.data.host.host_join_date}
                                             <div>{this.state.data.host.host_location}</div>
-                                            <div className="expD_about_contact">
+                                            <div className="expD_about_contact" onClick={this.contactHost}>
                                             Contact Host
                                             </div>
                                         </div>
@@ -247,11 +413,11 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                         <div className="expD_reviewLeftTitle">Guest Reviews</div>
                         <div className="expD_reviewLeftRating">
                             <div className="expD_reviewLeftNum">
-                                {(Math.round(this.state.data.rating_star/this.state.data.total_rating_count*100)/100).toFixed(2)}
+                                {(Math.round(this.state.star/this.state.data.reviews.length/2*100)/100).toFixed(2)}
                             </div>
                             <div className="expD_reviewLeftStar">
                                 <StarRatings
-                                    rating={this.state.total_rating}
+                                    rating={this.state.star/this.state.data.reviews.length/2}
                                     starRatedColor="#008489"
                                     // changeRating={this.changeRating}
                                     numberOfStars={5}
@@ -261,45 +427,59 @@ export default class ExperienceDetail extends React.Component<RouteComponentProp
                                 />
                             </div>
                         </div>
+                        <div className="expD_Search">
+                            <div className="expD_SearchTitle">Search review content : </div>
+                            <textarea name="" id="txtSearch"></textarea>
+                            <button onClick={this.search}>Search</button>
+                        </div>
                     </div>
                     <div className="expD_reviewRight">
-                            {this.state.data.reviews.map(rev =>{
-                                return(
-                                    <div className="expD_reviewRightContent">
-                                        <div className="expD_reviewRightInfo">
-                                            <div className="expD_reviewRightImage">
-                                                <img src={rev.reviewer_thumbnail_url} alt=""/>
-                                            </div>
-                                            <div className="expD_reviewRightNameStar">
-                                                <div className="expD_reviewRightNameDate">
-                                                    <div className="expD_reviewRightName">
-                                                        {rev.reviewer_name} · &nbsp;
-                                                    </div>
-                                                    <div className="expD_reviewRightDate">
-                                                        {rev.date.split("T")[0]}
-                                                    </div>
-                                                </div>
-                                                <div className="expD_reviewRightStar">
-                                                <StarRatings
-                                                    rating={rev.reviewer_score/2}
-                                                    starRatedColor="#008489"
-                                                    // changeRating={this.changeRating}
-                                                    numberOfStars={5}
-                                                    name='rating'
-                                                    starDimension= '20px'
-                                                    starSpacing = '1px'
-                                                />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="expD_reviewRightContent_Content">
-                                            {rev.comments}
-                                        </div>
-                                        <hr/>
-                                    </div>
-                                )
-                            })}
+                           {showAllData}
+                            <div className="expD_Page">
+                            {(() => {
+                            const options = [];
+                            
+                            for (let i = 0; i < this.state.reviewCount; i++) {
+                                options.push(<div className="page" onClick={() => this.changePage(i)}>{i+1}</div>);
+                            }
+
+                            return options;
+                            })()}
+                                
+                            </div>
                     </div>
+               </div>
+               <div className="exp_map">
+                <LeafletMap
+                        center={[this.state.data.address.location.coordinates[0], this.state.data.address.location.coordinates[1]]}
+                        zoom={15}
+                        attributionControl={true}
+                        zoomControl={true}
+                        doubleClickZoom={true}
+                        scrollWheelZoom={true}
+                        dragging={true}
+                        animate={true}
+                        easeLinearity={0.35}
+                    >
+                        <TileLayer
+                            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                        />
+                        <Marker position={[this.state.data.address.location.coordinates[0], this.state.data.address.location.coordinates[1]]}>
+                            <Popup>
+                                {this.state.data.experience_title}
+                            </Popup>
+                        </Marker>
+                </LeafletMap>
+                </div>
+               <div className="exp_dateBookingWrapper">
+                   <div className="exp_bookingTitle">
+                       Booking
+                   </div>
+                    <div className="exp_dateBooking">
+                        Pick Date : 
+                        <input type="date" name="" id="dateBook"/>
+                    </div>
+                    <button className="exp_dateBookingBtn" onClick={this.bookExperience}>Book Experience</button>
                </div>
             </div>
         )

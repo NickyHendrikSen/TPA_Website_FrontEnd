@@ -30,6 +30,7 @@
     "react-fa-icon": "^0.1.4",
     "react-facebook-login": "^4.1.1",
     "react-filebase64": "^1.0.2",
+    "react-google-login": "^5.0.5",
     "react-image-gallery": "^0.9.1",
     "react-insta-stories": "^1.5.2",
     "react-leaflet": "^2.4.0",

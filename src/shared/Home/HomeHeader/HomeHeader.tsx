@@ -1,8 +1,7 @@
 import React from "react";
 import "./HomeHeader.scss"
 import {BrowserRouter as Router, Link} from "react-router-dom"
-import downArrow from "./img/down-chevron.png"
-import bg from "./img/headerBg1.jpg"
+// import bg from "./img/headerBg1.jpg"
 import Axios from "axios";
 
 export default class Home extends React.Component{
@@ -238,13 +237,40 @@ export default class Home extends React.Component{
         adultValue.innerText = b + "";
         this.homeSearch_editGuest();
     }
+    search(){
+        if((document.getElementById('search_txtCheckIn') as HTMLInputElement).value == "" || (document.getElementById('search_txtCheckOut') as HTMLInputElement).value == ""){
+            alert('Please input check in and check out date');
+        }
+        else
+            window.location.href="/Places/Australia";
+        // 
+        // if()
+    }
+
+    change(){
+        let backgroud = document.getElementsByClassName('headerContent_img') as HTMLCollectionOf<HTMLElement>
+        let i = 0
+
+        setInterval(function(){
+            if (i > 4) i = 0;
+            console.log(i)
+            let image;
+            if(i == 0)
+                image = require('./img/Imagess/photo.jpg')
+            else
+                image = require('./img/Imagess/photo'+i+'.jpg')
+            backgroud[0].style.backgroundImage = `url(${image})`
+            i++;
+        }, 5000)
+    }
 
     render()
     {
+        this.change()
         return(
             <div className="wrapper">
                 <div className="headerContent">
-                    <img src={bg} alt="" className="headerContent_img"/>
+                    <div className="headerContent_img"></div>
                     <div className="homeSearchWrapper">
                         <div className="homeSearch_title">
                         {/* The link is temporary */}
@@ -281,7 +307,7 @@ export default class Home extends React.Component{
                                 <div className="homeSearchCheckOutWrapper">
                                     <input className="homeSearchCheckOut_Input" 
                                     type="date" name="search_checkInInput" 
-                                    id="search_txtCheckIn" placeholder="mm/dd/yyyy"/>
+                                    id="search_txtCheckOut" placeholder="mm/dd/yyyy"/>
                                 </div>
                             </div>
                         </div>
@@ -298,7 +324,7 @@ export default class Home extends React.Component{
                                         Guests
                                     </span>
                                     <div className="homeSearchGuest_svgWrapper">
-                                        <img src={downArrow} alt=""/>
+                                        <i className="fas fa-chevron-down"></i>
                                     </div>                                    
                                 </button>
                                 {/* When button click, it will display(adding guest) */}
@@ -378,11 +404,11 @@ export default class Home extends React.Component{
                         </div>
                         <div className="homeSearch_SearchButtonWrapper">
                             {/* <Router> */}
-                                <Link to="/Places/Australia">
-                                    <button className="homeSearch_SearchButton">
+                                {/* <Link to="/Places/Australia"> */}
+                                    <button className="homeSearch_SearchButton" onClick={this.search}>
                                         Search
                                     </button>
-                                </Link>
+                                {/* </Link> */}
                             {/* </Router> */}
                         </div>
                         {/* Search Button */}
