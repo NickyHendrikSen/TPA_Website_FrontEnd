@@ -250,8 +250,12 @@ export default class Home extends React.Component{
     change(){
         let backgroud = document.getElementsByClassName('headerContent_img') as HTMLCollectionOf<HTMLElement>
         let i = 0
-
+        
         setInterval(function(){
+            console.log(window.location.href)
+            if(window.location.href !== "http://localhost:3000/"){
+                return;
+            }
             if (i > 4) i = 0;
             console.log(i)
             let image;
@@ -261,7 +265,7 @@ export default class Home extends React.Component{
                 image = require('./img/Imagess/photo'+i+'.jpg')
             backgroud[0].style.backgroundImage = `url(${image})`
             i++;
-        }, 5000)
+        }, 3000)
     }
 
     render()

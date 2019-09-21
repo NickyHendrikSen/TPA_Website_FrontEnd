@@ -8,8 +8,14 @@ export class HomeContents extends Component {
     render() {
         return (
             <div className="grid-wrapper">
-                <MediumCards/>
-                <SmallCards/>
+                <div>
+                    <div>
+                        <MediumCards/>
+                    </div>
+                    <div>
+                        <SmallCards/>
+                    </div>
+                </div>
             </div>
         )
     }

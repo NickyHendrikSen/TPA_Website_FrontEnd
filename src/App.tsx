@@ -1,10 +1,7 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Header from "./shared/Header/Header"
 import Home from "./shared/Home/Home"
-import Footer from "./shared/Footer/Footer"
-import FooterButton from "./shared/Footer/FooterButton/FooterButton";
 import Places from "./shared/Places/PlacesNavbar/PlacesNavbar"
 import Experiences from "./shared/Experience/ExperienceHeader/ExperienceHeader"
 import ExperienceDetail from "./shared/ExperienceDetail/ExperienceDetail"
@@ -15,7 +12,6 @@ import BeHost_Bathroom from "./shared/BeHost_Room/BeHost_Bathroom";
 import PlanList from "./shared/PlanList/PlanList"
 import Profile from "./shared/Profile/Profile"
 import ChatDetail from "./shared/ChatDetail/ChatDetail"
-import Tes from "./shared/GetDataTes/tes"
 import Chat from "./shared/Chat/Chat"
 import PlanDetail from "./shared/PlanDetail/PlanDetail"
 import UserProfile from "./shared/UserProfile/UserProfile"

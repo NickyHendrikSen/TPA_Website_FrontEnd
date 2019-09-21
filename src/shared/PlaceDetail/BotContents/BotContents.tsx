@@ -54,6 +54,8 @@ export class BotContents extends Component<IProps> {
         totalguest:this.props.totalguest,
         currentPage:this.props.currentPage,
         reviewPerPage:this.props.reviewPerPage,
+        filterReviewList: this.props.data.reviews,
+        reviewList: this.props.data.reviews,
         getData: this.props.data
     }
 
@@ -87,19 +89,16 @@ export class BotContents extends Component<IProps> {
 
     doSearch = () => {
         let search = document.getElementById('search') as HTMLInputElement
-        let dataTemp = {}
-        dataTemp = this.props.data.reviews
+        let dataTemp = [{}];
 
-        for(let i = 0; i < this.props.data.reviews.length; i++){
-            if(this.props.data.reviews[i].comments.includes(search.value)){
-                dataTemp = this.props.data.reviews[i]
+        for(let i = 0; i < this.state.reviewList.length; i++){
+            if(this.state.reviewList[i].comments.includes(search.value)){
+                dataTemp.push(this.state.reviewList[i]);
             }
         }
-
+        dataTemp.splice(0,1);
         this.setState({
-            getData:{
-                reviews:dataTemp
-            }
+            filterReviewList:dataTemp,
         })
     }
 
@@ -113,10 +112,10 @@ export class BotContents extends Component<IProps> {
 
         const indexOfLastData = currentPage * reviewPerPage;
         const indexOfFirstData = indexOfLastData - reviewPerPage;
-        const currentData = getData.reviews.slice(indexOfFirstData, indexOfLastData);
+        const currentData = this.state.filterReviewList.slice(indexOfFirstData, indexOfLastData);
 
         const pageNumber = [];
-        for(let i = 1; i <= Math.ceil(getData.reviews.length/reviewPerPage); i++){
+        for(let i = 1; i <= Math.ceil(this.state.filterReviewList.length/reviewPerPage); i++){
             pageNumber.push(i);
         }
 

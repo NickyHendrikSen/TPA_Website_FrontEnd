@@ -161,7 +161,7 @@ export default class BookingPlace extends Component<IProps>{
         }
         );
         alert('Place Booked');
-        window.history.back();
+        // window.history.back();
 
     }
     render(){

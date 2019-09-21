@@ -86,7 +86,7 @@ export class SmallCards extends Component{
         
         const showFilteredData = filteredData.map((data, index) => {
             return(
-                <Link to={"/PlaceDetail/"+data._id} className="col-md-1 card-wrapper" key={index}>
+                <Link to={"/ExperiencesDetail/"+data._id} className="col-md-1 card-wrapper" key={index}>
                     <div className="small-card-wrapper">
                         <div className="small-card">
                             <div className="small-card-slide" style={{backgroundImage:`url(${data.Images[0]})`}}></div>

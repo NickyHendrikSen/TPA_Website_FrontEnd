@@ -139,12 +139,12 @@ export default class ChatDetail extends React.Component{
                                 </div>
                                 <div className="chatD_payment">
                                     <div>Service fee</div>
-                                    <div>${/*{this.state.place.service_fee}*/}0</div>
+                                    <div>${this.state.place.price*10/100}</div>
                                 </div>
                                 <hr/>
                                 <div className="chatD_payment">
                                     <div>Total</div>
-                                    <div>${this.state.place.cleaning_fee  + (this.state.place.price*1)}</div>
+                                    <div>${this.state.place.cleaning_fee  + (this.state.place.price*1) + (this.state.place.price*10/100)}</div>
                                 </div>
                             </div>
 

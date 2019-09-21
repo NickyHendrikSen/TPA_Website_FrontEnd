@@ -238,7 +238,7 @@ header{
     } 
 }
 
-@media all and (max-width: 850px){
+@media all and (max-width: 768px){
     .header-search-wrapper, .Header_SearchInput{
         display:none !important;
         button{
@@ -246,3 +246,12 @@ header{
         }
     }
 }
+@media all and (max-width: 425px){
+    .header-search-wrapper, .Header_SearchInput{
+        display:none !important;
+        button{
+            width: 100% !important;
+        }
+    }
+}
+

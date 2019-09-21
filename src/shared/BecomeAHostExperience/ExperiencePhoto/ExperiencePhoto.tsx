@@ -67,23 +67,25 @@ export class ExperiencePhoto extends Component<IProps> {
 
     updateBrightness = () => {
         let brightness = document.getElementById('editor brightness') as HTMLInputElement
+        let editImage = document.getElementsByClassName('edit-image') as HTMLCollectionOf<HTMLElement>
         var editor = this.setRef.current as AvatarEditor
 
         this.setState({
             brightness:brightness.value
         })
+
         console.log(this.state.brightness)
         let cv = editor.getImage() as HTMLCanvasElement
         let ctx = cv.getContext('2d') as CanvasRenderingContext2D
-        ctx.filter = `brightness : (${this.state.brightness}%)`
+        ctx.filter = `brightness : (0%)`
 
-        this.setState({
-            currImage: cv.toDataURL()
-        })
+        console.log(editImage)
+        editImage[0].style.filter = `brightness : (0%)`
     }
 
     updateContrast = () => {
         let contrast = document.getElementById('editor contrast') as HTMLInputElement
+        let editImage = document.getElementsByClassName('edit-image') as HTMLCollectionOf<HTMLElement>
         var editor = this.setRef.current as AvatarEditor
 
         this.setState({
@@ -94,9 +96,12 @@ export class ExperiencePhoto extends Component<IProps> {
         let ctx = cv.getContext('2d') as CanvasRenderingContext2D
         ctx.filter = `contrast : (${this.state.contrast}%)`
 
-        this.setState({
-            currImage: cv.toDataURL()
-        })
+        console.log(editImage)
+        editImage[0].style.filter = `contrast : (${this.state.contrast}%)`
+
+        // this.setState({
+        //     currImage: cv.toDataURL()
+        // })
     }
 
     zoom = () => {
@@ -119,6 +124,12 @@ export class ExperiencePhoto extends Component<IProps> {
             })
         }
     }
+
+    // setFiles = () => {
+        
+
+    //     console.log(image)
+    // }
 
     setImage = () => {
         var editor = this.setRef.current as AvatarEditor
@@ -149,7 +160,9 @@ export class ExperiencePhoto extends Component<IProps> {
                 <div className="col-md-12 experience-photo-wrapper">
                     <div className="file-container">
                         <i className="far fa-save fa-8x"></i>
+                        {/* <input type="file" name="image" id="image" onChange={this.setFiles.bind(this)}/> */}
                         <FileBase64 multiple={ true }
+                            id="image"
                             onDone={ this.getFiles.bind(this) } 
                             />
                         <label htmlFor="image">Choose an Image</label>
@@ -157,6 +170,7 @@ export class ExperiencePhoto extends Component<IProps> {
                     <div className="url-wrapper">
                         <div className="photo-container">
                             <AvatarEditor
+                                className="edit-image"
                                 ref={this.setRef}
                                 image={this.state.currImage}
                                 width={160}
@@ -179,6 +193,14 @@ export class ExperiencePhoto extends Component<IProps> {
                             <div className="col-md-2 zoom">
                                 Zoom
                                 <input type="range" min={1} max={5} name="" id="editor zoom" onChange={this.zoom}/>
+                            </div>
+                            <div className="col-md-2 zoom">
+                                Position X
+                                <input type="range" min={1} max={5} name="" id="editor pos-x" onChange={this.zoom}/>
+                            </div>
+                            <div className="col-md-2 zoom">
+                                Position Y
+                                <input type="range" min={1} max={5} name="" id="editor pos-y" onChange={this.zoom}/>
                             </div>
                             <div className="col-md-2 rotation">
                                 Rotate
