@@ -42,7 +42,17 @@ export class PlanDetail extends React.Component<RouteComponentProps<any>>{
             images:{
                 picture_url:'',
             }
-        }]
+        }],
+        plans:[
+            {
+                PlansID:'',
+                UserID:'',
+                PlansName:'',
+                PrivacyType:'',
+                ExperienceID:'',
+                RoomID:'',
+            }
+        ],
     }
     componentDidMount(){
         this.experienceList();
@@ -55,6 +65,9 @@ export class PlanDetail extends React.Component<RouteComponentProps<any>>{
         axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
         .then(res => {    
             if(res.data == null) return;
+            this.setState({
+                plans:res.data
+            })
             for(let i = 0; i < res.data.length; i++){
                 //if both data empty
                 if(res.data[i].PlansID == id){
@@ -167,7 +180,7 @@ export class PlanDetail extends React.Component<RouteComponentProps<any>>{
         console.log(this.state.experience);
         const allImages = (
                 <div className="detail-container">
-                    <div className="plan-name">Rencana Bulan Mandu</div>
+                    <div className="plan-name">{this.state.plans[0].PlansName}</div>
                     <div className="plan-date-guest">May 17 - May 18 • 2 guests</div><h4></h4>
                     <div className="tabs-container">
                         <div className="tab" onClick={this.experienceList}>
@@ -182,9 +195,11 @@ export class PlanDetail extends React.Component<RouteComponentProps<any>>{
                             available experiences
                         </div>
                         <div className="col-md-12 card">
-                        {this.state.data.map(e=>{ 
+                        {this.state.data.map((e:any, key:number)=>{ 
                             return(
-                            <UniversalCard url = {e.url}
+                            <UniversalCard
+                                index = {key}
+                                url = {e.url}
                                 desc = {e.desc}
                                 name = {e.name}
                                 price = {e.price}

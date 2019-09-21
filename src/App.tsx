@@ -21,6 +21,7 @@ import BookingHistory from "./shared/BookingHistory/BookingHistory"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import HostExperience from './shared/BecomeAHostExperience/HostExperience';
 import BecomeAHostPlace from './shared/BecomeAHostPlace/BecomeAHostPlace';
+import Becomewhat from './shared/Header/Becomewhat/Becomewhat';
 
 
 const App: React.FC = () => {
@@ -39,9 +40,7 @@ const App: React.FC = () => {
               <Route path="/Profile" component={Profile} />
               <Route path="/PlanList" component={PlanList} />
               <Route path="/plan-detail" component={PlanDetail}/>
-              <Route path="/become-a-host/bathroom" component={BeHost_Bathroom}/>
-              <Route path="/become-a-host/bedroom" component={BeHost_Bedroom}/>
-              <Route path="/become-a-host/room" component={BeHost_Room}/>
+              <Route path="/become-what" component={Becomewhat}/>
               <Route path="/become-a-host-experience" component={HostExperience}/>
               <Route path="/become-a-host-place" component={BecomeAHostPlace}/>
               <Route path="/PlaceDetail/:id" component={PlaceDetail}/>

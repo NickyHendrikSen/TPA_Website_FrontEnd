@@ -252,12 +252,10 @@ export default class Home extends React.Component{
         let i = 0
         
         setInterval(function(){
-            console.log(window.location.href)
             if(window.location.href !== "http://localhost:3000/"){
                 return;
             }
             if (i > 4) i = 0;
-            console.log(i)
             let image;
             if(i == 0)
                 image = require('./img/Imagess/photo.jpg')

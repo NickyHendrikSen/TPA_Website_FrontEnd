@@ -66,7 +66,6 @@ export class HostExperience extends Component {
     }
 
     getBasicInfo = (location:string, hostLang:string, hostSpokenLang:string, category:string, nextClass:string) => {
-        console.log(location + ", " + hostLang + ", " + hostSpokenLang + ", " + category + "" + nextClass);
         this.setState({
             data: {
                 experience_category:category,
@@ -84,30 +83,70 @@ export class HostExperience extends Component {
 
     getExperiencePage = (title:string, detail:string, street:string, about:string, amenities:string[], sbring:string[], nextClass:string) => {
         this.setState({
-            data:{
+            data: {
+                experience_category:this.state.data.experience_category,
                 experience_title:title,
                 experience_detail:detail,
                 about_host:about,
+                host:{
+                    host_language:this.state.data.host.host_language
+                },
                 address:{
+                    suburb:this.state.data.address.location,
                     Street:street
                 },
                 amenities:amenities,
                 should_bring:sbring,
-            }
+            },
+            spoken_language:this.state.spoken_language,
         })
         this.checkClass(nextClass);
     }
 
     getImageList = (image_list:string[], nextClass:string) => {
+        console.log(image_list)
+        this.setState({
+            data: {
+                experience_category:this.state.data.experience_category,
+                experience_title:this.state.data.experience_title,
+                experience_detail:this.state.data.experience_detail,
+                about_host:this.state.data.about_host,
+                host:{
+                    host_language:this.state.data.host.host_language
+                },
+                address:{
+                    suburb:this.state.data.address.location,
+                    Street:this.state.data.address.Street
+                },
+                amenities:this.state.data.amenities,
+                should_bring:this.state.data.should_bring,
+                Images:image_list
+            },
+            spoken_language:this.state.spoken_language,
+        })
         this.checkClass(nextClass)
     }
 
-    getDetailInfo = (person:string, price:string, estimatedHours:string, nextClass:string) => {
+    getDetailInfo = (price:string, estimatedHours:string, nextClass:string) => {
         this.setState({
             data:{
+                experience_category:this.state.data.experience_category,
+                experience_title:this.state.data.experience_title,
+                experience_detail:this.state.data.experience_detail,
+                about_host:this.state.data.about_host,
                 price:price,
                 estimated_total_hours:estimatedHours,
-            }
+                host:{
+                    host_language:this.state.data.host.host_language
+                },
+                address:{
+                    suburb:this.state.data.address.location,
+                    Street:this.state.data.address.Street
+                },
+                amenities:this.state.data.amenities,
+                should_bring:this.state.data.should_bring,
+            },
+            spoken_language:this.state.spoken_language,
         })
         this.checkClass(nextClass)
     }
@@ -115,7 +154,16 @@ export class HostExperience extends Component {
     getMeetingLocation = (position:number[], country:string, address:string, city:string, nextClass:string) => {
         this.setState({
             data:{
-                address: {
+                experience_category:this.state.data.experience_category,
+                experience_title:this.state.data.experience_title,
+                experience_detail:this.state.data.experience_detail,
+                about_host:this.state.data.about_host,
+                price:this.state.data.price,
+                estimated_total_hours:this.state.data.estimated_total_hours,
+                host:{
+                    host_language:this.state.data.host.host_language
+                },
+                address:{
                     Street: address,
                     suburb: city,
                     country: country,
@@ -123,8 +171,12 @@ export class HostExperience extends Component {
                         type: 'Point',
                         coordinates: position
                     }
-                }
-            }
+                },
+                amenities:this.state.data.amenities,
+                should_bring:this.state.data.should_bring,
+                Images:this.state.data.Images
+            },
+            spoken_language:this.state.spoken_language,
         })
         this.checkClass(nextClass)
     }
@@ -206,13 +258,12 @@ export class HostExperience extends Component {
 
         const {data, spoken_language} = this.state
 
-        var currCity = ''
-        var spokenLang = ''
+        var currCity
 
         try{
             currCity = data.address.suburb
         } catch(e) {
-            currCity = ''
+            currCity = e
         }
 
         return (
@@ -256,7 +307,7 @@ export class HostExperience extends Component {
                             <Finish doPush={this.doPush}/>
                         </div>
                         <div className="display-experience-tab">
-                            <Display hostCity={currCity} hostSpoken={spoken_language||''} />
+                            <Display hostCity={currCity} hostSpoken={spoken_language} />
                         </div>
                     </div>
                 </div>

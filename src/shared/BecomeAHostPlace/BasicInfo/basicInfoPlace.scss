@@ -14,8 +14,6 @@ $basic-color: #008489;
     }
     .sub-title{
         padding: 0.5em;
-        width: 20%;
-        margin: auto;
         color: rgba(0, 0, 0, 0.75);
         font: normal bolder 1.5em helvetica, sans-serif;
         border-bottom: 1px solid rgba($color: #000000, $alpha: 0.5)
@@ -39,6 +37,25 @@ $basic-color: #008489;
             }
             .note{
                 font: italic normal 0.8em helvetica, sans-serif; 
+            }
+            .gw-have-container{
+                @media all and (max-width:425px) {
+                    display: block;
+                }
+                @media all and (min-width:426px) {
+                    display: flex;
+                }
+                .gw-have{
+                    padding: 1em;
+                    >label{
+                        color: #5A585C;
+                        font: normal bold 1em helvetica, sans-serif;
+                    }
+                    >div{
+                        color: #5A585C;
+                        font: normal normal 1em arial, sans-serif;
+                    }
+                }
             }
         }
         .location-wrapper{

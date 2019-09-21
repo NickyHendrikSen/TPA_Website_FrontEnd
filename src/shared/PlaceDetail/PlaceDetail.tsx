@@ -60,7 +60,6 @@ export default class PlaceDetail extends React.Component <RouteComponentProps<an
 
     componentWillMount(){
         let id: any = this.props.match.params.id
-        // const { fromNotifications } = this.props.location.state
         Axios.get('http://backendtpaweb.herokuapp.com/api/rooms/' + id)
             .then(res => {
                 this.setState(

@@ -1,0 +1,96 @@
+.become-wrapper{
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: rgba($color: #C1DFF5, $alpha: 1);
+    overflow: hidden;
+    .become-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .left-container{
+            border-right: 1px solid #5A585C;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            transition: all 250ms ease-in-out;
+            &:hover{
+                width: 60%;
+            }
+            >i{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgba($color: #246EA6, $alpha: 1);
+                transition: all 250ms ease-in-out;
+            }
+            .btn-left{
+                outline: none;
+                cursor: pointer;
+                border: none;
+                color: white;
+                padding: 1em;
+                font-size: 1em;
+                border-radius: 5px;
+                background-color: #91B9FA;
+                transition: all 250ms ease-in-out;
+                &:hover{
+                    background-color: #2C5E94;
+                    transform: scale(1.2);
+                }
+            }
+            &:hover{
+                >i{
+                    transform: scale(1.5);
+                }
+            }
+        }
+        .right-container{
+            border-left: 1px solid #5A585C;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            transition: all 500ms ease-in-out;
+            &:hover{
+                width: 60%;
+            }
+            >i{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgba($color: #246EA6, $alpha: 1);
+                transition: all 250ms ease-in-out;
+            }
+            .btn-right{
+                outline: none;
+                cursor: pointer;
+                border: none;
+                color: white;
+                padding: 1em;
+                font-size: 1em;
+                border-radius: 5px;
+                background-color: #91B9FA;
+                transition: all 250ms ease-in-out;
+                &:hover{
+                    background-color: #2C5E94;
+                    transform: scale(1.2);
+                }
+            }
+            &:hover{
+                >i{
+                    transform: scale(1.5);
+                }
+            }
+        }
+    }
+}

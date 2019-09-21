@@ -37,7 +37,7 @@ export class BasicInfoPlace extends Component<IProps> {
         let amenities = document.getElementById('amenities') as HTMLInputElement
         let city = document.getElementById('city') as HTMLInputElement
         let error = document.getElementsByClassName('error') as HTMLCollectionOf<HTMLElement>
-
+        
         if( 
             city.value !== '' &&
             mapCountry.value !== '' && 
@@ -120,8 +120,28 @@ export class BasicInfoPlace extends Component<IProps> {
                     </div>
                     <div className="input">
                         <div>What Guest Will Have</div>
-                        <div>
-                            <input type="number" name="guest-have" id="guest-have"/>
+                        <div className="gw-have-container">
+                            <div className="gw-have">
+                                <input type="radio" name="gw" id="entire" value="Entire Place" checked/>
+                                <label htmlFor='entire'>Entire Place</label>
+                                <div>
+                                    Guest have the whole place of themselves. This usually include a bedroom, a bathroom, and a kitchen
+                                </div>
+                            </div>
+                            <div className="gw-have">
+                                <input type="radio" name="gw" id="private" value="Private Room"/>
+                                <label htmlFor='private'>Private Room</label>
+                                <div>
+                                    Guest have their own private room for sleeping. Other areas could be shared
+                                </div>
+                            </div>
+                            <div className="gw-have">
+                                <input type="radio" name="gw" id="shared" value="Shared Room"/>
+                                <label htmlFor='shared'>Shared Room</label>
+                                <div>
+                                    Guests sleep in a bedroom or a common area that could be shared with others.
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="sub-title">Bedrooms</div>

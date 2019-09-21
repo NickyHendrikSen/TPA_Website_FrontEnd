@@ -1,6 +1,5 @@
 import React, { Component, InputHTMLAttributes } from 'react'
 import AvatarEditor from 'react-avatar-editor'
-import FileBase64 from 'react-filebase64'
 import './ExperiencePhoto.scss'
 
 interface IProps{
@@ -34,39 +33,6 @@ export class ExperiencePhoto extends Component<IProps> {
     }
     
     setRef = React.createRef<AvatarEditor>()
-
-    getFiles(files:File){
-        var images = ['']
-        var names = ['']
-
-        if(this.state.image_list.length > 0) {
-            images = this.state.image_list
-            names = this.state.image_list_name
-        }
-
-        var editorContainer = document.getElementsByClassName('editor-wrapper') as HTMLCollectionOf<HTMLElement>
-
-        editorContainer[0].style.display = 'block'
-        
-        this.setState({
-            files: files,
-            currImageName:files.name,
-        })
-        if(this.state.image_list.length === 0){
-            images[0] = this.state.files[0].base64
-            names[0] = this.state.files[0].name
-        }
-        else{
-            images.push(this.state.files[0].base64)
-            names.push(this.state.files[0].name)
-        }
-        
-        this.setState({
-            image_list:images,
-            image_list_name:names,
-            currImage:this.state.files[0].base64,
-        })
-    }
 
     updateBrightness = () => {
         let brightness = document.getElementById('brightness') as HTMLInputElement
@@ -117,13 +83,15 @@ export class ExperiencePhoto extends Component<IProps> {
 
     setFiles = (e:any) => {
         let reader = new FileReader()
-
+        let images = [] as any
         reader.onload = () => {
+            if(this.state.image_list.length === 0) images[0] = reader.result
+            else images.push(reader.result)
             this.setState({
-                currImage:reader.result
+                currImage:reader.result,
+                image_list:images
             })
         }
-
         reader.readAsDataURL(e.target.files[0])
     }
 

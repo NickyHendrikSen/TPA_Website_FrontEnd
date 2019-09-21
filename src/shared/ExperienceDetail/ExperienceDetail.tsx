@@ -2,15 +2,13 @@ import React from "react"
 import Header from "../Header/Header"
 import "./ExperienceDetail.scss"
 import "react-fa-icon"
-import photo from "./img/oldtown.jpg"
-import InstaStory from "./InstaStory/InstaStory"
 import axios from 'axios'
 import Stories from 'react-insta-stories'
-import StarRatings from 'react-star-ratings';
+import StarRatings from 'react-star-ratings'
 import ImageGallery from "react-image-gallery"
-import "react-image-gallery/styles/scss/image-gallery.scss";
+import "react-image-gallery/styles/scss/image-gallery.scss"
 import CopyToClipboard from "react-copy-to-clipboard"
-import {RouteComponentProps, withRouter} from "react-router";
+import {RouteComponentProps, withRouter} from "react-router"
 import {Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
 import {FacebookShareButton , EmailShareButton} from "react-share"
 

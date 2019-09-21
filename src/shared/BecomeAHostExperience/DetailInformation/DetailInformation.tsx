@@ -17,7 +17,7 @@ export class DetailInformation extends Component<IProps> {
             error[3].style.display = 'block';
         } else {
             error[3].style.display = 'none';
-            this.props.setDetailInfo(personCount, price, estimatedHours, 'meeting')
+            this.props.setDetailInfo(price, estimatedHours, 'meeting')
         }
 
     }
@@ -32,7 +32,7 @@ export class DetailInformation extends Component<IProps> {
                     <div className="input input-person-count">
                         <div>Max. Person</div>
                         <div>
-                            <input type="text" name="person-count" id="person-count"/>
+                            <input type="number" name="person-count" id="person-count"/>
                         </div>
                     </div>
                     <div className="input price">

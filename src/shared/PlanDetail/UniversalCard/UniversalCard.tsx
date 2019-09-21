@@ -13,6 +13,7 @@ interface IProps{
     number_of_reviews:number,
     type:string,
     beds:number,
+    index:number,
 }
 
 export class UniversalCard extends Component<IProps> {
@@ -26,17 +27,11 @@ export class UniversalCard extends Component<IProps> {
         number_of_reviews:this.props.number_of_reviews,    
         type:this.props.type,
         beds:this.props.beds,
+        index:this.props.index,
     }
 
-    toggleLove(){
-        var love = document.getElementsByClassName("heart far fa-heart") as HTMLCollectionOf<HTMLElement>
-
-        if(love[0].className === "heart fas fa-heart"){            
-            love[0].className = "heart far fa-heart"
-        }
-        else{
-            love[0].className = "heart fas fa-heart";
-        }
+    toggleRemove(){
+        
     }
 
     render() {
@@ -44,10 +39,10 @@ export class UniversalCard extends Component<IProps> {
         
         return (
             <div className="col-md-12 list-wrapper">
-                <div className="heart far fa-heart" onClick={this.toggleLove}>
+                <div className="toggle-container">
+                    <button onClick={this.toggleRemove}>Remove</button>
                 </div>
-                <Imagecarousel index={1} image_list={data.url}>
-                </Imagecarousel>
+                <Imagecarousel index={this.state.index+1} image_list={data.url}/>
                 <div className="col-md-12 desc-frame">
                     <div className="desc">{data.desc}</div>
                     <div className="name">{data.name}</div>
