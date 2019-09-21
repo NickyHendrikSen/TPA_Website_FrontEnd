@@ -28,6 +28,9 @@ export class ExperiencePhoto extends Component<IProps> {
         deg:0,
         currViewImage:'',
         index:0,
+        style: {
+            filter: ""
+        }
     }
     
     setRef = React.createRef<AvatarEditor>()
@@ -66,42 +69,29 @@ export class ExperiencePhoto extends Component<IProps> {
     }
 
     updateBrightness = () => {
-        let brightness = document.getElementById('editor brightness') as HTMLInputElement
-        let editImage = document.getElementsByClassName('edit-image') as HTMLCollectionOf<HTMLElement>
-        var editor = this.setRef.current as AvatarEditor
-
+        let brightness = document.getElementById('brightness') as HTMLInputElement
         this.setState({
             brightness:brightness.value
         })
 
-        console.log(this.state.brightness)
-        let cv = editor.getImage() as HTMLCanvasElement
-        let ctx = cv.getContext('2d') as CanvasRenderingContext2D
-        ctx.filter = `brightness : (0%)`
-
-        console.log(editImage)
-        editImage[0].style.filter = `brightness : (0%)`
+        this.setState({
+            style: {
+                filter: `brightness(${this.state.brightness}%) contrast(${this.state.contrast}%)`
+            }
+        })
     }
 
     updateContrast = () => {
-        let contrast = document.getElementById('editor contrast') as HTMLInputElement
-        let editImage = document.getElementsByClassName('edit-image') as HTMLCollectionOf<HTMLElement>
-        var editor = this.setRef.current as AvatarEditor
-
+        let contrast = document.getElementById('contrast') as HTMLInputElement
         this.setState({
             contrast:contrast.value
         })
 
-        let cv = editor.getImage() as HTMLCanvasElement
-        let ctx = cv.getContext('2d') as CanvasRenderingContext2D
-        ctx.filter = `contrast : (${this.state.contrast}%)`
-
-        console.log(editImage)
-        editImage[0].style.filter = `contrast : (${this.state.contrast}%)`
-
-        // this.setState({
-        //     currImage: cv.toDataURL()
-        // })
+        this.setState({
+            style: {
+                filter: `brightness(${this.state.brightness}%) contrast(${this.state.contrast}%)`
+            }
+        })
     }
 
     zoom = () => {
@@ -125,15 +115,30 @@ export class ExperiencePhoto extends Component<IProps> {
         }
     }
 
-    // setFiles = () => {
-        
+    setFiles = (e:any) => {
+        let reader = new FileReader()
 
-    //     console.log(image)
-    // }
+        reader.onload = () => {
+            this.setState({
+                currImage:reader.result
+            })
+        }
+
+        reader.readAsDataURL(e.target.files[0])
+    }
 
     setImage = () => {
         var editor = this.setRef.current as AvatarEditor
-        this.props.setImagePreview(editor.getImageScaledToCanvas().toDataURL())
+        var editorCanvas = editor.getImageScaledToCanvas()
+        var canvas = document.createElement('canvas') as HTMLCanvasElement
+        var ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+        canvas.setAttribute("width", editorCanvas.width + "")
+        canvas.setAttribute("height", editorCanvas.height + "")
+
+        ctx.filter = this.state.style.filter
+        ctx.drawImage(editorCanvas, 0, 0, editorCanvas.width, editorCanvas.height)
+
+        this.props.setImagePreview(canvas.toDataURL())
     }
 
     render() {
@@ -160,11 +165,7 @@ export class ExperiencePhoto extends Component<IProps> {
                 <div className="col-md-12 experience-photo-wrapper">
                     <div className="file-container">
                         <i className="far fa-save fa-8x"></i>
-                        {/* <input type="file" name="image" id="image" onChange={this.setFiles.bind(this)}/> */}
-                        <FileBase64 multiple={ true }
-                            id="image"
-                            onDone={ this.getFiles.bind(this) } 
-                            />
+                        <input type="file" name="image" id="image" onChange={this.setFiles.bind(this)}/>
                         <label htmlFor="image">Choose an Image</label>
                     </div>
                     <div className="url-wrapper">
@@ -177,6 +178,7 @@ export class ExperiencePhoto extends Component<IProps> {
                                 height={240}
                                 border={30}
                                 color={[180, 180, 180, 0.5]}
+                                style={this.state.style}
                                 scale={Number(this.state.zoom)}
                                 rotate={this.state.deg}
                             />
@@ -184,23 +186,15 @@ export class ExperiencePhoto extends Component<IProps> {
                         <div className="editor-wrapper">
                             <div className="col-md-2 brightness">
                                 Brightness
-                                <input type="range" min={0} max={200} name="" id="editor brightness" onChange={this.updateBrightness}/>
+                                <input type="range" min={0} max={200} name="" id="brightness" onChange={this.updateBrightness}/>
                             </div>
                             <div className="col-md-2 contrast">
                                 Contrast
-                                <input type="range" min={0} max={200} name="" id="editor contrast" onChange={this.updateContrast}/>
+                                <input type="range" min={0} max={200} name="" id="contrast" onChange={this.updateContrast}/>
                             </div>
                             <div className="col-md-2 zoom">
                                 Zoom
                                 <input type="range" min={1} max={5} name="" id="editor zoom" onChange={this.zoom}/>
-                            </div>
-                            <div className="col-md-2 zoom">
-                                Position X
-                                <input type="range" min={1} max={5} name="" id="editor pos-x" onChange={this.zoom}/>
-                            </div>
-                            <div className="col-md-2 zoom">
-                                Position Y
-                                <input type="range" min={1} max={5} name="" id="editor pos-y" onChange={this.zoom}/>
                             </div>
                             <div className="col-md-2 rotation">
                                 Rotate
