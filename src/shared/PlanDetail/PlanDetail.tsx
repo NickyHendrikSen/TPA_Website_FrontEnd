@@ -62,7 +62,7 @@ export class PlanDetail extends React.Component<RouteComponentProps<any>>{
         console.log(id);
         var expList = [{}];
         var roomList = [{}];
-        axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/plans/' + localStorage.getItem('UserID'))
         .then(res => {    
             if(res.data == null) return;
             this.setState({

@@ -50,7 +50,7 @@ export default class BookingPlaceLoader extends React.Component{
                 )
             }
        )
-       axios.get('http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'))
+       axios.get('http://localhost:27017/api/users/' + localStorage.getItem('UserID'))
         .then(res => {
             this.setState(
                 {

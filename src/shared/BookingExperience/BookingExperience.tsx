@@ -91,7 +91,7 @@ export default class BookingExperience extends React.Component{
                 console.log(res.data);
             }
         )
-        axios.get('http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/users/' + localStorage.getItem('UserID'))
             .then(res => {
                 this.setState(
                     {
@@ -207,7 +207,7 @@ export default class BookingExperience extends React.Component{
     }
     insertBooking = (status:string) => {
         axios({
-            url: 'http://backendtpaweb.herokuapp.com/api/insert-booking', 
+            url: 'http://localhost:27017/api/insert-booking', 
             method : "POST",
             data : {
                 "UserID" : Number(localStorage.getItem('UserID') + ""),

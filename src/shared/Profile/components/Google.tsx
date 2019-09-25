@@ -20,7 +20,7 @@ export default class Google extends React.Component{
         }
     }
     componentWillMount(){
-        axios.get('http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/users/' + localStorage.getItem('UserID'))
             .then(res => {
                 this.setState(
                     {
@@ -46,7 +46,7 @@ export default class Google extends React.Component{
             email: response.profileObj.email,
         });
         axios({
-            url: 'http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'), 
+            url: 'http://localhost:27017/api/users/' + localStorage.getItem('UserID'), 
             method : "POST",
             data : {
                 Password: this.state.data.Password,

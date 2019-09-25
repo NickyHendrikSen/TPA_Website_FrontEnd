@@ -16,7 +16,7 @@ export default class BookingHistory extends React.Component{
         isLoading:true,
     }
     componentWillMount(){
-        axios.get('http://backendtpaweb.herokuapp.com/api/select-booking/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/select-booking/' + localStorage.getItem('UserID'))
             .then(res => {
                 this.setState(
                     {
@@ -30,7 +30,7 @@ export default class BookingHistory extends React.Component{
     }
     deleteBooking(i : number, index:number){
         axios({
-            url: 'http://backendtpaweb.herokuapp.com/api/delete-booking', 
+            url: 'http://localhost:27017/api/delete-booking', 
             method : "POST",
             data : {
                 "BookingsID" : Number(i),

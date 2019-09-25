@@ -169,7 +169,7 @@ export default class EditProfile extends React.Component{
         
     }
     componentWillMount(){
-        axios.get('http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/users/' + localStorage.getItem('UserID'))
             .then(res => {
                 this.setState(
                     {

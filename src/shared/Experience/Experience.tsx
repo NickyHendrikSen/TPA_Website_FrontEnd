@@ -125,7 +125,7 @@ export default class Experience extends React.Component{
                 )
             }
         )
-        axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/plans/' + localStorage.getItem('UserID'))
             .then(res => {
                 this.setState(
                     {

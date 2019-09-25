@@ -22,7 +22,7 @@ export default class ExperienceHeader extends React.Component{
     componentWillMount(){
         if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null) window.location.href = "/";
         axios.all([
-            axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID')),
+            axios.get('http://localhost:27017/api/plans/' + localStorage.getItem('UserID')),
             axios.get('http://backendtpaweb.herokuapp.com/api/experience')    
         ])
         .then(axios.spread((plansRes, expRes) => {
@@ -62,7 +62,7 @@ export default class ExperienceHeader extends React.Component{
         }
         else{
             axios({
-                url: 'http://backendtpaweb.herokuapp.com/api/plans', 
+                url: 'http://localhost:27017/api/plans', 
                 method : "POST",
                 data : {
                     // "PlansID" : 2,   
@@ -90,7 +90,7 @@ export default class ExperienceHeader extends React.Component{
             //insert
             (document.getElementById("love" + Plansid) as HTMLElement).style.color = "red";
             axios({
-                url: 'http://backendtpaweb.herokuapp.com/api/experience-plans', 
+                url: 'http://localhost:27017/api/experience-plans', 
                 method : "POST",
                 data : {
                     "ExperienceID": parseInt(localStorage.getItem('ExperienceChosen') + ""),
@@ -106,7 +106,7 @@ export default class ExperienceHeader extends React.Component{
             //delete
             (document.getElementById("love" + Plansid) as HTMLElement).style.color = "white";
             axios({
-                url: 'http://backendtpaweb.herokuapp.com/api/delete-experience-plans', 
+                url: 'http://localhost:27017/api/delete-experience-plans', 
                 method : "POST",
                 data : {
                     "ExperienceID": parseInt(localStorage.getItem('ExperienceChosen') + ""),

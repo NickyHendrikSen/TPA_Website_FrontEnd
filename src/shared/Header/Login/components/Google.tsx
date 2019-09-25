@@ -51,7 +51,7 @@ export default class Google extends React.Component{
         // console.log(response)
     }
     componentWillMount(){
-        axios.get('http://backendtpaweb.herokuapp.com/api/users')
+        axios.get('http://localhost:27017/api/users')
             .then(res => {
                 this.setState(
                     {

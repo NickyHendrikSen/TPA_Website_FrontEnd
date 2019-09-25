@@ -56,7 +56,7 @@ class Places extends React.Component<RouteComponentProps<any>>{
         console.log(country)
         axios.all([
             axios.get('http://backendtpaweb.herokuapp.com/api/rooms/place/'+country),
-            axios.get('http://backendtpaweb.herokuapp.com/api/plans/11')
+            axios.get('http://localhost:27017/api/plans/11')
         ])
         .then(axios.spread((roomRes:any, planRes:any) => {
             this.setState(

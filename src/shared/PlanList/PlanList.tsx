@@ -33,7 +33,7 @@ export default class PlanList extends React.Component{
         UserID:'',
     }]
     componentDidMount(){
-        axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/plans/' + localStorage.getItem('UserID'))
             .then(res => {    
                 if(res.data == null) return;
                 for(let i = 0; i < res.data.length; i++){
@@ -45,7 +45,7 @@ export default class PlanList extends React.Component{
                     else if(res.data[i].RoomID != "[]"){
                         var roomid = ((res.data[i].RoomID.split('[')[1]).split(']')[0]).split(',')[0];
                         // temp.push(res.data[i]);
-                        axios.get('http://backendtpaweb.herokuapp.com/api/rooms/' + roomid)
+                        axios.get('http://localhost:27017/api/rooms/' + roomid)
                         .then(ress => {    
                             (document.getElementsByClassName('savedPlan_images')[i] as HTMLImageElement).src = ress.data.Images.picture_url;
                             // temps.push(ress.data.Images.picture_url);
@@ -55,7 +55,7 @@ export default class PlanList extends React.Component{
                     else{
                         var expid = ((res.data[i].ExperienceID.split('[')[1]).split(']')[0]).split(',')[0];
                         // temp.push(res.data[i]);
-                        axios.get('http://backendtpaweb.herokuapp.com/api/experience/' + expid)
+                        axios.get('http://localhost:27017/api/experience/' + expid)
                         .then(ress => {    
                             (document.getElementsByClassName('savedPlan_images')[i] as HTMLImageElement).src = ress.data.Images[0];
                             // temps.push(ress.data.Images[0]);
@@ -72,7 +72,7 @@ export default class PlanList extends React.Component{
             window.location.href = "/";
             return;
         }
-        axios.get('http://backendtpaweb.herokuapp.com/api/plans/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/plans/' + localStorage.getItem('UserID'))
             .then(res => {     
                 this.setState({
                     data: res.data
@@ -80,7 +80,7 @@ export default class PlanList extends React.Component{
             }
         )
 
-        axios.get('http://backendtpaweb.herokuapp.com/api/plans')
+        axios.get('http://localhost:27017/api/plans')
             .then(res => {
                 var recommendTemp = [{
                     RoomID:'', 

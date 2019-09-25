@@ -29,7 +29,7 @@ export default class SignUp extends React.Component{
     componentWillMount(){
         // const { fromNotifications } = this.props.location.state
         // if(localStorage.getItem('UserID') == "" || localStorage.getItem('UserID') == null){
-            axios.get('http://backendtpaweb.herokuapp.com/api/users')
+            axios.get('http://localhost:27017/api/users')
                 .then(res => {
                     this.setState(
                         {
@@ -41,7 +41,7 @@ export default class SignUp extends React.Component{
             )
             // return;
         // }
-        axios.get('http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/users/' + localStorage.getItem('UserID'))
             .then(res => {
                     this.setState(
                         {
@@ -155,7 +155,7 @@ export default class SignUp extends React.Component{
                 else
                     (document.getElementsByClassName('menu_pictureImg')[0] as HTMLImageElement).src = "https://" + state[i].UserThumbnailURL;
                 axios({
-                    url: 'http://backendtpaweb.herokuapp.com/api/history-insert/' + (state[i].UserID), 
+                    url: 'https://localhost:27017/api/history-insert/' + (state[i].UserID), 
                     method : "POST",
                     data : {
                 },

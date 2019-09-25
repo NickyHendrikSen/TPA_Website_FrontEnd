@@ -35,7 +35,7 @@ export class ListPhotos extends Component<IPhotos> {
 
     componentWillMount(){
         if(localStorage.getItem('UserID') !== null || localStorage.getItem('UserID') !== ''){
-            Axios.get(`http://backendtpaweb.herokuapp.com/api/plans/${localStorage.getItem('UserID')}`)
+            Axios.get(`http://localhost:27017/api/plans/${localStorage.getItem('UserID')}`)
                 .then(res => 
                     this.setState({
                         plans:res.data

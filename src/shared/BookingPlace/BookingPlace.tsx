@@ -148,7 +148,7 @@ export default class BookingPlace extends Component<IProps>{
     insertBooking = (status:string) => {
         console.log((this.state.data.price*this.state.data.dayCount) + (this.state.data.cleaning_fee) + (this.state.data.service_fee));
         axios({
-            url: 'http://backendtpaweb.herokuapp.com/api/insert-booking', 
+            url: 'http://localhost:27017/api/insert-booking', 
             method : "POST",
             data : {
                 "UserID" : Number(localStorage.getItem('UserID') + ""),

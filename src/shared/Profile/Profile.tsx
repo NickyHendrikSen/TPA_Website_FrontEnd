@@ -27,7 +27,7 @@ export default class Profile extends React.Component{
             window.location.href = "/";
             return;
         }
-        axios.get('http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/users/' + localStorage.getItem('UserID'))
             .then(res => {
                 this.setState(
                     {
@@ -37,7 +37,7 @@ export default class Profile extends React.Component{
                 // console.log(res.data);
             }
         )
-        axios.get('http://backendtpaweb.herokuapp.com/api/history-show-last/' + localStorage.getItem('UserID'))
+        axios.get('http://localhost:27017/api/history-show-last/' + localStorage.getItem('UserID'))
             .then(res => {
                 this.setState(
                     {
@@ -78,7 +78,7 @@ export default class Profile extends React.Component{
         if(success == false) return;
         //Update password
         axios({
-            url: 'http://backendtpaweb.herokuapp.com/api/users/' + localStorage.getItem('UserID'), 
+            url: 'http://localhost:27017/api/users/' + localStorage.getItem('UserID'), 
             method : "POST",
             data : {
                 Password: newP + "",

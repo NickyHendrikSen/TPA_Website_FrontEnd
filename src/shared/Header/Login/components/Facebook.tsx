@@ -18,7 +18,7 @@ export default class Facebook extends React.Component{
         }]
     }
     componentWillMount(){
-        axios.get('http://backendtpaweb.herokuapp.com/api/users')
+        axios.get('http://localhost:27017/api/users')
             .then(res => {
                 this.setState(
                     {
